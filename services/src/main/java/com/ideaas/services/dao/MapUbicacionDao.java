@@ -12,7 +12,12 @@ import java.util.List;
 @Repository
 public interface MapUbicacionDao extends PagingAndSortingRepository<MapUbicacion, Long> {
 
-    @Query("select u from MapUbicacion u where u.id = :#{#request.id} or u.audEmpresa.descripcion = :#{#request.audEmpresa.descripcion} ")
+    @Query("select u from MapUbicacion u where u.audEmpresa.descripcion = :#{#request.audEmpresa}" +
+            "                              and u.mapElemento.descripcion = :#{#request.mapElemento}" +
+            "                              and u.mapFormato.descripcion = :#{#request.mapFormato}" +
+            "                              and u.mapMedio.descripcion = :#{#request.mapMedio}" +
+            "                              and u.mapProvincia.descripcion = :#{#request.mapProvincia}" +
+            "                              and u.audLocalidad.descripcion = :#{#request.audLocalidad}")
     List<MapUbicacion> findAllBy(@Param("request") MapUbicacionRequest request);
 
 }

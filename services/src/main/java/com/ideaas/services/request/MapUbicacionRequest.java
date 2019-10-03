@@ -6,8 +6,16 @@ import lombok.Data;
 @Data
 public class MapUbicacionRequest {
 
-    private Long id;
+    private String audEmpresa;
 
-    private AudEmpresa audEmpresa;
+    private String mapElemento;
+
+    private String mapProvincia;
+
+    private String mapFormato;
+
+    private String audLocalidad;
+
+    private String mapMedio;
 
 }
