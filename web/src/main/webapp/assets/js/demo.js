@@ -281,9 +281,9 @@ demo = {
 
         var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);
 
-        // lbd.startAnimationForBarChart(chartActivity);
+       /* // lbd.startAnimationForBarChart(chartActivity);
 
-        // /* ----------==========     Daily Sales Chart initialization    ==========---------- */
+        // /!* ----------==========     Daily Sales Chart initialization    ==========---------- *!/
         //
         // dataDailySalesChart = {
         //     labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -307,7 +307,7 @@ demo = {
 
         //
         //
-        // /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
+        // /!* ----------==========     Completed Tasks Chart initialization    ==========---------- *!/
         //
         // dataCompletedTasksChart = {
         //     labels: ['12am', '3pm', '6pm', '9pm', '12pm', '3am', '6am', '9am'],
@@ -331,7 +331,7 @@ demo = {
         // lbd.startAnimationForLineChart(completedTasksChart);
         //
         //
-        // /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+        // /!* ----------==========     Emails Subscription Chart initialization    ==========---------- *!/
         //
         // var dataEmailsSubscriptionChart = {
         //   labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -361,7 +361,7 @@ demo = {
         // var emailsSubscriptionChart = Chartist.Bar('#emailsSubscriptionChart', dataEmailsSubscriptionChart, optionsEmailsSubscriptionChart, responsiveOptions);
         //
         // //start animation for the Emails Subscription Chart
-        // lbd.startAnimationForBarChart(emailsSubscriptionChart);
+        // lbd.startAnimationForBarChart(emailsSubscriptionChart);*/
 
     },
 

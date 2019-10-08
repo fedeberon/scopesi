@@ -70,4 +70,117 @@ public class Usuario {
     private ContratoMapping contratoMapping;
 
     public Usuario() { }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Anunciante getMapAnunciante() {
+        return mapAnunciante;
+    }
+
+    public void setMapAnunciante(Anunciante mapAnunciante) {
+        this.mapAnunciante = mapAnunciante;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public ContratoInversion getContratoInversion() {
+        return contratoInversion;
+    }
+
+    public void setContratoInversion(ContratoInversion contratoInversion) {
+        this.contratoInversion = contratoInversion;
+    }
+
+    public ContratoAuditoria getContratoAuditoria() {
+        return contratoAuditoria;
+    }
+
+    public void setContratoAuditoria(ContratoAuditoria contratoAuditoria) {
+        this.contratoAuditoria = contratoAuditoria;
+    }
+
+    public ContratoMapping getContratoMapping() {
+        return contratoMapping;
+    }
+
+    public void setContratoMapping(ContratoMapping contratoMapping) {
+        this.contratoMapping = contratoMapping;
+    }
 }

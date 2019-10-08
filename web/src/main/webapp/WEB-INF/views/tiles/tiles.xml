@@ -35,5 +35,30 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/maps.jsp" />
     </definition>
 
+
+    <definition name="panel" extends="template-def">
+        <put-attribute name="title" value="Maps" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/dashboard.jsp" />
+    </definition>
+
+
+
+    <definition name="user/list" extends="template-def">
+        <put-attribute name="title" value="Maps" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/user/list.jsp" />
+    </definition>
+
+
+    <definition name="ubicacion/list" extends="template-def">
+        <put-attribute name="title" value="Maps" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacion/list.jsp" />
+    </definition>
+
 </tiles-definitions>
 

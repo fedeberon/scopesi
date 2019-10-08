@@ -43,4 +43,76 @@ public class MapElemento {
 
     public MapElemento() {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Long getPanos() {
+        return panos;
+    }
+
+    public void setPanos(Long panos) {
+        this.panos = panos;
+    }
+
+    public MapMedio getMapMedio() {
+        return mapMedio;
+    }
+
+    public void setMapMedio(MapMedio mapMedio) {
+        this.mapMedio = mapMedio;
+    }
+
+    public MapFormato getMapFormato() {
+        return mapFormato;
+    }
+
+    public void setMapFormato(MapFormato mapFormato) {
+        this.mapFormato = mapFormato;
+    }
+
+    public Long getAcumulaDatos() {
+        return acumulaDatos;
+    }
+
+    public void setAcumulaDatos(Long acumulaDatos) {
+        this.acumulaDatos = acumulaDatos;
+    }
+
+    public Long getEvalua() {
+        return evalua;
+    }
+
+    public void setEvalua(Long evalua) {
+        this.evalua = evalua;
+    }
+
+    public Long getMetrosContacto() {
+        return metrosContacto;
+    }
+
+    public void setMetrosContacto(Long metrosContacto) {
+        this.metrosContacto = metrosContacto;
+    }
+
+    public BigDecimal getCoeficiente() {
+        return coeficiente;
+    }
+
+    public void setCoeficiente(BigDecimal coeficiente) {
+        this.coeficiente = coeficiente;
+    }
 }
