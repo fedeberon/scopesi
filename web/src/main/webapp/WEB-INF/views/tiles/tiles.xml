@@ -27,5 +27,13 @@
         <put-attribute name="footer"  value="/WEB-INF/views/tiles/templates/footer.jsp" />
     </definition>
 
+
+    <definition name="maps" extends="template-def">
+        <put-attribute name="title" value="Maps" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/maps.jsp" />
+    </definition>
+
 </tiles-definitions>
 
