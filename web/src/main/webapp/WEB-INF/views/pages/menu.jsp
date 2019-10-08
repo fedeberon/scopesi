@@ -36,7 +36,7 @@
             </a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="./maps.html">
+            <a class="nav-link" href="/maps/show">
                 <i class="nc-icon nc-pin-3"></i>
                 <p>Maps</p>
             </a>

@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-         <div class="col-md-4">
+         <div class="col-md-4 border border-primary rounded mt-2 p-3">
 
             <!-- Default form login -->
             <form class="form-signin" name='f' action="/perform_login" style="text-align: center" method='POST'>  <!--action='/j_spring_security_check'-->
@@ -15,6 +15,14 @@
 
                 <!-- Password -->
                 <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"> <!-- name='j_password' -->
+
+                <!-- Check box -->
+                <div class="ml-4 d-flex justify-content-left">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Remember me
+                    </label>
+                </div>
 
                 <!-- Sign in button -->
                 <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
@@ -33,6 +41,12 @@
 <%--                <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>--%>
 
             </form>
+             <div class="d-flex justify-content-around">
+                 <div>
+                     <!-- Forgot password -->
+                     <a href="">Forgot password?</a>
+                 </div>
+             </div>
          </div>
     </div>
 </div>
