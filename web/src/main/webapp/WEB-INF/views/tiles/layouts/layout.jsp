@@ -9,11 +9,18 @@
 <body>
 
     <div class="wrapper">
-        <div>
+        <div class="sidebar" data-color="purple">
             <tiles:insertAttribute name="menu" />
         </div>
 
-        <tiles:insertAttribute name="body" />
+
+        <div class="main-panel">
+
+            <tiles:insertAttribute name="navbar" />
+
+            <tiles:insertAttribute name="body" />
+
+        </div>
 
     </div>
 
