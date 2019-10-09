@@ -20,7 +20,7 @@ public class UserController {
 
     @RequestMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "1") Integer page, Model model){
+                          @RequestParam(defaultValue = "0") Integer page, Model model){
         model.addAttribute("users", usuarioService.findAll(size, page, "id"));
 
         return "user/list";

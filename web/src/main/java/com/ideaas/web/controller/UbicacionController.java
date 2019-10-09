@@ -1,6 +1,5 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.service.interfaces.AudUbicacionService;
 import com.ideaas.services.service.interfaces.MapUbicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class UbicacionController {
 
     @RequestMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "1") Integer page, Model model){
+                          @RequestParam(defaultValue = "0") Integer page, Model model){
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(size, page, "id"));
 
         return "ubicacion/list";
