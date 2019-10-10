@@ -42,8 +42,12 @@
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project!
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+     Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
 <script type="text/javascript">
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
@@ -51,5 +55,82 @@
 
     });
 </script>
+<script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable( {
+            "scrollY": "300px",
+            "paging": true,
+             dom: 'Brti',
+
+            buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    text: 'PDF'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                },
+                {
+                    extend: 'colvis',
+                    text: 'Filtro de Columnas',
+                    columnText: function (dt, idx, title) {
+                        return (idx + 1) + ': ' + title;
+                    }
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copiar en Portapapeles',
+                    copySuccess: {
+                        1: "Copied one row to clipboard",
+                        _: "Copied %d rows to clipboard"
+                    },
+                    copyTitle: 'Copiar en portapapeles',
+                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.'
+                },
+                {
+                    extend: 'print',
+                    text: 'Imprimir resultados',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                }
+            ],
+        } );
+
+        $('a.toggle-vis').on( 'click', function (e) {
+            e.preventDefault();
+
+            // Get the column API object
+            var column = table.column( $(this).attr('data-column') );
+
+            // Toggle the visibility
+            column.visible( ! column.visible() );
+        } );
+    } );
+</script>
+
+
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+
+<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>--%>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>--%>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
+<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js"></script>--%>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
 
 </html>
