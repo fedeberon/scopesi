@@ -155,7 +155,7 @@
     }
 
     &.fixed{
-        width: calc(100% - $sidebar-width);
+        width: calc(100%);
         right: 0;
         left: auto;
         border-radius: 0;
@@ -193,7 +193,7 @@
         .nav-item{
             .nav-link:not(.btn),
             .nav-link:hover:not(.btn),
-            .nav-link:focus:not(.btn),{
+            .nav-link:focus:not(.btn){
                 background-color: transparent;
                 border-radius: 3px;
                 color: $white-color;

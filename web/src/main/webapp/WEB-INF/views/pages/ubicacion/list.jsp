@@ -7,7 +7,7 @@
         background-color: yellow;
 
     }
-    
+
 </style>
 
 <div class="content">
@@ -17,7 +17,7 @@
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
                         <h4 class="card-title">Ubicaciones</h4>
-                        <p class="card-category">lista</p>
+                        <p class="card-category">Lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
                         <table id="example" class="display" style="width:100%">
