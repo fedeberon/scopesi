@@ -1,5 +1,6 @@
 package com.ideaas.services.service;
 
+import com.ideaas.services.dao.FilterDao;
 import com.ideaas.services.dao.MapUbicacionDao;
 import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
@@ -18,9 +19,13 @@ public class MapUbicacionServiceImpl implements MapUbicacionService {
 
     private MapUbicacionDao dao;
 
+    private FilterDao filterDao;
+
+
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao) {
         this.dao = dao;
+        this.filterDao = filterDao;
     }
 
     @Override
@@ -43,7 +48,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService {
 
     @Override
     public List<MapUbicacion> findAll(MapUbicacionRequest mapUbicacionRequest) {
-        return dao.findAllBy(mapUbicacionRequest);
+        return filterDao.find(mapUbicacionRequest);
     }
 
 }

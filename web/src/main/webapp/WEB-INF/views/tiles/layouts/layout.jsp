@@ -9,7 +9,7 @@
 <body>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="purple">
+        <div class="sidebar" data-color="black">
             <tiles:insertAttribute name="menu" />
         </div>
 
