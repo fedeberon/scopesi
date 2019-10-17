@@ -25,14 +25,8 @@
         </li>
         <li>
             <a class="nav-link" href="/ubicacion/list">
-                <i class="nc-icon nc-paper-2"></i>
+                <i class="nc-icon nc-square-pin"></i>
                 <p>Ubicaciones</p>
-            </a>
-        </li>
-        <li>
-            <a class="nav-link" href="./icons.html">
-                <i class="nc-icon nc-atom"></i>
-                <p>Ads</p>
             </a>
         </li>
         <li class="nav-item active">
@@ -42,9 +36,9 @@
             </a>
         </li>
         <li>
-            <a class="nav-link" href="./notifications.html">
-                <i class="nc-icon nc-bell-55"></i>
-                <p>Notificationes</p>
+            <a class="nav-link" href="/tablas">
+                <i class="nc-icon nc-single-copy-04"></i>
+                <p>Tablas</p>
             </a>
         </li>
 

@@ -60,5 +60,107 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacion/list.jsp" />
     </definition>
 
+
+    <definition name="empresa/list" extends="template-def">
+        <put-attribute name="title" value="Empresas" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/empresa/list.jsp" />
+    </definition>
+
+
+    <definition name="empresa/show" extends="template-def">
+        <put-attribute name="title" value="Empresas" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/empresa/show.jsp" />
+    </definition>
+
+    <definition name="empresa/create" extends="template-def">
+        <put-attribute name="title" value="Empresas" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/empresa/create.jsp" />
+    </definition>
+
+    <definition name="tabla" extends="template-def">
+        <put-attribute name="title" value="Tablas" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/tablas.jsp" />
+    </definition>
+
+    <definition name="elemento/list" extends="template-def">
+        <put-attribute name="title" value="Tablas" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/elemento/list.jsp" />
+    </definition>
+
+    <definition name="elemento/show" extends="template-def">
+        <put-attribute name="title" value="Tablas" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/elemento/show.jsp" />
+    </definition>
+
+    <definition name="formato/list" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/formato/list.jsp" />
+    </definition>
+
+    <definition name="formato/show" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/formato/show.jsp" />
+    </definition>
+
+    <definition name="medio/show" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/medio/show.jsp" />
+    </definition>
+
+    <definition name="medio/list" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/medio/list.jsp" />
+    </definition>
+
+    <definition name="provincia/list" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/provincia/list.jsp" />
+    </definition>
+
+    <definition name="provincia/show" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/provincia/show.jsp" />
+    </definition>
+
+    <definition name="localidad/show" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/localidad/show.jsp" />
+    </definition>
+
+    <definition name="localidad/list" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/localidad/list.jsp" />
+    </definition>
+
+
+
 </tiles-definitions>
 

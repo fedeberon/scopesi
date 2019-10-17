@@ -33,14 +33,14 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nc-icon nc-zoom-split"></i>
-                        <span class="d-lg-block">&nbsp;Search</span>
+                        <span class="d-lg-block">Buscar</span>
                     </a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <span class="no-icon">Account</span>
+                        <span class="no-icon">Cuenta</span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -54,17 +54,17 @@
                         </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Editar perfil</a>
+                        <a class="dropdown-item" href="#">Mail</a>
+                        <a class="dropdown-item" href="#">Confiugacion</a>
+                        <a class="dropdown-item" href="#">Herramientas</a>
                         <div class="divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="#">Soporte tecnico</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">
-                        <span class="no-icon">Log out</span>
+                        <span class="no-icon">Salir</span>
                     </a>
                 </li>
             </ul>

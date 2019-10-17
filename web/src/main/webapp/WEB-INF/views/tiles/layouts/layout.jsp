@@ -59,6 +59,7 @@
     $(document).ready(function() {
         var table = $('#example').DataTable( {
             "scrollY": "300px",
+            "scrollX": "400px",
             "paging": true,
              dom: 'Brti',
 

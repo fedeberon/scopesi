@@ -2,10 +2,7 @@ package com.ideaas.services.domain;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "aud_empresas")
@@ -15,6 +12,8 @@ public class AudEmpresa {
 
     @Id
     @Column(name = "idEmpresa")
+    @SequenceGenerator(name = "mySeqGen", sequenceName = "mySeq", initialValue = 5, allocationSize = 100)
+    @GeneratedValue(generator = "mySeqGen")
     private Long id;
 
     @Column(name = "descripcion")
