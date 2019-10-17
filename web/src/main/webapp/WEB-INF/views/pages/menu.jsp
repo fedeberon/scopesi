@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="http://www.scopesi.com" class="simple-text">
-            Scopesi
+        <a href="http://www.scopesi.com.ar">
+            <img src="https://scopesi.com.ar/wp-content/uploads/2018/02/Scopesi-IsoLogoH-Gray-RGB-01.png">
         </a>
     </div>
     <ul class="nav">

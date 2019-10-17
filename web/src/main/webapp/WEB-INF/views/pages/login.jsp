@@ -2,6 +2,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 
+
+<style>
+
+    .sidebar{
+
+        width: 5%;
+
+    }
+
+
+    .main-panel{
+
+        float: none;
+        width: 100%;
+
+    }
+
+    .justify-content-center{
+        margin-top: 6%;
+    }
+
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
          <div class="col-md-4 border border-primary rounded mt-2 p-3">
