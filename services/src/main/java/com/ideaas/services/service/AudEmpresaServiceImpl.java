@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -40,4 +42,9 @@ public class AudEmpresaServiceImpl implements AudEmpresaService {
         return audEmpresas.getContent();
     }
 
+    @Override
+    public List<AudEmpresa> findAll() {
+        List<AudEmpresa> list = new ArrayList<>();
+        return list;
+    }
 }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <style>
 
@@ -12,7 +13,9 @@
 
 <div class="content">
     <div class="container-fluid">
+
         <div class="row">
+
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
@@ -20,6 +23,16 @@
                         <p class="card-category">Lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
+
+<%--                        <div class="d-flex justify-content-end">--%>
+<%--                            <form:form action="/search"  modelAttribute="mapUbicacionRequest">--%>
+<%--                                <form:select path="audEmpresa" items="${empresas}" itemLabel="descripcion" itemValue="descripcion"/>--%>
+
+<%--                                <input type="submit" value="Buscar">--%>
+
+<%--                            </form:form>--%>
+<%--                        </div>--%>
+
                         <table id="example" class="display" style="width:100%">
                             <thead>
                             <th>ID</th>

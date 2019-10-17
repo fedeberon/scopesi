@@ -11,4 +11,7 @@ public interface AudEmpresaService {
     AudEmpresa save(AudEmpresa audEmpresa);
 
     List<AudEmpresa> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<AudEmpresa> findAll();
+
 }
