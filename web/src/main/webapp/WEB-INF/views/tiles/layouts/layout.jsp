@@ -6,6 +6,19 @@
 
 <tiles:insertAttribute name="header" />
 
+<style>
+
+    th, td { white-space: nowrap; }
+    div.dataTables_wrapper {
+        width: 98%;
+        margin: 0 auto;
+    }
+
+    div.ColVis {
+        float: left;
+    }
+
+</style>
 <body>
 
     <div class="wrapper">
@@ -62,7 +75,7 @@
             "scrollY": "300px",
             "scrollX": "400px",
             "paging": true,
-             dom: 'Brti',
+            dom: "Bfrtip",
 
             buttons: [
                 {
@@ -122,8 +135,6 @@
 
 <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
 
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
 <script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
@@ -134,5 +145,10 @@
 <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
 <%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js"></script>--%>
 <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
+
+<script src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
+
 
 </html>

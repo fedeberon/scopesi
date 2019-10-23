@@ -10,9 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class AudEmpresaServiceImpl implements AudEmpresaService {
@@ -44,7 +44,10 @@ public class AudEmpresaServiceImpl implements AudEmpresaService {
 
     @Override
     public List<AudEmpresa> findAll() {
-        List<AudEmpresa> list = new ArrayList<>();
-        return list;
+        Iterable<AudEmpresa> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }
