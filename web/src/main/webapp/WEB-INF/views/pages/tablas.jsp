@@ -1,78 +1,140 @@
+<style>
+.iconLogin{
+    width: 60px;
+    margin-right: 35px;
+}
+
+</style>
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
 
 
-                <div class="card ">
+                <div class="card border border-primary rounded">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            <img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            Empresas</h4>
+                    </div>
+                    <div class="card-body">
+                        <a href="/empresa" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla</a>
+                    </div>
+
+              </div>
+
+                <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title">Empresas</h4>
+                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            Elementos</h4>
                     </div>
-                    <div class="legend">
-                        <a href="/empresa"> <i class="fa fa-circle text-info"></i> Tabla </a>
-<%--                        <a href="/empresa/create"> <i class="fa fa-circle text-warning"></i> Nueva </a>--%>
+                    <div class="card-body">
+                        <a href="/elemento" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla </a>
                     </div>
-                    <hr>
+
                 </div>
-                <div class="card ">
+
+
+                <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title">Elementos</h4>
+                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            Formatos</h4>
                     </div>
-                    <div class="legend">
-                        <a href="/elemento"> <i class="fa fa-circle text-info"></i> Tabla </a>
+                    <div class="card-body">
+                        <a href="/formato" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla</a>
                     </div>
-                    <hr>
-                </div>
-                <div class="card ">
-                    <div class="card-header ">
-                        <h4 class="card-title">Formatos</h4>
-                    </div>
-                    <div class="legend">
-                        <a href="/formato"> <i class="fa fa-circle text-info"></i> Tabla </a>
-                    </div>
-                    <hr>
+
+
                 </div>
 
 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
 
 
-                <div class="card ">
-                    <div class="card-header ">
-                        <h4 class="card-title">Medios</h4>
-                    </div>
-
-                    <div class="legend">
-                        <a href="/medio"> <i class="fa fa-circle text-info"></i> Tabla </a>
-                    </div>
-                    <hr>
+            <div class="card border border-primary rounded">
+                <div class="card-header ">
+                    <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        Medios</h4>
                 </div>
 
-                <div class="card ">
-                    <div class="card-header ">
-                        <h4 class="card-title">Provincias</h4>
-                    </div>
-
-                    <div class="legend">
-                        <a href="/provincia"> <i class="fa fa-circle text-info"></i> Tabla </a>
-                    </div>
-                    <hr>
+                <div class="card-body">
+                    <a href="/medio" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla </a>
                 </div>
 
-                <div class="card ">
+
+                </div>
+
+                <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title">Localidades</h4>
+                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            Provincias</h4>
                     </div>
 
-                    <div class="legend">
-                        <a href="/localidad"> <i class="fa fa-circle text-info"></i> Tabla </a>
+                    <div class="card-body">
+                        <a href="/provincia" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla </a>
                     </div>
-                    <hr>
+
+                </div>
+
+                <div class="card border border-primary rounded">
+                    <div class="card-header ">
+                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            Localidades</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="/empresa" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla </a>
+                    </div>
+
+
                 </div>
             </div>
+
+            <div class="col-md-4">
+
+
+                <div class="card border border-primary rounded">
+                    <div class="card-header ">
+                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            POI</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="/poi" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla </a>
+                    </div>
+
+
+                </div>
+
+                <div class="card border border-primary rounded">
+                    <div class="card-header ">
+                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            POI Entidad</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="/poiEntidad" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla </a>
+                    </div>
+
+
+                </div>
+
+                <div class="card border border-primary rounded">
+                    <div class="card-header ">
+                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                            POI Sector</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <a href="/poiSector" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 </div>
 
 
