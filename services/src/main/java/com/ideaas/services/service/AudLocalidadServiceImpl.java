@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class AudLocalidadServiceImpl implements AudLocalidadService {
@@ -38,5 +40,14 @@ public class AudLocalidadServiceImpl implements AudLocalidadService {
         Page<AudLocalidad> audLocalidades = dao.findAll(paging);
 
         return audLocalidades.getContent();
+    }
+
+    @Override
+    public List<AudLocalidad> findAll() {
+        Iterable<AudLocalidad> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

@@ -12,4 +12,6 @@ public interface MapElementoService {
     MapElemento save(MapElemento mapElemento);
 
     List<MapElemento> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapElemento> findAll();
 }

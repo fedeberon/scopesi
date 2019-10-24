@@ -72,7 +72,6 @@
 <script>
     $(document).ready(function() {
         var table = $('#example').DataTable( {
-            "scrollY": "300px",
             "scrollX": "400px",
             "paging": true,
             dom: "Bfrtip",
@@ -80,12 +79,16 @@
             buttons: [
                 {
                     extend: 'pdfHtml5',
-                    text: 'PDF'
+                    text: 'PDF',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
                 },
                 {
                     extend: 'excelHtml5',
                     text: 'Excel',
                     exportOptions: {
+                        columns: ':visible',
                         modifier: {
                             page: 'current'
                         }
@@ -105,6 +108,9 @@
                         1: "Copied one row to clipboard",
                         _: "Copied %d rows to clipboard"
                     },
+                    exportOptions: {
+                        columns: ':visible'
+                    },
                     copyTitle: 'Copiar en portapapeles',
                     copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.'
                 },
@@ -112,6 +118,7 @@
                     extend: 'print',
                     text: 'Imprimir resultados',
                     exportOptions: {
+                        columns: ':visible',
                         modifier: {
                             page: 'current'
                         }

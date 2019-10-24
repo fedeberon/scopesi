@@ -11,4 +11,6 @@ public interface MapProvinciaService {
     MapProvincia save(MapProvincia mapProvincia);
 
     List<MapProvincia> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapProvincia> findAll();
 }

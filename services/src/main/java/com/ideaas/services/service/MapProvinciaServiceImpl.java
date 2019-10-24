@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class MapProvinciaServiceImpl implements MapProvinciaService {
@@ -40,4 +42,12 @@ public class MapProvinciaServiceImpl implements MapProvinciaService {
         return mapProvincias.getContent();
     }
 
+    @Override
+    public List<MapProvincia> findAll() {
+        Iterable<MapProvincia> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+    }
 }

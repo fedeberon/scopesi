@@ -13,16 +13,30 @@
                         <p class="card-category">Lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
+                    <div class="row">
+                        <form:form action="/search"  modelAttribute="mapUbicacionRequest">
+                            <div class="col-sm-2">
+                                    <form:select path="audEmpresa" items="${empresas}" itemLabel="descripcion" itemValue="descripcion"/>
+                            </div>
+                            <div class="col-sm-2">
+                                    <form:select path="mapElemento" items="${elementos}" itemLabel="descripcion" itemValue="descripcion"/>
+                            </div>
+                            <div class="col-sm-2">
+                                    <form:select path="mapFormato" items="${formatos}" itemLabel="descripcion" itemValue="descripcion"/>
+                            </div>
+                            <div class="col-sm-2">
+                                    <form:select path="mapMedio" items="${medios}" itemLabel="descripcion" itemValue="descripcion"/>
+                            </div>
+                            <div class="col-sm-2">
+                                <form:select path="mapProvincia" items="${provincias}" itemLabel="descripcion" itemValue="descripcion"/>
+                            </div>
+                            <div class="col-sm-2">
+                                    <form:select path="audLocalidad" items="${localidades}" itemLabel="descripcion" itemValue="descripcion"/>
 
-                        <div class="d-flex justify-content-end">
-                            <form:form action="/search"  modelAttribute="mapUbicacionRequest">
-                                <form:select path="audEmpresa" items="${empresas}" itemLabel="descripcion" itemValue="descripcion"/>
-
-                                <input type="submit" value="Buscar">
-
-                            </form:form>
-                        </div>
-
+                                    <input type="submit" value="Buscar">
+                            </div>
+                        </form:form>
+                    </div>
                         <table id="example" class="display" style="width:100%">
                             <thead>
                             <th>ID</th>

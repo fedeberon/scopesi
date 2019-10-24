@@ -11,4 +11,6 @@ public interface AudLocalidadService {
     AudLocalidad save(AudLocalidad audLocalidad);
 
     List<AudLocalidad> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<AudLocalidad> findAll();
 }

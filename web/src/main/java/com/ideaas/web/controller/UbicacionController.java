@@ -1,14 +1,15 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.domain.AudEmpresa;
-import com.ideaas.services.domain.MapUbicacion;
+import com.ideaas.services.domain.*;
 import com.ideaas.services.request.MapUbicacionRequest;
-import com.ideaas.services.service.interfaces.AudEmpresaService;
-import com.ideaas.services.service.interfaces.MapUbicacionService;
+import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,10 +26,26 @@ public class UbicacionController {
 
     private AudEmpresaService audEmpresaService;
 
+    private MapElementoService mapElementoService;
+
+    private MapFormatoService mapFormatoService;
+
+    private MapMedioService mapMedioService;
+
+    private AudLocalidadService audLocalidadService;
+
+    private MapProvinciaService mapProvinciaService;
+
     @Autowired
-    public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService) {
+    public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService) {
         this.mapUbicacionService = mapUbicacionService;
         this.audEmpresaService = audEmpresaService;
+        this.mapElementoService = mapElementoService;
+        this.mapFormatoService = mapFormatoService;
+        this.mapMedioService = mapMedioService;
+        this.audLocalidadService = audLocalidadService;
+        this.mapProvinciaService = mapProvinciaService;
+
     }
 
     @RequestMapping("list")
@@ -49,6 +66,26 @@ public class UbicacionController {
     @ModelAttribute("empresas")
     public List<AudEmpresa> empresas(){
         return audEmpresaService.findAll();
+    }
+
+    @ModelAttribute("elementos")
+    public List<MapElemento> elementos(){
+        return mapElementoService.findAll();
+    }
+
+    @ModelAttribute("formatos")
+    public List<MapFormato> formatos(){
+        return mapFormatoService.findAll();
+    }
+
+    @ModelAttribute("medios")
+    public List<MapMedio> medios(){
+        return mapMedioService.findAll();
+    }
+
+    @ModelAttribute("localidades")
+    public List<AudLocalidad> localidades(){
+        return audLocalidadService.findAll();
     }
 
     @ModelAttribute("mapUbicacionRequest")

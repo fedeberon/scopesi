@@ -11,4 +11,6 @@ public interface MapMedioService {
     MapMedio save(MapMedio mapMedio);
 
     List<MapMedio> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapMedio> findAll();
 }

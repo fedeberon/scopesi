@@ -11,4 +11,6 @@ public interface MapFormatoService {
 
     List<MapFormato> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
+    List<MapFormato> findAll();
+
 }
