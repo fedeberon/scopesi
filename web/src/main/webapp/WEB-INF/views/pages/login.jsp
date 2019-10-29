@@ -30,7 +30,7 @@
          <div class="col-md-4 border border-primary rounded mt-2 p-3">
 
             <!-- Default form login -->
-            <form class="form-signin" name='f' action="/perform_login" style="text-align: center" method='POST'>  <!--action='/j_spring_security_check'-->
+            <form class="form-signin" name='f' action="login" style="text-align: center" method='POST'>  <!--action='/j_spring_security_check'-->
                 <p class="h4 mb-4">Sign in</p>
 
                 <!-- Email -->
