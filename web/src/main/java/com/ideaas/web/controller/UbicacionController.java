@@ -52,6 +52,7 @@ public class UbicacionController {
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(size, page, "id"));
+        model.addAttribute("page", page);
 
         return "ubicacion/list";
 

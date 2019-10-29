@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <div class="content">
     <td class="container-fluid">
@@ -99,10 +100,25 @@
 
                             </tbody>
                         </table>
+
+                        <form:form name="search" action="list" modelAttribute="mapUbicacionRequest">
+                            <form:hidden path="audEmpresa"/>
+                            <form:hidden path="mapElemento"/>
+                            <form:hidden path="mapMedio"/>
+                            <form:hidden path="mapMedio"/>
+                            <form:hidden path="audLocalidad"/>
+                            <form:hidden path="mapProvincia"/>
+                            <input type="hidden" name="page" value="${page}"/>
+
+                            <div class="col-6">
+                                <tags:paginador page="${page}" formName="search"/>
+                            </div>
+
+                        </form:form>
+
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
