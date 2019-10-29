@@ -18,6 +18,10 @@
         float: left;
     }
 
+    .modal-content {
+        margin-top: -20%;
+    }
+
 </style>
 <body>
 
@@ -71,18 +75,20 @@
 </script>
 <script>
     $(document).ready(function() {
-        var table = $('#example').DataTable( {
+        var table = $('#dataTable').DataTable( {
             "scrollX": "400px",
-            "paging": true,
             dom: "Bfrtip",
-
+            searching: false,
+            paging: false,
+            bInfo: false,
             buttons: [
                 {
                     extend: 'pdfHtml5',
                     text: 'PDF',
                     exportOptions: {
                         columns: ':visible'
-                    }
+                    },
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'excelHtml5',
@@ -92,14 +98,16 @@
                         modifier: {
                             page: 'current'
                         }
-                    }
+                    },
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'colvis',
                     text: 'Filtro de Columnas',
                     columnText: function (dt, idx, title) {
                         return (idx + 1) + ': ' + title;
-                    }
+                    },
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'copyHtml5',
@@ -112,7 +120,8 @@
                         columns: ':visible'
                     },
                     copyTitle: 'Copiar en portapapeles',
-                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.'
+                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'print',
@@ -122,7 +131,8 @@
                         modifier: {
                             page: 'current'
                         }
-                    }
+                    },
+                    className: 'btn btn-primary'
                 }
             ],
         } );

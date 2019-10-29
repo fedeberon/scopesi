@@ -58,10 +58,11 @@ public class UbicacionController {
     }
 
     @RequestMapping("/search")
-    public List<MapUbicacion> findAll(@RequestBody MapUbicacionRequest mapUbicacionRequest){
-        return mapUbicacionService.findAll(mapUbicacionRequest);
-    }
+    public String findAll(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
+        model.addAttribute("ubicaciones", mapUbicacionService.findAll(mapUbicacionRequest));
 
+        return "ubicacion/list";
+    }
 
     @ModelAttribute("empresas")
     public List<AudEmpresa> empresas(){

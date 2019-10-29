@@ -2,42 +2,21 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="content">
-    <div class="container-fluid">
+    <td class="container-fluid">
 
         <div class="row">
 
-            <div class="col-md-12">
+            <div class="col-12">
+
                 <div class="card strpied-tabled-with-hover">
+
                     <div class="card-header ">
                         <h4 class="card-title">Ubicaciones</h4>
-                        <p class="card-category">Lista</p>
                     </div>
-                    <div class="card-body table-full-width table-responsive">
-                    <div class="row">
-                        <form:form action="/search"  modelAttribute="mapUbicacionRequest">
-                            <div class="col-sm-2">
-                                    <form:select path="audEmpresa" items="${empresas}" itemLabel="descripcion" itemValue="descripcion"/>
-                            </div>
-                            <div class="col-sm-2">
-                                    <form:select path="mapElemento" items="${elementos}" itemLabel="descripcion" itemValue="descripcion"/>
-                            </div>
-                            <div class="col-sm-2">
-                                    <form:select path="mapFormato" items="${formatos}" itemLabel="descripcion" itemValue="descripcion"/>
-                            </div>
-                            <div class="col-sm-2">
-                                    <form:select path="mapMedio" items="${medios}" itemLabel="descripcion" itemValue="descripcion"/>
-                            </div>
-                            <div class="col-sm-2">
-                                <form:select path="mapProvincia" items="${provincias}" itemLabel="descripcion" itemValue="descripcion"/>
-                            </div>
-                            <div class="col-sm-2">
-                                    <form:select path="audLocalidad" items="${localidades}" itemLabel="descripcion" itemValue="descripcion"/>
 
-                                    <input type="submit" value="Buscar">
-                            </div>
-                        </form:form>
-                    </div>
-                        <table id="example" class="display" style="width:100%">
+                    <div class="card-body table-full-width table-responsive">
+
+                        <table id="dataTable" class="display" style="width:100%">
                             <thead>
                             <th>ID</th>
                             <th>Empresa</th>
@@ -108,7 +87,6 @@
                                     <td>${bo.circulacionPeatonal}</td>
                                     <td>${bo.circulacionVehicular}</td>
                                     <td>${bo.idReferencia}</td>
-<%--                                    <td>${bo.mapBuses.linea}/{bo.mapBuses.color}</td>--%>
                                     <td> - </td>
                                     <td>${bo.bajaLogica}</td>
                                     <td>${bo.fechaTransf}</td>
@@ -125,6 +103,58 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form:form action="search"  modelAttribute="mapUbicacionRequest">
+                <div class="modal-body row">
+
+                    <form>
+                        <div class="form-group col-6">
+                            <label for="audEmpresa">Empresas</label>
+                            <form:select path="audEmpresa" items="${empresas}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="mapElemento">Elementos</label>
+                            <form:select path="mapElemento" items="${elementos}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="mapElemento">Formatos</label>
+                            <form:select path="mapFormato" items="${formatos}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="mapMedio">Medios</label>
+                            <form:select path="mapMedio" items="${medios}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="audLocalidad">Localidadades</label>
+                            <form:select path="audLocalidad" items="${localidades}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="mapProvincia">Provincias</label>
+                            <form:select path="mapProvincia" items="${medios}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form:form>
         </div>
     </div>
 </div>
