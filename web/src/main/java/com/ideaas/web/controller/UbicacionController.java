@@ -1,5 +1,6 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.bean.Wrapper;
 import com.ideaas.services.domain.*;
 import com.ideaas.services.request.MapUbicacionRequest;
 import com.ideaas.services.service.interfaces.*;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,6 +36,8 @@ public class UbicacionController {
 
     private MapProvinciaService mapProvinciaService;
 
+    private MyObjectService myObjectService;
+
     @Autowired
     public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService) {
         this.mapUbicacionService = mapUbicacionService;
@@ -51,7 +53,8 @@ public class UbicacionController {
     @RequestMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
-        model.addAttribute("ubicaciones", mapUbicacionService.findAll(size, page, "id"));
+        List<MapUbicacion> result = mapUbicacionService.findAll(size, page, "id");
+        model.addAttribute("ubicaciones", result);
         model.addAttribute("page", page);
 
         return "ubicacion/list";
@@ -64,6 +67,14 @@ public class UbicacionController {
 
         return "ubicacion/list";
     }
+
+    @RequestMapping("/map")
+    public String findAll(@ModelAttribute Wrapper ubicaciones, Model model){
+        model.addAttribute("ubicaciones", ubicaciones);
+
+        return "ubicacion/map";
+    }
+
 
     @ModelAttribute("empresas")
     public List<AudEmpresa> empresas(){
@@ -93,6 +104,11 @@ public class UbicacionController {
     @ModelAttribute("mapUbicacionRequest")
     public MapUbicacionRequest mapUbicacionRequest(){
         return new MapUbicacionRequest();
+    }
+
+    @ModelAttribute("wrapper")
+    public Wrapper wrapper(){
+        return new Wrapper();
     }
 
 }
