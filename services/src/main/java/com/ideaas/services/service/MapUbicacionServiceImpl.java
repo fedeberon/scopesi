@@ -1,5 +1,6 @@
 package com.ideaas.services.service;
 
+import com.ideaas.services.bean.MyObject;
 import com.ideaas.services.dao.FilterDao;
 import com.ideaas.services.dao.MapUbicacionDao;
 import com.ideaas.services.domain.MapUbicacion;
@@ -12,10 +13,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MapUbicacionServiceImpl implements MapUbicacionService {
+public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private MapUbicacionDao dao;
 

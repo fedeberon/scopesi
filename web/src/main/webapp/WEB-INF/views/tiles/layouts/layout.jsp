@@ -169,4 +169,16 @@
 <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
 
+
+
+<script>
+
+    $( ".form-check-sign" ).on( "click", function() {
+        var check = $( this ).attr('id');
+        console.log(check);
+        $('form-check-input-' + check).val(true);
+    });
+
+</script>
+
 </html>
