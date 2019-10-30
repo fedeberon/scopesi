@@ -11,7 +11,7 @@
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
-                        <table id="example" class="display" style="width:100%">
+                        <table id="dataTable" class="display" style="width:100%">
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
