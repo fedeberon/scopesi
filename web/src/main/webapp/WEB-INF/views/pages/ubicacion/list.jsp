@@ -11,7 +11,7 @@
 </style>
 
 <div class="content">
-    <td class="container-fluid">
+    <div class="container-fluid">
 
         <div class="row">
 
@@ -94,7 +94,7 @@
                                     <td>${bo.audEmpresa.descripcion}</td>
                                     <td>
                                             ${bo.mapElemento.descripcion}
-                                                <input type="hidden" value="${bo.id}" name="list[${status.index}].name"/>
+                                                <input type="hidden" value="${bo.audEmpresa.descripcion}" name="list[${status.index}].name"/>
                                     </td>
                                     <td>${bo.mapFormato.descripcion}</td>
                                     <td>${bo.mapMedio.descripcion}</td>
@@ -113,12 +113,12 @@
                                     <td>${bo.direccionNormalizada}</td>
                                     <td>
                                             ${bo.latitud}
-                                                <input type="hidden" value="${bo.id}" name="list[${status.index}].lat"/>
+                                                <input type="hidden" value="${bo.latitud}" name="list[${status.index}].lat"/>
 
                                     </td>
                                     <td>
                                             ${bo.longitud}
-                                                <input type="hidden" value="${bo.id}" name="list[${status.index}].lon"/>
+                                                <input type="hidden" value="${bo.longitud}" name="list[${status.index}].lon"/>
                                     </td>
                                     <td>${bo.metrosContacto}</td>
                                     <td>${bo.coeficiente}</td>

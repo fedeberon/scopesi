@@ -496,8 +496,41 @@ demo = {
             title: "Hello World!"
         });
 
-        // To add the marker to the map, call setMap();
-        marker.setMap(map);
+
+        $('#table-markers tbody>tr').each(function () {
+            var id = $(this).find("td").eq(0).html();
+            var title = $(this).find("td").eq(1).html();
+            var lat = $(this).find("td").eq(2).html();
+            var lon = $(this).find("td").eq(3).html();
+            var latLong = new google.maps.LatLng(lat, lon);
+
+            var marker = new google.maps.Marker({
+                idUbicacion: id,
+                position: latLong,
+                map: map,
+                title: id + ' - ' + title
+            });
+
+            /*google.maps.event.addListener(marker, 'click', function() {
+                $('#modal-info-marker').modal('show');
+            });*/
+
+            var infowindow = new google.maps.InfoWindow({
+                content: title + ' ' + customerId
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+
+            markers.push(marker);
+            bounds = new google.maps.LatLngBounds();
+            bounds.extend(latLong);
+
+        });
+
+        map.fitBounds(bounds);
+
     },
 
     showNotification: function(from, align) {
@@ -519,4 +552,22 @@ demo = {
 
 
 
+}
+
+var bounds = new google.maps.LatLngBounds();
+
+var markers = [];
+
+function displayMarkers(id) {
+    var i;
+    for (i = 0; i < markers.length; i++) {
+        if (markers[i].idUbicacion === id) {
+            var marker = markers[i];
+            if (!marker.getVisible()) {
+                marker.setVisible(true);
+            } else {
+                marker.setVisible(false);
+            }
+        }
+    }
 }

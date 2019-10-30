@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by federicoberon on 29/10/2019.
@@ -17,4 +18,7 @@ public class Wrapper {
 
     private List<MyObject> list = new ArrayList<>();
 
+    public List<MyObject> getSelectedElements() {
+        return list.stream().filter(line -> line.getChecked()).collect(Collectors.toList());
+    }
 }

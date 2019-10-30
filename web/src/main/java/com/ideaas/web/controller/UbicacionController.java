@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by federicoberon on 08/10/2019.
@@ -70,7 +71,7 @@ public class UbicacionController {
 
     @RequestMapping("/map")
     public String findAll(@ModelAttribute Wrapper ubicaciones, Model model){
-        model.addAttribute("ubicaciones", ubicaciones);
+        model.addAttribute("ubicaciones", ubicaciones.getSelectedElements());
 
         return "ubicacion/map";
     }

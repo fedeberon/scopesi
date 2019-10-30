@@ -175,9 +175,9 @@
 
     $( ".form-check-sign" ).on( "click", function() {
         var check = $( this ).attr('id');
-        console.log(check);
         $('form-check-input-' + check).val(true);
     });
+
 
 </script>
 

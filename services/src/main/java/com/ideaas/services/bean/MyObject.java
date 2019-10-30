@@ -20,4 +20,23 @@ public class MyObject {
     private BigDecimal lon;
     private String name;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public BigDecimal getLat() {
+        return lat;
+    }
+
+    public BigDecimal getLon() {
+        return lon;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
