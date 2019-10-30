@@ -61,6 +61,14 @@
     </definition>
 
 
+    <definition name="ubicacion/map" extends="template-def">
+        <put-attribute name="title" value="Maps" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/maps.jsp" />
+    </definition>
+
+
     <definition name="empresa/list" extends="template-def">
         <put-attribute name="title" value="Empresas" />
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />

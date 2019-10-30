@@ -28,37 +28,37 @@ public class FilterDaoImpl implements FilterDao {
         boolean isFirstClause = true;
 
 
-        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().isEmpty()){
+        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
             builder.append("u.audEmpresa.descripcion = :audEmpresa");
 
             isFirstClause = false;
         }
-        if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().isEmpty()){
+        if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
             builder.append("u.mapElemento.descripcion = :mapElemento");
 
             isFirstClause = false;
         }
-        if(Objects.nonNull(request.getMapFormato()) && !request.getMapFormato().isEmpty()){
+        if(Objects.nonNull(request.getMapFormato()) && !request.getMapFormato().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
             builder.append("u.mapFormato.descripcion = :mapFormato");
 
             isFirstClause = false;
         }
-        if(Objects.nonNull(request.getMapMedio()) && !request.getMapMedio().isEmpty()){
+        if(Objects.nonNull(request.getMapMedio()) && !request.getMapMedio().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
             builder.append("u.mapMedio.descripcion = :mapMedio");
 
             isFirstClause = false;
         }
-        if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().isEmpty()){
+        if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.mapProvincia.descripcion = :mapProvincia");
 
             isFirstClause = false;
         }
-        if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().isEmpty()){
+        if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.audLocalidad.descripcion = :audLocalidad");
 
@@ -66,22 +66,22 @@ public class FilterDaoImpl implements FilterDao {
 
 
         Query query = entityManager.createQuery(builder.toString());
-        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().isEmpty()){
+        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
             query.setParameter("audEmpresa", request.getAudEmpresa());
         }
-        if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().isEmpty()){
+        if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().trim().isEmpty()){
             query.setParameter("mapElemento", request.getMapElemento());
         }
-        if(Objects.nonNull(request.getMapFormato()) && !request.getMapFormato().isEmpty()){
+        if(Objects.nonNull(request.getMapFormato()) && !request.getMapFormato().trim().isEmpty()){
             query.setParameter("mapFormato", request.getMapFormato());
         }
-        if(Objects.nonNull(request.getMapMedio()) && !request.getMapMedio().isEmpty()){
+        if(Objects.nonNull(request.getMapMedio()) && !request.getMapMedio().trim().isEmpty()){
             query.setParameter("mapMedio", request.getMapMedio());
         }
-        if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().isEmpty()){
+        if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().trim().isEmpty()){
             query.setParameter("mapProvincia", request.getMapProvincia());
         }
-        if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().isEmpty()){
+        if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().trim().isEmpty()){
             query.setParameter("audLocalidad", request.getAudLocalidad());
         }
 

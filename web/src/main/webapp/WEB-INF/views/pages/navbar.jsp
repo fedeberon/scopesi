@@ -33,7 +33,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nc-icon nc-zoom-split"></i>
-                        <span class="d-lg-block">Buscar</span>
+                        <span class="d-lg-block" data-toggle="modal" data-target="#searchModal">&nbsp;Buscar</span>
                     </a>
                 </li>
             </ul>

@@ -18,6 +18,10 @@
         float: left;
     }
 
+    .modal-content {
+        margin-top: -20%;
+    }
+
 </style>
 <body>
 
@@ -58,6 +62,8 @@
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project!
      Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+<script src="../assets/js/paginador.js"></script>
+
 
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 
@@ -71,32 +77,39 @@
 </script>
 <script>
     $(document).ready(function() {
-        var table = $('#example').DataTable( {
-            "scrollY": "300px",
+        var table = $('#dataTable').DataTable( {
             "scrollX": "400px",
-            "paging": true,
             dom: "Bfrtip",
-
+            searching: false,
+            paging: false,
+            bInfo: false,
             buttons: [
                 {
                     extend: 'pdfHtml5',
-                    text: 'PDF'
+                    text: 'PDF',
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'excelHtml5',
                     text: 'Excel',
                     exportOptions: {
+                        columns: ':visible',
                         modifier: {
                             page: 'current'
                         }
-                    }
+                    },
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'colvis',
                     text: 'Filtro de Columnas',
                     columnText: function (dt, idx, title) {
                         return (idx + 1) + ': ' + title;
-                    }
+                    },
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'copyHtml5',
@@ -105,17 +118,23 @@
                         1: "Copied one row to clipboard",
                         _: "Copied %d rows to clipboard"
                     },
+                    exportOptions: {
+                        columns: ':visible'
+                    },
                     copyTitle: 'Copiar en portapapeles',
-                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.'
+                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
+                    className: 'btn btn-primary'
                 },
                 {
                     extend: 'print',
                     text: 'Imprimir resultados',
                     exportOptions: {
+                        columns: ':visible',
                         modifier: {
                             page: 'current'
                         }
-                    }
+                    },
+                    className: 'btn btn-primary'
                 }
             ],
         } );
@@ -150,5 +169,16 @@
 <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
 
+
+
+<script>
+
+    $( ".form-check-sign" ).on( "click", function() {
+        var check = $( this ).attr('id');
+        console.log(check);
+        $('form-check-input-' + check).val(true);
+    });
+
+</script>
 
 </html>
