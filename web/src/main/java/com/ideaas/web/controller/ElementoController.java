@@ -1,9 +1,6 @@
 package com.ideaas.web.controller;
 
-import com.ideaas.services.domain.AudElemento;
-import com.ideaas.services.domain.AudEmpresa;
 import com.ideaas.services.domain.MapElemento;
-import com.ideaas.services.service.interfaces.AudEmpresaService;
 import com.ideaas.services.service.interfaces.MapElementoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +17,7 @@ public class ElementoController {
 
     @Autowired
     public ElementoController(MapElementoService elementoService) {
+
         this.elementoService = elementoService;
     }
 

@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Formato</h4>
+                        <h4 class="card-title">POI</h4>
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -15,17 +15,27 @@
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
-                            <th>Evalua</th>
+                            <th>Entidad</th>
+                            <th>Provincia</th>
+                            <th>Latitud</th>
+                            <th>Longitud</th>
+                            <th>Icono</th>
+
                             </thead>
 
                             <tbody>
 
-                            <c:forEach items="${formatos}" var="bo">
+                            <c:forEach items="${pois}" var="bo">
 
                                 <tr>
-                                    <td><a href="/formato/${bo.id}">${bo.id}</a></td>
+                                    <td><a href="/poi/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
-                                    <td>${bo.evalua}</td>
+                                    <td>${bo.mapPoiEntidad.descripcion}</td>
+                                    <td>${bo.mapProvincia.descripcion}</td>
+                                    <td>${bo.geoLatitud}</td>
+                                    <td>${bo.geoLongitud}</td>
+                                    <td>${bo.icono}</td>
+
                                 </tr>
 
                             </c:forEach>
