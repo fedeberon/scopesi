@@ -70,7 +70,7 @@ public class UbicacionController {
     }
 
     @RequestMapping("/map")
-    public String findAll(@ModelAttribute Wrapper ubicaciones, Model model){
+    public String findAll(@ModelAttribute Wrapper ubicaciones, Modelistl model){
         model.addAttribute("ubicaciones", ubicaciones.getSelectedElements());
 
         return "ubicacion/map";

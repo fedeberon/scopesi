@@ -25,7 +25,7 @@
 
                     <div class="card-body table-full-width table-responsive">
 
-                        <form:form action="map" modelAttribute="wrapper">
+                        <form:form action="map" modelAttribute="wrapper" name="ubicaciones">
 
                              <table id="dataTable" class="display" style="width:100%">
                             <thead>
@@ -142,8 +142,6 @@
                         </table>
 
 
-                            <button type="submit" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
-
                         </form:form>
 
                         <form:form name="search" action="list" modelAttribute="mapUbicacionRequest">
@@ -153,10 +151,13 @@
                             <form:hidden path="mapMedio"/>
                             <form:hidden path="audLocalidad"/>
                             <form:hidden path="mapProvincia"/>
+                            <form:hidden path="mapProvincia"/>
                             <input type="hidden" name="page" value="${page}"/>
 
                             <div class="col-6">
                                 <tags:paginador page="${page}" formName="search"/>
+
+                                <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
                             </div>
 
                         </form:form>

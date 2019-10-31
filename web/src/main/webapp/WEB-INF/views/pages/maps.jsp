@@ -5,6 +5,12 @@
         margin-top: 0px;
     }
 
+    .marker-touched{
+        background-color: yellow;
+        border: 0.1px solid #cabdbd;
+        padding: 2px;
+    }
+
 </style>
 
 <div class="map-container">
@@ -22,6 +28,9 @@
                     <th>name</th>
                     <th>lat</th>
                     <th>long</th>
+                    <th>show/hide</th>
+                    <th>touch</th>
+                    <th>go to</th>
                     </thead>
                     <tbody>
 
@@ -39,6 +48,15 @@
                                         <span class="form-check-sign" onclick="displayMarkers(${bo.id})"></span>
                                     </label>
                                 </div>
+                            </td>
+
+                            <td>
+                                <i class="nc-icon nc-tap-01" id="marker-touch-${bo.id}" onclick="toggleBounce(${bo.id})"></i>
+                            </td>
+
+
+                            <td>
+                                <i class="nc-icon nc-square-pin" onclick="centerFromMarker(${bo.id})"></i>
                             </td>
                         </tr>
 
