@@ -1,8 +1,20 @@
+<style>
+
+    .card{
+        -webkit-box-shadow: 3px 0px 17px -8px rgba(0,0,0,0.75);
+        -moz-box-shadow: 3px 0px 17px -8px rgba(0,0,0,0.75);
+        box-shadow: 3px 0px 17px -8px rgba(0,0,0,0.75);
+    }
+
+
+</style>
+
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-4">
-                <div class="card ">
+                <div class="card">
                     <div class="card-header ">
                         <h4 class="card-title">Email Statistics</h4>
                         <p class="card-category">Last Campaign Performance</p>

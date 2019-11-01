@@ -1,4 +1,4 @@
-package com.ideaas.api;
+package com.ideaas.web;
 
 /**
  * Created by federicoberon on 24/10/2019.
@@ -6,13 +6,12 @@ package com.ideaas.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(scanBasePackages = {"com.ideaas"})
-public class ScopesiApiApplication  {
+public class ScopesiWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ScopesiApiApplication.class, args);
+        SpringApplication.run(ScopesiWebApplication.class, args);
     }
 
 }
