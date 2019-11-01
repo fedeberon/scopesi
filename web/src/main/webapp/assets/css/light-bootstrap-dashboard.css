@@ -445,9 +445,9 @@ body>.navbar-collapse .nav li .nav-link:hover {
 .sidebar .nav li .nav-link p,
 body>.navbar-collapse .nav li .nav-link p {
     margin: 0;
-    line-height: 31px;
-    font-size: 12px;
-    font-weight: 600;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: 100;
     text-transform: uppercase;
     display: inline-flex;
 }
@@ -605,13 +605,7 @@ body>.navbar-collapse.has-image:after {
 
 .sidebar[data-color="black"]:after,
 body>.navbar-collapse[data-color="black"]:after {
-    background: #777777;
-    background: -moz-linear-gradient(top, #777777 0%, #777777 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #777777), color-stop(100%, #777777));
-    background: -webkit-linear-gradient(top, #777777 0%, #777777 100%);
-    background: -o-linear-gradient(top, #777777 0%, #777777 100%);
-    background: -ms-linear-gradient(top, #777777 0%, #777777 100%);
-    background: linear-gradient(to bottom, #777777 0%, #777777 100%);
+    background: linear-gradient(to bottom, #d0c0c0 0%, #007bff  100%);
     background-size: 150% 150%;
 }
 
