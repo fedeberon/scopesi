@@ -66,7 +66,7 @@
 <script src="../assets/js/paginador.js"></script>
 
 
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="../DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
 
 
 <script type="text/javascript">
@@ -152,23 +152,16 @@
     } );
 </script>
 
+<script src="../DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/buttons.colVis.min.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
+<script src="../DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js"></script>
 
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-
-<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>--%>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
-<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>--%>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
-<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js"></script>--%>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
-
-<script src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
 
 
 
