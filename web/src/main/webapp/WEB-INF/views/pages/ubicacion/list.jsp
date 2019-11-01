@@ -11,7 +11,7 @@
 </style>
 
 <div class="content">
-    <td class="container-fluid">
+    <div class="container-fluid">
 
         <div class="row">
 
@@ -25,7 +25,7 @@
 
                     <div class="card-body table-full-width table-responsive">
 
-                        <form:form action="map" modelAttribute="wrapper">
+                        <form:form action="map" modelAttribute="wrapper" name="ubicaciones">
 
                              <table id="dataTable" class="display" style="width:100%">
                             <thead>
@@ -94,7 +94,7 @@
                                     <td>${bo.audEmpresa.descripcion}</td>
                                     <td>
                                             ${bo.mapElemento.descripcion}
-                                                <input type="hidden" value="${bo.id}" name="list[${status.index}].name"/>
+                                                <input type="hidden" value="${bo.audEmpresa.descripcion}" name="list[${status.index}].name"/>
                                     </td>
                                     <td>${bo.mapFormato.descripcion}</td>
                                     <td>${bo.mapMedio.descripcion}</td>
@@ -113,12 +113,12 @@
                                     <td>${bo.direccionNormalizada}</td>
                                     <td>
                                             ${bo.latitud}
-                                                <input type="hidden" value="${bo.id}" name="list[${status.index}].lat"/>
+                                                <input type="hidden" value="${bo.latitud}" name="list[${status.index}].lat"/>
 
                                     </td>
                                     <td>
                                             ${bo.longitud}
-                                                <input type="hidden" value="${bo.id}" name="list[${status.index}].lon"/>
+                                                <input type="hidden" value="${bo.longitud}" name="list[${status.index}].lon"/>
                                     </td>
                                     <td>${bo.metrosContacto}</td>
                                     <td>${bo.coeficiente}</td>
@@ -142,8 +142,6 @@
                         </table>
 
 
-                            <button type="submit" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
-
                         </form:form>
 
                         <form:form name="search" action="list" modelAttribute="mapUbicacionRequest">
@@ -153,10 +151,13 @@
                             <form:hidden path="mapMedio"/>
                             <form:hidden path="audLocalidad"/>
                             <form:hidden path="mapProvincia"/>
+                            <form:hidden path="mapProvincia"/>
                             <input type="hidden" name="page" value="${page}"/>
 
                             <div class="col-6">
                                 <tags:paginador page="${page}" formName="search"/>
+
+                                <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
                             </div>
 
                         </form:form>

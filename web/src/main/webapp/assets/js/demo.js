@@ -489,15 +489,52 @@ demo = {
             }]
         };
 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
         var marker = new google.maps.Marker({
             position: myLatlng,
             title: "Hello World!"
         });
 
-        // To add the marker to the map, call setMap();
-        marker.setMap(map);
+
+        $('#table-markers tbody>tr').each(function () {
+            var id = $(this).find("td").eq(0).html();
+            var title = $(this).find("td").eq(1).html();
+            var lat = $(this).find("td").eq(2).html();
+            var lon = $(this).find("td").eq(3).html();
+            var latLong = new google.maps.LatLng(lat, lon);
+
+            var marker = new google.maps.Marker({
+                id: id,
+                position: latLong,
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                title: id + ' - ' + title
+            });
+
+            /*google.maps.event.addListener(marker, 'click', function() {
+                $('#modal-info-marker').modal('show');
+            });*/
+
+
+
+            var infowindow = new google.maps.InfoWindow({
+                content: title + ' ' + id
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+
+            markers.push(marker);
+            bounds = new google.maps.LatLngBounds();
+            bounds.extend(latLong);
+
+        });
+
+        map.fitBounds(bounds);
+
     },
 
     showNotification: function(from, align) {
@@ -519,4 +556,60 @@ demo = {
 
 
 
+}
+
+var map;
+
+var bounds = new google.maps.LatLngBounds();
+
+var markers = [];
+
+function displayMarkers(id) {
+    var i;
+    for (i = 0; i < markers.length; i++) {
+        if (markers[i].id == id) {
+            var marker = markers[i];
+            if (!marker.getVisible()) {
+                marker.setVisible(true);
+            } else {
+                marker.setVisible(false);
+            }
+        }
+    }
+}
+
+function toggleBounce(id) {
+    var i;
+    for (i = 0; i < markers.length; i++) {
+        if (markers[i].id == id) {
+            var marker = markers[i];
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+
+                $('#marker-touch-' + id).removeClass('marker-touched');
+
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+                $('#marker-touch-' + id).addClass('marker-touched');
+            }
+        }
+    }
+}
+
+
+function centerFromMarker(id) {
+    var i;
+    for (i = 0; i < markers.length; i++) {
+        if (markers[i].id == id) {
+            var marker = markers[i];
+            var lat = marker.getPosition().lat();
+            var lng = marker.getPosition().lng();
+            var latLong = new google.maps.LatLng(lat, lng);
+
+            var bounds = new google.maps.LatLngBounds();
+            bounds.extend(latLong);
+            map.fitBounds(bounds);
+            map.setCenter(bounds.getCenter());
+        }
+    }
 }
