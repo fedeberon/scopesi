@@ -1,7 +1,13 @@
 <style>
 .iconLogin{
     width: 60px;
-    margin-right: 35px;
+    margin-right: 15px;
+}
+.font-italic{
+    font-size: 25px;
+}
+.card {
+    box-shadow: 0px 7px 23px 0px rgba(0,0,0,0.75);
 }
 
 </style>
@@ -12,9 +18,9 @@
             <div class="col-md-4">
 
 
-                <div class="card border border-primary rounded">
+                <div class="card border border-primary rounded" >
                     <div class="card-header">
-                        <h4 class="card-title">
+                        <h4 class="font-italic">
                             <img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             Empresas</h4>
                     </div>
@@ -26,7 +32,7 @@
 
                 <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             Elementos</h4>
                     </div>
                     <div class="card-body">
@@ -38,7 +44,7 @@
 
                 <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             Formatos</h4>
                     </div>
                     <div class="card-body">
@@ -55,7 +61,7 @@
 
             <div class="card border border-primary rounded">
                 <div class="card-header ">
-                    <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                    <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                         Medios</h4>
                 </div>
 
@@ -68,7 +74,7 @@
 
                 <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             Provincias</h4>
                     </div>
 
@@ -78,9 +84,9 @@
 
                 </div>
 
-                <div class="card border border-primary rounded">
+                <div class="card border border-primary rounded" >
                     <div class="card-header ">
-                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             Localidades</h4>
                     </div>
 
@@ -97,7 +103,7 @@
 
                 <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             POI</h4>
                     </div>
 
@@ -110,7 +116,7 @@
 
                 <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             POI Entidad</h4>
                     </div>
 
@@ -123,7 +129,7 @@
 
                 <div class="card border border-primary rounded">
                     <div class="card-header ">
-                        <h4 class="card-title"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4 class="font-italic"><img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             POI Sector</h4>
                     </div>
 
@@ -135,6 +141,7 @@
             </div>
         </div>
     </div>
+    <hr>
 </div>
 
 
