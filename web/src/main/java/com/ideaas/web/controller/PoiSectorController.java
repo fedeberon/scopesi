@@ -38,6 +38,7 @@ public class PoiSectorController{
         List<MapPoiSector> poiSectores = poiSectorService.findAll(size, page,"id");
 
         model.addAttribute("poiSectores", poiSectores);
+        model.addAttribute("page" , page);
 
         return "poiSector/list";
     }

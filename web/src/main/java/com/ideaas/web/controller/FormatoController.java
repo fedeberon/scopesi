@@ -29,6 +29,7 @@ public class FormatoController{
 
         model.addAttribute("formato", formato);
 
+
         return "formato/show";
     }
 
@@ -36,11 +37,10 @@ public class FormatoController{
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         List<MapFormato> formatos = formatoService.findAll(size, page,"id");
-
         model.addAttribute("formatos", formatos);
+        model.addAttribute("page",page);
 
         return "formato/list";
     }
-
 
 }

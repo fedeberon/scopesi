@@ -35,6 +35,7 @@ public class PoiController {
         List<MapPoi> pois = mapPoiService.findAll(size, page, "id");
 
         model.addAttribute("pois", pois);
+        model.addAttribute("page" , page);
 
         return "poi/list";
     }

@@ -36,6 +36,7 @@ public class EmpresaController {
         List<AudEmpresa> empresas = empresaService.findAll(size, page,"id");
 
         model.addAttribute("empresas", empresas);
+        model.addAttribute("page" , page);
 
         return "empresa/list";
     }

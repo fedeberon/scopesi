@@ -39,6 +39,7 @@ public class LocalidadController {
         List<AudLocalidad> localidades = localidadService.findAll(size, page,"id");
 
         model.addAttribute("localidades", localidades);
+        model.addAttribute("page" , page);
 
         return "localidad/list";
     }

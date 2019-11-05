@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 
 <div class="content">
@@ -31,6 +32,18 @@
 
                             </tbody>
                         </table>
+                        <div class="row">
+                            <div class="col-6">
+
+                                <form name="search" action="list" method="get">
+                                    <input type="hidden" name="page"/>
+
+                                    <tags:paginador page="${page}" formName="search"/>
+
+                                </form>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -36,6 +36,7 @@ public class PoiEntidadController{
         List<MapPoiEntidad> poiEntidades = poiEntidadService.findAll(size, page,"id");
 
         model.addAttribute("poiEntidades", poiEntidades);
+        model.addAttribute("page" , page);
 
         return "poiEntidad/list";
     }

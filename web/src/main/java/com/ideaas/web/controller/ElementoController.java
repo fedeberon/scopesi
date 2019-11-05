@@ -32,6 +32,7 @@ public class ElementoController {
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         model.addAttribute("elementos", elementoService.findAll(size, page,"id"));
+        model.addAttribute("page" , page);
 
         return "elemento/list";
     }
