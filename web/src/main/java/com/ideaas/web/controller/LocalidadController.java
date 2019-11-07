@@ -33,7 +33,7 @@ public class LocalidadController {
         return "localidad/show";
     }
 
-    @GetMapping
+    @GetMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         List<AudLocalidad> localidades = localidadService.findAll(size, page,"id");

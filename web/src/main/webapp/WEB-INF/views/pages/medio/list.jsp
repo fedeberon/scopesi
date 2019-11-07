@@ -36,7 +36,7 @@
                             <div class="col-6">
 
                                 <form name="search" action="list" method="get">
-                                    <input type="hidden" name="page"/>
+                                    <input type="hidden" name="page" value="${page}"/>
 
                                     <tags:paginador page="${page}" formName="search"/>
 

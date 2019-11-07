@@ -32,7 +32,7 @@ public class PoiSectorController{
         return "poiSector/show";
     }
 
-    @GetMapping
+    @GetMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         List<MapPoiSector> poiSectores = poiSectorService.findAll(size, page,"id");
