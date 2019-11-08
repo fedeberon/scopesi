@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+
+
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -9,7 +12,7 @@
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
-                        <table class="table table-hover table-striped">
+                        <table id="dataTable" class="display" style="width:100%">
                             <thead>
                             <th>ID</th>
                             <th>Username</th>
@@ -34,6 +37,19 @@
 
                             </tbody>
                         </table>
+                        <div class="row pt-4 px-2">
+                            <div class="col-6">
+
+                                <form name="search" action="list" method="get">
+                                    <input type="hidden" name="page" value="${page}"/>
+
+                                    <tags:paginador page="${page}" formName="search"/>
+
+                                </form>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

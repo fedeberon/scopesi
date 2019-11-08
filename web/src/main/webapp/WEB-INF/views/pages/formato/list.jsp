@@ -32,7 +32,7 @@
 
                             </tbody>
                         </table>
-                        <div class="row">
+                        <div class="row pt-4 px-2">
                         <div class="col-6">
 
                             <form name="search" action="list" method="get">
