@@ -165,12 +165,19 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
 <script>
     $( ".form-check-sign" ).on( "click", function() {
         var check = $( this ).attr('id');
         $('form-check-input-' + check).val(true);
     });
 
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd-mm-yyyy'
+    });
 
     var selectpickerIsClicked = false;
 

@@ -92,14 +92,16 @@
                                         ${bo.id}
                                         <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
                                     </td>
-                                    <td>${bo.audEmpresa.descripcion}</td>
                                     <td>
-                                            ${bo.mapElemento.descripcion}
+                                            ${bo.audEmpresa.descripcion}
                                                 <input type="hidden" value="${bo.audEmpresa.descripcion}" name="list[${status.index}].name"/>
                                     </td>
                                     <td>${bo.mapFormato.descripcion}</td>
                                     <td>${bo.mapMedio.descripcion}</td>
-                                    <td>${bo.direccion}</td>
+                                    <td>
+                                            ${bo.direccion}
+                                                <input type="hidden" value="${bo.direccion}" name="list[${status.index}].address"/>
+                                    </td>
                                     <td>${bo.nroAgip}</td>
                                     <td>${bo.referencia}</td>
                                     <td>${bo.nroAnuncio}</td>
@@ -148,11 +150,12 @@
                         <form:form name="search" action="list" modelAttribute="mapUbicacionRequest">
                             <form:hidden path="audEmpresa"/>
                             <form:hidden path="mapElemento"/>
-                            <form:hidden path="mapMedio"/>
+                            <form:hidden path="mapFormato"/>
                             <form:hidden path="mapMedio"/>
                             <form:hidden path="audLocalidad"/>
                             <form:hidden path="mapProvincia"/>
-                            <form:hidden path="mapProvincia"/>
+                            <form:hidden path="bajaLogica"/>
+                            <form:hidden path="fechaAlta"/>
                             <input type="hidden" name="page" value="${page}"/>
 
                             <div class="col-6">
@@ -237,6 +240,12 @@
                                 </c:forEach>
                             </select>
                         </div>
+
+                    <div class="form-group col-6">
+                        <label for="fechaAlta">Fecha de alta</label>
+                        <input name="fechaAlta" class="form-control" id="datepicker"/>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

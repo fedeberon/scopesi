@@ -63,6 +63,11 @@ public class FilterDaoImpl implements FilterDao {
             builder.append(" u.audLocalidad.descripcion = :audLocalidad");
 
         }
+        if(Objects.nonNull(request.getFechaAlta())){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" u.fechaAlta = :fechaAlta");
+
+        }
 
 
         Query query = entityManager.createQuery(builder.toString());
@@ -83,6 +88,9 @@ public class FilterDaoImpl implements FilterDao {
         }
         if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().trim().isEmpty()){
             query.setParameter("audLocalidad", request.getAudLocalidad());
+        }
+        if(Objects.nonNull(request.getFechaAlta())){
+            query.setParameter("fechaAlta", request.getFechaAlta());
         }
 
         return query.getResultList();
