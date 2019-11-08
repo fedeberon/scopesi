@@ -50,6 +50,7 @@
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
 <!--  Google Maps Plugin    -->
@@ -161,17 +162,38 @@
 <script src="../DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
 <script src="../DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js"></script>
 
-
-
-
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
 <script>
-
     $( ".form-check-sign" ).on( "click", function() {
         var check = $( this ).attr('id');
         $('form-check-input-' + check).val(true);
     });
 
+
+    var selectpickerIsClicked = false;
+
+    $(function () {
+        $('.selectpicker').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
+
+        $('.dropdown-menu').on('click', function (e) {
+            if ($(e.target).closest('.bootstrap-select.open').is(':visible') || $(e.target).closest('.btn.dropdown-toggle.btn-default').is(':visible')) {
+                selectpickerIsClicked = true;
+            }
+        });
+
+        // when the dialog is closed....
+        $('.dropdown').on('hide.bs.dropdown', function (e) {
+            if (selectpickerIsClicked) {
+                e.preventDefault();
+                selectpickerIsClicked = false;
+            }
+        });
+    });
 
 </script>
 

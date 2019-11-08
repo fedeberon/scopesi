@@ -2,6 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
+
 <style>
     .form-check{
         margin-top: 10px;
@@ -185,30 +186,56 @@
 
                         <div class="form-group col-6">
                             <label for="audEmpresa">Empresas</label>
-                            <form:select path="audEmpresa"  class="mdb-select md-form"  items="${empresas}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control selectpicker"  title="Choose one of the following..."/>
+                            <select name="audEmpresa"  class="selectpicker form-control" multiple data-live-search="true">
+                                <c:forEach items="${empresas}" var="bo">
+                                    <option value="${bo.descripcion}">${bo.descripcion}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+
                         <div class="form-group col-6">
                             <label for="mapElemento">Elementos</label>
-                            <form:select path="mapElemento" items="${elementos}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                            <select name="mapElemento" class="form-control selectpicker" multiple data-live-search="true">
+                                <c:forEach items="${elementos}" var="bo">
+                                    <option value="${bo.descripcion}">${bo.descripcion}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+
                         <div class="form-group col-6">
                             <label for="mapElemento">Formatos</label>
-                            <form:select path="mapFormato" items="${formatos}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                            <select name="mapFormato" items="${formatos}" class="form-control selectpicker" multiple data-live-search="true">
+                                <c:forEach items="${formatos}" var="bo">
+                                    <option value="${bo.descripcion}">${bo.descripcion}</option>
+                                </c:forEach>
+                            </select>
                         </div>
 
                         <div class="form-group col-6">
                             <label for="mapMedio">Medios</label>
-                            <form:select path="mapMedio" items="${medios}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                            <select name="mapMedio" class="form-control selectpicker" multiple data-live-search="true">
+                                <c:forEach items="${medios}" var="bo">
+                                    <option value="${bo.descripcion}">${bo.descripcion}</option>
+                                </c:forEach>
+                            </select>
                         </div>
 
                         <div class="form-group col-6">
                             <label for="audLocalidad">Localidadades</label>
-                            <form:select path="audLocalidad" items="${localidades}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                            <select name="audLocalidad" items="${localidades}" class="form-control selectpicker" multiple data-live-search="true">
+                                <c:forEach items="${localidades}" var="bo">
+                                    <option value="${bo.descripcion}">${bo.descripcion}</option>
+                                </c:forEach>
+                            </select>
                         </div>
 
                         <div class="form-group col-6">
                             <label for="mapProvincia">Provincias</label>
-                            <form:select path="mapProvincia" items="${medios}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                            <select name="mapProvincia" items="${medios}" class="form-control selectpicker" multiple data-live-search="true">
+                                <c:forEach items="${medios}" var="bo">
+                                    <option value="${bo.descripcion}">${bo.descripcion}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                 </div>
                 <div class="modal-footer">

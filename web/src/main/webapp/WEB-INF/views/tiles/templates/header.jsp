@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css">
 
 
-    <link href="../MDB/css/mdb.css" rel="stylesheet" />
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
 </head>
