@@ -50,6 +50,9 @@
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+
+<%--<script src="../MDB/js/mdb.js"></script>--%>
+
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
 <!--  Google Maps Plugin    -->
@@ -65,8 +68,10 @@
 <script src="../assets/js/demo.js"></script>
 <script src="../assets/js/paginador.js"></script>
 
+<script src="../assets/js/paginador.js"></script>
 
-<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 
 
 <script type="text/javascript">
@@ -180,6 +185,9 @@
     });
 
 
+
+
 </script>
+
 
 </html>

@@ -140,7 +140,7 @@
                     <div class="card-body">
                         <a href="/poiSector" class="card-link"> <i class="fa fa-circle text-info"></i> Tabla</a>
                     </div>
-
+l
                 </div>
             </div>
         </div>
