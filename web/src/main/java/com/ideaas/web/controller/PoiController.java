@@ -29,12 +29,13 @@ public class PoiController {
         return "poi/show";
     }
 
-    @GetMapping
+    @GetMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model) {
         List<MapPoi> pois = mapPoiService.findAll(size, page, "id");
 
         model.addAttribute("pois", pois);
+        model.addAttribute("page" , page);
 
         return "poi/list";
     }

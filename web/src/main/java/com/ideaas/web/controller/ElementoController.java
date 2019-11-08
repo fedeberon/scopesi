@@ -21,17 +21,21 @@ public class ElementoController {
         this.elementoService = elementoService;
     }
 
-    @GetMapping("{id}")
-    public String show(@PathVariable Long id, Model model) {
-        model.addAttribute("elemento", elementoService.get(id));
+    @GetMapping("show")
+    public String show(@RequestParam Long id, Model model) {
+        MapElementoService elemento = (MapElementoService) elementoService.get(id);
+
+        model.addAttribute("elemento", elemento);
 
         return "elemento/show";
     }
 
-    @GetMapping
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        model.addAttribute("elementos", elementoService.findAll(size, page,"id"));
+    @GetMapping ("list")
+        public String findAll(@RequestParam(defaultValue = "10") Integer size,
+                              @RequestParam(defaultValue = "0") Integer page, Model model){
+        List<MapElemento> elementos = elementoService.findAll(size, page,"id");
+        model.addAttribute("elementos", elementos);
+        model.addAttribute("page" , page);
 
         return "elemento/list";
     }

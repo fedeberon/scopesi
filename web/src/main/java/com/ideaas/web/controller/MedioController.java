@@ -24,8 +24,8 @@ public class MedioController {
         this.medioService = medioService;
     }
 
-    @GetMapping("{id}")
-    public String show(@PathVariable Long id, Model model) {
+    @RequestMapping("show")
+    public String show(@RequestParam Long id, Model model) {
         MapMedioService medio = (MapMedioService) medioService.get(id);
 
         model.addAttribute("medios", medio);
@@ -33,12 +33,13 @@ public class MedioController {
         return "medio/show";
     }
 
-    @GetMapping
+    @RequestMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         List<MapMedio> medios = medioService.findAll(size, page,"id");
 
         model.addAttribute("medios", medios);
+        model.addAttribute("page" , page);
 
         return "medio/list";
     }

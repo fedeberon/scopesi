@@ -194,7 +194,7 @@
 
                         <div class="form-group col-6">
                             <label for="audEmpresa">Empresas</label>
-                            <form:select path="audEmpresa" items="${empresas}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control"/>
+                            <form:select path="audEmpresa"  class="mdb-select md-form"  items="${empresas}" itemLabel="descripcion" itemValue="descripcion" cssClass="form-control selectpicker"  title="Choose one of the following..."/>
                         </div>
                         <div class="form-group col-6">
                             <label for="mapElemento">Elementos</label>
