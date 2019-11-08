@@ -5,12 +5,18 @@ import com.ideaas.services.domain.*;
 import com.ideaas.services.request.MapUbicacionRequest;
 import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,7 +82,6 @@ public class UbicacionController {
         return "ubicacion/map";
     }
 
-
     @ModelAttribute("empresas")
     public List<AudEmpresa> empresas(){
         return audEmpresaService.findAll();
@@ -102,6 +107,11 @@ public class UbicacionController {
         return audLocalidadService.findAll();
     }
 
+    @ModelAttribute("provincias")
+    public List<MapProvincia> provincias(){
+        return mapProvinciaService.findAll();
+    }
+
     @ModelAttribute("mapUbicacionRequest")
     public MapUbicacionRequest mapUbicacionRequest(){
         return new MapUbicacionRequest();
@@ -110,6 +120,14 @@ public class UbicacionController {
     @ModelAttribute("wrapper")
     public Wrapper wrapper(){
         return new Wrapper();
+    }
+
+
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        webDataBinder.registerCustomEditor(LocalDateTime.class, new CustomDateEditor(dateFormat, true));
     }
 
 }

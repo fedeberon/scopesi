@@ -19,6 +19,16 @@ public class MyObject {
     private BigDecimal lat;
     private BigDecimal lon;
     private String name;
+    private String description;
+    private String address;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
 
     public Long getId() {
         return id;

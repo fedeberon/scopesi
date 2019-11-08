@@ -162,8 +162,8 @@
 <script src="../DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js"></script>
 
 
-
-
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
 <script>
 
@@ -172,6 +172,10 @@
         $('form-check-input-' + check).val(true);
     });
 
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd-mm-yyyy'
+    });
 
 </script>
 

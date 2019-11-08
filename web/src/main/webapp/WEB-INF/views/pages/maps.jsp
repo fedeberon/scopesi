@@ -26,6 +26,8 @@
                     <thead>
                     <th>id</th>
                     <th>name</th>
+                    <th>address</th>
+                    <th>description</th>
                     <th>lat</th>
                     <th>long</th>
                     <th>show/hide</th>
@@ -39,6 +41,8 @@
                         <tr>
                             <td>${bo.id}</td>
                             <td>${bo.name}</td>
+                            <td>${bo.address}</td>
+                            <td>${bo.description}</td>
                             <td>${bo.lat}</td>
                             <td>${bo.lon}</td>
                             <td>

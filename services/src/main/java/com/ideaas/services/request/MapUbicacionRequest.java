@@ -1,6 +1,9 @@
 package com.ideaas.services.request;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 @Data
 public class MapUbicacionRequest {
@@ -16,5 +19,10 @@ public class MapUbicacionRequest {
     private String audLocalidad;
 
     private String mapMedio;
+
+    private Boolean bajaLogica;
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDateTime fechaAlta;
 
 }
