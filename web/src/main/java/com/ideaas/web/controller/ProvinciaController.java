@@ -35,12 +35,13 @@ public class ProvinciaController {
         return "provincia/show";
     }
 
-    @GetMapping
+    @GetMapping("list")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         List<MapProvincia> provincias = provinciaService.findAll(size, page,"id");
 
         model.addAttribute("provincias", provincias);
+        model.addAttribute("page", page);
 
         return "provincia/list";
     }

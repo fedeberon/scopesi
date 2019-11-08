@@ -50,9 +50,6 @@
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-
-<%--<script src="../MDB/js/mdb.js"></script>--%>
-
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
 <!--  Google Maps Plugin    -->
@@ -68,10 +65,8 @@
 <script src="../assets/js/demo.js"></script>
 <script src="../assets/js/paginador.js"></script>
 
-<script src="../assets/js/paginador.js"></script>
 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<script src="../DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
 
 
 <script type="text/javascript">
@@ -157,23 +152,16 @@
     } );
 </script>
 
+<script src="../DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script src="../DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script src="../DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/buttons.html5.min.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/buttons.colVis.min.js"></script>
+<script src="../DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
+<script src="../DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js"></script>
 
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-
-<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>--%>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
-<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>--%>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
-<%--<script src="//cdn.datatables.net/buttons/1.3.1/js/buttons.colVis.min.js"></script>--%>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
-
-<script src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
 
 
 
@@ -185,9 +173,6 @@
     });
 
 
-
-
 </script>
-
 
 </html>

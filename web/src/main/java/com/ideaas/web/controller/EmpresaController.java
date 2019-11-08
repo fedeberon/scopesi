@@ -30,12 +30,12 @@ public class EmpresaController {
         return "empresa/show";
     }
 
-    @GetMapping
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
+        @GetMapping("list")
+        public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         List<AudEmpresa> empresas = empresaService.findAll(size, page,"id");
-
         model.addAttribute("empresas", empresas);
+        model.addAttribute("page" , page);
 
         return "empresa/list";
     }

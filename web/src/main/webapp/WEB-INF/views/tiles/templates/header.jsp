@@ -12,11 +12,9 @@
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.0/css/fixedColumns.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="../DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../DataTables/FixedColumns-3.3.0/css/fixedColumns.dataTables.min.css">
+    <link rel="stylesheet" href="../DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css">
 
 
     <link href="../MDB/css/mdb.css" rel="stylesheet" />
