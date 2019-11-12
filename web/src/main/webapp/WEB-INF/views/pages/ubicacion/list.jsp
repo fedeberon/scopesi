@@ -2,7 +2,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
-
 <style>
     .form-check{
         margin-top: 10px;
@@ -96,6 +95,12 @@
                                             ${bo.audEmpresa.descripcion}
                                                 <input type="hidden" value="${bo.audEmpresa.descripcion}" name="list[${status.index}].name"/>
                                     </td>
+
+                                    <td>
+                                            ${bo.mapElemento.descripcion}
+                                                <input type="hidden" value="${bo.mapElemento.descripcion}" name="list[${status.index}].description"/>
+                                    </td>
+
                                     <td>${bo.mapFormato.descripcion}</td>
                                     <td>${bo.mapMedio.descripcion}</td>
                                     <td>
@@ -241,10 +246,10 @@
                             </select>
                         </div>
 
-                    <div class="form-group col-6">
-                        <label for="fechaAlta">Fecha de alta</label>
-                        <input name="fechaAlta" class="form-control" id="datepicker"/>
-                    </div>
+                        <div class="form-group col-6">
+                            <label for="fechaAlta">Fecha de alta</label>
+                            <input name="fechaAlta" class="form-control" id="datepicker"/>
+                        </div>
 
                 </div>
                 <div class="modal-footer">

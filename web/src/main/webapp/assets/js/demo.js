@@ -500,8 +500,8 @@ demo = {
         $('#table-markers tbody>tr').each(function () {
             var id = $(this).find("td").eq(0).html();
             var title = $(this).find("td").eq(1).html();
-            var lat = $(this).find("td").eq(2).html();
-            var lon = $(this).find("td").eq(3).html();
+            var lat = $(this).find("td").eq(4).html();
+            var lon = $(this).find("td").eq(5).html();
             var latLong = new google.maps.LatLng(lat, lon);
 
             var marker = new google.maps.Marker({
@@ -533,7 +533,7 @@ demo = {
 
         });
 
-        map.fitBounds(bounds);
+        // map.fitBounds(bounds);
 
     },
 
