@@ -30,14 +30,14 @@
 
                              <table id="dataTable" class="display" style="width:100%">
                             <thead>
-                                <td>
+                                <th>
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" value="">
                                             <span class="form-check-sign"></span>
                                         </label>
                                     </div>
-                                </td>
+                                </th>
                                 <th>ID</th>
                                 <th>Empresa</th>
                                 <th>Elemento</th>
@@ -71,7 +71,7 @@
                                 <th>Fecha de Tranferencia</th>
                                 <th>Fecha de Alta</th>
                                 <th>Id.Altura</th>
-                                <th>Id.Visibilidad</th>
+                                <%--<th>Id.Visibilidad</th>--%>
                             </thead>
 
                             <tbody>
@@ -189,7 +189,7 @@
 
                         <div class="form-group col-6">
                             <label for="audEmpresa">Empresas</label>
-                            <select name="audEmpresa"  class="selectpicker form-control" multiple data-live-search="true">
+                            <select name="audEmpresa"  class="form-control selectpicker" multiple data-live-search="true" data-actions-box="true">
                                 <c:forEach items="${empresas}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
