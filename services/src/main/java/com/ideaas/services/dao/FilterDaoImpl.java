@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,13 +31,13 @@ public class FilterDaoImpl implements FilterDao {
 
         if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append("u.audEmpresa.descripcion = :audEmpresa");
+            builder.append("u.audEmpresa.descripcion in (:audEmpresa)");
 
             isFirstClause = false;
         }
         if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append("u.mapElemento.descripcion = :mapElemento");
+            builder.append("u.mapElemento.descripcion in (:mapElemento)");
 
             isFirstClause = false;
         }
@@ -72,25 +73,25 @@ public class FilterDaoImpl implements FilterDao {
 
         Query query = entityManager.createQuery(builder.toString());
         if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
-            query.setParameter("audEmpresa", request.getAudEmpresa());
+            query.setParameter("audEmpresa", Arrays.asList(request.getAudEmpresa().split(",")));
         }
         if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().trim().isEmpty()){
-            query.setParameter("mapElemento", request.getMapElemento());
+            query.setParameter("mapElemento", Arrays.asList(request.getMapElemento().split(",")));
         }
         if(Objects.nonNull(request.getMapFormato()) && !request.getMapFormato().trim().isEmpty()){
-            query.setParameter("mapFormato", request.getMapFormato());
+            query.setParameter("mapFormato", Arrays.asList(request.getMapFormato().split(",")));
         }
         if(Objects.nonNull(request.getMapMedio()) && !request.getMapMedio().trim().isEmpty()){
-            query.setParameter("mapMedio", request.getMapMedio());
+            query.setParameter("mapMedio", Arrays.asList(request.getMapMedio().split(",")));
         }
         if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().trim().isEmpty()){
-            query.setParameter("mapProvincia", request.getMapProvincia());
+            query.setParameter("mapProvincia", Arrays.asList(request.getMapProvincia().split(",")));
         }
         if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().trim().isEmpty()){
-            query.setParameter("audLocalidad", request.getAudLocalidad());
+            query.setParameter("audLocalidad", Arrays.asList(request.getAudLocalidad().split(",")));
         }
         if(Objects.nonNull(request.getFechaAlta())){
-            query.setParameter("fechaAlta", request.getFechaAlta());
+            query.setParameter("fechaAlta", Arrays.asList(request.getFechaAlta()));
         }
 
         return query.getResultList();

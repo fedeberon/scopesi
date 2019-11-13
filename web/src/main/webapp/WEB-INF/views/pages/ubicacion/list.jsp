@@ -25,6 +25,9 @@
 
                     <div class="card-body table-full-width table-responsive">
 
+
+                        <input type="text" id="myInputTextField">
+
                         <form:form action="map" modelAttribute="wrapper" name="ubicaciones">
 
                              <table id="dataTable" class="display" style="width:100%">

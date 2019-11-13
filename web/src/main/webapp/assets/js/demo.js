@@ -533,7 +533,7 @@ demo = {
 
         });
 
-        // map.fitBounds(bounds);
+        map.fitBounds(bounds);
 
     },
 
