@@ -70,7 +70,7 @@
                                 <th>Fecha de Tranferencia</th>
                                 <th>Fecha de Alta</th>
                                 <th>Id.Altura</th>
-                                <%--<th>Id.Visibilidad</th>--%>
+                                <th>Id.Visibilidad</th>
                             </thead>
 
                             <tbody>
