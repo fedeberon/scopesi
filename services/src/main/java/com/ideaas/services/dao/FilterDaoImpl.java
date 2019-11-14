@@ -69,6 +69,11 @@ public class FilterDaoImpl implements FilterDao {
             builder.append(" u.fechaAlta = :fechaAlta");
 
         }
+        if(Objects.nonNull(request.getBajaLogica())){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" u.bajaLogica = :bajaLogica");
+
+        }
 
 
         Query query = entityManager.createQuery(builder.toString());
@@ -93,7 +98,9 @@ public class FilterDaoImpl implements FilterDao {
         if(Objects.nonNull(request.getFechaAlta())){
             query.setParameter("fechaAlta", Arrays.asList(request.getFechaAlta()));
         }
-
+        if(Objects.nonNull(request.getBajaLogica())){
+            query.setParameter("bajaLogica", Arrays.asList(request.getBajaLogica()));
+        }
         return query.getResultList();
     }
 

@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="../DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../DataTables/FixedColumns-3.3.0/css/fixedColumns.dataTables.min.css">
     <link rel="stylesheet" href="../DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css">
-
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+<%--    <link rel="stylesheet" type="text/css" href="../assets/js/plugins/jquery.datetimepicker.css"/>--%>
 
 </head>

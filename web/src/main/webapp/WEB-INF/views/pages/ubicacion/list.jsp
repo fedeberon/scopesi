@@ -6,8 +6,6 @@
     .form-check{
         margin-top: 10px;
     }
-
-
 </style>
 
 <div class="content">
@@ -239,16 +237,35 @@
 
                         <div class="form-group col-6">
                             <label for="mapProvincia">Provincias</label>
-                            <select name="mapProvincia" items="${medios}" class="form-control selectpicker" multiple data-live-search="true">
-                                <c:forEach items="${medios}" var="bo">
+                            <select name="mapProvincia" items="${provincias}" class="form-control selectpicker" multiple data-live-search="true">
+                                <c:forEach items="${provincias}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
                             </select>
                         </div>
 
+<%--                         <div class="form-group col-6">--%>
+<%--                             <label for="fechaAlta">Fecha de alta</label>--%>
+<%--                             <br>--%>
+<%--                             <input type="text" name="fechaAlta" id="filter-date"/>--%>
+<%--                         </div>--%>
+
+<%--                    <div class="form-group col-6">--%>
+<%--                        <label for="fechaAlta">Fecha de alta</label>--%>
+<%--                        <input name="fechaAlta" class="form-control" id="datepicker"/>--%>
+<%--                    </div>--%>
+
                         <div class="form-group col-6">
-                            <label for="fechaAlta">Fecha de alta</label>
-                            <input name="fechaAlta" class="form-control" id="datepicker"/>
+                            <label for="bajaLogica" class="mb-0">Baja Logica</label>
+                            <br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input ml-0" type="radio" name="bajaLogica" id="inlineRadio1" value="true">
+                                <label class="form-check-label" for="inlineRadio1">True</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input ml-0" type="radio" name="bajaLogica" id="inlineRadio2" value="false">
+                                <label class="form-check-label" for="inlineRadio2">False</label>
+                            </div>
                         </div>
 
                 </div>
