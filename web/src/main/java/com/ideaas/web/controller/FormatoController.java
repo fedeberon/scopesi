@@ -5,10 +5,8 @@ import com.ideaas.services.service.interfaces.MapFormatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -43,5 +41,34 @@ public class FormatoController{
 
         return "formato/list";
     }
+
+    @GetMapping("create")
+    public String create() {
+        return "formato/create";
+    }
+
+
+    @PostMapping("addFormato")
+    public String save(@ModelAttribute MapFormato formato, RedirectAttributes redirectAttributes){
+        formatoService.save(formato);
+        redirectAttributes.addAttribute("id", formato.getId());
+
+        return "redirect:/{id}";
+    }
+
+    @PutMapping("editFormato")
+    public String edit(@ModelAttribute MapFormato formato, RedirectAttributes redirectAttributes){
+        formatoService.save(formato);
+        redirectAttributes.addAttribute("id", formato.getId());
+
+        return "redirect:/{id}";
+    }
+
+    @ModelAttribute("formato")
+    public MapFormato get(){
+        return new MapFormato();
+    }
+
+
 
 }

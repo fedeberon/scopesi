@@ -13,6 +13,8 @@ public class MapElemento {
 
     @Id
     @Column(name = "idElemento")
+    @SequenceGenerator(name = "MapElementoSeqGen", sequenceName = "SEQ_MAP_ELEMENTOS", allocationSize = 1)
+    @GeneratedValue(generator = "MapElementoSeqGen")
     private Long id;
 
     @Column(name = "descripcion")

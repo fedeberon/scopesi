@@ -11,6 +11,8 @@ import javax.persistence.*;
 public class MapProvincia {
     @Id
     @Column(name = "idProvincia")
+    @SequenceGenerator(name = "MapProvinciaSeqGen", sequenceName = "SEQ_MAP_PROVINCIAS", allocationSize = 1)
+    @GeneratedValue(generator = "MapProvinciaSeqGen")
     private Long id;
 
     @Column(name = "descripcion")

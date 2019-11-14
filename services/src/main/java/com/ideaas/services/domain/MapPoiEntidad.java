@@ -12,6 +12,8 @@ public class MapPoiEntidad {
 
     @Id
     @Column(name = "idEntidad")
+    @SequenceGenerator(name = "MapPoiEntidadSeqGen", sequenceName = "SEQ_MAP_POIS_ENTIDAD", allocationSize = 1)
+    @GeneratedValue(generator = "MapPoiEntidadSeqGen")
     private Long id;
 
     @ManyToOne

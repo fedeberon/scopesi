@@ -1,0 +1,35 @@
+CREATE TABLE `SEQ_AUD_EMPRESA` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_FORMATO` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_ELEMENTOS` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_MEDIOS` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_PROVINCIAS` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_LOCALIDADES` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_POIS` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_POIS_ENTIDAD` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
+CREATE TABLE `SEQ_MAP_POIS_SECTOR` (
+  `next_val` bigint(20) DEFAULT NULL
+);

@@ -12,8 +12,8 @@ public class AudEmpresa {
 
     @Id
     @Column(name = "idEmpresa")
-    @SequenceGenerator(name = "mySeqGen", sequenceName = "mySeq", initialValue = 5, allocationSize = 100)
-    @GeneratedValue(generator = "mySeqGen")
+    @SequenceGenerator(name = "AudEmpresaSeqGen", sequenceName = "SEQ_AUD_EMPRESA", allocationSize = 1)
+    @GeneratedValue(generator = "AudEmpresaSeqGen")
     private Long id;
 
     @Column(name = "descripcion")
