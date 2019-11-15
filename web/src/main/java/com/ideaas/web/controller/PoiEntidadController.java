@@ -70,4 +70,5 @@ public class PoiEntidadController{
         return new MapPoiEntidad();
     }
 
+
 }

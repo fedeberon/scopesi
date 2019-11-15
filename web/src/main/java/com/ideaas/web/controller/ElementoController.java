@@ -1,7 +1,11 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.domain.MapElemento;
+import com.ideaas.services.domain.MapFormato;
+import com.ideaas.services.domain.MapMedio;
 import com.ideaas.services.service.interfaces.MapElementoService;
+import com.ideaas.services.service.interfaces.MapFormatoService;
+import com.ideaas.services.service.interfaces.MapMedioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +19,15 @@ import java.util.List;
 public class ElementoController {
 
     private MapElementoService elementoService;
+    private MapMedioService mapMedioService;
+    private MapFormatoService mapFormatoService;
 
     @Autowired
-    public ElementoController(MapElementoService elementoService) {
+    public ElementoController(MapElementoService elementoService, MapMedioService mapMedioService, MapFormatoService mapFormatoService) {
 
         this.elementoService = elementoService;
+        this.mapMedioService = mapMedioService;
+        this.mapFormatoService = mapFormatoService;
     }
 
     @GetMapping("{id}")
@@ -41,9 +49,13 @@ public class ElementoController {
         return "elemento/list";
     }
 
-
     @GetMapping("create")
-    public String create() {
+    public String create(Model model) {
+        List<MapMedio> medios = mapMedioService.findAll();
+        List<MapFormato> formatos = mapFormatoService.findAll();
+        model.addAttribute("formatos", formatos);
+        model.addAttribute("medios", medios);
+
         return "elemento/create";
     }
 
@@ -69,5 +81,14 @@ public class ElementoController {
         return new MapElemento();
     }
 
+    @ModelAttribute("medios")
+    public List<MapMedio> medios(){
+        return mapMedioService.findAll();
+    }
+
+    @ModelAttribute("formatos")
+    public List<MapFormato> formatos(){
+        return mapFormatoService.findAll();
+    }
 
 }

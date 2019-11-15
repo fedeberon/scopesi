@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="col-6 pt-3">
 <form:form action="addElemento" modelAttribute="elemento" method="post">
@@ -10,18 +11,33 @@
                             <div class="form-group"> <!-- Street 1 -->
                                 <label for="street1_id" class="control-label pt-2">Descripcion</label>
                                 <form:input  path="descripcion" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+
                                 <label for="street1_id" class="control-label pt-2">Pano</label>
                                 <form:input  path="panos" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+
                                 <label for="street1_id" class="control-label pt-2">Medio</label>
-                                <form:input  path="mapMedio.id" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <select class="form-control" id="street1_id" name="mapMedio.id">
+                                    <c:forEach items="${medios}" var="bo" varStatus="status">
+                                        <option value="${bo.id}">${bo.descripcion}</option>
+                                    </c:forEach>
+                                </select>
+
                                 <label for="street1_id" class="control-label pt-2">Formato</label>
-                                <form:input  path="mapFormato.id" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
-                                <label for="street1_id" class="control-label pt-2">Acumula datos</label>
+                                <select class="form-control" id="street1_id" name="mapFormato.id">
+                                    <c:forEach items="${formatos}" var="bo" varStatus="status">
+                                        <option value="${bo.id}">${bo.descripcion}</option>
+                                    </c:forEach>
+                                </select>
+
+                                <label for="street1_id" class="control-label pt-2">Acumula Datos</label>
                                 <form:input  path="acumulaDatos" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+
                                 <label for="street1_id" class="control-label pt-2">Evalua</label>
                                 <form:input  path="evalua" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
-                                <label for="street1_id" class="control-label pt-2">Metros contacto</label>
+
+                                <label for="street1_id" class="control-label pt-2">Metros de contacto</label>
                                 <form:input  path="metrosContacto" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+
                                 <label for="street1_id" class="control-label pt-2">Coeficiente</label>
                                 <form:input  path="coeficiente" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
 
@@ -37,4 +53,3 @@
     </div>
 
 </form:form>
-</div>
