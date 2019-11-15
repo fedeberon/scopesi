@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <form:form action="addElemento" modelAttribute="elemento" method="post">
@@ -12,10 +13,20 @@
                                 <form:input  path="descripcion" cssClass="form-control" id="street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o"/>
                                 <label for="street1_id" class="control-label">PANOS</label>
                                 <form:input  path="panos" cssClass="form-control" id="street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o"/>
-                                <label for="street1_id" class="control-label">ID MEDIO</label>
-                                <form:input  path="mapMedio.id" cssClass="form-control" id="street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o"/>
+                                <label for="street1_id" class="control-label">MEDIO</label>
+                                <select class="form-control" id="street1_id" name="mapMedio.id">
+                                    <c:forEach items="${medios}" var="bo" varStatus="status">
+                                        <option value="${bo.id}">${bo.descripcion}</option>
+                                    </c:forEach>
+                                </select>
                                 <label for="street1_id" class="control-label">ID FORMATO</label>
-                                <form:input  path="mapFormato.id" cssClass="form-control" id="street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o"/>
+
+                                <select class="form-control" id="street1_id" name="mapFormato.id">
+                                    <c:forEach items="${formatos}" var="bo" varStatus="status">
+                                        <option value="${bo.id}">${bo.descripcion}</option>
+                                    </c:forEach>
+                                </select>
+
                                 <label for="street1_id" class="control-label">ACUMULA DATOS</label>
                                 <form:input  path="acumulaDatos" cssClass="form-control" id="street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o"/>
                                 <label for="street1_id" class="control-label">EVALUA</label>

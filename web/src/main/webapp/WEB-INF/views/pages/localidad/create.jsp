@@ -6,7 +6,7 @@
         <label  class="control-label">DESCRIPCION</label>
         <form:input path="descripcion" cssClass="form-control" id="street1_id" name="street1" placeholder="Street address, P.O. box, company name, c/o"/>
         <label class="control-label">PROVINCIA</label>
-        <select class="form-control" id="street1_id" name="mapProvincia.id">
+        <select class="form-control" id="street1_id" name="audProvincia.id">
             <c:forEach items="${provincias}" var="bo" varStatus="status">
                 <option value="${bo.id}">${bo.descripcion}</option>
             </c:forEach>
