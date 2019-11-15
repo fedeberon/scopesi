@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<form:form action="addFormato" modelAttribute="formato" method="post">
+<form:form action="addProvincia" modelAttribute="provincia" method="post">
 
 
     <div class="form-group"> <!-- Street 1 -->

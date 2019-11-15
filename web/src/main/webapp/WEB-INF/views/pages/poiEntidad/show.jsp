@@ -15,16 +15,16 @@
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
-                            <th>idSector</th>
+                            <th>Sector</th>
                             </thead>
 
                             <tbody>
 
 
                             <tr>
-                                <td>${poiEntidad.id}</td>
-                                <td>${poiEntidad.descripcion}</td>
-                                <td>${poiEntidad.mapPoiSector.descripcion}</td>
+                                <td>${poiEntidades.id}</td>
+                                <td>${poiEntidades.descripcion}</td>
+                                <td>${poiEntidades.mapPoiSector.descripcion}</td>
                             </tr>
 
 

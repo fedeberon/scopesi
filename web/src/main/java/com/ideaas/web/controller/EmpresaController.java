@@ -52,7 +52,7 @@ public class EmpresaController {
         empresaService.save(empresa);
         redirectAttributes.addAttribute("id", empresa.getId());
 
-        return "redirect:/{id}";
+        return "redirect:/empresa/{id}";
     }
 
     @PutMapping("editEmpresa")

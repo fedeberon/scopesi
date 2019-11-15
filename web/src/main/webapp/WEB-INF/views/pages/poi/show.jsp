@@ -15,8 +15,8 @@
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
-                            <th>idEntidad</th>
-                            <th>idProvincia</th>
+                            <th>Entidad</th>
+                            <th>Provincia</th>
                             <th>geo_latitud</th>
                             <th>geo_longitud</th>
                             <th>icono</th>
@@ -28,6 +28,12 @@
                             <tr>
                                 <td>${poi.id}</td>
                                 <td>${poi.descripcion}</td>
+                                <td>${poi.mapPoiEntidad.descripcion}</td>
+                                <td>${poi.mapProvincia.descripcion}</td>
+                                <td>${poi.geoLatitud}</td>
+                                <td>${poi.geoLongitud}</td>
+                                <td>${poi.icono}</td>
+
 
                             </tr>
 

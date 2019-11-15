@@ -23,10 +23,9 @@ public class FormatoController{
 
     @GetMapping("{id}")
     public String show(@PathVariable Long id, Model model) {
-        MapFormatoService formato = (MapFormatoService) formatoService.get(id);
+        MapFormato formato = formatoService.get(id);
 
         model.addAttribute("formato", formato);
-
 
         return "formato/show";
     }
@@ -53,7 +52,7 @@ public class FormatoController{
         formatoService.save(formato);
         redirectAttributes.addAttribute("id", formato.getId());
 
-        return "redirect:/{id}";
+        return "redirect:/formato/{id}";
     }
 
     @PutMapping("editFormato")

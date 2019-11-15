@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class PoiSectorController{
 
     @GetMapping("{id}")
     public String show(@PathVariable Long id, Model model) {
-        MapPoiSectorService poiSector = (MapPoiSectorService) poiSectorService.get(id);
+        MapPoiSector poiSector = poiSectorService.get(id);
 
         model.addAttribute("poiSector", poiSector);
 
@@ -41,6 +42,18 @@ public class PoiSectorController{
         model.addAttribute("page" , page);
 
         return "poiSector/list";
+    }
+
+    @GetMapping("create")
+    public String create() {
+        return "poiSector/create";
+    }
+
+    @PostMapping("addPoiSector")
+    public String save(@ModelAttribute MapPoiSector poiSector, RedirectAttributes redirectAttributes){
+        poiSectorService.save(poiSector);
+        redirectAttributes.addAttribute("id", poiSector.getId());
+        return "redirect:/poiSector/{id}";
     }
 
     @ModelAttribute("poiSector")

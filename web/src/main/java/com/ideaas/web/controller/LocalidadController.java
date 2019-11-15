@@ -6,10 +6,8 @@ import com.ideaas.services.service.interfaces.AudLocalidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class LocalidadController {
 
     @GetMapping("{id}")
     public String show(@PathVariable Long id, Model model) {
-        AudLocalidadService localidad = (AudLocalidadService) localidadService.get(id);
+        AudLocalidad localidad = localidadService.get(id);
 
         model.addAttribute("localidad", localidad);
 
@@ -44,5 +42,18 @@ public class LocalidadController {
         return "localidad/list";
     }
 
+    @GetMapping("create")
+    public String create() {
+        return "localidad/create";
+    }
 
+    @PostMapping("addLocalidad")
+    public String save(@ModelAttribute AudLocalidad localidad, RedirectAttributes redirectAttributes){
+        localidadService.save(localidad);
+        redirectAttributes.addAttribute("id", localidad.getId());
+        return "redirect:/localidad/{id}";
+    }
+
+    @ModelAttribute("localidad")
+    public AudLocalidad get(){ return  new AudLocalidad();}
 }

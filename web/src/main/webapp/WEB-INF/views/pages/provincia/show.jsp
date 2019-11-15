@@ -15,6 +15,7 @@
                             <thead>
                             <th>ID</th>
                             <th>Elemento</th>
+                            <th>Evalua</th>
                             </thead>
 
                             <tbody>
@@ -23,6 +24,7 @@
                             <tr>
                                 <td>${provincia.id}</td>
                                 <td>${provincia.descripcion}</td>
+                                <td>${provincia.evalua}</td>
                             </tr>
 
 

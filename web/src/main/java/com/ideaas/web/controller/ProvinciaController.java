@@ -8,10 +8,8 @@ import com.ideaas.services.service.interfaces.MapProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class ProvinciaController {
 
     @GetMapping("{id}")
     public String show(@PathVariable Long id, Model model) {
-        MapProvinciaService provincia = (MapProvinciaService) provinciaService.get(id);
+        MapProvincia provincia = provinciaService.get(id);
 
         model.addAttribute("provincia", provincia);
 
@@ -46,5 +44,21 @@ public class ProvinciaController {
         return "provincia/list";
     }
 
+    @GetMapping("create")
+    public String create() {
+        return "provincia/create";
+    }
+
+
+    @PostMapping("addProvincia")
+    public String save(@ModelAttribute MapProvincia provincia, RedirectAttributes redirectAttributes){
+        provinciaService.save(provincia);
+        redirectAttributes.addAttribute("id", provincia.getId());
+
+        return "redirect:/provincia/{id}";
+    }
+
+    @ModelAttribute ("provincia")
+    public MapProvincia get() {return new MapProvincia();}
 
 }

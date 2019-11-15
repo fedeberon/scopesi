@@ -14,7 +14,14 @@
                         <table id="example" class="display" style="width:100%">
                             <thead>
                             <th>ID</th>
-                            <th>Elemento</th>
+                            <th>Descripcion</th>
+                            <th>Panos</th>
+                            <th>IdMedio</th>
+                            <th>IdFormato</th>
+                            <th>AcumulaDatos</th>
+                            <th>Evalua</th>
+                            <th>MetrosContacto</th>
+                            <th>Coeficiente</th>
                             </thead>
 
                             <tbody>
@@ -23,6 +30,13 @@
                             <tr>
                                 <td>${elemento.id}</td>
                                 <td>${elemento.descripcion}</td>
+                                <td>${elemento.panos}</td>
+                                <td>${elemento.mapMedio.descripcion}</td>
+                                <td>${elemento.mapFormato.descripcion}</td>
+                                <td>${elemento.acumulaDatos}</td>
+                                <td>${elemento.evalua}</td>
+                                <td>${elemento.metrosContacto}</td>
+                                <td>${elemento.coeficiente}</td>
                             </tr>
 
 
