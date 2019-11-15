@@ -1,7 +1,11 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.domain.MapPoi;
+import com.ideaas.services.domain.MapPoiEntidad;
+import com.ideaas.services.domain.MapProvincia;
+import com.ideaas.services.service.interfaces.MapPoiEntidadService;
 import com.ideaas.services.service.interfaces.MapPoiService;
+import com.ideaas.services.service.interfaces.MapProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +19,16 @@ import java.util.List;
 public class PoiController {
 
     private MapPoiService mapPoiService;
+    private MapPoiEntidadService mapPoiEntidadService;
+    private MapProvinciaService mapProvinciaService;
+
+
 
     @Autowired
-    public PoiController(MapPoiService mapPoiService) {
+    public PoiController(MapPoiService mapPoiService, MapPoiEntidadService mapPoiEntidadService, MapProvinciaService mapProvinciaService) {
         this.mapPoiService = mapPoiService;
+        this.mapPoiEntidadService = mapPoiEntidadService;
+        this.mapProvinciaService = mapProvinciaService;
     }
 
     @GetMapping("{id}")
@@ -42,7 +52,12 @@ public class PoiController {
     }
 
     @GetMapping("create")
-    public String create() {
+    public String create(Model model) {
+        List<MapPoiEntidad> poiEntidades = mapPoiEntidadService.findAll();
+        List<MapProvincia> provincias = mapProvinciaService.findAll();
+        model.addAttribute("poiEntidades", poiEntidades);
+        model.addAttribute("provincias", provincias);
+
         return "poi/create";
     }
 
@@ -53,11 +68,19 @@ public class PoiController {
         return "redirect:/poi/{id}";
     }
 
+    @ModelAttribute("poiEntidades")
+    public List<MapPoiEntidad> provincias(){
+        return mapPoiEntidadService.findAll();
+    }
+
+    @ModelAttribute("provincias")
+    public List<MapProvincia> poiSectores(){
+        return mapProvinciaService.findAll();
+    }
+
     @ModelAttribute("poi")
     public MapPoi get() {
         return new MapPoi();
     }
-
-
 
 }

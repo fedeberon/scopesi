@@ -2,7 +2,9 @@ package com.ideaas.web.controller;
 
 import com.ideaas.services.domain.MapPoi;
 import com.ideaas.services.domain.MapPoiEntidad;
+import com.ideaas.services.domain.MapPoiSector;
 import com.ideaas.services.service.interfaces.MapPoiEntidadService;
+import com.ideaas.services.service.interfaces.MapPoiSectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +18,12 @@ import java.util.List;
 public class PoiEntidadController{
 
     private MapPoiEntidadService poiEntidadService;
+    private MapPoiSectorService poiSectorService;
 
     @Autowired
-    public PoiEntidadController(MapPoiEntidadService poiEntidadService) {
+    public PoiEntidadController(MapPoiEntidadService poiEntidadService, MapPoiSectorService poiSectorService) {
         this.poiEntidadService = poiEntidadService;
+        this.poiSectorService = poiSectorService;
     }
 
     @GetMapping("{id}")
@@ -43,7 +47,9 @@ public class PoiEntidadController{
     }
 
     @GetMapping("create")
-    public String create() {
+    public String create(Model model) {
+        List<MapPoiSector> poiSectores = poiSectorService.findAll();
+        model.addAttribute("poiSectores", poiSectores);
         return "poiEntidad/create";
     }
 
@@ -52,6 +58,11 @@ public class PoiEntidadController{
         poiEntidadService.save(poiEntidad);
         redirectAttributes.addAttribute("id", poiEntidad.getId());
         return "redirect:/poiEntidad/{id}";
+    }
+
+    @ModelAttribute("poiSectores")
+    public List<MapPoiSector> poiSectores(){
+        return poiSectorService.findAll();
     }
 
     @ModelAttribute("poiEntidad")
