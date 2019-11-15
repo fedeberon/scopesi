@@ -11,4 +11,7 @@ public interface MapPoiEntidadService {
     MapPoiEntidad save(MapPoiEntidad mapPoiEntidad);
 
     List<MapPoiEntidad> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapPoiEntidad> findAll();
+
 }

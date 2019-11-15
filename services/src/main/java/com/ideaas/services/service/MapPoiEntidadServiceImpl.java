@@ -2,6 +2,7 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.MapPoiEntidadDao;
 import com.ideaas.services.domain.MapPoiEntidad;
+import com.ideaas.services.domain.MapPoiSector;
 import com.ideaas.services.service.interfaces.MapPoiEntidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class MapPoiEntidadServiceImpl implements MapPoiEntidadService {
@@ -38,5 +41,13 @@ public class MapPoiEntidadServiceImpl implements MapPoiEntidadService {
         Page<MapPoiEntidad> mapPoisEntidades = dao.findAll(paging);
 
         return mapPoisEntidades.getContent();
+    }
+
+    @Override
+    public List<MapPoiEntidad> findAll() {
+        Iterable<MapPoiEntidad> iterator = dao.findAll();
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

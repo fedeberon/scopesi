@@ -53,6 +53,8 @@
 
                                     <tags:paginador page="${page}" formName="search"/>
 
+                                    <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
+
                                 </form>
 
                             </div>

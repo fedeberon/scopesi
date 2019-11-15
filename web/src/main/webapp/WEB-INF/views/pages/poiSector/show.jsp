@@ -21,8 +21,8 @@
 
 
                             <tr>
-                                <td>${poi.id}</td>
-                                <td>${poi.descripcion}</td>
+                                <td>${poiSector.id}</td>
+                                <td>${poiSector.descripcion}</td>
                             </tr>
 
 

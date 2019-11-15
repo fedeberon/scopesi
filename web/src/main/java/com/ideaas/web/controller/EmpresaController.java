@@ -52,6 +52,14 @@ public class EmpresaController {
         empresaService.save(empresa);
         redirectAttributes.addAttribute("id", empresa.getId());
 
+        return "redirect:/empresa/{id}";
+    }
+
+    @PutMapping("editEmpresa")
+    public String edit(@ModelAttribute AudEmpresa empresa, RedirectAttributes redirectAttributes){
+        empresaService.save(empresa);
+        redirectAttributes.addAttribute("id", empresa.getId());
+
         return "redirect:/{id}";
     }
 

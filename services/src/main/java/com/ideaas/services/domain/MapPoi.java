@@ -13,6 +13,8 @@ public class MapPoi {
 
     @Id
     @Column(name = "idPoi")
+    @SequenceGenerator(name = "MapPoiSeqGen", sequenceName = "SEQ_MAP_POIS", allocationSize = 1)
+    @GeneratedValue(generator = "MapPoiSeqGen")
     private Long id;
 
     @ManyToOne

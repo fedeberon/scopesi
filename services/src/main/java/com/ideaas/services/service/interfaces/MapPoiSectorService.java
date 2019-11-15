@@ -11,4 +11,6 @@ public interface MapPoiSectorService {
     MapPoiSector save(MapPoiSector mapPoiSector);
 
     List<MapPoiSector> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapPoiSector> findAll();
 }

@@ -2,10 +2,7 @@ package com.ideaas.services.domain;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "map_pois_sector")
@@ -15,6 +12,8 @@ public class MapPoiSector {
 
     @Id
     @Column(name = "idSectorPoi")
+    @SequenceGenerator(name = "MapPoiSectorSeqGen", sequenceName = "SEQ_MAP_POIS_SECTOR", allocationSize = 1)
+    @GeneratedValue(generator = "MapPoiSectorSeqGen")
     private Long id;
 
     @Column(name = "descripcion")

@@ -11,6 +11,8 @@ import javax.persistence.*;
 public class AudLocalidad {
 
     @Id
+    @SequenceGenerator(name = "AudLocalidadSeqGen", sequenceName = "SEQ_AUD_LOCALIDADES", allocationSize = 1)
+    @GeneratedValue(generator = "AudLocalidadSeqGen")
     @Column(name = "idLocalidad")
     private Long id;
 
