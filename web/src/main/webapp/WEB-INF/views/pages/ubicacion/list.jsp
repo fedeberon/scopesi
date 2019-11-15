@@ -6,6 +6,10 @@
     .form-check{
         margin-top: 10px;
     }
+
+    /*.modal-dialog.modal-lg {*/
+    /*    margin-top: 20% !important;*/
+    /*}*/
 </style>
 
 <div class="content">
@@ -250,10 +254,10 @@
 <%--                             <input type="text" name="fechaAlta" id="filter-date"/>--%>
 <%--                         </div>--%>
 
-<%--                    <div class="form-group col-6">--%>
-<%--                        <label for="fechaAlta">Fecha de alta</label>--%>
-<%--                        <input name="fechaAlta" class="form-control" id="datepicker"/>--%>
-<%--                    </div>--%>
+<%--                        <div class="form-group col-6">--%>
+<%--                            <label for="fechaAlta">Fecha de alta</label>--%>
+<%--                            <input name="fechaAlta" class="form-control"/>--%>
+<%--                        </div>--%>
 
                         <div class="form-group col-6">
                             <label for="bajaLogica" class="mb-0">Baja Logica</label>

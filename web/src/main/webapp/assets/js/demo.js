@@ -534,7 +534,6 @@ demo = {
         });
 
         map.fitBounds(bounds);
-
     },
 
     showNotification: function(from, align) {
@@ -557,8 +556,6 @@ demo = {
 
 
 }
-
-var map;
 
 var bounds = new google.maps.LatLngBounds();
 
@@ -598,6 +595,7 @@ function toggleBounce(id) {
 
 
 function centerFromMarker(id) {
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
     var i;
     for (i = 0; i < markers.length; i++) {
         if (markers[i].id == id) {
@@ -609,6 +607,7 @@ function centerFromMarker(id) {
             var bounds = new google.maps.LatLngBounds();
             bounds.extend(latLong);
             map.fitBounds(bounds);
+            console.log(latLong);
             map.setCenter(bounds.getCenter());
         }
     }
