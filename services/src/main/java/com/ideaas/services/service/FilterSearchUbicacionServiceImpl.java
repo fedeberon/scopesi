@@ -1,36 +1,31 @@
 package com.ideaas.services.service;
 
 import com.ideaas.services.dao.FilterDao;
-import com.ideaas.services.domain.AudEmpresa;
-import com.ideaas.services.domain.MapUbicacion;
+import com.ideaas.services.domain.*;
 import com.ideaas.services.request.MapUbicacionRequest;
-import com.ideaas.services.service.interfaces.FilterSearchUbicacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.function.Function;
 
 /**
  * Created by federicoberon on 21/11/2019.
  */
 
 @Service
-public class FilterSearchUbicacionImpl implements FilterSearchUbicacion {
+public class FilterSearchUbicacionServiceImpl implements Function<MapUbicacionRequest, Map> {
 
 
     private FilterDao dao;
 
     @Autowired
-    public FilterSearchUbicacionImpl(FilterDao dao) {
+    public FilterSearchUbicacionServiceImpl(FilterDao dao) {
         this.dao = dao;
     }
 
-
-
-    public Map searchFilterUbicacion(MapUbicacionRequest request){
+    @Override
+    public Map apply(MapUbicacionRequest request){
         Map clauses = new HashMap();
         clauses.put("audEmpresa.descripcion", request.getAudEmpresa());
         clauses.put("mapElemento.descripcion", request.getMapElemento());
@@ -40,9 +35,33 @@ public class FilterSearchUbicacionImpl implements FilterSearchUbicacion {
         clauses.put("mapMedio.descripcion", request.getMapMedio());
         List<MapUbicacion> ubicaciones = dao.filterSearchUbicacion(clauses);
 
-        List<String> empresas =
-                ubicaciones.stream().filter(line -> line.getAudEmpresa().getDescripcion().equals(request.getAudEmpresa())).collect(Collectors.toList());
+        Set<AudEmpresa> empresas = new HashSet();
+        ubicaciones.forEach(line -> empresas.add(line.getAudEmpresa()));
 
-        return clauses;
+        Set<MapElemento> elementos = new HashSet();
+        ubicaciones.forEach(line -> elementos.add(line.getMapElemento()));
+
+        Set<MapProvincia> provincias = new HashSet();
+        ubicaciones.forEach(line -> provincias.add(line.getMapProvincia()));
+
+        Set<MapFormato> formato = new HashSet<>();
+        ubicaciones.forEach(line -> formato.add(line.getMapFormato()));
+
+        Set<AudLocalidad> localidad = new HashSet<>();
+        ubicaciones.forEach(line -> localidad.add(line.getAudLocalidad()));
+
+        Set<MapMedio> medios = new HashSet<>();
+        ubicaciones.stream().filter(line -> medios.add(line.getMapMedio()));
+
+        Map<String, Set> results = new HashMap<>();
+        results.put("empresas", empresas);
+        results.put("elementos", elementos);
+        results.put("provincias", provincias);
+        results.put("formatos", formato);
+        results.put("localidades", localidad);
+        results.put("medios", medios);
+
+        return results;
     }
+
 }

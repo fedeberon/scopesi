@@ -34,12 +34,22 @@
             <tiles:insertAttribute name="menu" />
         </div>
 
-
         <div class="main-panel">
 
             <tiles:insertAttribute name="navbar" />
 
             <tiles:insertAttribute name="body" />
+
+            <div class="col patern-loader mt-5" style="display: none">
+                <div class="col-md-12">
+                    <div class="loader">
+                        <div class="loader-inner box1"></div>
+                        <div class="loader-inner box2"></div>
+                        <div class="loader-inner box3"></div>
+                    </div>
+                </div>
+                <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+            </div>
 
         </div>
 
@@ -66,7 +76,7 @@
      Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
 <script src="../assets/js/paginador.js"></script>
-
+<script src="../assets/js/scripts.js"></script>
 <script src="../DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="../DataTables/JSZip-2.5.0/jszip.min.js"></script>
 <script src="../DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
@@ -173,11 +183,38 @@
     var selectpickerIsClicked = false;
 
     $(function () {
-        $('.selectpicker').selectpicker({
+
+        $('#select-formatos').selectpicker({
             container: 'body',
             dropupAuto: false
         });
 
+        $('#select-empresas').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
+
+        $('#select-localidades').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
+
+        $('#select-medios').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
+
+
+        $('#select-provincias').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
+
+
+        $('#select-elementos').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
 
         $('.dropdown-menu').on('click', function (e) {
             if ($(e.target).closest('.bootstrap-select.open').is(':visible') || $(e.target).closest('.btn.dropdown-toggle').is(':visible')) {
@@ -186,7 +223,7 @@
         });
 
         // when the dialog is closed....
-        $('.dropdown').on('hide.bs.dropdown', function (e) {
+            $('.dropdown').on('hide.bs.dropdown', function (e) {
             if (selectpickerIsClicked) {
                 e.preventDefault();
                 selectpickerIsClicked = false;
@@ -194,15 +231,60 @@
         });
     });
 
+
+    $(document).ready(function(){
+        $( ".load-data" ).on( "click", function() {
+            $(".content").hide();
+            $("#info-loader").text("Buscando datos...");
+            $(".patern-loader").fadeIn('slow');
+        });
+
+        $( ".save-data" ).on( "click", function() {
+            $(".content").hide();
+            $("#info-loader").text("Guardando monitoreo...");
+            $(".patern-loader").fadeIn('slow');
+        });
+
+
+        var moreToolsOptions = $('.more-options').clone();
+        moreToolsOptions.css('display', 'inline');
+        moreToolsOptions.appendTo('#tools-button')
+
+
+
+        $('#select-empresas').selectpicker('val', ${mapUbicacionRequest.empresasSelected});
+        $('#select-elementos').selectpicker('val', ${mapUbicacionRequest.elementosSelected});
+        $('#select-formatos').selectpicker('val', ${mapUbicacionRequest.formatosSelected});
+        $('#select-medios').selectpicker('val', ${mapUbicacionRequest.mediosSelected});
+        $('#select-localidades').selectpicker('val', ${mapUbicacionRequest.localidadesSelected});
+        $('#select-provincias').selectpicker('val', ${mapUbicacionRequest.provinciasSelected});
+
+    });
+
+    function showOptions() {
+        $('.dt-buttons').slideToggle( 500, function(){
+
+            var text = $('#span-more-options').html();
+
+            if(text === '&nbsp;Mas Opciones'){
+                $('#icon-options').removeClass('nc-simple-add').addClass('nc-simple-remove');
+                $('#span-more-options').html('&nbsp;Cerrar Opciones');
+            }
+
+            else {
+                $('#icon-options').removeClass('nc-simple-remove').addClass('nc-simple-add');
+                $('#span-more-options').html('&nbsp;Mas Opciones');
+            }
+
+        } );
+    }
+
+
+
+
 </script>
 
-<%--<script src="../assets/js/plugins/jquery.datetimepicker.full.js"></script>--%>
-<%--<script>--%>
-<%--    jQuery(document).ready(function () {--%>
-<%--        'use strict';--%>
 
-<%--        jQuery('#filter-date, #search-from-date, #search-to-date').datetimepicker();--%>
-<%--    });--%>
-<%--</script>--%>
+
 </body>
 </html>

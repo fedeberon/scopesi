@@ -34,13 +34,13 @@
         <li>
             <a class="nav-link" href="/ubicacion/list">
                 <i class="nc-icon nc-square-pin"></i>
-                <p class="wordsMenu">Ubicaciones</p>
+                <p class="wordsMenu load-data">Ubicaciones</p>
             </a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="/maps/show">
                 <i class="nc-icon nc-pin-3"></i>
-                <p class="wordsMenu">Maps</p>
+                <p class="wordsMenu load-data">Maps</p>
             </a>
         </li>
         <li>

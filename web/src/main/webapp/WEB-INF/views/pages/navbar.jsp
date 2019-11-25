@@ -9,7 +9,7 @@
             <span class="navbar-toggler-bar burger-lines"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="nav navbar-nav mr-auto">
+            <ul id="tools-button" class="nav navbar-nav mr-auto">
                 <li class="nav-item">
                     <a href="#" class="nav-link" data-toggle="dropdown">
                         <i class="nc-icon nc-palette"></i>

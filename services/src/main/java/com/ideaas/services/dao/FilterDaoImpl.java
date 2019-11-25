@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Repository
@@ -17,6 +18,13 @@ public class FilterDaoImpl implements FilterDao {
     private static final String WHERE = " WHERE ";
 
     private static final String AND = " AND ";
+
+    private static final String IN = " IN ";
+
+    private static final String PREFIX_PARAMETER = ":";
+
+    private static final String LEFT_PARENTHESIS = "(";
+    private static final String RIGTH_PARENTHESIS = ")";
 
     @PersistenceContext
     EntityManager entityManager;
@@ -101,6 +109,36 @@ public class FilterDaoImpl implements FilterDao {
         if(Objects.nonNull(request.getBajaLogica())){
             query.setParameter("bajaLogica", Arrays.asList(request.getBajaLogica()));
         }
+
+        query.setMaxResults(10);
+        query.setFirstResult(request.getPage() * 10);
+
+        return query.getResultList();
+    }
+
+
+
+    @Override
+    public List<MapUbicacion> filterSearchUbicacion(Map<String, String> clauses){
+        StringBuilder builder = new StringBuilder();
+        builder.append("select u from MapUbicacion u ");
+        builder.append("where 1 = 1");
+
+        clauses.forEach((k, v) -> {
+            if(Objects.isNull(v) || v.isEmpty()) return;
+            String nameParameter = LEFT_PARENTHESIS.concat(PREFIX_PARAMETER.concat(k)).concat(RIGTH_PARENTHESIS).replace(".","");
+            builder.append(AND);
+            builder.append(k).append(in()).append(nameParameter);
+
+        });
+
+        Query query = entityManager.createQuery(builder.toString());
+        clauses.forEach((k, v) -> {
+            if(Objects.isNull(v) || v.isEmpty()) return;
+            String nameParameter = k.replace(".","");
+            query.setParameter(nameParameter, Arrays.asList(v.split(",")));
+        });
+
         return query.getResultList();
     }
 
@@ -113,4 +151,10 @@ public class FilterDaoImpl implements FilterDao {
     private String and(){
         return AND;
     }
+
+    private String in(){
+        return IN;
+    }
+
+
 }

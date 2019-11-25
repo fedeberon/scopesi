@@ -57,7 +57,7 @@ public class UbicacionController {
 
     }
 
-    @RequestMapping("list")
+    @RequestMapping("/list/whitParameter")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
                           @RequestParam(defaultValue = "0") Integer page, Model model){
         List<MapUbicacion> result = mapUbicacionService.findAll(size, page, "id");
@@ -68,9 +68,10 @@ public class UbicacionController {
 
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/list")
     public String findAll(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(mapUbicacionRequest));
+        model.addAttribute("ubicacionRequest", mapUbicacionRequest);
 
         return "ubicacion/list";
     }
