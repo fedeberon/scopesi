@@ -166,7 +166,7 @@
                         <div class="col-6">
                             <tags:paginador page="${ubicacionRequest.page}" formName="searchModal"/>
 
-                            <a href="#" onclick="onSubmit('searchModal')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
+                            <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
                         </div>
 
                     </div>

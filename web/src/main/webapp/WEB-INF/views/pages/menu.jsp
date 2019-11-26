@@ -5,7 +5,7 @@
     }
 
 </style>
-<div class="sidebar-wrapper">
+<div class="sidebar-wrapper collapse show" id="collapseExample">
 
     <div class="logo">
         <a href="http://www.scopesi.com.ar">

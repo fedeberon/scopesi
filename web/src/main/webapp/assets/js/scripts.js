@@ -76,3 +76,23 @@ function existValue(value, data){
 
 
 
+
+function createCarrusel() {
+    $.ajax( {
+        url: '/api/ubicaciones',
+        dataType: 'json',
+        success: function(data) {
+            var response = '',
+                indicator = '';
+            for (var i = 0; i < data.d.results.length; i++) {
+                response += '<div class="item"><img src="' + data.d.results[i].Image_x0020_URL + '"></div>';
+                indicator += '<li data-target="#myCarousel" data-slide-to="'+i+'"></li>';
+            }
+            $('#homepageItems').append(response);
+            $('#indicators').append(indicator);
+            $('.item').first().addClass('active');
+            $('.carousel-indicators > li').first().addClass('active');
+            $("#myCarousel").carousel();
+        }
+    });
+}

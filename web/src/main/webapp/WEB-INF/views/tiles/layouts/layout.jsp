@@ -281,6 +281,74 @@
 
 
 
+    $('#table-ubicaciones').DataTable({
+        dom: "Bfrtip",
+        bInfo: false
+    });
+
+        $( "#arrowUp" ).click(function() {
+        $( ".table-ubicaciones" ).animate({
+            marginTop: "-400px",
+            opacity: 1
+        }, 500 );
+
+        $( "#arrowUp" ).hide();
+        $( "#arrowDown" ).show();
+    });
+
+
+    $( "#arrowDown" ).click(function() {
+        $( ".table-ubicaciones" ).animate({
+            marginTop: "-150px",
+            opacity: 0.9
+        }, 1000 );
+
+        $( "#arrowDown" ).hide();
+        $( "#arrowUp" ).show();
+    });
+
+
+    $('#collapseExample').on('hidden.bs.collapse', function () {
+        // do something…
+        $( ".main-panel" ).animate({
+            width: "100%"
+        }, 500 );
+
+        $( ".sidebar" ).animate({
+            width: "0px"
+        }, 500 );
+
+        buttonHideShowMenu();
+    });
+
+
+    $('#collapseExample').on('show.bs.collapse', function () {
+        $( ".main-panel" ).animate({
+            width: "80%"
+        }, 500 );
+
+        $( ".sidebar" ).animate({
+            width: "260px"
+        }, 500 );
+
+        buttonHideShowMenu();
+
+    });
+
+    function buttonHideShowMenu() {
+        var text = $('#span-close-option').html();
+
+        if(text === '&nbsp;Ocultar Menu'){
+            $('#icon-close-menu').removeClass('nc-stre-left').addClass('nc-stre-right');
+            $('#span-close-option').html('&nbsp;Mostrar Menu');
+        }
+
+        else {
+            $('#icon-close-menu').removeClass('nc-stre-right').addClass('nc-stre-left');
+            $('#span-close-option').html('&nbsp;Ocultar Menu');
+        }
+    }
+
 
 </script>
 

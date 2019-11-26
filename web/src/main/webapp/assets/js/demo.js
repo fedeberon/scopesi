@@ -513,23 +513,26 @@ demo = {
                 title: id + ' - ' + title
             });
 
-            /*google.maps.event.addListener(marker, 'click', function() {
+            google.maps.event.addListener(marker, 'click', function() {
                 $('#modal-info-marker').modal('show');
-            });*/
+            });
 
-            marker.addListener('click', function() {
+            /*marker.addListener('click', function() {
                 map.setZoom(13);
                 map.setCenter(marker.getPosition());
-            });
+            });*/
 
             var infowindow = new google.maps.InfoWindow({
                 content: title + ' ' + id
+
+
+
             });
 
-            marker.addListener('click', function() {
+           /* marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
-
+*/
             markers.push(marker);
             bounds.extend(latLong);
 
