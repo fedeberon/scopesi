@@ -1,11 +1,13 @@
 package com.ideaas.services.domain;
 
 
+import com.ideaas.services.bean.Image;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "map_ubicaciones")
@@ -127,6 +129,9 @@ public class MapUbicacion implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_visibilidad")
     private MapUbicacionVisibilidad mapUbicacionVisibilidad;
+
+    @Transient
+    private List<Image> images;
 
     public MapUbicacion() {
     }
@@ -401,5 +406,13 @@ public class MapUbicacion implements Serializable {
 
     public void setMapUbicacionVisibilidad(MapUbicacionVisibilidad mapUbicacionVisibilidad) {
         this.mapUbicacionVisibilidad = mapUbicacionVisibilidad;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
     }
 }

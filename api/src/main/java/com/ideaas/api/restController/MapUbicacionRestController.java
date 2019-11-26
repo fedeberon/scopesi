@@ -25,7 +25,7 @@ public class MapUbicacionRestController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public MapUbicacion get(@PathVariable Long id){
-        return mapUbicacionService.get(id);
+         return mapUbicacionService.get(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
