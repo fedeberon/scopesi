@@ -20,6 +20,9 @@ public class PoiEntidadController{
     private MapPoiEntidadService poiEntidadService;
     private MapPoiSectorService poiSectorService;
 
+    private static final Boolean INACTIVE = true;
+
+
     @Autowired
     public PoiEntidadController(MapPoiEntidadService poiEntidadService, MapPoiSectorService poiSectorService) {
         this.poiEntidadService = poiEntidadService;
@@ -57,6 +60,23 @@ public class PoiEntidadController{
     public String save(@ModelAttribute MapPoiEntidad poiEntidad, RedirectAttributes redirectAttributes){
         poiEntidadService.save(poiEntidad);
         redirectAttributes.addAttribute("id", poiEntidad.getId());
+        return "redirect:/poiEntidad/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapPoiEntidad mapPoiEntidad = poiEntidadService.get(id);
+        model.addAttribute("poiEntidad", mapPoiEntidad);
+        return "poiEntidad/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapPoiEntidad mapPoiEntidad = poiEntidadService.get(id);
+        mapPoiEntidad.setBajaLogica(INACTIVE);
+        poiEntidadService.save(mapPoiEntidad);
+        redirectAttributes.addAttribute("id", mapPoiEntidad.getId());
+
         return "redirect:/poiEntidad/{id}";
     }
 

@@ -18,6 +18,9 @@ public class MedioController {
 
     private MapMedioService medioService;
 
+    private static final Boolean INACTIVE = true;
+
+
     @Autowired
     public MedioController(MapMedioService medioService) {
         this.medioService = medioService;
@@ -65,9 +68,23 @@ public class MedioController {
         return "redirect:/{id}";
     }
 
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapMedio mapMedio = medioService.get(id);
+        model.addAttribute("medio", mapMedio);
+        return "medio/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapMedio mapMedio = medioService.get(id);
+        mapMedio.setBajaLogica(INACTIVE);
+        medioService.save(mapMedio);
+        redirectAttributes.addAttribute("id", mapMedio.getId());
+
+        return "redirect:/medio/{id}";
+    }
+
     @ModelAttribute("medio")
         public MapMedio get(){return new MapMedio();}
-
-
-
 }

@@ -68,6 +68,20 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/maps.jsp" />
     </definition>
 
+    <definition name="ubicacion/create" extends="template-def">
+        <put-attribute name="title" value="Maps" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacion/create.jsp" />
+    </definition>
+
+    <definition name="ubicacion/show" extends="template-def">
+        <put-attribute name="title" value="Maps" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacion/show.jsp" />
+    </definition>
+
 
     <definition name="empresa/list" extends="template-def">
         <put-attribute name="title" value="Empresas" />
@@ -89,6 +103,13 @@
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
         <put-attribute name="body"  value="/WEB-INF/views/pages/empresa/create.jsp" />
+    </definition>
+
+    <definition name="empresa/update" extends="template-def">
+        <put-attribute name="title" value="Empresas" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/empresa/update.jsp" />
     </definition>
 
     <definition name="tabla" extends="template-def">
@@ -119,6 +140,13 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/elemento/create.jsp" />
     </definition>
 
+    <definition name="elemento/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/elemento/update.jsp" />
+    </definition>
+
     <definition name="formato/list" extends="template-def">
         <put-attribute name="title" value="Formato" />
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
@@ -138,6 +166,13 @@
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
         <put-attribute name="body"  value="/WEB-INF/views/pages/formato/create.jsp" />
+    </definition>
+
+    <definition name="formato/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/formato/update.jsp" />
     </definition>
 
     <definition name="medio/show" extends="template-def">
@@ -161,6 +196,13 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/medio/create.jsp" />
     </definition>
 
+    <definition name="medio/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/medio/update.jsp" />
+    </definition>
+
     <definition name="provincia/list" extends="template-def">
         <put-attribute name="title" value="Formato" />
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
@@ -180,6 +222,13 @@
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
         <put-attribute name="body"  value="/WEB-INF/views/pages/provincia/create.jsp" />
+    </definition>
+
+    <definition name="provincia/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/provincia/update.jsp" />
     </definition>
 
     <definition name="localidad/show" extends="template-def">
@@ -203,6 +252,13 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/localidad/create.jsp" />
     </definition>
 
+    <definition name="localidad/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/localidad/update.jsp" />
+    </definition>
+
     <definition name="poi/list" extends="template-def">
         <put-attribute name="title" value="Formato" />
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
@@ -222,6 +278,13 @@
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
         <put-attribute name="body"  value="/WEB-INF/views/pages/poi/create.jsp" />
+    </definition>
+
+    <definition name="poi/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/poi/update.jsp" />
     </definition>
 
     <definition name="poiEntidad/show" extends="template-def">
@@ -245,6 +308,13 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/poiEntidad/create.jsp" />
     </definition>
 
+    <definition name="poiEntidad/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/poiEntidad/update.jsp" />
+    </definition>
+
     <definition name="poiSector/list" extends="template-def">
         <put-attribute name="title" value="Formato" />
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
@@ -264,6 +334,13 @@
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
         <put-attribute name="body"  value="/WEB-INF/views/pages/poiSector/create.jsp" />
+    </definition>
+
+    <definition name="poiSector/update" extends="template-def">
+        <put-attribute name="title" value="Formato" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/poiSector/update.jsp" />
     </definition>
 
 </tiles-definitions>

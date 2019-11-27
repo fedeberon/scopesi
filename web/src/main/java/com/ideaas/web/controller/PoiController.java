@@ -22,7 +22,7 @@ public class PoiController {
     private MapPoiEntidadService mapPoiEntidadService;
     private MapProvinciaService mapProvinciaService;
 
-
+    private static final Boolean INACTIVE = true;
 
     @Autowired
     public PoiController(MapPoiService mapPoiService, MapPoiEntidadService mapPoiEntidadService, MapProvinciaService mapProvinciaService) {
@@ -65,6 +65,25 @@ public class PoiController {
     public String save(@ModelAttribute MapPoi poi, RedirectAttributes redirectAttributes){
         mapPoiService.save(poi);
         redirectAttributes.addAttribute("id", poi.getId());
+        return "redirect:/poi/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapPoi mapPoi = mapPoiService.get(id);
+        model.addAttribute("poi", mapPoi);
+        model.addAttribute("poiEntidad", mapPoi.getMapPoiEntidad().getDescripcion());
+
+        return "poi/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapPoi mapPoi = mapPoiService.get(id);
+        mapPoi.setBajaLogica(INACTIVE);
+        mapPoiService.save(mapPoi);
+        redirectAttributes.addAttribute("id", mapPoi.getId());
+
         return "redirect:/poi/{id}";
     }
 

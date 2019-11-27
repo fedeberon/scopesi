@@ -22,6 +22,7 @@
                             <th>Evalua</th>
                             <th>MetrosContacto</th>
                             <th>Coeficiente</th>
+
                             </thead>
 
                             <tbody>
@@ -42,6 +43,9 @@
 
                             </tbody>
                         </table>
+
+                        <a href="<c:url value='/elemento/updateBajaLogica?id=${elemento.id}'/>"
+                           class="btn btn-primary"><i class="nc-icon nc-simple-remove"></i>&nbsp;Baja Logica</a>
                     </div>
                 </div>
             </div>

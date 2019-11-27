@@ -22,9 +22,20 @@ public class MapFormato {
     @Column(name = "evalua")
     private Long evalua;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
     public MapFormato() {
     }
     public Long getId() {
         return id;
+    }
+
+    public Boolean getBajaLogica() {
+        return bajaLogica;
+    }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
     }
 }

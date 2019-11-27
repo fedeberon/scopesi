@@ -11,4 +11,6 @@ public interface MapBusService {
     MapBus save(MapBus mapBus);
 
     List<MapBus> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapBus> findAll();
 }

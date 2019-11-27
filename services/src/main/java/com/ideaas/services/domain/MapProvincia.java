@@ -21,6 +21,9 @@ public class MapProvincia {
     @Column(name = "evalua")
     private Long evalua;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
     public MapProvincia() {
     }
 }

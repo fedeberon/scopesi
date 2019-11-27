@@ -23,6 +23,9 @@ public class MapPoiEntidad {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
     public MapPoiEntidad() {
     }
 }

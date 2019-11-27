@@ -16,6 +16,8 @@ public class FormatoController{
 
     private MapFormatoService formatoService;
 
+    private static final Boolean INACTIVE = true;
+
     @Autowired
     public FormatoController(MapFormatoService formatoService) {
         this.formatoService = formatoService;
@@ -61,6 +63,23 @@ public class FormatoController{
         redirectAttributes.addAttribute("id", formato.getId());
 
         return "redirect:/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapFormato mapFormato = formatoService.get(id);
+        model.addAttribute("formato", mapFormato);
+        return "formato/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapFormato mapFormato = formatoService.get(id);
+        mapFormato.setBajaLogica(INACTIVE);
+        formatoService.save(mapFormato);
+        redirectAttributes.addAttribute("id", mapFormato.getId());
+
+        return "redirect:/formato/{id}";
     }
 
     @ModelAttribute("formato")

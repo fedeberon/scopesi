@@ -90,8 +90,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        ${bo.id}
-                                        <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
+                                        <a href="/ubicacion/${bo.id}">${bo.id}</a>
+
                                     </td>
                                     <td>
                                             ${bo.audEmpresa.descripcion}
@@ -169,6 +169,9 @@
                                 <tags:paginador page="${page}" formName="search"/>
 
                                 <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
+
+                                <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
+
                             </div>
 
                         </form:form>
@@ -277,6 +280,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </div>
+
             </form:form>
         </div>
     </div>

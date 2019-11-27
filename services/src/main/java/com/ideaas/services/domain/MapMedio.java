@@ -19,6 +19,11 @@ public class MapMedio {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
     public MapMedio() {
     }
+
+
 }

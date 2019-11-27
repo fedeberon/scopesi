@@ -14,6 +14,8 @@ public class MapUbicacion implements Serializable {
 
     @Id
     @Column(name = "idUbicacion")
+    @SequenceGenerator(name = "MapUbicacionSeqGen", sequenceName = "SEQ_MAP_UBICACION", allocationSize = 1)
+    @GeneratedValue(generator = "MapUbicacionSeqGen")
     private Long id;
 
     //deberia apuntar a MapEmpresa

@@ -20,6 +20,9 @@ public class LocalidadController {
     private AudLocalidadService localidadService;
     private MapProvinciaService mapProvinciaService;
 
+    private static final Boolean INACTIVE = true;
+
+
     @Autowired
         public LocalidadController(AudLocalidadService localidadService, MapProvinciaService mapProvinciaService) {
         this.localidadService = localidadService;
@@ -58,6 +61,23 @@ public class LocalidadController {
     public String save(@ModelAttribute AudLocalidad localidad, RedirectAttributes redirectAttributes){
         localidadService.save(localidad);
         redirectAttributes.addAttribute("id", localidad.getId());
+        return "redirect:/localidad/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        AudLocalidad audLocalidad = localidadService.get(id);
+        model.addAttribute("localidad", audLocalidad);
+        return "localidad/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        AudLocalidad audLocalidad = localidadService.get(id);
+        audLocalidad.setBajaLogica(INACTIVE);
+        localidadService.save(audLocalidad);
+        redirectAttributes.addAttribute("id", audLocalidad.getId());
+
         return "redirect:/localidad/{id}";
     }
 

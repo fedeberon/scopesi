@@ -16,6 +16,7 @@
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>Evalua</th>
+                            <th></th>
                             </thead>
 
                             <tbody>
@@ -26,6 +27,7 @@
                                     <td><a href="/formato/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
                                     <td>${bo.evalua}</td>
+                                    <td class="text-center"> <a href="<c:url value='/formato/update?id=${bo.id}'/>"/><span class="text-success">Editar</span></td>
                                 </tr>
 
                             </c:forEach>

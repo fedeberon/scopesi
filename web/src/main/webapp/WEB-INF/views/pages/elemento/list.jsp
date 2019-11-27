@@ -38,6 +38,7 @@
                                     <td>${bo.evalua}</td>
                                     <td>${bo.metrosContacto}</td>
                                     <td>${bo.coeficiente}</td>
+                                    <td class="text-center"> <a href="<c:url value='/elemento/update?id=${bo.id}'/>"/><span class="text-success">Editar</span></td>
 
                                 </tr>
 
@@ -62,7 +63,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

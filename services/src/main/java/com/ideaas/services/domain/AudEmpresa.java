@@ -19,6 +19,9 @@ public class AudEmpresa {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "bajaLogica")
+    private Boolean BajaLogica;
+
     public AudEmpresa() {
     }
 
@@ -36,5 +39,13 @@ public class AudEmpresa {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Boolean getBajaLogica() {
+        return BajaLogica;
+    }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        BajaLogica = bajaLogica;
     }
 }
