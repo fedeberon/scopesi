@@ -16,6 +16,7 @@
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
+                            <th></th>
                             </thead>
 
                             <tbody>
@@ -25,6 +26,8 @@
                                 <tr>
                                     <td><a href="/poiSector/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
+                                    <td class="text-center"> <a href="<c:url value='/poiSector/update?id=${bo.id}'/>"/><span class="text-success">Editar</span></td>
+
                                 </tr>
 
                             </c:forEach>

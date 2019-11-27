@@ -98,8 +98,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        ${bo.id}
-                                        <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
+                                        <a href="/ubicacion/${bo.id}">${bo.id}</a>
+
                                     </td>
                                     <td>
                                             ${bo.audEmpresa.descripcion}
@@ -167,6 +167,9 @@
                             <tags:paginador page="${ubicacionRequest.page}" formName="searchModal"/>
 
                             <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
+
+                            <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
+
                         </div>
 
                     </div>
@@ -195,7 +198,7 @@
                             <label for="empresa">Empresas</label>
                             <select id="select-empresas" name="audEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
                                 <c:forEach items="${empresas}" var="bo">
-                                    <<option value="${bo.descripcion}">${bo.descripcion}</option>
+                                    <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -288,6 +291,7 @@
 
                     <button onclick="pagSiguiente('searchModal')" class="btn btn-primary">Buscar</button>
                 </div>
+
             </form:form>
         </div>
     </div>

@@ -16,6 +16,7 @@
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>IdProvincia</th>
+                            <th></th>
                             </thead>
 
                             <tbody>
@@ -26,6 +27,8 @@
                                     <td><a href="/localidad/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
                                     <td>${bo.audProvincia.descripcion}</td>
+                                    <td class="text-center"> <a href="<c:url value='/localidad/update?id=${bo.id}'/>"/><span class="text-success">Editar</span></td>
+
 
                                 </tr>
 

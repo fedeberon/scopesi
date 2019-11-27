@@ -43,6 +43,9 @@ public class MapElemento {
     @Column(name = "coeficiente")
     private BigDecimal coeficiente;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
     public MapElemento() {
     }
 
@@ -116,5 +119,13 @@ public class MapElemento {
 
     public void setCoeficiente(BigDecimal coeficiente) {
         this.coeficiente = coeficiente;
+    }
+
+    public Boolean getBajaLogica() {
+        return bajaLogica;
+    }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
     }
 }

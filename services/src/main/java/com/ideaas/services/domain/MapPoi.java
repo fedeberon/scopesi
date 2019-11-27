@@ -37,6 +37,9 @@ public class MapPoi {
     @Column(name = "icono")
     private String icono;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
     public MapPoi() {
     }
 }

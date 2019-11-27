@@ -23,6 +23,9 @@ public class AudLocalidad {
     @JoinColumn(name = "idProvincia")
     private AudProvincia audProvincia;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
     public AudLocalidad() {
     }
 

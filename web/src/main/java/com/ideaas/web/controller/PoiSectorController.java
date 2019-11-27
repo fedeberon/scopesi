@@ -19,6 +19,8 @@ public class PoiSectorController{
 
     private MapPoiSectorService poiSectorService;
 
+    private static final Boolean INACTIVE = true;
+
     @Autowired
     public PoiSectorController(MapPoiSectorService poiSectorService) {
         this.poiSectorService = poiSectorService;
@@ -53,6 +55,23 @@ public class PoiSectorController{
     public String save(@ModelAttribute MapPoiSector poiSector, RedirectAttributes redirectAttributes){
         poiSectorService.save(poiSector);
         redirectAttributes.addAttribute("id", poiSector.getId());
+        return "redirect:/poiSector/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+       MapPoiSector mapPoiSector = poiSectorService.get(id);
+        model.addAttribute("poiSector", mapPoiSector);
+        return "poiSector/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapPoiSector mapPoiSector = poiSectorService.get(id);
+        mapPoiSector.setBajaLogica(INACTIVE);
+        poiSectorService.save(mapPoiSector);
+        redirectAttributes.addAttribute("id", mapPoiSector.getId());
+
         return "redirect:/poiSector/{id}";
     }
 

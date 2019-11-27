@@ -9,10 +9,8 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -41,8 +39,12 @@ public class UbicacionController {
 
     private MapProvinciaService mapProvinciaService;
 
+    private MapBusService mapBusService;
+
+    private MyObjectService myObjectService;
+
     @Autowired
-    public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService) {
+    public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService) {
         this.mapUbicacionService = mapUbicacionService;
         this.audEmpresaService = audEmpresaService;
         this.mapElementoService = mapElementoService;
@@ -50,7 +52,7 @@ public class UbicacionController {
         this.mapMedioService = mapMedioService;
         this.audLocalidadService = audLocalidadService;
         this.mapProvinciaService = mapProvinciaService;
-
+        this.mapBusService = mapBusService;
     }
 
     @RequestMapping("/list/whitParameter")
@@ -125,6 +127,36 @@ public class UbicacionController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
         webDataBinder.registerCustomEditor(LocalDateTime.class, new CustomDateEditor(dateFormat, true));
+    }
+
+    @GetMapping("create")
+    public String create() {
+        return "ubicacion/create";
+    }
+
+
+    @PostMapping("addUbicacion")
+    public String save(@ModelAttribute MapUbicacion ubicacion, RedirectAttributes redirectAttributes) {
+        ubicacion.setFechaAlta(LocalDateTime.now());
+        mapUbicacionService.save(ubicacion);
+        redirectAttributes.addAttribute("id", ubicacion.getId());
+
+        return "redirect:/ubicacion/{id}";
+
+    }
+
+    @GetMapping("{id}")
+    public String show(@PathVariable Long id, Model model) {
+        MapUbicacion ubicacion = mapUbicacionService.get(id);
+
+        model.addAttribute("ubicaciones", ubicacion);
+
+        return "ubicacion/show";
+    }
+
+    @ModelAttribute("ubicacion")
+    public MapUbicacion get(){
+        return new MapUbicacion();
     }
 
 }

@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -21,6 +20,7 @@
                             <th>Latitud</th>
                             <th>Longitud</th>
                             <th>Icono</th>
+                            <th></th>
 
                             </thead>
 
@@ -36,6 +36,7 @@
                                     <td>${bo.geoLatitud}</td>
                                     <td>${bo.geoLongitud}</td>
                                     <td>${bo.icono}</td>
+                                    <td class="text-center"> <a href="<c:url value='/poi/update?id=${bo.id}'/>"/><span class="text-success">Editar</span></td>
 
                                 </tr>
 
@@ -60,7 +61,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -22,6 +22,9 @@ public class ElementoController {
     private MapMedioService mapMedioService;
     private MapFormatoService mapFormatoService;
 
+    private static final Boolean INACTIVE = true;
+
+
     @Autowired
     public ElementoController(MapElementoService elementoService, MapMedioService mapMedioService, MapFormatoService mapFormatoService) {
 
@@ -72,6 +75,23 @@ public class ElementoController {
     public String edit(@ModelAttribute MapElemento elemento, RedirectAttributes redirectAttributes){
         elementoService.save(elemento);
         redirectAttributes.addAttribute("id", elemento.getId());
+
+        return "redirect:/elemento/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapElemento mapElemento = elementoService.get(id);
+        model.addAttribute("elemento", mapElemento);
+        return "elemento/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes){
+        MapElemento mapElemento = elementoService.get(id);
+        mapElemento.setBajaLogica(INACTIVE);
+        elementoService.save(mapElemento);
+        redirectAttributes.addAttribute("id", mapElemento.getId());
 
         return "redirect:/elemento/{id}";
     }

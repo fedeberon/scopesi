@@ -19,6 +19,8 @@ public class ProvinciaController {
 
     private MapProvinciaService provinciaService;
 
+    private static final Boolean INACTIVE = true;
+
     @Autowired
     public ProvinciaController(MapProvinciaService provinciaService) {
         this.provinciaService = provinciaService;
@@ -54,6 +56,23 @@ public class ProvinciaController {
     public String save(@ModelAttribute MapProvincia provincia, RedirectAttributes redirectAttributes){
         provinciaService.save(provincia);
         redirectAttributes.addAttribute("id", provincia.getId());
+
+        return "redirect:/provincia/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapProvincia mapProvincia = provinciaService.get(id);
+        model.addAttribute("provincia", mapProvincia);
+        return "provincia/update";
+    }
+
+    @RequestMapping("updateBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapProvincia mapProvincia = provinciaService.get(id);
+        mapProvincia.setBajaLogica(INACTIVE);
+        provinciaService.save(mapProvincia);
+        redirectAttributes.addAttribute("id", mapProvincia.getId());
 
         return "redirect:/provincia/{id}";
     }
