@@ -407,6 +407,8 @@ public class MapUbicacion {
         this.mapUbicacionVisibilidad = mapUbicacionVisibilidad;
     }
 
+
+
     public List<Image> getImages() {
         return images;
     }

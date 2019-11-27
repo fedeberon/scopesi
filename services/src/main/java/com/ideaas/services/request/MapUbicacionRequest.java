@@ -1,6 +1,5 @@
 package com.ideaas.services.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -8,25 +7,18 @@ import java.util.Objects;
 
 public class MapUbicacionRequest {
 
-    @JsonProperty("empresas")
     private String audEmpresa;
 
-    @JsonProperty("elementos")
     private String mapElemento;
 
-    @JsonProperty("provincias")
     private String mapProvincia;
 
-    @JsonProperty("formatos")
     private String mapFormato;
 
-    @JsonProperty("localidades")
     private String audLocalidad;
 
-    @JsonProperty("medios")
     private String mapMedio;
 
-    @JsonProperty("page")
     private Integer page = 0;
 
     private Boolean bajaLogica;

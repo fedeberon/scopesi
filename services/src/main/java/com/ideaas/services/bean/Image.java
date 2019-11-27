@@ -1,14 +1,10 @@
 package com.ideaas.services.bean;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Image {
 
-    @JsonIgnore
     private String name;
     private String url;
-    @JsonIgnore
     private Boolean main;
 
     public Image(String url, String name, boolean main) {
