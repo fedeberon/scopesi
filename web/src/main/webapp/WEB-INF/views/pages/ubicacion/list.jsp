@@ -7,9 +7,16 @@
         margin-top: 10px;
     }
 
+    .dt-buttons{
+        display: none;
+    }
+
     /*.modal-dialog.modal-lg {*/
     /*    margin-top: 20% !important;*/
     /*}*/
+
+
+
 </style>
 
 <div class="content">
@@ -29,55 +36,56 @@
 
                         <form:form action="map" modelAttribute="wrapper" name="ubicaciones">
 
-                             <table id="dataTable" class="display" style="width:100%">
+                            <table id="dataTable" class="display" style="width:100%">
+
                             <thead>
-                                <th>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" value="">
-                                            <span class="form-check-sign"></span>
-                                        </label>
-                                    </div>
-                                </th>
-                                <th>ID</th>
-                                <th>Empresa</th>
-                                <th>Elemento</th>
-                                <th>Formato</th>
-                                <th>Medio</th>
-                                <th>Direccion</th>
-                                <th>Nro.Agip</th>
-                                <th>Referencia</th>
-                                <th>Nro.Anuncio</th>
-                                <th>Localidad</th>
-                                <th>Provincia</th>
-                                <th>Anunciante</th>
-                                <th>Cantidad</th>
-                                <th>Transito</th>
-                                <th>Iluminacion</th>
-                                <th>Medidas</th>
-                                <th>Metros Cuadrados</th>
-                                <th>Direccion Normalizada</th>
-                                <th>Latitud</th>
-                                <th>Longitud</th>
-                                <th>Metros Contacto</th>
-                                <th>Coeficiente</th>
-                                <th>Zona</th>
-                                <th>Saturacion</th>
-                                <th>Visibilidad</th>
-                                <th>Circulacion Peatonal</th>
-                                <th>Circulacion Vehicular</th>
-                                <th>Id.Referencia</th>
-                                <th>Buses</th>
-                                <th>Baja Logica</th>
-                                <th>Fecha de Tranferencia</th>
-                                <th>Fecha de Alta</th>
-                                <th>Id.Altura</th>
-                                <th>Id.Visibilidad</th>
-                            </thead>
+                            <th>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </th>
+                            <th>ID</th>
+                            <th>Empresa</th>
+                            <th>Elemento</th>
+                            <th>Formato</th>
+                            <th>Medio</th>
+                            <th>Direccion</th>
+                            <th>Nro.Agip</th>
+                            <th>Referencia</th>
+                            <th>Nro.Anuncio</th>
+                            <th>Localidad</th>
+                            <th>Provincia</th>
+                            <th>Anunciante</th>
+                            <th>Cantidad</th>
+                            <th>Transito</th>
+                            <th>Iluminacion</th>
+                            <th>Medidas</th>
+                            <th>Metros Cuadrados</th>
+                            <th>Direccion Normalizada</th>
+                            <th>Latitud</th>
+                            <th>Longitud</th>
+                            <th>Metros Contacto</th>
+                            <th>Coeficiente</th>
+                            <th>Zona</th>
+                            <th>Saturacion</th>
+                            <th>Visibilidad</th>
+                            <th>Circulacion Peatonal</th>
+                            <th>Circulacion Vehicular</th>
+                            <th>Id.Referencia</th>
+                            <th>Buses</th>
+                            <th>Baja Logica</th>
+                            <th>Fecha de Tranferencia</th>
+                            <th>Fecha de Alta</th>
+                            <th>Id.Altura</th>
+                            <th>Id.Visibilidad</th>
+                        </thead>
 
                             <tbody>
 
-                            <c:forEach items="${ubicaciones}" var="bo" varStatus="status">
+                                <c:forEach items="${ubicaciones}" var="bo" varStatus="status">
 
                                 <tr>
                                     <td>
@@ -149,32 +157,20 @@
                             </c:forEach>
 
                             </tbody>
+
                         </table>
 
 
                         </form:form>
 
-                        <form:form name="search" action="list" modelAttribute="mapUbicacionRequest">
-                            <form:hidden path="audEmpresa"/>
-                            <form:hidden path="mapElemento"/>
-                            <form:hidden path="mapFormato"/>
-                            <form:hidden path="mapMedio"/>
-                            <form:hidden path="audLocalidad"/>
-                            <form:hidden path="mapProvincia"/>
-                            <form:hidden path="bajaLogica"/>
-                            <form:hidden path="fechaAlta"/>
-                            <input type="hidden" name="page" value="${page}"/>
+                        <div class="col-6">
+                            <tags:paginador page="${ubicacionRequest.page}" formName="searchModal"/>
 
-                            <div class="col-6">
-                                <tags:paginador page="${page}" formName="search"/>
+                            <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
 
-                                <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
+                            <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
 
-                                <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
-
-                            </div>
-
-                        </form:form>
+                        </div>
 
                     </div>
                 </div>
@@ -194,12 +190,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form:form action="search"  modelAttribute="mapUbicacionRequest">
+            <form:form action="list"  modelAttribute="mapUbicacionRequest" name="searchModal">
+                <input type="hidden" name="page" value="${ubicacionRequest.page}"/>
                 <div class="modal-body row">
 
                         <div class="form-group col-6">
-                            <label for="audEmpresa">Empresas</label>
-                            <select name="audEmpresa"  class="form-control selectpicker" multiple data-live-search="true" data-actions-box="true">
+                            <label for="empresa">Empresas</label>
+                            <select id="select-empresas" name="audEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
                                 <c:forEach items="${empresas}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -207,8 +204,8 @@
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="mapElemento">Elementos</label>
-                            <select name="mapElemento" class="form-control selectpicker" multiple data-live-search="true">
+                            <label for="elemento">Elementos</label>
+                            <select id="select-elementos" name="mapElemento" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Elemento">
                                 <c:forEach items="${elementos}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -216,8 +213,8 @@
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="mapElemento">Formatos</label>
-                            <select name="mapFormato" items="${formatos}" class="form-control selectpicker" multiple data-live-search="true">
+                            <label for="formato">Formatos</label>
+                            <select id="select-formatos" name="mapFormato" items="${formatos}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un formato">
                                 <c:forEach items="${formatos}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -225,8 +222,8 @@
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="mapMedio">Medios</label>
-                            <select name="mapMedio" class="form-control selectpicker" multiple data-live-search="true">
+                            <label for="medio">Medios</label>
+                            <select id="select-medios" name="mapMedio" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Medio   ">
                                 <c:forEach items="${medios}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -234,8 +231,8 @@
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="audLocalidad">Localidadades</label>
-                            <select name="audLocalidad" items="${localidades}" class="form-control selectpicker" multiple data-live-search="true">
+                            <label for="localidad">Localidadades</label>
+                            <select id="select-localidades" name="audLocalidad" items="${localidades}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
                                 <c:forEach items="${localidades}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -243,26 +240,37 @@
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="mapProvincia">Provincias</label>
-                            <select name="mapProvincia" items="${provincias}" class="form-control selectpicker" multiple data-live-search="true">
+                            <label for="provincia">Provincias</label>
+                            <select id="select-provincias" name="mapProvincia" items="${provincias}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Provincia">
                                 <c:forEach items="${provincias}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
                             </select>
                         </div>
 
-<%--                         <div class="form-group col-6">--%>
-<%--                             <label for="fechaAlta">Fecha de alta</label>--%>
-<%--                             <br>--%>
-<%--                             <input type="text" name="fechaAlta" id="filter-date"/>--%>
-<%--                         </div>--%>
+                        <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
+                            <div class="col-md-12">
+                                <div class="loader">
+                                    <div class="loader-inner box1"></div>
+                                    <div class="loader-inner box2"></div>
+                                    <div class="loader-inner box3"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+                        </div>
 
-<%--                        <div class="form-group col-6">--%>
-<%--                            <label for="fechaAlta">Fecha de alta</label>--%>
-<%--                            <input name="fechaAlta" class="form-control"/>--%>
-<%--                        </div>--%>
+                      <%--   <div class="form-group col-6">
+                             <label for="fechaAlta">Fecha de alta</label>
+                             <br>
+                             <input type="text" name="fechaAlta" class="datetimepicker"/>
+                         </div>
 
                         <div class="form-group col-6">
+                            <label for="fechaAlta">Fecha de alta</label>
+                            <input name="fechaAlta" class="form-control datetimepicker"/>
+                        </div>--%>
+
+                        <%--<div class="form-group col-6">
                             <label for="bajaLogica" class="mb-0">Baja Logica</label>
                             <br>
                             <div class="form-check form-check-inline">
@@ -274,14 +282,27 @@
                                 <label class="form-check-label" for="inlineRadio2">False</label>
                             </div>
                         </div>
-
+--%>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+
+                    <button type="button" class="btn btn-secondary" id="btn-check-result" onclick="disabledOptionsNotFounds()">Chequear resultados</button>
+
+                    <button onclick="pagSiguiente('searchModal')" class="btn btn-primary">Buscar</button>
                 </div>
 
             </form:form>
         </div>
     </div>
 </div>
+
+
+<li class="nav-item more-options" style="display: none">
+    <a href="#" class="nav-link">
+        <i id="icon-options" class="nc-icon nc-simple-add"></i>
+        <span id="span-more-options" class="d-lg-block" onclick="showOptions()">&nbsp;Mas Opciones</span>
+    </a>
+</li>
+
+

@@ -38,4 +38,24 @@ public class MapFormato {
     public void setBajaLogica(Boolean bajaLogica) {
         this.bajaLogica = bajaLogica;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Long getEvalua() {
+        return evalua;
+    }
+
+    public void setEvalua(Long evalua) {
+        this.evalua = evalua;
+    }
 }

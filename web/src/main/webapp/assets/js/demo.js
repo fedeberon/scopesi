@@ -513,22 +513,31 @@ demo = {
                 title: id + ' - ' + title
             });
 
-            /*google.maps.event.addListener(marker, 'click', function() {
+           /* google.maps.event.addListener(marker, 'click', function() {
                 $('#modal-info-marker').modal('show');
             });*/
 
-
+            /*marker.addListener('click', function() {
+                map.setZoom(13);
+                map.setCenter(marker.getPosition());
+            });*/
 
             var infowindow = new google.maps.InfoWindow({
                 content: title + ' ' + id
             });
+
+
+            marker.addListener('click',function(){
+                infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(id)" class="mapaboton" >Ver Detalles</button>');
+                infowindow.open(map,this);
+            });
+
 
             marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
 
             markers.push(marker);
-            bounds = new google.maps.LatLngBounds();
             bounds.extend(latLong);
 
         });
@@ -552,12 +561,7 @@ demo = {
             }
         });
     }
-
-
-
 }
-
-var bounds = new google.maps.LatLngBounds();
 
 var markers = [];
 
@@ -593,9 +597,9 @@ function toggleBounce(id) {
     }
 }
 
+var bounds = new google.maps.LatLngBounds();
 
 function centerFromMarker(id) {
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
     var i;
     for (i = 0; i < markers.length; i++) {
         if (markers[i].id == id) {
@@ -603,12 +607,23 @@ function centerFromMarker(id) {
             var lat = marker.getPosition().lat();
             var lng = marker.getPosition().lng();
             var latLong = new google.maps.LatLng(lat, lng);
-
-            var bounds = new google.maps.LatLngBounds();
             bounds.extend(latLong);
-            map.fitBounds(bounds);
-            console.log(latLong);
-            map.setCenter(bounds.getCenter());
+
+            map.setZoom(13);
+            map.setCenter(marker.getPosition());
+
         }
     }
 }
+
+
+function finishCheckFilters(text){
+    $.notify(text, {
+        animate: {
+            enter: 'animated zoomInDown',
+            exit: 'animated zoomOutUp'
+        }
+    });
+}
+
+

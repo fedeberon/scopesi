@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,61 +66,58 @@ public class UbicacionController {
 
     }
 
-    @RequestMapping("/search")
-    public String findAll(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model) {
+    @RequestMapping("/list")
+    public String findAll(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(mapUbicacionRequest));
+        model.addAttribute("ubicacionRequest", mapUbicacionRequest);
 
         return "ubicacion/list";
     }
 
     @RequestMapping("/map")
-    public String findAll(@ModelAttribute Wrapper ubicaciones, Model model) {
+    public String findAll(@ModelAttribute Wrapper ubicaciones, Model model){
         model.addAttribute("ubicaciones", ubicaciones.getSelectedElements());
 
         return "ubicacion/map";
     }
 
     @ModelAttribute("empresas")
-    public List<AudEmpresa> empresas() {
+    public List<AudEmpresa> empresas(){
         return audEmpresaService.findAll();
     }
 
     @ModelAttribute("elementos")
-    public List<MapElemento> elementos() {
+    public List<MapElemento> elementos(){
         return mapElementoService.findAll();
     }
 
     @ModelAttribute("formatos")
-    public List<MapFormato> formatos() {
+    public List<MapFormato> formatos(){
         return mapFormatoService.findAll();
     }
 
     @ModelAttribute("medios")
-    public List<MapMedio> medios() {
+    public List<MapMedio> medios(){
         return mapMedioService.findAll();
     }
 
     @ModelAttribute("localidades")
-    public List<AudLocalidad> localidades() {
+    public List<AudLocalidad> localidades(){
         return audLocalidadService.findAll();
     }
 
     @ModelAttribute("provincias")
-    public List<MapProvincia> provincias() {
+    public List<MapProvincia> provincias(){
         return mapProvinciaService.findAll();
     }
 
-    @ModelAttribute("buses")
-    public List<MapBus> buses() { return mapBusService.findAll();
-    }
-
     @ModelAttribute("mapUbicacionRequest")
-    public MapUbicacionRequest mapUbicacionRequest() {
+    public MapUbicacionRequest mapUbicacionRequest(){
         return new MapUbicacionRequest();
     }
 
     @ModelAttribute("wrapper")
-    public Wrapper wrapper() {
+    public Wrapper wrapper(){
         return new Wrapper();
     }
 

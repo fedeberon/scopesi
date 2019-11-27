@@ -54,7 +54,7 @@ public class MySqlConfiguration {
     private Map<String, Object> jpaProperties() {
         Map<String, Object> props = new HashMap<String, Object>();
         props.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        props.put("hibernate.hbm2ddl.auto", "update");
+        /*props.put("hibernate.hbm2ddl.auto", "update");*/
         return props;
     }
 

@@ -34,16 +34,15 @@ public class EmpresaController {
         return "empresa/show";
     }
 
-        @GetMapping("list")
-        public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
+    @GetMapping("list")
+    public String findAll(@RequestParam(defaultValue = "10") Integer size,
+                      @RequestParam(defaultValue = "0") Integer page, Model model){
         List<AudEmpresa> empresas = empresaService.findAll(size, page,"id");
         model.addAttribute("empresas", empresas);
         model.addAttribute("page" , page);
 
         return "empresa/list";
     }
-
 
     @GetMapping("create")
     public String create() {
@@ -83,6 +82,7 @@ public class EmpresaController {
 
         return "redirect:/empresa/{id}";
     }
+
 
     @ModelAttribute("empresa")
     public AudEmpresa get(){

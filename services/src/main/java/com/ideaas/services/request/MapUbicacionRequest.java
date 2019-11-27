@@ -1,21 +1,33 @@
 package com.ideaas.services.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class MapUbicacionRequest {
 
+    @JsonProperty("empresas")
     private String audEmpresa;
 
+    @JsonProperty("elementos")
     private String mapElemento;
 
+    @JsonProperty("provincias")
     private String mapProvincia;
 
+    @JsonProperty("formatos")
     private String mapFormato;
 
+    @JsonProperty("localidades")
     private String audLocalidad;
 
+    @JsonProperty("medios")
     private String mapMedio;
+
+    @JsonProperty("page")
+    private Integer page = 0;
 
     private Boolean bajaLogica;
 
@@ -85,4 +97,73 @@ public class MapUbicacionRequest {
     public void setFechaAlta(LocalDateTime fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
+
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+
+    private static String EMPTY = "";
+
+    private static String LEFT = "[";
+    private static String RIGTH = "]";
+
+    public String getEmpresasSelected(){
+        if(Objects.isNull(audEmpresa)) return EMPTY;
+
+        return buildFormatValuesSelected(audEmpresa);
+    }
+
+    public String getElementosSelected(){
+        if(Objects.isNull(mapElemento)) return EMPTY;
+
+        return buildFormatValuesSelected(mapElemento);
+    }
+
+    public String getFormatosSelected(){
+        if(Objects.isNull(mapFormato)) return EMPTY;
+
+        return buildFormatValuesSelected(mapFormato);
+    }
+
+    public String getMediosSelected(){
+        if(Objects.isNull(mapMedio)) return EMPTY;
+
+        return buildFormatValuesSelected(mapMedio);
+    }
+
+    public String getLocalidadesSelected(){
+        if(Objects.isNull(audLocalidad)) return EMPTY;
+
+        return buildFormatValuesSelected(audLocalidad);
+    }
+
+    public String getProvinciasSelected(){
+        if(Objects.isNull(mapProvincia)) return EMPTY;
+
+        return buildFormatValuesSelected(mapProvincia);
+    }
+
+    private String buildFormatValuesSelected(String value){
+        String returnValue = EMPTY;
+
+        String[] words = value.split(",");
+        if(words.length < 1) return value;
+
+        returnValue = returnValue.concat(LEFT);
+
+        for(String s : words){
+            returnValue = returnValue.concat("'".concat(s).concat("',"));
+        }
+
+        returnValue = returnValue.substring(0, returnValue.length() - 1);
+        returnValue = returnValue.concat(RIGTH);
+
+        return returnValue;
+    }
+
 }
