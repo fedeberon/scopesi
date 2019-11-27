@@ -1,13 +1,14 @@
 package com.ideaas.services.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ideaas.services.bean.Image;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-
 
 @Entity
 @Table(name = "map_ubicaciones")
@@ -22,18 +23,22 @@ public class MapUbicacion {
     //deberia apuntar a MapEmpresa
     @ManyToOne
     @JoinColumn(name = "idEmpresa")
+    @JsonIgnore
     private AudEmpresa audEmpresa;
 
     @ManyToOne
     @JoinColumn(name = "idElemento")
+    @JsonIgnore
     private MapElemento mapElemento;
 
     @ManyToOne
     @JoinColumn(name = "idFormato")
+    @JsonIgnore
     private MapFormato mapFormato;
 
     @ManyToOne
     @JoinColumn(name = "idMedio")
+    @JsonIgnore
     private MapMedio mapMedio;
 
     @Column(name = "direccion")
@@ -50,11 +55,13 @@ public class MapUbicacion {
 
     @ManyToOne
     @JoinColumn(name = "idProvincia")
+    @JsonIgnore
     private MapProvincia mapProvincia;
 
     //deberia apuntar a Maplocalidad
     @ManyToOne
     @JoinColumn(name = "idLocalidad")
+    @JsonIgnore
     private AudLocalidad audLocalidad;
 
     @Column(name = "Anunciante")
@@ -112,6 +119,7 @@ public class MapUbicacion {
     @Transient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdMapBuses")
+    @JsonIgnore
     private MapBus mapBuses;
 
     @Column(name = "bajaLogica")
@@ -125,10 +133,12 @@ public class MapUbicacion {
 
     @ManyToOne
     @JoinColumn(name = "id_altura")
+    @JsonIgnore
     private MapUbicacionAltura mapUbicacionAltura;
 
     @ManyToOne
     @JoinColumn(name = "id_visibilidad")
+    @JsonIgnore
     private MapUbicacionVisibilidad mapUbicacionVisibilidad;
 
     @Transient

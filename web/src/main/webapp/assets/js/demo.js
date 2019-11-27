@@ -528,7 +528,7 @@ demo = {
 
 
             marker.addListener('click',function(){
-                infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(id)" class="mapaboton" >Ver Detalles</button>');
+                infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(' + id + ')" class="mapaboton" >Ver Detalles</button>');
                 infowindow.open(map,this);
             });
 
