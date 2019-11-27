@@ -55,9 +55,9 @@ public class UbicacionController {
         this.mapBusService = mapBusService;
     }
 
-    @RequestMapping("list")
+    @RequestMapping("/list/whitParameter")
     public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model) {
+                          @RequestParam(defaultValue = "0") Integer page, Model model){
         List<MapUbicacion> result = mapUbicacionService.findAll(size, page, "id");
         model.addAttribute("ubicaciones", result);
         model.addAttribute("page", page);
