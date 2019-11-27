@@ -513,9 +513,9 @@ demo = {
                 title: id + ' - ' + title
             });
 
-            google.maps.event.addListener(marker, 'click', function() {
+           /* google.maps.event.addListener(marker, 'click', function() {
                 $('#modal-info-marker').modal('show');
-            });
+            });*/
 
             /*marker.addListener('click', function() {
                 map.setZoom(13);
@@ -524,15 +524,19 @@ demo = {
 
             var infowindow = new google.maps.InfoWindow({
                 content: title + ' ' + id
-
-
-
             });
 
-           /* marker.addListener('click', function() {
+
+            marker.addListener('click',function(){
+                infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(id)" class="mapaboton" >Ver Detalles</button>');
+                infowindow.open(map,this);
+            });
+
+
+            marker.addListener('click', function() {
                 infowindow.open(map, marker);
             });
-*/
+
             markers.push(marker);
             bounds.extend(latLong);
 

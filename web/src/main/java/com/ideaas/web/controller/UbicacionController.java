@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by federicoberon on 08/10/2019.
@@ -42,8 +40,6 @@ public class UbicacionController {
     private AudLocalidadService audLocalidadService;
 
     private MapProvinciaService mapProvinciaService;
-
-    private MyObjectService myObjectService;
 
     @Autowired
     public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService) {

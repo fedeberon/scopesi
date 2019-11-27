@@ -6,6 +6,7 @@ import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
 import com.ideaas.services.service.interfaces.FileService;
 import com.ideaas.services.service.interfaces.MapUbicacionService;
+import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MapUbicacionServiceImpl implements MapUbicacionService{
@@ -34,10 +36,10 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     @Override
     public MapUbicacion get(Long id) {
-        MapUbicacion mapUbicacion = dao.findById(id).get();
-        mapUbicacion.setImages(fileService.readFiles(mapUbicacion));
+        MapUbicacion  ubicacion = dao.getOne(id);
+        ubicacion.setImages(fileService.readFiles(ubicacion));
 
-        return mapUbicacion;
+        return ubicacion;
     }
 
     @Override

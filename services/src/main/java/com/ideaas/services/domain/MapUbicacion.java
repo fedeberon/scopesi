@@ -2,17 +2,16 @@ package com.ideaas.services.domain;
 
 
 import com.ideaas.services.bean.Image;
-import lombok.Data;
+
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 @Entity
 @Table(name = "map_ubicaciones")
-@Data
-public class MapUbicacion implements Serializable {
+public class MapUbicacion {
 
     @Id
     @Column(name = "idUbicacion")

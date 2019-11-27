@@ -71,21 +71,15 @@ function existValue(value, data){
     return false;
 }
 
-
-
-
-
-
-
-function createCarrusel() {
+function createCarrusel(id) {
     $.ajax( {
-        url: '/api/ubicaciones',
+        url: '/api/mapUbicacion/' + id,
         dataType: 'json',
         success: function(data) {
             var response = '',
                 indicator = '';
             for (var i = 0; i < data.d.results.length; i++) {
-                response += '<div class="item"><img src="' + data.d.results[i].Image_x0020_URL + '"></div>';
+                response += '<div class="item"><img src="' + data.images[i].url + '"></div>';
                 indicator += '<li data-target="#myCarousel" data-slide-to="'+i+'"></li>';
             }
             $('#homepageItems').append(response);
