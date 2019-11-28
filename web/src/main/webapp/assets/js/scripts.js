@@ -73,12 +73,12 @@ function existValue(value, data){
 
 function createCarrusel(id) {
     $.ajax( {
-        url: '/api/mapUbicacion/' + id,
+        url: '/api/ubicacion/' + id,
         dataType: 'json',
         success: function(data) {
             var response = '',
                 indicator = '';
-            for (var i = 0; i < data.d.results.length; i++) {
+            for (var i = 0; i < data.images.length; i++) {
                 response += '<div class="item"><img src="' + data.images[i].url + '"></div>';
                 indicator += '<li data-target="#myCarousel" data-slide-to="'+i+'"></li>';
             }
@@ -86,7 +86,9 @@ function createCarrusel(id) {
             $('#indicators').append(indicator);
             $('.item').first().addClass('active');
             $('.carousel-indicators > li').first().addClass('active');
-            $("#myCarousel").carousel();
+
+            $('#modal-info-marker').modal('show');
+
         }
     });
 }

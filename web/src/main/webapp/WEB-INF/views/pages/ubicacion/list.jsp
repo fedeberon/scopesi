@@ -99,7 +99,7 @@
                                     </td>
                                     <td>
                                         <a href="/ubicacion/${bo.id}">${bo.id}</a>
-
+                                             <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
                                     </td>
                                     <td>
                                             ${bo.audEmpresa.descripcion}
@@ -163,7 +163,7 @@
 
                         </form:form>
 
-                        <div class="col-6">
+                        <div class="col-8">
                             <tags:paginador page="${ubicacionRequest.page}" formName="searchModal"/>
 
                             <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>

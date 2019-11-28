@@ -21,7 +21,7 @@
 
 <%--    <link rel="stylesheet" type="text/css" href="../assets/js/plugins/jquery.datetimepicker.css"/>--%>
 
-<%--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--%>
+    <%--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--%>
 <%--    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet">--%>
 <%--    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">--%>
 <%--    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>--%>

@@ -72,8 +72,6 @@
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project!
-     Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
 <script src="../assets/js/paginador.js"></script>
 <script src="../assets/js/scripts.js"></script>
@@ -259,6 +257,8 @@
         $('#select-localidades').selectpicker('val', ${mapUbicacionRequest.localidadesSelected});
         $('#select-provincias').selectpicker('val', ${mapUbicacionRequest.provinciasSelected});
 
+
+        $('.carrusel').carousel()
     });
 
     function showOptions() {
@@ -279,12 +279,6 @@
         } );
     }
 
-
-
-    $('#table-ubicaciones').DataTable({
-        dom: "Bfrtip",
-        bInfo: false
-    });
 
         $( "#arrowUp" ).click(function() {
         $( ".table-ubicaciones" ).animate({
@@ -312,11 +306,11 @@
         // do something…
         $( ".main-panel" ).animate({
             width: "100%"
-        }, 500 );
+        }, 100 );
 
         $( ".sidebar" ).animate({
             width: "0px"
-        }, 500 );
+        }, 300 );
 
         buttonHideShowMenu();
     });
@@ -325,11 +319,11 @@
     $('#collapseExample').on('show.bs.collapse', function () {
         $( ".main-panel" ).animate({
             width: "80%"
-        }, 500 );
+        }, 100 );
 
         $( ".sidebar" ).animate({
             width: "260px"
-        }, 500 );
+        }, 300 );
 
         buttonHideShowMenu();
 
@@ -348,6 +342,7 @@
             $('#span-close-option').html('&nbsp;Ocultar Menu');
         }
     }
+
 
 
 </script>

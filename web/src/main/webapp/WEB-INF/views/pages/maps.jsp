@@ -100,6 +100,9 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="modal-profile">
+                    <i class="nc-icon nc-album-2"></i>
+                </div>
                 <h5 class="modal-title" id="exampleModalLabel">Datos de la ubicaci&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -109,23 +112,9 @@
                 <div class="modal-body">
 
 
-                    <div class="carousel-container">
-                        <div id="myCarousel" class="carousel slide">
-                            <!-- Indicators -->
-                            <ol class="carousel-indicators" id="indicators">
-                            </ol>
-                            <div class="carousel-inner" id="homepageItems">
-                            </div>
-                            <div class="carousel-controls">
-                                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                </a>
-                                <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
+
+
 
 
                 </div>
@@ -145,3 +134,17 @@
 </li>
 
 
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="https://www.hd-tecnologia.com/imagenes/articulos/2017/04/YouTube-mejora-la-IA-para-que-las-propagandas-no-aparezcan-en-cualquier-video.jpg" alt="Los Angeles" style="width:100%;">
+        </div>
+        <div class="item">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX4kF30VHIcHV5P-B5LgfbBGBVvRnvnn6Aavow4wMbitIVnWYJQA&s" alt="Chicago" style="width:100%;">
+        </div>
+
+        <div class="item">
+            <img src="https://conceptodefinicion.de/wp-content/uploads/2014/12/Propaganda2.jpg" alt="New york" style="width:100%;">
+        </div>
+    </div>
+</div>
