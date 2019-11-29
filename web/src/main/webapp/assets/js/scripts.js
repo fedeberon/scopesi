@@ -64,7 +64,6 @@ function existValue(value, data){
     for(var i = 0; i < data.length; i++){
         if(data[i] === null) continue;
         if(data[i].descripcion.trim() === value.trim()){
-            console.log(data[i].descripcion + '->' + value);
             return true;
         }
     }
@@ -72,23 +71,71 @@ function existValue(value, data){
 }
 
 function createCarrusel(id) {
+    $('.load').show();
+    $('.map-container').css('opacity', '0.3');
     $.ajax( {
         url: '/api/ubicacion/' + id,
         dataType: 'json',
         success: function(data) {
-            var response = '',
-                indicator = '';
-            for (var i = 0; i < data.images.length; i++) {
-                response += '<div class="item"><img src="' + data.images[i].url + '"></div>';
-                indicator += '<li data-target="#myCarousel" data-slide-to="'+i+'"></li>';
-            }
-            $('#homepageItems').append(response);
-            $('#indicators').append(indicator);
-            $('.item').first().addClass('active');
-            $('.carousel-indicators > li').first().addClass('active');
+            $('.modal-body').empty();
 
+            var tableUbicacionInfo = createTableUbicacionInformation(data);
+
+            for (var i = 0; i < data.images.length; i++) {
+                var a = $('<a>',{
+                        class : 'fancybox hidden',
+                        rel : 'group',
+                        href: data.images[i].url,
+                        'data-caption': data.audEmpresa.descripcion,
+                        'data-fancybox':'gallery',
+                    });
+                var img = $('<img>',{
+                   src: data.images[i].url
+                });
+                a.append(img);
+                a.appendTo('.modal-body');
+            }
+
+            tableUbicacionInfo.appendTo('.modal-body');
+
+            $('.load').hide();
+            $('.map-container').css('opacity', '1');
             $('#modal-info-marker').modal('show');
 
         }
     });
 }
+
+function showImages() {
+    $.fancybox.open( $('.fancybox'), {
+        touch: false
+    });
+}
+
+
+function createTableUbicacionInformation(data){
+    var table = $('.table-data-ubicaciones').clone();
+
+    var tr = $('<tr>');
+    var td = $('<td>');
+    td.append(data.audEmpresa.descripcion);
+    td.appendTo(tr);
+
+    var tdDireccion = $('<td>');
+    tdDireccion.append(data.direccion);
+    tdDireccion.appendTo(tr);
+    tr.appendTo(table);
+
+    var tdFormato = $('<td>');
+    tdFormato.append(data.mapFormato.descripcion);
+    tdFormato.appendTo(tr);
+    tr.appendTo(table);
+
+    var tdElemento = $('<td>');
+    tdElemento.append(data.mapElemento.descripcion);
+    tdElemento.appendTo(tr);
+    tr.appendTo(table);
+
+    return table;
+}
+

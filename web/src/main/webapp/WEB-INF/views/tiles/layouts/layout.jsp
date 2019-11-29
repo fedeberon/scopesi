@@ -58,6 +58,7 @@
     <tiles:insertAttribute name="footer" />
 
 
+
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -243,12 +244,9 @@
             $(".patern-loader").fadeIn('slow');
         });
 
-
         var moreToolsOptions = $('.more-options').clone();
         moreToolsOptions.css('display', 'inline');
         moreToolsOptions.appendTo('#tools-button')
-
-
 
         $('#select-empresas').selectpicker('val', ${mapUbicacionRequest.empresasSelected});
         $('#select-elementos').selectpicker('val', ${mapUbicacionRequest.elementosSelected});
@@ -257,8 +255,6 @@
         $('#select-localidades').selectpicker('val', ${mapUbicacionRequest.localidadesSelected});
         $('#select-provincias').selectpicker('val', ${mapUbicacionRequest.provinciasSelected});
 
-
-        $('.carrusel').carousel()
     });
 
     function showOptions() {
@@ -347,7 +343,8 @@
 
 </script>
 
-
+<!-- Add fancyBox -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
 
 </body>
 </html>
