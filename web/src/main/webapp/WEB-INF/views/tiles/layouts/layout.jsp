@@ -85,6 +85,7 @@
 <script src="../DataTables/Buttons-1.6.1/js/buttons.colVis.min.js"></script>
 <script src="../DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
 <script src="../DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js"></script>
+<script src="../assets/js/filemanager.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>

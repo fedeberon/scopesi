@@ -77,9 +77,23 @@ function createCarrusel(id) {
         url: '/api/ubicacion/' + id,
         dataType: 'json',
         success: function(data) {
-            $('.modal-body').empty();
+            $('.data-ubicacion').empty();
 
             var tableUbicacionInfo = createTableUbicacionInformation(data);
+
+            var idEmpresa = $('<input>', {
+                type : 'hidden',
+                value : data.audEmpresa.id,
+                id : 'idEmpresa'
+            });
+            idEmpresa.appendTo('.data-ubicacion');
+            var idUbicacion = $('<input>', {
+                type : 'hidden',
+                value : data.id,
+                id : 'idUbicacion'
+            });
+            idUbicacion.appendTo('.data-ubicacion');
+
 
             for (var i = 0; i < data.images.length; i++) {
                 var a = $('<a>',{
@@ -93,10 +107,10 @@ function createCarrusel(id) {
                    src: data.images[i].url
                 });
                 a.append(img);
-                a.appendTo('.modal-body');
+                a.appendTo('.data-ubicacion');
             }
 
-            tableUbicacionInfo.appendTo('.modal-body');
+            tableUbicacionInfo.appendTo('.data-ubicacion');
 
             $('.load').hide();
             $('.map-container').css('opacity', '1');

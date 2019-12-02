@@ -127,17 +127,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
-                <div class="modal-body">
-
-
-
-
-                </div>
+                <div class="modal-body data-ubicacion"></div>
                 <div class="modal-footer">
-                    <button onclick="showImages()" class="btn btn-primary">Imagenes</button>
+                    <button onclick="showImages()" class="btn btn-primary">Ver Imagenes</button>
 
-                    <button type="file" class="btn btn-primary">Subir Imagen</button>
+                    <a data-toggle="modal" href="#myModal2" class="btn btn-primary">Subir Imagenes</a>
 
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -166,3 +160,45 @@
     </thead>
 </table>
 
+
+
+<div class="modal" id="myModal2">
+    <div class="modal-dialog  modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Subir Imagenes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div><div class="container"></div>
+
+            <div class="upload-container">
+                <div class="upload-content">
+                    <div class="single-upload">
+                        <h3>Upload Single File</h3>
+                        <form id="singleUploadForm" name="singleUploadForm">
+                            <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="singleFileUploadError"></div>
+                            <div id="singleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                    <div class="multiple-upload">
+                        <h3>Upload Multiple Files</h3>
+                        <form id="multipleUploadForm" name="multipleUploadForm">
+                            <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="multipleFileUploadError"></div>
+                            <div id="multipleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
