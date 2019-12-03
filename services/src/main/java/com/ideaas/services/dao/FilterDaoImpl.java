@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -104,7 +106,7 @@ public class FilterDaoImpl implements FilterDao {
             query.setParameter("audLocalidad", Arrays.asList(request.getAudLocalidad().split(",")));
         }
         if(Objects.nonNull(request.getFechaAlta())){
-            query.setParameter("fechaAlta", Arrays.asList(request.getFechaAlta()));
+            query.setParameter("fechaAlta", request.getFechaAlta());
         }
         if(Objects.nonNull(request.getBajaLogica())){
             query.setParameter("bajaLogica", Arrays.asList(request.getBajaLogica()));
@@ -115,8 +117,6 @@ public class FilterDaoImpl implements FilterDao {
 
         return query.getResultList();
     }
-
-
 
     @Override
     public List<MapUbicacion> filterSearchUbicacion(Map<String, String> clauses){

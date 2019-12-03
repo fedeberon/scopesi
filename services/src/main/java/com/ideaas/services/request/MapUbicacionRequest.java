@@ -31,7 +31,7 @@ public class MapUbicacionRequest {
 
     private Boolean bajaLogica;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime fechaAlta;
 
     public String getAudEmpresa() {

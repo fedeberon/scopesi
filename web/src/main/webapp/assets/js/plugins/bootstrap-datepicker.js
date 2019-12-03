@@ -1922,7 +1922,7 @@
                             date = _date;
                     }
                 }
-            }
+            }º
             return date;
         },
         formatDate: function(date, format, language) {

@@ -245,6 +245,19 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-6">
+                            <label for="bajaLogica">Estado</label>
+                            <select name="bajaLogica" class="form-control" data-actions-box="true"  title="Seleccione un estado">
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="fechaAlta">Fecha de alta</label>
+                            <input name="fechaAlta" id="datepicker" data-actions-box="true" class="form-control"  title="Seleccione una fecha"/>
+                        </div>
+
                         <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
                             <div class="col-md-12">
                                 <div class="loader">
@@ -256,37 +269,20 @@
                             <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
                         </div>
 
-                      <%--   <div class="form-group col-6">
+                      <%--<div class="form-group col-6">
                              <label for="fechaAlta">Fecha de alta</label>
                              <br>
                              <input type="text" name="fechaAlta" class="datetimepicker"/>
-                         </div>
+                         </div>--%>
 
-                        <div class="form-group col-6">
-                            <label for="fechaAlta">Fecha de alta</label>
-                            <input name="fechaAlta" class="form-control datetimepicker"/>
-                        </div>--%>
 
-                        <%--<div class="form-group col-6">
-                            <label for="bajaLogica" class="mb-0">Baja Logica</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input ml-0" type="radio" name="bajaLogica" id="inlineRadio1" value="true">
-                                <label class="form-check-label" for="inlineRadio1">True</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input ml-0" type="radio" name="bajaLogica" id="inlineRadio2" value="false">
-                                <label class="form-check-label" for="inlineRadio2">False</label>
-                            </div>
-                        </div>
---%>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
                     <button type="button" class="btn btn-secondary" id="btn-check-result" onclick="disabledOptionsNotFounds()">Chequear resultados</button>
 
-                    <button onclick="pagSiguiente('searchModal')" class="btn btn-primary">Buscar</button>
+                    <button onclick="onSubmit('searchModal')" class="btn btn-primary">Buscar</button>
                 </div>
             </form:form>
         </div>
