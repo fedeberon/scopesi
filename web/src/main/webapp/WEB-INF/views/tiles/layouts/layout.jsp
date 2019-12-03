@@ -326,6 +326,7 @@
 
     });
 
+
     function buttonHideShowMenu() {
         var text = $('#span-close-option').html();
 

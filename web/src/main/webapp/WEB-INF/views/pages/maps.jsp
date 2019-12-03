@@ -23,6 +23,16 @@
         display: none;
     }
 
+
+    .fancybox-button--fb {
+        padding: 10px;
+        margin-right: 5px;
+    }
+
+    .fancybox-button--fb svg path{
+        stroke-width: 0;
+    }
+
 </style>
 
 <script>

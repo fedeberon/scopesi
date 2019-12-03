@@ -11,6 +11,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -30,7 +31,8 @@ public class FileStorageServiceImpl  implements FileStorageService {
 
     @Autowired
     public FileStorageServiceImpl(FileStorageProperties fileStorageProperties) {
-        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir()).toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+                .toAbsolutePath().normalize();
 
         try {
             Files.createDirectories(this.fileStorageLocation);
@@ -39,10 +41,9 @@ public class FileStorageServiceImpl  implements FileStorageService {
         }
     }
 
-    @Override
     public String storeFile(MultipartFile file, String folder, String fileName) {
         // Normalize file name
-        //String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        /*String fileName = StringUtils.cleanPath(file.getOriginalFilename());*/
 
         try {
             // Check if the file's name contains invalid characters
@@ -50,12 +51,10 @@ public class FileStorageServiceImpl  implements FileStorageService {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            // Copy file to the target location (Replacing existing file with the same name)
-            Path targetLocation = this.fileStorageLocation.resolve(fileName);
-            String newName = this.resolveFileName(fileName);
+            fileName = resolveFileName(file , fileName);
 
-            Path pathWithStandardizedName = newName(targetLocation, newName);
-            Files.copy(file.getInputStream(), pathWithStandardizedName, StandardCopyOption.REPLACE_EXISTING);
+            Path targetLocation = this.fileStorageLocation.resolve(folder.concat("//").concat(fileName));
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;
         } catch (IOException ex) {
@@ -63,13 +62,6 @@ public class FileStorageServiceImpl  implements FileStorageService {
         }
     }
 
-
-    Path newName(Path oldName, String newNameString) throws IOException {
-        return Files.move(oldName, oldName.resolveSibling(newNameString));
-    }
-
-
-    @Override
     public Resource loadFileAsResource(String fileName) {
         try {
             Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
@@ -85,18 +77,39 @@ public class FileStorageServiceImpl  implements FileStorageService {
     }
 
 
-    private String resolveFileName(String fileNamme){
+    @Override
+    public void delete(String folder, String fileName) {
+        Path fileToDeletePath = this.fileStorageLocation.resolve(folder.concat("//").concat(fileName));
+        try {
+            Files.delete(fileToDeletePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public String getFileExtension(MultipartFile file) {
+        String name = file.getOriginalFilename();
+        try {
+            return name.substring(name.lastIndexOf(".") + 1);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    private String resolveFileName(MultipartFile file,  String fileNamme) throws IOException {
         int i = 0 ;
         Path path ;
-
+        String extention = getFileExtension(file);
         do {
             String newFileName = fileNamme.concat("(" + i +")");
-            path = this.fileStorageLocation.resolve(newFileName);
+            path = this.fileStorageLocation.resolve(newFileName.concat(".").concat(extention));
             i++;
         }
         while(Files.exists(path));
 
         return path.getFileName().toString();
     }
+
 
 }

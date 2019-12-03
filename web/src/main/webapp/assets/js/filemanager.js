@@ -12,9 +12,6 @@ var multipleUploadForm = document.querySelector('#multipleUploadForm');
 var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
 var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
 var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess');
-var empresa = document.querySelector('#empresa');
-var ubicacion = document.querySelector('#ubicacion');
-
 
 function uploadSingleFile(file) {
     var formData = new FormData();
@@ -36,6 +33,7 @@ function uploadSingleFile(file) {
             singleFileUploadSuccess.style.display = "none";
             singleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
         }
+
     }
 
     xhr.send(formData);
@@ -60,7 +58,7 @@ function uploadMultipleFiles(files) {
             multipleFileUploadError.style.display = "none";
             var content = "<p>All Files Uploaded Successfully</p>";
             for(var i = 0; i < response.length; i++) {
-                content += "<p>DownloadUrl : <a href='" + response[i].fileDownloadUri + "' target='_blank'>" + response[i].fileDownloadUri + "</a></p>";
+                content += "<p>" + response[i].fileName + " subido con exito !!</p>";
             }
             multipleFileUploadSuccess.innerHTML = content;
             multipleFileUploadSuccess.style.display = "block";
@@ -68,7 +66,7 @@ function uploadMultipleFiles(files) {
             multipleFileUploadSuccess.style.display = "none";
             multipleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
         }
-    }
+    };
 
     xhr.send(formData);
 }
