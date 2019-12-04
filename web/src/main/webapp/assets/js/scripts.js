@@ -204,3 +204,40 @@ function deleteFile(folder, file, functionSuccess) {
         }
     });
 }
+
+
+
+function actualizarCoordenadas(address, id){
+    var dataToSend = { "address": address };
+
+    $.ajax( {
+        url: '/map/searchCoordinatesByAdress',
+        type: "GET",
+        dataType: 'json',
+        data: dataToSend,
+        beforeSend: function () {
+
+        },
+        success:  function (data) {
+            $("#" + id + "-lat").append(data.location.lat);
+            $("#" + id + "-lon").append(data.location.lng);
+
+            var latLong = new google.maps.LatLng(data.location.lat, data.location.lng);
+            var marker = new google.maps.Marker({
+                id: id,
+                position: latLong,
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP
+            });
+
+            var bounds = new google.maps.LatLngBounds();
+            var myLatLng = new google.maps.LatLng(data.location.lat, data.location.lng);
+            bounds.extend(myLatLng);
+            map.fitBounds(bounds);
+            $("#" + id + "-save").show();
+            $("#" + id + "-update").hide();
+        }
+    });
+
+}
