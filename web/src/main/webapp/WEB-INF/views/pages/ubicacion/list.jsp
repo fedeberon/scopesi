@@ -248,6 +248,7 @@
                         <div class="form-group col-6">
                             <label for="bajaLogica">Estado</label>
                             <select name="bajaLogica" class="form-control" data-actions-box="true"  title="Seleccione un estado">
+                                <option value="">Seleccione un estado</option>
                                 <option value="true">Activo</option>
                                 <option value="false">Inactivo</option>
                             </select>
@@ -255,8 +256,17 @@
 
                         <div class="form-group col-6">
                             <label for="fechaAlta">Fecha de alta</label>
-                            <input name="fechaAlta" id="datepicker" data-actions-box="true" class="form-control"  title="Seleccione una fecha"/>
+                            <input name="fechaAlta" autocomplete="off"  class="form-control datepicker" title="Seleccione una fecha"/>
                         </div>
+
+<%--                        <div class="form-group col-6">--%>
+<%--                            <label for="latitud">GeoLocalizacion</label>--%>
+<%--                            <select name="" class="form-control" data-actions-box="true">--%>
+<%--                                <option value="">Seleccione una opcion</option>--%>
+<%--                                <option value="">Activo</option>--%>
+<%--                                <option value="">Inactivo</option>--%>
+<%--                            </select>--%>
+<%--                        </div>--%>
 
                         <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
                             <div class="col-md-12">

@@ -1,5 +1,6 @@
 package com.ideaas.services.dao;
 
+import com.ideaas.services.bean.DateTimeUtil;
 import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
 import org.springframework.stereotype.Repository;
@@ -7,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,7 @@ public class FilterDaoImpl implements FilterDao {
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.fechaAlta = :fechaAlta");
 
+            isFirstClause = false;
         }
         if(Objects.nonNull(request.getBajaLogica())){
             builder.append(isFirstClause ? where() : and());
@@ -106,7 +108,10 @@ public class FilterDaoImpl implements FilterDao {
             query.setParameter("audLocalidad", Arrays.asList(request.getAudLocalidad().split(",")));
         }
         if(Objects.nonNull(request.getFechaAlta())){
-            query.setParameter("fechaAlta", request.getFechaAlta());
+            LocalDateTime  dateToSearch = DateTimeUtil.convertToLocalDateTimeViaSqlTimestamp(request.getFechaAlta());
+            builder.append(" u.fechaAlta between :fechaAltaStart and :fechaAltaEnd");
+            query.setParameter("fechaAltaStart", dateToSearch.atStartOfDay());
+            query.setParameter("fechaAltaEnd", LocalDateTime.of(dateToSearch, LocalTime.of(23, 59, 59));
         }
         if(Objects.nonNull(request.getBajaLogica())){
             query.setParameter("bajaLogica", Arrays.asList(request.getBajaLogica()));

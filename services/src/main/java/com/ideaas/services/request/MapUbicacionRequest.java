@@ -1,9 +1,10 @@
 package com.ideaas.services.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.lang.reflect.Array;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Objects;
 
 public class MapUbicacionRequest {
@@ -31,8 +32,17 @@ public class MapUbicacionRequest {
 
     private Boolean bajaLogica;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDateTime fechaAlta;
+    private Date fechaAlta;
+
+    private BigDecimal latitud;
+
+    public BigDecimal getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(BigDecimal latitud) {
+        this.latitud = latitud;
+    }
 
     public String getAudEmpresa() {
         return audEmpresa;
@@ -90,11 +100,11 @@ public class MapUbicacionRequest {
         this.bajaLogica = bajaLogica;
     }
 
-    public LocalDateTime getFechaAlta() {
+    public Date getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(LocalDateTime fechaAlta) {
+    public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
@@ -108,7 +118,6 @@ public class MapUbicacionRequest {
 
 
     private static String EMPTY = "";
-
     private static String LEFT = "[";
     private static String RIGTH = "]";
 
