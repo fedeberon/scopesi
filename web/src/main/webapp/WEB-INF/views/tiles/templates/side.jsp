@@ -38,7 +38,7 @@
             <li>
                 <a class="nav-link" href="./maps.html">
                     <i class="nc-icon nc-pin-3"></i>
-                    <p>Maps</p>
+                    <p>Mapas</p>
                 </a>
             </li>
             <li>

@@ -23,22 +23,18 @@ public class MapUbicacion {
     //deberia apuntar a MapEmpresa
     @ManyToOne
     @JoinColumn(name = "idEmpresa")
-    @JsonIgnore
     private AudEmpresa audEmpresa;
 
     @ManyToOne
     @JoinColumn(name = "idElemento")
-    @JsonIgnore
     private MapElemento mapElemento;
 
     @ManyToOne
     @JoinColumn(name = "idFormato")
-    @JsonIgnore
     private MapFormato mapFormato;
 
     @ManyToOne
     @JoinColumn(name = "idMedio")
-    @JsonIgnore
     private MapMedio mapMedio;
 
     @Column(name = "direccion")

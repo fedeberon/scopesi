@@ -19,6 +19,10 @@
         opacity: 0.8;
     }
 
+    .hidden{
+        display: none;
+    }
+
 </style>
 
 <script>
@@ -30,6 +34,19 @@
 
 <div class="map-container">
     <div id="map"></div>
+
+    <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
+        <div class="col-md-12">
+            <div class="loader">
+                <div class="loader-inner box1"></div>
+                <div class="loader-inner box2"></div>
+                <div class="loader-inner box3"></div>
+            </div>
+        </div>
+        <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+    </div>
+
+
 </div>
 
 
@@ -81,6 +98,11 @@
                             <td>
                                 <i class="nc-icon nc-square-pin" onclick="centerFromMarker(${bo.id})"></i>
                             </td>
+
+
+                            <td>
+                                <button onclick="showImages()" class="btn btn-primary">Imagenes</button>
+                            </td>
                         </tr>
 
                     </c:forEach>
@@ -100,9 +122,6 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-profile">
-                    <i class="nc-icon nc-album-2"></i>
-                </div>
                 <h5 class="modal-title" id="exampleModalLabel">Datos de la ubicaci&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -114,11 +133,12 @@
 
 
 
-
-
-
                 </div>
                 <div class="modal-footer">
+                    <button onclick="showImages()" class="btn btn-primary">Imagenes</button>
+
+                    <button type="file" class="btn btn-primary">Subir Imagen</button>
+
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
         </div>
@@ -134,17 +154,15 @@
 </li>
 
 
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="https://www.hd-tecnologia.com/imagenes/articulos/2017/04/YouTube-mejora-la-IA-para-que-las-propagandas-no-aparezcan-en-cualquier-video.jpg" alt="Los Angeles" style="width:100%;">
-        </div>
-        <div class="item">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX4kF30VHIcHV5P-B5LgfbBGBVvRnvnn6Aavow4wMbitIVnWYJQA&s" alt="Chicago" style="width:100%;">
-        </div>
 
-        <div class="item">
-            <img src="https://conceptodefinicion.de/wp-content/uploads/2014/12/Propaganda2.jpg" alt="New york" style="width:100%;">
-        </div>
-    </div>
-</div>
+<table class="table table-bordered table-data-ubicaciones">
+    <thead>
+        <tr>
+            <th>Empresa</th>
+            <th>Direcci&oacute;n</th>
+            <th>Elemento</th>
+            <th>Formato</th>
+        </tr>
+    </thead>
+</table>
+

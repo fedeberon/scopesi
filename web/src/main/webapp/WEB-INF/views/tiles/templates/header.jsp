@@ -19,6 +19,8 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
+
 <%--    <link rel="stylesheet" type="text/css" href="../assets/js/plugins/jquery.datetimepicker.css"/>--%>
 
     <%--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--%>
@@ -28,4 +30,5 @@
 <%--    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>--%>
 <%--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>--%>
 <%--    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>
+
 </head>
