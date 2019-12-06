@@ -17,10 +17,21 @@
         margin-top: -150px;
         background-color: white;
         opacity: 0.8;
+        min-width: 100%;
     }
 
     .hidden{
         display: none;
+    }
+
+
+    .fancybox-button--fb {
+        padding: 10px;
+        margin-right: 5px;
+    }
+
+    .fancybox-button--fb svg path{
+        stroke-width: 0;
     }
 
 </style>
@@ -33,6 +44,7 @@
 <div class="container">
 
 <div class="map-container">
+
     <div id="map"></div>
 
     <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
@@ -66,9 +78,11 @@
                         <th>description</th>
                         <th>lat</th>
                         <th>long</th>
-                        <th>show/hide</th>
+                        <th>-</th>
+
+                        <%--<th>show/hide</th>
                         <th>touch</th>
-                        <th>go to</th>
+                        <th>go to</th>--%>
                     </thead>
                     <tbody>
 
@@ -79,30 +93,33 @@
                             <td>${bo.name}</td>
                             <td>${bo.address}</td>
                             <td>${bo.description}</td>
-                            <td>${bo.lat}</td>
-                            <td>${bo.lon}</td>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign" onclick="displayMarkers(${bo.id})"></span>
-                                    </label>
-                                </div>
-                            </td>
+                            <td id="${bo.id}-lat">${bo.lat}</td>
+                            <td id="${bo.id}-lon">${bo.lon}</td>
 
                             <td>
-                                <i class="nc-icon nc-tap-01" id="marker-touch-${bo.id}" onclick="toggleBounce(${bo.id})"></i>
+                                <button id="${bo.id}-update" type="button" class="btn btn-info btn-fill" onclick="actualizarCoordenadas('${bo.address}', '${bo.id}')">Actualizar</button>
+                                <button id="${bo.id}-save" class="btn btn-danger hidden btn-fill">Guardar</button>
                             </td>
 
-
-                            <td>
-                                <i class="nc-icon nc-square-pin" onclick="centerFromMarker(${bo.id})"></i>
-                            </td>
-
-
-                            <td>
-                                <button onclick="showImages()" class="btn btn-primary">Imagenes</button>
-                            </td>
+                                <%--
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" type="checkbox" value="">
+                                            <span class="form-check-sign" onclick="displayMarkers('${bo.id}')"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <i class="nc-icon nc-tap-01" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')"></i>
+                                </td>
+                                <td>
+                                    <i class="nc-icon nc-square-pin" onclick="centerFromMarker('${bo.id}')"></i>
+                                </td>
+                                <td>
+                                    <button onclick="showImages()" class="btn btn-primary">Imagenes</button>
+                                </td>
+    --%>
                         </tr>
 
                     </c:forEach>
@@ -127,17 +144,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
-                <div class="modal-body">
-
-
-
-
-                </div>
+                <div class="modal-body data-ubicacion"></div>
                 <div class="modal-footer">
-                    <button onclick="showImages()" class="btn btn-primary">Imagenes</button>
+                    <button onclick="showImages()" class="btn btn-primary">Ver Imagenes</button>
 
-                    <button type="file" class="btn btn-primary">Subir Imagen</button>
+                    <a data-toggle="modal" href="#myModal2" class="btn btn-primary">Subir Imagenes</a>
 
                     <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                 </div>
@@ -155,7 +166,7 @@
 
 
 
-<table class="table table-bordered table-data-ubicaciones">
+<table class="table table-bordered table-data-ubicaciones hidden">
     <thead>
         <tr>
             <th>Empresa</th>
@@ -165,4 +176,49 @@
         </tr>
     </thead>
 </table>
+
+
+
+<div class="modal" id="myModal2">
+    <div class="modal-dialog  modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Subir Imagenes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div><div class="container"></div>
+
+            <div class="upload-container">
+                <div class="upload-content">
+                    <div class="single-upload">
+                        <h3>Upload Single File</h3>
+                        <form id="singleUploadForm" name="singleUploadForm">
+                            <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="singleFileUploadError"></div>
+                            <div id="singleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                    <div class="multiple-upload">
+                        <h3>Upload Multiple Files</h3>
+                        <form id="multipleUploadForm" name="multipleUploadForm">
+                            <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="multipleFileUploadError"></div>
+                            <div id="multipleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 

@@ -3,25 +3,42 @@ package com.ideaas.services.request;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class MapUbicacionRequest {
 
+    private Long idEmpresa;
+
     private String audEmpresa;
+
+    private Long idElemento;
 
     private String mapElemento;
 
+    private Long idProvincia;
+
     private String mapProvincia;
+
+    private Long idFormato;
 
     private String mapFormato;
 
+    private Long idLocalidad;
+
     private String audLocalidad;
+
+    private Long idMedio;
 
     private String mapMedio;
 
+    private Boolean bajaLogica;
+
+    private List<Long> idsSelected;
+
     private Integer page = 0;
 
-    private Boolean bajaLogica;
+    private Integer maxResults = 10;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDateTime fechaAlta;
@@ -98,9 +115,71 @@ public class MapUbicacionRequest {
         this.page = page;
     }
 
+    public Long getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(Long idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    public Long getIdElemento() {
+        return idElemento;
+    }
+
+    public void setIdElemento(Long idElemento) {
+        this.idElemento = idElemento;
+    }
+
+    public Long getIdProvincia() {
+        return idProvincia;
+    }
+
+    public void setIdProvincia(Long idProvincia) {
+        this.idProvincia = idProvincia;
+    }
+
+    public Long getIdFormato() {
+        return idFormato;
+    }
+
+    public void setIdFormato(Long idFormato) {
+        this.idFormato = idFormato;
+    }
+
+    public Long getIdLocalidad() {
+        return idLocalidad;
+    }
+
+    public void setIdLocalidad(Long idLocalidad) {
+        this.idLocalidad = idLocalidad;
+    }
+
+    public Long getIdMedio() {
+        return idMedio;
+    }
+
+    public void setIdMedio(Long idMedio) {
+        this.idMedio = idMedio;
+    }
+
+    public Integer getMaxResults() {
+        return maxResults;
+    }
+
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    public List<Long> getIdsSelected() {
+        return idsSelected;
+    }
+
+    public void setIdsSelected(List<Long> idsSelected) {
+        this.idsSelected = idsSelected;
+    }
 
     private static String EMPTY = "";
-
     private static String LEFT = "[";
     private static String RIGTH = "]";
 

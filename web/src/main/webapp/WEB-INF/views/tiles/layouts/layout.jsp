@@ -85,6 +85,7 @@
 <script src="../DataTables/Buttons-1.6.1/js/buttons.colVis.min.js"></script>
 <script src="../DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
 <script src="../DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js"></script>
+<script src="../assets/js/filemanager.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
@@ -105,6 +106,65 @@
             searching: false,
             paging: false,
             bInfo: false,
+            buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    text: 'PDF',
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            page: 'current'
+                        }
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'colvis',
+                    text: 'Filtro de Columnas',
+                    columnText: function (dt, idx, title) {
+                        return (idx + 1) + ': ' + title;
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copiar en Portapapeles',
+                    copySuccess: {
+                        1: "Copied one row to clipboard",
+                        _: "Copied %d rows to clipboard"
+                    },
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    copyTitle: 'Copiar en portapapeles',
+                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'print',
+                    text: 'Imprimir resultados',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            page: 'current'
+                        }
+                    },
+                    className: 'btn btn-primary'
+                }
+            ],
+        } );
+
+        var tableToEdit = $('#dataTableToEdit').DataTable( {
+            "scrollX": "400px",
+            dom: "Bfrtip",
             buttons: [
                 {
                     extend: 'pdfHtml5',
@@ -325,6 +385,7 @@
 
     });
 
+
     function buttonHideShowMenu() {
         var text = $('#span-close-option').html();
 
@@ -345,6 +406,5 @@
 
 <!-- Add fancyBox -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
-
 </body>
 </html>

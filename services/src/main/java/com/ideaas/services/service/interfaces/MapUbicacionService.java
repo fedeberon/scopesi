@@ -14,4 +14,6 @@ public interface MapUbicacionService {
     List<MapUbicacion> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<MapUbicacion> findAll(MapUbicacionRequest mapUbicacionRequest);
+
+    List<MapUbicacion> saveList(MapUbicacionRequest mapUbicacionRequest);
 }

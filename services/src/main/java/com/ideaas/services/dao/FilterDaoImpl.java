@@ -1,5 +1,6 @@
 package com.ideaas.services.dao;
 
+import com.ideaas.services.bean.MyObject;
 import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Repository
 public class FilterDaoImpl implements FilterDao {
@@ -80,9 +82,12 @@ public class FilterDaoImpl implements FilterDao {
         if(Objects.nonNull(request.getBajaLogica())){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.bajaLogica = :bajaLogica");
-
         }
 
+        if(Objects.nonNull(request.getIdsSelected())){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" u.id in (:ids)");
+        }
 
         Query query = entityManager.createQuery(builder.toString());
         if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
@@ -110,12 +115,22 @@ public class FilterDaoImpl implements FilterDao {
             query.setParameter("bajaLogica", Arrays.asList(request.getBajaLogica()));
         }
 
-        query.setMaxResults(10);
-        query.setFirstResult(request.getPage() * 10);
+        if(Objects.nonNull(request.getIdsSelected())){
+            query.setParameter("ids", request.getIdsSelected());
+        }
+
+        if(getAllResults(request)){
+            query.setMaxResults(request.getMaxResults());
+            query.setFirstResult(request.getPage() * request.getMaxResults());
+        }
 
         return query.getResultList();
     }
 
+
+    public Boolean getAllResults(MapUbicacionRequest request){
+        return request.getMaxResults() != -1;
+    }
 
 
     @Override

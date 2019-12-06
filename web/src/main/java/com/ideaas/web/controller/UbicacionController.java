@@ -1,20 +1,24 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.bean.MyObject;
 import com.ideaas.services.bean.Wrapper;
 import com.ideaas.services.domain.*;
 import com.ideaas.services.request.MapUbicacionRequest;
 import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by federicoberon on 08/10/2019.
@@ -41,7 +45,6 @@ public class UbicacionController {
 
     private MapBusService mapBusService;
 
-    private MyObjectService myObjectService;
 
     @Autowired
     public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService) {
@@ -66,7 +69,7 @@ public class UbicacionController {
 
     }
 
-    @RequestMapping("/list")
+    @GetMapping(name = "list")
     public String findAll(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(mapUbicacionRequest));
         model.addAttribute("ubicacionRequest", mapUbicacionRequest);
@@ -74,11 +77,30 @@ public class UbicacionController {
         return "ubicacion/list";
     }
 
-    @RequestMapping("/map")
+    @RequestMapping(value = "/map", params = "maps")
     public String findAll(@ModelAttribute Wrapper ubicaciones, Model model){
         model.addAttribute("ubicaciones", ubicaciones.getSelectedElements());
 
         return "ubicacion/map";
+    }
+
+    @RequestMapping("list")
+    public String list(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
+        model.addAttribute("ubicaciones", mapUbicacionService.findAll(mapUbicacionRequest));
+        model.addAttribute("ubicacionRequest", mapUbicacionRequest);
+
+        return "ubicacion/list";
+    }
+
+    @RequestMapping(value = "/map", params = "saveList")
+    public String saveList(@ModelAttribute Wrapper wrapper, Model model){
+        List<Long> ids = wrapper.getSelectedElements().parallelStream().map(MyObject::getId).collect(Collectors.toList());
+        MapUbicacionRequest request = wrapper.getRequest();
+        request.setIdsSelected(ids);
+        model.addAttribute("ubicaciones", mapUbicacionService.saveList(request));
+        model.addAttribute("ubicacionRequest", request);
+
+        return "ubicacion/list";
     }
 
     @ModelAttribute("empresas")
@@ -133,7 +155,6 @@ public class UbicacionController {
     public String create() {
         return "ubicacion/create";
     }
-
 
     @PostMapping("addUbicacion")
     public String save(@ModelAttribute MapUbicacion ubicacion, RedirectAttributes redirectAttributes) {

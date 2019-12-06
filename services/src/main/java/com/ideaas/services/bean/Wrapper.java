@@ -1,5 +1,6 @@
 package com.ideaas.services.bean;
 
+import com.ideaas.services.request.MapUbicacionRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,17 @@ public class Wrapper {
 
     private List<MyObject> list = new ArrayList<>();
 
+    private MapUbicacionRequest request = new MapUbicacionRequest();
+
     public List<MyObject> getSelectedElements() {
         return list.stream().filter(line -> line.getChecked()).collect(Collectors.toList());
+    }
+
+    public MapUbicacionRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(MapUbicacionRequest request) {
+        this.request = request;
     }
 }
