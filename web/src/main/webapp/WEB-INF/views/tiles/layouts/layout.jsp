@@ -162,6 +162,65 @@
             ],
         } );
 
+        var tableToEdit = $('#dataTableToEdit').DataTable( {
+            "scrollX": "400px",
+            dom: "Bfrtip",
+            buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    text: 'PDF',
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            page: 'current'
+                        }
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'colvis',
+                    text: 'Filtro de Columnas',
+                    columnText: function (dt, idx, title) {
+                        return (idx + 1) + ': ' + title;
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copiar en Portapapeles',
+                    copySuccess: {
+                        1: "Copied one row to clipboard",
+                        _: "Copied %d rows to clipboard"
+                    },
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    copyTitle: 'Copiar en portapapeles',
+                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'print',
+                    text: 'Imprimir resultados',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            page: 'current'
+                        }
+                    },
+                    className: 'btn btn-primary'
+                }
+            ],
+        } );
+
         $('a.toggle-vis').on( 'click', function (e) {
             e.preventDefault();
 

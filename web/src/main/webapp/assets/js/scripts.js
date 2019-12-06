@@ -140,7 +140,6 @@ function showImages() {
 
 // Make buttons clickable using event delegation
 $('body').on('click', '[data-fancybox-fb]', function() {
-    alert('vamo la guachinga ' + document.querySelector("#idEmpresa").value);
     var idEmpresa = document.querySelector("#idEmpresa").value;
     var idUbicacion = document.querySelector("#idUbicacion").value;
     var src = $.fancybox.getInstance().current.src;

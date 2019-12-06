@@ -35,7 +35,6 @@
                     <div class="card-body table-full-width table-responsive">
 
                         <form:form action="map" modelAttribute="wrapper" name="ubicaciones">
-
                             <table id="dataTable" class="display" style="width:100%">
 
                             <thead>
@@ -160,18 +159,18 @@
 
                         </table>
 
-
-                        </form:form>
-
+                         <jsp:include page="../modals/filterUbicacsionSimple.jsp"/>
+                            
                         <div class="col-8">
                             <tags:paginador page="${ubicacionRequest.page}" formName="searchModal"/>
 
-                            <a href="#" onclick="onSubmit('ubicaciones')" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</a>
+                            <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
 
                             <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
 
                         </div>
 
+                        </form:form>
                     </div>
                 </div>
             </div>
@@ -248,6 +247,17 @@
                             </select>
                         </div>
 
+
+                    <div class="form-group col-6">
+                        <label for="maxResults">Cantidad resultados</label>
+                        <select name="maxResults">
+                            <option value="10" selected>10</option>
+                            <option value="-1">Todos</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+
                         <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
                             <div class="col-md-12">
                                 <div class="loader">
@@ -290,6 +300,7 @@
                     <button type="button" class="btn btn-secondary" id="btn-check-result" onclick="disabledOptionsNotFounds()">Chequear resultados</button>
 
                     <button onclick="pagSiguiente('searchModal')" class="btn btn-primary">Buscar</button>
+
                 </div>
 
             </form:form>
@@ -305,4 +316,9 @@
     </a>
 </li>
 
-
+<li class="nav-item more-options" style="display: none">
+    <a href="#" class="nav-link">
+        <i id="icon-options" class="nc-icon nc-simple-add"></i>
+        <span id="span-more-options" class="d-lg-block" data-toggle="modal" data-target="#optionModal">&nbsp;Editar Resultados</span>
+    </a>
+</li>
