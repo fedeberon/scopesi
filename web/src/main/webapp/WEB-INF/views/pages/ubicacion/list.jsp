@@ -81,6 +81,7 @@
                             <th>Fecha de Alta</th>
                             <th>Id.Altura</th>
                             <th>Id.Visibilidad</th>
+                            <th>Editar</th>
                         </thead>
 
                             <tbody>
@@ -152,6 +153,10 @@
                                     <td>${bo.fechaAlta}</td>
                                     <td>${bo.mapUbicacionAltura.descripcion}</td>
                                     <td>${bo.mapUbicacionVisibilidad.descripcion}</td>
+                                    <td class="text-center">
+                                        <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
+                                        <img src="/assets/img/icons/edit2.png" alt="">
+                                    </td>
                                 </tr>
 
                             </c:forEach>

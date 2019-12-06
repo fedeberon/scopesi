@@ -20,7 +20,8 @@
                             <th>Latitud</th>
                             <th>Longitud</th>
                             <th>Icono</th>
-                            <th></th>
+                            <th class="text-center">Editar</th>
+                            <th class="text-center">Dar de Baja</th>
 
                             </thead>
 
@@ -36,8 +37,14 @@
                                     <td>${bo.geoLatitud}</td>
                                     <td>${bo.geoLongitud}</td>
                                     <td>${bo.icono}</td>
-                                    <td class="text-center"> <a href="<c:url value='/poi/update?id=${bo.id}'/>"/><span class="text-success">Editar</span></td>
-
+                                    <td class="text-center">
+                                        <a href="<c:url value='/poi/update?id=${bo.id}'/>"/>
+                                        <img src="/assets/img/icons/edit2.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/poi/updateBajaLogica?id=${bo.id}'/>"/>
+                                        <img src="/assets/img/icons/delete.png" alt="">
+                                    </td>
                                 </tr>
 
                             </c:forEach>
@@ -52,7 +59,7 @@
 
                                     <tags:paginador page="${page}" formName="search"/>
 
-                                    <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
+                                    <a href="create" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Nuevo</a>
 
                                 </form>
 

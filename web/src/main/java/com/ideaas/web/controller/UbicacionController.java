@@ -154,6 +154,21 @@ public class UbicacionController {
         return "ubicacion/show";
     }
 
+    @PutMapping("editUbicacion")
+    public String edit(@ModelAttribute MapUbicacion ubicacion, RedirectAttributes redirectAttributes){
+        mapUbicacionService.save(ubicacion);
+        redirectAttributes.addAttribute("id", ubicacion.getId());
+
+        return "redirect:/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapUbicacion mapUbicacion = mapUbicacionService.get(id);
+        model.addAttribute("ubicacion", mapUbicacion);
+        return "ubicacion/update";
+    }
+
     @ModelAttribute("ubicacion")
     public MapUbicacion get(){
         return new MapUbicacion();

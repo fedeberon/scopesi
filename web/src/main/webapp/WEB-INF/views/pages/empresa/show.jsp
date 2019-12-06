@@ -28,9 +28,6 @@
 
                             </tbody>
                         </table>
-                        <a href="<c:url value='/empresa/updateBajaLogica?id=${empresa.id}'/>"
-                        class="btn btn-primary"><i class="nc-icon nc-simple-remove"></i>&nbsp;Baja Logica</a>
-
                     </div>
                 </div>
             </div>
