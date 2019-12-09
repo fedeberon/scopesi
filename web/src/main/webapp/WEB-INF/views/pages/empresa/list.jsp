@@ -16,7 +16,8 @@
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
-                            <th></th>
+                            <th class="text-center">Editar</th>
+                            <th class="text-center">Dar de Baja</th>
                             </thead>
 
                             <tbody>
@@ -26,7 +27,14 @@
                                 <tr>
                                     <td><a href="/empresa/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
-                                    <td class="text-center"> <a href="<c:url value='/empresa/update?id=${bo.id}'/>"/><span class="text-success">Editar</span></td>
+                                    <td class="text-center">
+                                        <a href="<c:url value='/empresa/update?id=${bo.id}'/>"/>
+                                        <img src="/assets/img/icons/edit2.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/empresa/updateBajaLogica?id=${bo.id}'/>"/>
+                                        <img src="/assets/img/icons/delete.png" alt="">
+                                    </td>
                                 </tr>
 
                             </c:forEach>
@@ -41,7 +49,7 @@
 
                                     <tags:paginador page="${page}" formName="search"/>
 
-                                    <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
+                                    <a href="create" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Nuevo</a>
 
                                 </form>
 
