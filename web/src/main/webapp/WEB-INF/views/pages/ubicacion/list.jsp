@@ -202,7 +202,7 @@
 
                         <div class="form-group col-6">
                             <label for="elemento">Elementos</label>
-                            <select id="select-elementos" name="mapElemento" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Elemento">
+                            <select id="select-elementos" name="mapElemento" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Elemento">
                                 <c:forEach items="${elementos}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -211,7 +211,7 @@
 
                         <div class="form-group col-6">
                             <label for="formato">Formatos</label>
-                            <select id="select-formatos" name="mapFormato" items="${formatos}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un formato">
+                            <select id="select-formatos" name="mapFormato" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un formato">
                                 <c:forEach items="${formatos}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -220,7 +220,7 @@
 
                         <div class="form-group col-6">
                             <label for="medio">Medios</label>
-                            <select id="select-medios" name="mapMedio" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Medio   ">
+                            <select id="select-medios" name="mapMedio" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Medio   ">
                                 <c:forEach items="${medios}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -229,7 +229,7 @@
 
                         <div class="form-group col-6">
                             <label for="localidad">Localidadades</label>
-                            <select id="select-localidades" name="audLocalidad" items="${localidades}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
+                            <select id="select-localidades" name="audLocalidad" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
                                 <c:forEach items="${localidades}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -238,7 +238,7 @@
 
                         <div class="form-group col-6">
                             <label for="provincia">Provincias</label>
-                            <select id="select-provincias" name="mapProvincia" items="${provincias}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Provincia">
+                            <select id="select-provincias" name="mapProvincia" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Provincia">
                                 <c:forEach items="${provincias}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -247,10 +247,17 @@
 
                         <div class="form-group col-6">
                             <label for="bajaLogica">Estado</label>
-                            <select name="bajaLogica" class="form-control" data-actions-box="true"  title="Seleccione un estado">
-                                <option value="">Seleccione un estado</option>
+                            <select id="select-estados" name="bajaLogica" class="form-control" multiple data-live-search="true" title="Seleccione un estado">
                                 <option value="true">Activo</option>
                                 <option value="false">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="langLongEmpty">GeoLocalizacion</label>
+                            <select id="select-geolocalizacion" name="langLongEmpty" class="form-control" multiple data-live-search="true" title="Seleccione una opci&oacute;n">
+                                <option value="false">Con coordenadas</option>
+                                <option value="true">Sin coordenadas</option>
                             </select>
                         </div>
 
@@ -258,15 +265,6 @@
                             <label for="fechaAlta">Fecha de alta</label>
                             <input name="fechaAlta" autocomplete="off"  class="form-control datepicker" title="Seleccione una fecha"/>
                         </div>
-
-<%--                        <div class="form-group col-6">--%>
-<%--                            <label for="latitud">GeoLocalizacion</label>--%>
-<%--                            <select name="" class="form-control" data-actions-box="true">--%>
-<%--                                <option value="">Seleccione una opcion</option>--%>
-<%--                                <option value="">Activo</option>--%>
-<%--                                <option value="">Inactivo</option>--%>
-<%--                            </select>--%>
-<%--                        </div>--%>
 
                         <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
                             <div class="col-md-12">

@@ -1,6 +1,8 @@
 package com.ideaas.services.bean;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class DateTimeUtil {
@@ -10,4 +12,9 @@ public class DateTimeUtil {
         return new java.sql.Timestamp(dateToConvert.getTime()).toLocalDateTime();
     }
 
+    public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
 }

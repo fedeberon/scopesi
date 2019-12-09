@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -77,13 +78,20 @@ public class FilterDaoImpl implements FilterDao {
         }
         if(Objects.nonNull(request.getFechaAlta())){
             builder.append(isFirstClause ? where() : and());
-            builder.append(" u.fechaAlta = :fechaAlta");
+            builder.append(" u.fechaAlta between :fechaAltaStart and :fechaAltaEnd");
 
             isFirstClause = false;
         }
         if(Objects.nonNull(request.getBajaLogica())){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.bajaLogica = :bajaLogica");
+
+            isFirstClause = false;
+        }
+        if(Objects.nonNull(request.getLangLongEmpty()) && request.getLangLongEmpty() == true){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" (u.latitud is null or u.longitud is null)");
+
 
         }
 
@@ -109,13 +117,18 @@ public class FilterDaoImpl implements FilterDao {
         }
         if(Objects.nonNull(request.getFechaAlta())){
             LocalDateTime  dateToSearch = DateTimeUtil.convertToLocalDateTimeViaSqlTimestamp(request.getFechaAlta());
+            LocalDate localDate = DateTimeUtil.convertToLocalDateViaInstant(request.getFechaAlta());
+            LocalDateTime startOfDay = localDate.atStartOfDay();
+            LocalDateTime endOfDate = dateToSearch.toLocalDate().atTime(LocalTime.MAX);
+
             builder.append(" u.fechaAlta between :fechaAltaStart and :fechaAltaEnd");
-            query.setParameter("fechaAltaStart", dateToSearch.atStartOfDay());
-            query.setParameter("fechaAltaEnd", LocalDateTime.of(dateToSearch, LocalTime.of(23, 59, 59));
+            query.setParameter("fechaAltaStart", startOfDay);
+            query.setParameter("fechaAltaEnd", endOfDate);
         }
         if(Objects.nonNull(request.getBajaLogica())){
             query.setParameter("bajaLogica", Arrays.asList(request.getBajaLogica()));
         }
+
 
         query.setMaxResults(10);
         query.setFirstResult(request.getPage() * 10);

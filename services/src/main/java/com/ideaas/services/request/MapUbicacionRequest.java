@@ -34,14 +34,14 @@ public class MapUbicacionRequest {
 
     private Date fechaAlta;
 
-    private BigDecimal latitud;
+    private Boolean langLongEmpty;
 
-    public BigDecimal getLatitud() {
-        return latitud;
+    public Boolean getLangLongEmpty() {
+        return langLongEmpty;
     }
 
-    public void setLatitud(BigDecimal latitud) {
-        this.latitud = latitud;
+    public void setLangLongEmpty(Boolean langLongEmpty) {
+        this.langLongEmpty = langLongEmpty;
     }
 
     public String getAudEmpresa() {
