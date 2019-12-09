@@ -58,6 +58,8 @@
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
         <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacion/list.jsp" />
+        <put-attribute name="filterUbicacionSimple"  value="/WEB-INF/views/pages/modals/filterUbicacionSimple.jsp" />
+
     </definition>
 
     <definition name="ubicacion/editList" extends="template-def">
