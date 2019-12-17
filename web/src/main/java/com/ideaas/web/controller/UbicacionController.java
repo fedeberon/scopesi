@@ -16,7 +16,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,7 +94,16 @@ public class UbicacionController {
         return "ubicacion/list";
     }
 
-    @RequestMapping(value = "/map", params = "saveList")
+
+    @RequestMapping(value = "search", params = "paginate")
+    public String list(@ModelAttribute Wrapper wrapper, Model model){
+        model.addAttribute("ubicaciones", mapUbicacionService.findAll(wrapper.getRequest()));
+        model.addAttribute("ubicacionRequest", wrapper.getRequest());
+
+        return "ubicacion/list";
+    }
+
+    @RequestMapping(value = "search", params = "saveList")
     public String saveList(@ModelAttribute Wrapper wrapper, Model model){
         List<Long> ids = wrapper.getSelectedElements().parallelStream().map(MyObject::getId).collect(Collectors.toList());
         MapUbicacionRequest request = wrapper.getRequest();
@@ -148,7 +159,7 @@ public class UbicacionController {
     public void initBinder(WebDataBinder webDataBinder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
-        webDataBinder.registerCustomEditor(LocalDateTime.class, new CustomDateEditor(dateFormat, true));
+        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
     @GetMapping("create")
