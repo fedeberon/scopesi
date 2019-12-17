@@ -90,6 +90,15 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $(".datepicker").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+    });
+</script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -275,6 +284,18 @@
             dropupAuto: false
         });
 
+        $('#select-estados').selectpicker({
+            container: 'body',
+            dropupAuto: false,
+            liveSearch: false
+        });
+
+        $('#select-geolocalizacion').selectpicker({
+            container: 'body',
+            dropupAuto: false,
+            liveSearch: false
+        });
+
         $('.dropdown-menu').on('click', function (e) {
             if ($(e.target).closest('.bootstrap-select.open').is(':visible') || $(e.target).closest('.btn.dropdown-toggle').is(':visible')) {
                 selectpickerIsClicked = true;
@@ -308,12 +329,12 @@
         moreToolsOptions.css('display', 'inline');
         moreToolsOptions.appendTo('#tools-button')
 
-        $('#select-empresas').selectpicker('val', ${mapUbicacionRequest.empresasSelected});
-        $('#select-elementos').selectpicker('val', ${mapUbicacionRequest.elementosSelected});
-        $('#select-formatos').selectpicker('val', ${mapUbicacionRequest.formatosSelected});
-        $('#select-medios').selectpicker('val', ${mapUbicacionRequest.mediosSelected});
-        $('#select-localidades').selectpicker('val', ${mapUbicacionRequest.localidadesSelected});
-        $('#select-provincias').selectpicker('val', ${mapUbicacionRequest.provinciasSelected});
+        $('#select-empresas').selectpicker('val', ${ubicacionRequest.empresasSelected});
+        $('#select-elementos').selectpicker('val', ${ubicacionRequest.elementosSelected});
+        $('#select-formatos').selectpicker('val', ${ubicacionRequest.formatosSelected});
+        $('#select-medios').selectpicker('val', ${ubicacionRequest.mediosSelected});
+        $('#select-localidades').selectpicker('val', ${ubicacionRequest.localidadesSelected});
+        $('#select-provincias').selectpicker('val', ${ubicacionRequest.provinciasSelected});
 
     });
 

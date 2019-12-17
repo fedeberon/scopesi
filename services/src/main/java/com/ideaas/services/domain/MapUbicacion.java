@@ -4,10 +4,12 @@ package com.ideaas.services.domain;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ideaas.services.bean.Image;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -124,6 +126,7 @@ public class MapUbicacion {
     @Column(name = "fechatransf")
     private LocalDateTime fechaTransf;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "fecha_alta")
     private LocalDateTime fechaAlta;
 
