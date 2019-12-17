@@ -154,7 +154,7 @@
                                     <td>${bo.mapUbicacionVisibilidad.descripcion}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
-                                        <img src="/assets/img/icons/edit2.png" alt="">
+                                        <img src="resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                 </tr>
 

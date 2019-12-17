@@ -9,7 +9,7 @@
 
     <div class="logo">
         <a href="http://www.scopesi.com.ar">
-            <img src="/assets/img/ScopesiLogo.png">
+            <img src="/resources/assets/img/ScopesiLogo.png">
         </a>
     </div>
     <ul class="nav">
@@ -40,7 +40,7 @@
         <li class="nav-item active">
             <a class="nav-link" href="/maps/show">
                 <i class="nc-icon nc-pin-3"></i>
-                <p class="wordsMenu load-data">Maps</p>
+                <p class="wordsMenu load-data">Mapas</p>
             </a>
         </li>
         <li>

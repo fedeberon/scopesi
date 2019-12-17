@@ -64,8 +64,8 @@
 
 <div class="table-ubicaciones" id="table-ubicaciones">
 
-    <img id="arrowUp" src="/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
-    <img id="arrowDown" src="/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
+    <img id="arrowUp" src="resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
+    <img id="arrowDown" src="resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
 
     <div class="container-fluid">
         <div class="row">
