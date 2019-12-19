@@ -96,7 +96,8 @@ public class UbicacionController {
 
 
     @RequestMapping(value = "search", params = "paginate")
-    public String list(@ModelAttribute Wrapper wrapper, Model model){
+    public String list(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
+        wrapper.getRequest().setPage(wrapper.getPage());
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(wrapper.getRequest()));
         model.addAttribute("ubicacionRequest", wrapper.getRequest());
 
@@ -149,7 +150,7 @@ public class UbicacionController {
         return new MapUbicacionRequest();
     }
 
-    @ModelAttribute("wrapper")
+    @ModelAttribute("myWrapper")
     public Wrapper wrapper(){
         return new Wrapper();
     }

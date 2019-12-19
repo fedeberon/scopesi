@@ -34,8 +34,8 @@
 
                     <div class="card-body table-full-width table-responsive">
 
-                        <form:form action="search" modelAttribute="wrapper" name="ubicaciones">
-<%--                            <form:hidden path="page"/>--%>
+                        <form:form action="search" modelAttribute="myWrapper" name="myWrapper">
+                            <input type="hidden" name="page" value="${ubicacionRequest.page}"/>
                             <table id="dataTable" class="display" style="width:100%">
 
                             <thead>
@@ -244,7 +244,7 @@
                         </div>
 
                         <div class="col-8">
-                            <tags:paginador page="${ubicacionRequest.page}"  formName="searchModalFilter"/>
+                            <tags:paginador page="${ubicacionRequest.page}"  formName="myWrapper"/>
 
                             <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
 
@@ -271,8 +271,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form:form action="search"  modelAttribute="mapUbicacionRequest" id="searchModalFilter" name="searchModalFilter">
-                <input type="hidden" name="page" value="${ubicacionRequest.page}"/>
+            <form:form action="search"  modelAttribute="myWrapper" id="searchModalFilter" name="searchModalFilter">
                 <div class="modal-body row">
 
                         <div class="form-group col-6">
