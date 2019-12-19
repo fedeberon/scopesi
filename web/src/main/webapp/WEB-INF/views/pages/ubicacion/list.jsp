@@ -34,7 +34,8 @@
 
                     <div class="card-body table-full-width table-responsive">
 
-                        <form:form action="map" modelAttribute="wrapper" name="ubicaciones">
+                        <form:form action="search" modelAttribute="wrapper" name="ubicaciones">
+<%--                            <form:hidden path="page"/>--%>
                             <table id="dataTable" class="display" style="width:100%">
 
                             <thead>
@@ -154,7 +155,7 @@
                                     <td>${bo.mapUbicacionVisibilidad.descripcion}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
-                                        <img src="/assets/img/icons/edit2.png" alt="">
+                                        <img src="resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                 </tr>
 
@@ -242,15 +243,8 @@
                             </div>
                         </div>
 
-<%--
-
-                            <tiles:insertAttribute name="filterUbicacionSimple" />
---%>
-
-
-
-                            <div class="col-8">
-                            <tags:paginador page="${ubicacionRequest.page}" formName="searchModal"/>
+                        <div class="col-8">
+                            <tags:paginador page="${ubicacionRequest.page}"  formName="searchModalFilter"/>
 
                             <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
 
@@ -277,13 +271,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form:form action="list"  modelAttribute="mapUbicacionRequest" name="searchModal">
+            <form:form action="search"  modelAttribute="mapUbicacionRequest" id="searchModalFilter" name="searchModalFilter">
                 <input type="hidden" name="page" value="${ubicacionRequest.page}"/>
                 <div class="modal-body row">
 
                         <div class="form-group col-6">
                             <label for="empresa">Empresas</label>
-                            <select id="select-empresas" name="audEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
+                            <select id="select-empresas" name="request.audEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
                                 <c:forEach items="${empresas}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -292,7 +286,7 @@
 
                         <div class="form-group col-6">
                             <label for="elemento">Elementos</label>
-                            <select id="select-elementos" name="mapElemento" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Elemento">
+                            <select id="select-elementos" name="request.mapElemento" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Elemento">
                                 <c:forEach items="${elementos}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -301,7 +295,7 @@
 
                         <div class="form-group col-6">
                             <label for="formato">Formatos</label>
-                            <select id="select-formatos" name="mapFormato" items="${formatos}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un formato">
+                            <select id="select-formatos" name="request.mapFormato" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un formato">
                                 <c:forEach items="${formatos}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -310,7 +304,7 @@
 
                         <div class="form-group col-6">
                             <label for="medio">Medios</label>
-                            <select id="select-medios" name="mapMedio" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Medio   ">
+                            <select id="select-medios" name="request.mapMedio" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione un Medio   ">
                                 <c:forEach items="${medios}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -319,7 +313,7 @@
 
                         <div class="form-group col-6">
                             <label for="localidad">Localidadades</label>
-                            <select id="select-localidades" name="audLocalidad" items="${localidades}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
+                            <select id="select-localidades" name="request.audLocalidad" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
                                 <c:forEach items="${localidades}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -328,23 +322,43 @@
 
                         <div class="form-group col-6">
                             <label for="provincia">Provincias</label>
-                            <select id="select-provincias" name="mapProvincia" items="${provincias}" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Provincia">
+                            <select id="select-provincias" name="request.mapProvincia" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Provincia">
                                 <c:forEach items="${provincias}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
                             </select>
                         </div>
 
+                        <div class="form-group col-6">
+                            <label for="bajaLogica">Estado</label>
+                            <select id="select-estados" name="request.bajaLogica" class="form-control" multiple data-live-search="true" title="Seleccione un estado">
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group col-6">
-                        <label for="maxResults">Cantidad resultados</label>
-                        <select name="maxResults">
-                            <option value="10" selected>10</option>
-                            <option value="-1">Todos</option>
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                        </select>
-                    </div>
+                        <div class="form-group col-6">
+                            <label for="langLongEmpty">GeoLocalizacion</label>
+                            <select id="select-geolocalizacion" name="request.langLongEmpty" class="form-control" multiple data-live-search="true" title="Seleccione una opci&oacute;n">
+                                <option value="false">Con coordenadas</option>
+                                <option value="true">Sin coordenadas</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="fechaAlta">Fecha de alta</label>
+                            <input name="request.fechaAlta" autocomplete="off"  class="form-control datepicker" title="Seleccione una fecha"/>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label for="maxResults">Cantidad resultados</label>
+                            <select name="maxResults">
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="-1">Todos</option>
+                            </select>
+                        </div>
 
                         <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
                             <div class="col-md-12">
@@ -357,38 +371,13 @@
                             <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
                         </div>
 
-                      <%--   <div class="form-group col-6">
-                             <label for="fechaAlta">Fecha de alta</label>
-                             <br>
-                             <input type="text" name="fechaAlta" class="datetimepicker"/>
-                         </div>
-
-                        <div class="form-group col-6">
-                            <label for="fechaAlta">Fecha de alta</label>
-                            <input name="fechaAlta" class="form-control datetimepicker"/>
-                        </div>--%>
-
-                        <%--<div class="form-group col-6">
-                            <label for="bajaLogica" class="mb-0">Baja Logica</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input ml-0" type="radio" name="bajaLogica" id="inlineRadio1" value="true">
-                                <label class="form-check-label" for="inlineRadio1">True</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input ml-0" type="radio" name="bajaLogica" id="inlineRadio2" value="false">
-                                <label class="form-check-label" for="inlineRadio2">False</label>
-                            </div>
-                        </div>
---%>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
                     <button type="button" class="btn btn-secondary" id="btn-check-result" onclick="disabledOptionsNotFounds()">Chequear resultados</button>
 
-                    <button onclick="pagSiguiente('searchModal')" class="btn btn-primary">Buscar</button>
-
+                    <button name="paginate" onclick="onSubmit('searchModalFilter')" class="btn btn-primary">Buscar</button>
                 </div>
 
             </form:form>

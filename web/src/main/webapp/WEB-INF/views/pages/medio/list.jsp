@@ -30,7 +30,7 @@
                                     <td>${bo.descripcion}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/medio/update?id=${bo.id}'/>"/>
-                                        <img src="/assets/img/icons/edit2.png" alt="">
+                                        <img src="resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/medio/dropBajaLogica?id=${bo.id}'/>"/>

@@ -1,8 +1,7 @@
 package com.ideaas.services.request;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,14 +33,23 @@ public class MapUbicacionRequest {
 
     private Boolean bajaLogica;
 
-    private List<Long> idsSelected;
+    private Date fechaAlta;
 
-    private Integer page = 0;
+    private Boolean langLongEmpty;
+
+    private List<Long> idsSelected;
 
     private Integer maxResults = 10;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDateTime fechaAlta;
+    private Integer page = 0;
+
+    public Boolean getLangLongEmpty() {
+        return langLongEmpty;
+    }
+
+    public void setLangLongEmpty(Boolean langLongEmpty) {
+        this.langLongEmpty = langLongEmpty;
+    }
 
     public String getAudEmpresa() {
         return audEmpresa;
@@ -99,11 +107,11 @@ public class MapUbicacionRequest {
         this.bajaLogica = bajaLogica;
     }
 
-    public LocalDateTime getFechaAlta() {
+    public Date getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(LocalDateTime fechaAlta) {
+    public void setFechaAlta(Date fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 

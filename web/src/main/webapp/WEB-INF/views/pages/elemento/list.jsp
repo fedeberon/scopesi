@@ -17,10 +17,7 @@
                             <th>Descripcion</th>
                             <th>Panos</th>
                             <th>IdMedio</th>
-                            <th>IdFormato</th>
-                            <th>AcumulaDatos</th>
-                            <th>Evalua</th>
-                            <th>MetrosContacto</th>
+                                <th>MetrosContacto</th>
                             <th>Coeficiente</th>
                             <th class="text-center">Editar</th>
                             <th class="text-center">Estado Baja Logica</th>
@@ -42,7 +39,7 @@
                                     <td>${bo.coeficiente}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/elemento/update?id=${bo.id}'/>"/>
-                                        <img src="/assets/img/icons/edit2.png" alt="">
+                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/elemento/dropBajaLogica?id=${bo.id}'/>"/>

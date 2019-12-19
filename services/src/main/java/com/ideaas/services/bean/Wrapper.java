@@ -32,4 +32,5 @@ public class Wrapper {
     public void setRequest(MapUbicacionRequest request) {
         this.request = request;
     }
+
 }

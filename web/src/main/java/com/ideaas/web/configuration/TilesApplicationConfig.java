@@ -2,21 +2,20 @@ package com.ideaas.web.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 @Configuration
-@EnableWebMvc
 public class TilesApplicationConfig implements WebMvcConfigurer {
 
     @Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tiles = new TilesConfigurer();
-        tiles.setDefinitions("WEB-INF/views/tiles/tiles.xml");
+        tiles.setDefinitions("/WEB-INF/views/tiles/tiles.xml");
         tiles.setCheckRefresh(true);
         return tiles;
     }
@@ -34,13 +33,4 @@ public class TilesApplicationConfig implements WebMvcConfigurer {
         registry.viewResolver(viewResolver);
     }
 
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/../webapp/static/**").addResourceLocations("/static/");
-    }
 }
