@@ -72,10 +72,20 @@ public class FormatoController{
         return "formato/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
         MapFormato mapFormato = formatoService.get(id);
         mapFormato.setBajaLogica(INACTIVE);
+        formatoService.save(mapFormato);
+        redirectAttributes.addAttribute("id", mapFormato.getId());
+
+        return "redirect:/formato/{id}";
+    }
+
+    @RequestMapping("upBajaLogica")
+    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapFormato mapFormato = formatoService.get(id);
+        mapFormato.setBajaLogica(!INACTIVE);
         formatoService.save(mapFormato);
         redirectAttributes.addAttribute("id", mapFormato.getId());
 

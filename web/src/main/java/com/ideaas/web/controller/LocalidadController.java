@@ -71,10 +71,20 @@ public class LocalidadController {
         return "localidad/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
         AudLocalidad audLocalidad = localidadService.get(id);
         audLocalidad.setBajaLogica(INACTIVE);
+        localidadService.save(audLocalidad);
+        redirectAttributes.addAttribute("id", audLocalidad.getId());
+
+        return "redirect:/localidad/{id}";
+    }
+
+    @RequestMapping("upBajaLogica")
+    public String upBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        AudLocalidad audLocalidad = localidadService.get(id);
+        audLocalidad.setBajaLogica(!INACTIVE);
         localidadService.save(audLocalidad);
         redirectAttributes.addAttribute("id", audLocalidad.getId());
 

@@ -42,4 +42,18 @@ public class MapPoi {
 
     public MapPoi() {
     }
+
+
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public MapPoiEntidad getMapPoiEntidad() {
+        return mapPoiEntidad;
+    }
 }

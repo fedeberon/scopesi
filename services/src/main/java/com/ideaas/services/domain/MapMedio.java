@@ -42,4 +42,8 @@ public class MapMedio {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
+    }
 }

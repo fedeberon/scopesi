@@ -65,10 +65,20 @@ public class PoiSectorController{
         return "poiSector/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
         MapPoiSector mapPoiSector = poiSectorService.get(id);
         mapPoiSector.setBajaLogica(INACTIVE);
+        poiSectorService.save(mapPoiSector);
+        redirectAttributes.addAttribute("id", mapPoiSector.getId());
+
+        return "redirect:/poiSector/{id}";
+    }
+
+    @RequestMapping("upBajaLogica")
+    public String upBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapPoiSector mapPoiSector = poiSectorService.get(id);
+        mapPoiSector.setBajaLogica(!INACTIVE);
         poiSectorService.save(mapPoiSector);
         redirectAttributes.addAttribute("id", mapPoiSector.getId());
 

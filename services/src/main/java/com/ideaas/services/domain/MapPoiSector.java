@@ -24,4 +24,12 @@ public class MapPoiSector {
 
     public MapPoiSector() {
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
+    }
 }

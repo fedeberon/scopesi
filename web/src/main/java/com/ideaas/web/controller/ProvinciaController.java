@@ -67,10 +67,20 @@ public class ProvinciaController {
         return "provincia/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
         MapProvincia mapProvincia = provinciaService.get(id);
         mapProvincia.setBajaLogica(INACTIVE);
+        provinciaService.save(mapProvincia);
+        redirectAttributes.addAttribute("id", mapProvincia.getId());
+
+        return "redirect:/provincia/{id}";
+    }
+
+    @RequestMapping("upBajaLogica")
+    public String upBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapProvincia mapProvincia = provinciaService.get(id);
+        mapProvincia.setBajaLogica(!INACTIVE);
         provinciaService.save(mapProvincia);
         redirectAttributes.addAttribute("id", mapProvincia.getId());
 

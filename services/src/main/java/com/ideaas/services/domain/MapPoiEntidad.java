@@ -28,4 +28,16 @@ public class MapPoiEntidad {
 
     public MapPoiEntidad() {
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

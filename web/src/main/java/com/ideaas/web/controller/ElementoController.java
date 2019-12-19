@@ -86,10 +86,20 @@ public class ElementoController {
         return "elemento/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes){
         MapElemento mapElemento = elementoService.get(id);
         mapElemento.setBajaLogica(INACTIVE);
+        elementoService.save(mapElemento);
+        redirectAttributes.addAttribute("id", mapElemento.getId());
+
+        return "redirect:/elemento/{id}";
+    }
+
+    @RequestMapping("upBajaLogica")
+    public String upBajaLogica(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes){
+        MapElemento mapElemento = elementoService.get(id);
+        mapElemento.setBajaLogica(!INACTIVE);
         elementoService.save(mapElemento);
         redirectAttributes.addAttribute("id", mapElemento.getId());
 

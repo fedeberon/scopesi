@@ -498,3 +498,42 @@ function centerFromMarker(id) {
         }
     }
 }
+
+
+function showMap(lat, lon){
+
+    var latLong = new google.maps.LatLng(lat, lon);
+    var mapaOptions = {
+        zoom: 13,
+        center: latLong,
+        scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        },
+        streetViewControl: false,
+    };
+    var mapa = new google.maps.Map(document.getElementById("mapa"), mapaOptions);
+
+    var marker = new google.maps.Marker({
+        id: 'miId',
+        position: latLong,
+        map: mapa,
+        draggable: true,
+        animation: google.maps.Animation.DROP
+    });
+
+    marker.addListener('dragend', handleEvent);
+
+    $('#mapModal').modal('show');
+}
+
+$('#mapModal').modal({
+    show: 'false'
+
+});
+
+
+function handleEvent(event) {
+    document.getElementById('latitud').value = event.latLng.lat();
+    document.getElementById('longitud').value = event.latLng.lng();
+}
