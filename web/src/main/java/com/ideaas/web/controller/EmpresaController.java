@@ -75,8 +75,8 @@ public class EmpresaController {
         return "empresa/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes){
         MapEmpresa empresa = empresaService.get(id);
         empresa.setBajaLogica(INACTIVE);
         empresaService.save(empresa);
@@ -85,6 +85,15 @@ public class EmpresaController {
         return "redirect:/empresa/{id}";
     }
 
+    @RequestMapping("upBajaLogica")
+    public String upBajaLogica(@RequestParam Long id, Model model, RedirectAttributes redirectAttributes){
+        MapEmpresa empresa = empresaService.get(id);
+        empresa.setBajaLogica(!INACTIVE);
+        empresaService.save(empresa);
+        redirectAttributes.addAttribute("id", empresa.getId());
+
+        return "redirect:/empresa/{id}";
+    }
 
     @ModelAttribute("empresa")
     public MapEmpresa get(){

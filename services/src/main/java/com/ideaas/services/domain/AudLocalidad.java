@@ -52,4 +52,8 @@ public class AudLocalidad {
     public void setAudProvincia(AudProvincia audProvincia) {
         this.audProvincia = audProvincia;
     }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
+    }
 }

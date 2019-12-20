@@ -75,8 +75,8 @@ public class MedioController {
         return "medio/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
         MapMedio mapMedio = medioService.get(id);
         mapMedio.setBajaLogica(INACTIVE);
         medioService.save(mapMedio);
@@ -84,6 +84,17 @@ public class MedioController {
 
         return "redirect:/medio/{id}";
     }
+
+    @RequestMapping("upBajaLogica")
+    public String upBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapMedio mapMedio = medioService.get(id);
+        mapMedio.setBajaLogica(!INACTIVE);
+        medioService.save(mapMedio);
+        redirectAttributes.addAttribute("id", mapMedio.getId());
+
+        return "redirect:/medio/{id}";
+    }
+
 
     @ModelAttribute("medio")
         public MapMedio get(){return new MapMedio();}

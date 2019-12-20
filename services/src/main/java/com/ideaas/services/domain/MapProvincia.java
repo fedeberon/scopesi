@@ -51,4 +51,8 @@ public class MapProvincia {
     public void setEvalua(Long evalua) {
         this.evalua = evalua;
     }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
+    }
 }

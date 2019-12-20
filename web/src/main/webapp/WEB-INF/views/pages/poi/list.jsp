@@ -21,7 +21,7 @@
                             <th>Longitud</th>
                             <th>Icono</th>
                             <th class="text-center">Editar</th>
-                            <th class="text-center">Dar de Baja</th>
+                            <th class="text-center">Estado Baja Logica</th>
 
                             </thead>
 
@@ -42,8 +42,10 @@
                                         <img src="resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td class="text-center">
-                                        <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/poi/updateBajaLogica?id=${bo.id}'/>"/>
-                                        <img src="resources/assets/img/icons/delete.png" alt="">
+                                        <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/poi/dropBajaLogica?id=${bo.id}'/>"/>
+                                        <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/assets/img/icons/delete.png" alt="">
+                                        <a ${bo.bajaLogica == false ? 'class="d-none"' : ''} href="<c:url value='/poi/upBajaLogica?id=${bo.id}'/>"/>
+                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/assets/icons/arrowUP.png" alt="">
                                     </td>
                                 </tr>
 

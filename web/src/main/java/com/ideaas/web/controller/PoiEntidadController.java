@@ -70,10 +70,20 @@ public class PoiEntidadController{
         return "poiEntidad/update";
     }
 
-    @RequestMapping("updateBajaLogica")
-    public String updateBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+    @RequestMapping("dropBajaLogica")
+    public String dropBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
         MapPoiEntidad mapPoiEntidad = poiEntidadService.get(id);
         mapPoiEntidad.setBajaLogica(INACTIVE);
+        poiEntidadService.save(mapPoiEntidad);
+        redirectAttributes.addAttribute("id", mapPoiEntidad.getId());
+
+        return "redirect:/poiEntidad/{id}";
+    }
+
+    @RequestMapping("upBajaLogica")
+    public String upBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
+        MapPoiEntidad mapPoiEntidad = poiEntidadService.get(id);
+        mapPoiEntidad.setBajaLogica(!INACTIVE);
         poiEntidadService.save(mapPoiEntidad);
         redirectAttributes.addAttribute("id", mapPoiEntidad.getId());
 
