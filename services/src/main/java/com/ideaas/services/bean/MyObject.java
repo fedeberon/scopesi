@@ -1,17 +1,13 @@
 package com.ideaas.services.bean;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 /**
  * Created by federicoberon on 29/10/2019.
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Component
 public class MyObject {
 
     private Long id;
@@ -48,5 +44,33 @@ public class MyObject {
 
     public String getName() {
         return name;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setChecked(Boolean checked) {
+        this.checked = checked;
+    }
+
+    public void setLat(BigDecimal lat) {
+        this.lat = lat;
+    }
+
+    public void setLon(BigDecimal lon) {
+        this.lon = lon;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
