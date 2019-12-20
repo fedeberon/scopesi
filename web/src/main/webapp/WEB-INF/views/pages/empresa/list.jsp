@@ -16,6 +16,11 @@
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
+                            <th>Telefono</th>
+                            <th>E-Mail</th>
+                            <th>Logo</th>
+                            <th>Html</th>
+                            <th>GP+</th>
                             <th class="text-center">Editar</th>
                             <th class="text-center">Dar de Baja</th>
                             </thead>
@@ -27,6 +32,11 @@
                                 <tr>
                                     <td><a href="/empresa/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
+                                    <td>${bo.telefono}</td>
+                                    <td>${bo.mail}</td>
+                                    <td>${bo.logo}</td>
+                                    <td>${bo.html}</td>
+                                    <td>${bo.GPMas}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/empresa/update?id=${bo.id}'/>"/>
                                         <img src="resources/assets/img/icons/edit2.png" alt="">

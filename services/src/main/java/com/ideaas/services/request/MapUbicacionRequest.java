@@ -9,7 +9,7 @@ public class MapUbicacionRequest {
 
     private Long idEmpresa;
 
-    private String audEmpresa;
+    private String mapEmpresa;
 
     private Long idElemento;
 
@@ -51,12 +51,12 @@ public class MapUbicacionRequest {
         this.langLongEmpty = langLongEmpty;
     }
 
-    public String getAudEmpresa() {
-        return audEmpresa;
+    public String getMapEmpresa() {
+        return mapEmpresa;
     }
 
-    public void setAudEmpresa(String audEmpresa) {
-        this.audEmpresa = audEmpresa;
+    public void setMapEmpresa(String mapEmpresa) {
+        this.mapEmpresa = mapEmpresa;
     }
 
     public String getMapElemento() {
@@ -192,9 +192,9 @@ public class MapUbicacionRequest {
     private static String RIGTH = "]";
 
     public String getEmpresasSelected(){
-        if(Objects.isNull(audEmpresa)) return EMPTY;
+        if(Objects.isNull(mapEmpresa)) return EMPTY;
 
-        return buildFormatValuesSelected(audEmpresa);
+        return buildFormatValuesSelected(mapEmpresa);
     }
 
     public String getElementosSelected(){

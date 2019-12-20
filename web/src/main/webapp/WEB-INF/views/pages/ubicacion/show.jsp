@@ -24,7 +24,7 @@
 
                             <tbody>
                                 <tr>
-                                    <td>${ubicaciones.audEmpresa.descripcion}</td>
+                                    <td>${ubicaciones.mapEmpresa.descripcion}</td>
                                     <td>${ubicaciones.mapElemento.descripcion}</td>
                                     <td>${ubicaciones.mapFormato.descripcion}</td>
                                     <td>${ubicaciones.mapMedio.descripcion}</td>

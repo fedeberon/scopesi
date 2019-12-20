@@ -103,8 +103,8 @@
                                              <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
                                     </td>
                                     <td>
-                                            ${bo.audEmpresa.descripcion}
-                                                <input type="hidden" value="${bo.audEmpresa.descripcion}" name="list[${status.index}].name"/>
+                                            ${bo.mapEmpresa.descripcion}
+                                                <input type="hidden" value="${bo.mapEmpresa.descripcion}" name="list[${status.index}].name"/>
                                     </td>
 
                                     <td>
@@ -277,7 +277,7 @@
 
                         <div class="form-group col-6">
                             <label for="empresa">Empresas</label>
-                            <select id="select-empresas" name="request.audEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
+                            <select id="select-empresas" name="request.mapEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
                                 <c:forEach items="${empresas}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>

@@ -42,9 +42,9 @@ public class FilterDaoImpl implements FilterDao {
         boolean isFirstClause = true;
 
 
-        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
+        if(Objects.nonNull(request.getMapEmpresa()) && !request.getMapEmpresa().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append("u.audEmpresa.descripcion in (:audEmpresa)");
+            builder.append("u.mapEmpresa.descripcion in (:mapEmpresa)");
 
             isFirstClause = false;
         }
@@ -101,8 +101,8 @@ public class FilterDaoImpl implements FilterDao {
         }
 
         Query query = entityManager.createQuery(builder.toString());
-        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
-            query.setParameter("audEmpresa", Arrays.asList(request.getAudEmpresa().split(",")));
+        if(Objects.nonNull(request.getMapEmpresa()) && !request.getMapEmpresa().trim().isEmpty()){
+            query.setParameter("mapEmpresa", Arrays.asList(request.getMapEmpresa().split(",")));
         }
         if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().trim().isEmpty()){
             query.setParameter("mapElemento", Arrays.asList(request.getMapElemento().split(",")));

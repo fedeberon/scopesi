@@ -1,6 +1,9 @@
 alter table aud_empresas
 add bajaLogica boolean;
 
+alter table map_empresas
+add bajaLogica boolean;
+
 alter table map_elementos
 add bajaLogica boolean;
 

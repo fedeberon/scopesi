@@ -24,7 +24,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private FileService fileService;
 
-    private AudEmpresaService audEmpresaService;
+    private MapEmpresaService mapEmpresaService;
 
     private MapElementoService mapElementoService;
 
@@ -37,11 +37,11 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
     private AudLocalidadService audLocalidadService;
 
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, AudLocalidadService audLocalidadService) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, AudLocalidadService audLocalidadService) {
         this.dao = dao;
         this.filterDao = filterDao;
         this.fileService = fileService;
-        this.audEmpresaService = audEmpresaService;
+        this.mapEmpresaService = mapEmpresaService;
         this.mapElementoService = mapElementoService;
         this.mapFormatoService = mapFormatoService;
         this.mapMedioService = mapMedioService;
@@ -81,8 +81,8 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         List<MapUbicacion> results = filterDao.find(request);
 
         if(Objects.nonNull(request.getIdEmpresa())){
-            AudEmpresa empresa = audEmpresaService.get(request.getIdEmpresa());
-            results.forEach(mapUbicacion -> mapUbicacion.setAudEmpresa(empresa));
+            MapEmpresa empresa = mapEmpresaService.get(request.getIdEmpresa());
+            results.forEach(mapUbicacion -> mapUbicacion.setMapEmpresa(empresa));
         }
 
         if(Objects.nonNull(request.getIdElemento())){

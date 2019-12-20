@@ -25,7 +25,7 @@ public class MapUbicacion {
     //deberia apuntar a MapEmpresa
     @ManyToOne
     @JoinColumn(name = "idEmpresa")
-    private AudEmpresa audEmpresa;
+    private MapEmpresa mapEmpresa;
 
     @ManyToOne
     @JoinColumn(name = "idElemento")
@@ -154,12 +154,12 @@ public class MapUbicacion {
         this.id = id;
     }
 
-    public AudEmpresa getAudEmpresa() {
-        return audEmpresa;
+    public MapEmpresa getMapEmpresa() {
+        return mapEmpresa;
     }
 
-    public void setAudEmpresa(AudEmpresa audEmpresa) {
-        this.audEmpresa = audEmpresa;
+    public void setMapEmpresa(MapEmpresa mapEmpresa) {
+        this.mapEmpresa = mapEmpresa;
     }
 
     public MapElemento getMapElemento() {
@@ -417,7 +417,6 @@ public class MapUbicacion {
     public void setMapUbicacionVisibilidad(MapUbicacionVisibilidad mapUbicacionVisibilidad) {
         this.mapUbicacionVisibilidad = mapUbicacionVisibilidad;
     }
-
 
 
     public List<Image> getImages() {
