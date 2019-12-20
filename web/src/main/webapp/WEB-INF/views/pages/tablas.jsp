@@ -35,7 +35,7 @@
 
                 <div class="card border rounded">
                     <div class="card-header ">
-                        <h4  class="font-italic mt-0"><a href="/elemento/list" class="card-link"> <img src="assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
+                        <h4  class="font-italic mt-0"><a href="/elemento/list" class="card-link"> <img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
                             Elementos</a></h4>
                     </div>
 

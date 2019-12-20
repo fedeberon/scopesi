@@ -1,6 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+    #mapa {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+    }
+</style>
 <div class="content">
 <div class="col-12">
 <div class="card">
@@ -120,13 +125,13 @@
                             </div>
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Latitud</label>
-                                <form:input  path="latitud" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:input  path="latitud" cssClass="form-control" id="latitud" name="street1" placeholder=""/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Longitud</label>
-                                <form:input  path="longitud" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:input  path="longitud" cssClass="form-control" id="longitud" name="street1" placeholder=""/>
                             </div>
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Metros Contacto</label>
@@ -199,9 +204,31 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-info btn-fill pull-left ">Guardar</button>
+
+                    <a href="#" class="btn btn-info btn-fill pull-right" onclick="showMap('${ubicacion.latitud}', '${ubicacion.longitud}')">Mapa</a>
                 </div>
             </div>
-        </form:form>
+            <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body row">
+                            <div id="mapa">
+
+                            </div>
+                        </div>
+                     </form:form>
+                    </div>
+                </div>
+            </div>
+
+
 </div>
 </div>
 </div>

@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <div class="content">
     <div class="container-fluid">
@@ -11,8 +13,17 @@
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
+                        <form:form action="search" modelAttribute="wrapper" name="pois">
                         <table id="dataTable" class="display" style="width:100%">
                             <thead>
+                            <th>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                        <span class="form-check-sign"></span>
+                                    </label>
+                                </div>
+                            </th>
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>Entidad</th>
@@ -30,6 +41,15 @@
                             <c:forEach items="${pois}" var="bo">
 
                                 <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" id="form-check-input-${bo.id}" name="list[${status.index}].checked">
+                                                    <%--<form:checkbox cssClass="form-check-input"  path="list[${status.index}].checked"/>--%>
+                                                <span class="form-check-sign" id="${bo.id}"></span>
+                                            </label>
+                                        </div>
+                                    </td>
                                     <td><a href="/poi/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
                                     <td>${bo.mapPoiEntidad.descripcion}</td>
@@ -64,8 +84,12 @@
                                     <a href="create" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Nuevo</a>
 
                                 </form>
+                                <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
+
 
                             </div>
+                            </form:form>
+
                         </div>
                     </div>
                 </div>
