@@ -86,7 +86,7 @@
                     </thead>
                     <tbody>
 
-                    <c:forEach items="${ubicaciones}" var="bo">
+                    <c:forEach items="${registros}" var="bo">
 
                         <tr>
                             <td>${bo.id}</td>

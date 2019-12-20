@@ -1,5 +1,6 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.bean.Wrapper;
 import com.ideaas.services.domain.MapPoi;
 import com.ideaas.services.domain.MapPoiEntidad;
 import com.ideaas.services.domain.MapProvincia;
@@ -87,6 +88,8 @@ public class PoiController {
         return "redirect:/poi/{id}";
     }
 
+
+
     @RequestMapping("upBajaLogica")
     public String upBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
         MapPoi mapPoi = mapPoiService.get(id);
@@ -95,6 +98,13 @@ public class PoiController {
         redirectAttributes.addAttribute("id", mapPoi.getId());
 
         return "redirect:/poi/{id}";
+    }
+
+    @RequestMapping(value = "search", params = "maps" , method = RequestMethod.POST)
+    public String findAll(@ModelAttribute Wrapper pois, Model model){
+        model.addAttribute("registros", pois.getSelectedElements());
+
+        return "ubicacion/map";
     }
 
     @ModelAttribute("poiEntidades")
@@ -110,6 +120,11 @@ public class PoiController {
     @ModelAttribute("poi")
     public MapPoi get() {
         return new MapPoi();
+    }
+
+    @ModelAttribute("myWrapper")
+    public Wrapper wrapper(){
+        return new Wrapper();
     }
 
 }

@@ -34,7 +34,7 @@
 
                     <div class="card-body table-full-width table-responsive">
 
-                        <form:form action="search" modelAttribute="myWrapper" name="myWrapper">
+                        <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">
                             <input type="hidden" name="page" value="${ubicacionRequest.page}"/>
                             <table id="dataTable" class="display" style="width:100%">
 

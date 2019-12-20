@@ -13,8 +13,7 @@
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
-                        <form:form action="search" modelAttribute="wrapper" name="pois">
-                        <table id="dataTable" class="display" style="width:100%">
+                        <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">                        <table id="dataTable" class="display" style="width:100%">
                             <thead>
                             <th>
                                 <div class="form-check">
@@ -38,7 +37,7 @@
 
                             <tbody>
 
-                            <c:forEach items="${pois}" var="bo">
+                            <c:forEach items="${pois}" var="bo" varStatus="status">
 
                                 <tr>
                                     <td>
@@ -50,12 +49,30 @@
                                             </label>
                                         </div>
                                     </td>
-                                    <td><a href="/poi/${bo.id}">${bo.id}</a></td>
+                                    <td>
+                                        <a href="/poi/${bo.id}">${bo.id}</a>
+                                        <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
+
+                                        <input type="hidden" value="${bo.descripcion}" name="list[${status.index}].name"/>
+
+                                        <input type="hidden" value="" name="list[${status.index}].direccion"/>
+
+                                        <input type="hidden" value="${bo.descripcion}" name="list[${status.index}].descripcion"/>
+                                    </td>
                                     <td>${bo.descripcion}</td>
+
+
                                     <td>${bo.mapPoiEntidad.descripcion}</td>
                                     <td>${bo.mapProvincia.descripcion}</td>
-                                    <td>${bo.geoLatitud}</td>
-                                    <td>${bo.geoLongitud}</td>
+                                    <td>
+                                        ${bo.geoLatitud}
+                                            <input type="hidden" value="${bo.geoLatitud}" name="list[${status.index}].lat"/>
+
+                                    </td>
+                                    <td>
+                                        ${bo.geoLongitud}
+                                            <input type="hidden" value="${bo.geoLongitud}" name="list[${status.index}].lon"/>
+                                    </td>
                                     <td>${bo.icono}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/poi/update?id=${bo.id}'/>"/>
@@ -76,14 +93,14 @@
                         <div class="row pt-4 px-2">
                             <div class="col-6">
 
-                                <form name="search" action="list" method="get">
-                                    <input type="hidden" name="page" value="${page}"/>
+                                    <form name="search" action="list" method="get">
+                                        <input type="hidden" name="page" value="${page}"/>
 
-                                    <tags:paginador page="${page}" formName="search"/>
+                                        <tags:paginador page="${page}" formName="search"/>
 
-                                    <a href="create" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Nuevo</a>
+                                        <a href="create" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Nuevo</a>
 
-                                </form>
+                                    </form>
                                 <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
 
 
