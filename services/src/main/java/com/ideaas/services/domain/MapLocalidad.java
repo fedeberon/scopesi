@@ -23,6 +23,41 @@ public class MapLocalidad {
     @JoinColumn (name = "idProvincia")
     private AudProvincia audProvincia;
 
+    @Column(name = "bajaLogica")
+    private Boolean bajaLogica;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public AudProvincia getAudProvincia() {
+        return audProvincia;
+    }
+
+    public void setAudProvincia(AudProvincia audProvincia) {
+        this.audProvincia = audProvincia;
+    }
+
+    public Boolean getBajaLogica() {
+        return bajaLogica;
+    }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
+    }
+
     public MapLocalidad() {
     }
 }

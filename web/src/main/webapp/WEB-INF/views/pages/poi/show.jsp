@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Poi</h4>
+                        <h4 class="card-title">POI</h4>
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -17,9 +17,10 @@
                             <th>Descripcion</th>
                             <th>Entidad</th>
                             <th>Provincia</th>
-                            <th>geo_latitud</th>
-                            <th>geo_longitud</th>
-                            <th>icono</th>
+                            <th>Latitud</th>
+                            <th>Longitud</th>
+                            <th>Icono</th>
+                            <th>Baja Logica</th>
                             </thead>
 
                             <tbody>
@@ -33,8 +34,7 @@
                                 <td>${poi.geoLatitud}</td>
                                 <td>${poi.geoLongitud}</td>
                                 <td>${poi.icono}</td>
-
-
+                                <td>${poi.bajaLogica}</td>
                             </tr>
 
 

@@ -47,6 +47,7 @@
                                     </label>
                                 </div>
                             </th>
+                            <th>Editar</th>
                             <th>ID</th>
                             <th>Empresa</th>
                             <th>Elemento</th>
@@ -75,13 +76,12 @@
                             <th>Circulacion Peatonal</th>
                             <th>Circulacion Vehicular</th>
                             <th>Id.Referencia</th>
-                            <th>Buses</th>
+                            <th>Id.Buses</th>
                             <th>Baja Logica</th>
                             <th>Fecha de Tranferencia</th>
                             <th>Fecha de Alta</th>
                             <th>Id.Altura</th>
                             <th>Id.Visibilidad</th>
-                            <th>Editar</th>
                         </thead>
 
                             <tbody>
@@ -98,13 +98,17 @@
                                             </label>
                                         </div>
                                     </td>
+                                    <td class="text-center">
+                                        <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
+                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
+                                    </td>
                                     <td>
                                         <a href="/ubicacion/${bo.id}">${bo.id}</a>
                                              <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
                                     </td>
                                     <td>
-                                            ${bo.audEmpresa.descripcion}
-                                                <input type="hidden" value="${bo.audEmpresa.descripcion}" name="list[${status.index}].name"/>
+                                            ${bo.mapEmpresa.descripcion}
+                                                <input type="hidden" value="${bo.mapEmpresa.descripcion}" name="list[${status.index}].name"/>
                                     </td>
 
                                     <td>
@@ -121,7 +125,7 @@
                                     <td>${bo.nroAgip}</td>
                                     <td>${bo.referencia}</td>
                                     <td>${bo.nroAnuncio}</td>
-                                    <td>${bo.audLocalidad.descripcion}</td>
+                                    <td>${bo.mapLocalidad.descripcion}</td>
                                     <td>${bo.mapProvincia.descripcion}</td>
                                     <td>${bo.anunciante}</td>
                                     <td>${bo.cantidad}</td>
@@ -147,16 +151,12 @@
                                     <td>${bo.circulacionPeatonal}</td>
                                     <td>${bo.circulacionVehicular}</td>
                                     <td>${bo.idReferencia}</td>
-                                    <td> - </td>
+                                    <td>${bo.mapBuses.id}</td>
                                     <td>${bo.bajaLogica}</td>
                                     <td>${bo.fechaTransf}</td>
                                     <td>${bo.fechaAlta}</td>
                                     <td>${bo.mapUbicacionAltura.descripcion}</td>
                                     <td>${bo.mapUbicacionVisibilidad.descripcion}</td>
-                                    <td class="text-center">
-                                        <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
-                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
-                                    </td>
                                 </tr>
 
                             </c:forEach>
@@ -276,7 +276,7 @@
 
                         <div class="form-group col-6">
                             <label for="empresa">Empresas</label>
-                            <select id="select-empresas" name="request.audEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
+                            <select id="select-empresas" name="request.mapEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
                                 <c:forEach items="${empresas}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -312,7 +312,7 @@
 
                         <div class="form-group col-6">
                             <label for="localidad">Localidadades</label>
-                            <select id="select-localidades" name="request.audLocalidad" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
+                            <select id="select-localidades" name="request.mapLocalidad" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
                                 <c:forEach items="${localidades}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>

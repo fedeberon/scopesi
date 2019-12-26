@@ -19,7 +19,7 @@
                                 <label for="street1_id" class="control-label pt-2">Empresa</label>
                                 <select class="form-control" id="street1_id" name="audEmpresa.id">
                                     <c:forEach items="${empresas}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.audEmpresa.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == ubicacion.mapEmpresa.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -81,9 +81,9 @@
                             </div>
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Localidad</label>
-                                <select class="form-control" id="street1_id" name="audLocalidad.id">
+                                <select class="form-control" id="street1_id" name="mapLocalidad.id">
                                     <c:forEach items="${localidades}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.audLocalidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == ubicacion.mapLocalidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>

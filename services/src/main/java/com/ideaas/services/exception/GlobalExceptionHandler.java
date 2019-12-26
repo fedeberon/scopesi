@@ -1,4 +1,4 @@
-package com.ideaas.api.exception;
+package com.ideaas.services.exception;
 
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import javax.persistence.EntityNotFoundException;
 
 
 @ControllerAdvice
@@ -27,6 +29,13 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(HibernateException.class)
     public ResponseEntity<Object> dataBaseExeption(Exception ex, WebRequest request) {
+        LOGGER.error("Handled Error by geoplanning application. ", ex);
+        String bodyOfResponse = "[ERROR-GEOPLANING] from $REQUEST: ".concat(request.toString()).concat("\n $EXECPTION:" .concat(ex.toString()));
+        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<Object> entityNotFoundException(Exception ex, WebRequest request) {
         LOGGER.error("Handled Error by geoplanning application. ", ex);
         String bodyOfResponse = "[ERROR-GEOPLANING] from $REQUEST: ".concat(request.toString()).concat("\n $EXECPTION:" .concat(ex.toString()));
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);

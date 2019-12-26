@@ -75,7 +75,7 @@
 
                                     <tr>
                                         <td>${bo.id}</td>
-                                        <td>${bo.audEmpresa.descripcion}</td>
+                                        <td>${bo.mapEmpresa.descripcion}</td>
                                         <td>${bo.mapElemento.descripcion}</td>
                                         <td>${bo.mapFormato.descripcion}</td>
                                         <td>${bo.mapMedio.descripcion}</td>
@@ -83,7 +83,7 @@
                                         <td>${bo.nroAgip}</td>
                                         <td>${bo.referencia}</td>
                                         <td>${bo.nroAnuncio}</td>
-                                        <td>${bo.audLocalidad.descripcion}</td>
+                                        <td>${bo.mapLocalidad.descripcion}</td>
                                         <td>${bo.mapProvincia.descripcion}</td>
                                         <td>${bo.anunciante}</td>
                                         <td>${bo.cantidad}</td>
@@ -155,7 +155,7 @@
 
                     <div class="form-group col-6">
                         <label for="empresa">Empresas</label>
-                        <select name="audEmpresa" data-done-button="true" class="form-control" title="Seleccione una empresa">
+                        <select name="mapEmpresa" data-done-button="true" class="form-control" title="Seleccione una empresa">
                             <c:forEach items="${empresas}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>
@@ -191,7 +191,7 @@
 
                     <div class="form-group col-6">
                         <label for="localidad">Localidadades</label>
-                        <select name="audLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
+                        <select name="mapLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
                             <c:forEach items="${localidades}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>

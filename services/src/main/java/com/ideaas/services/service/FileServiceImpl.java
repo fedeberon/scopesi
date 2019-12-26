@@ -26,13 +26,13 @@ public class FileServiceImpl implements FileService {
     @Override
     public List<Image> readFiles(MapUbicacion mapUbicacion)  {
         final List<Image> images = new ArrayList();
-        String path = folderImage.concat(mapUbicacion.getAudEmpresa().getId().toString());
+        String path = folderImage.concat(mapUbicacion.getMapEmpresa().getId().toString());
         try {
             Files.walkFileTree(Paths.get(path), new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
                     try {
-                        String url = urlFileServer.concat(mapUbicacion.getAudEmpresa().getId().toString()).concat(File.separator).concat(file.getFileName().toString());
+                        String url = urlFileServer.concat(mapUbicacion.getMapEmpresa().getId().toString()).concat(File.separator).concat(file.getFileName().toString());
                         String nameImage = file.getFileName().toString().substring(0 , file.getFileName().toString().indexOf("."));
 
                         if(file.getFileName().toString().contains("(")) {

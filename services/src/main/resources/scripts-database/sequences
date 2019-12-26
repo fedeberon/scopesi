@@ -2,6 +2,10 @@ CREATE TABLE `SEQ_AUD_EMPRESA` (
   `next_val` bigint(20) DEFAULT NULL
 );
 
+CREATE TABLE `SEQ_MAP_EMPRESA` (
+  `next_val` bigint(20) DEFAULT NULL
+);
+
 CREATE TABLE `SEQ_MAP_FORMATO` (
   `next_val` bigint(20) DEFAULT NULL
 );
