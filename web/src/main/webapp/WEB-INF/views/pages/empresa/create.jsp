@@ -1,8 +1,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<style>
+    .card form [class*="col-"]:first-child {
+        padding-left: 6px;
+    }
+    .card form [class*="col-"]:last-child {
+        padding-right: 6px;
+    }
+</style>
 
 <div class="content">
-    <div class="col-6">
+    <div class="col-12">
     <div class="card">
         <form:form action="addEmpresa" modelAttribute="empresa" method="post">
                 <div class="row ml-3">
@@ -35,7 +43,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="street1_id" class="control-label">GP+</label>
-                                    <form:input  path="gpmas" cssClass="form-control" id="street1_id" name="street1" placeholder="Ingrese un nuevo cliente"/>
+                                    <form:input  path="GPMas" cssClass="form-control" id="street1_id" name="street1" placeholder="Nuevo cliente: true / false"/>
                                 </div>
 
                             </div>

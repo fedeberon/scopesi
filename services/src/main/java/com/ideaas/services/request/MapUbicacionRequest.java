@@ -1,6 +1,5 @@
 package com.ideaas.services.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -25,7 +24,7 @@ public class MapUbicacionRequest {
 
     private Long idLocalidad;
 
-    private String audLocalidad;
+    private String mapLocalidad;
 
     private Long idMedio;
 
@@ -83,12 +82,12 @@ public class MapUbicacionRequest {
         this.mapFormato = mapFormato;
     }
 
-    public String getAudLocalidad() {
-        return audLocalidad;
+    public String getMapLocalidad() {
+        return mapLocalidad;
     }
 
-    public void setAudLocalidad(String audLocalidad) {
-        this.audLocalidad = audLocalidad;
+    public void setMapLocalidad(String mapLocalidad) {
+        this.mapLocalidad = mapLocalidad;
     }
 
     public String getMapMedio() {
@@ -216,9 +215,9 @@ public class MapUbicacionRequest {
     }
 
     public String getLocalidadesSelected(){
-        if(Objects.isNull(audLocalidad)) return EMPTY;
+        if(Objects.isNull(mapLocalidad)) return EMPTY;
 
-        return buildFormatValuesSelected(audLocalidad);
+        return buildFormatValuesSelected(mapLocalidad);
     }
 
     public String getProvinciasSelected(){

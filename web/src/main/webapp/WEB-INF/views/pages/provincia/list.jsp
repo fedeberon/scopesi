@@ -17,7 +17,7 @@
                             <th>Descripcion</th>
                             <th>Evalua</th>
                             <th class="text-center">Editar</th>
-                            <th class="text-center">Estado Baja Logica</th>
+                            <th class="text-center">Baja/Alta Logica</th>
 
                             </thead>
 
@@ -31,13 +31,13 @@
                                     <td>${bo.evalua}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/provincia/update?id=${bo.id}'/>"/>
-                                        <img src="resources/assets/img/icons/edit2.png" alt="">
+                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/provincia/dropBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/assets/img/icons/delete.png" alt="">
+                                        <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/resources/assets/img/icons/delete.png" alt="">
                                         <a ${bo.bajaLogica == false ? 'class="d-none"' : ''} href="<c:url value='/provincia/upBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/assets/icons/arrowUP.png" alt="">
+                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
                                     </td>
                                 </tr>
 

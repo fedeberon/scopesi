@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Empresa</h4>
+                        <h4 class="card-title">Elemento</h4>
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -16,12 +16,13 @@
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>Panos</th>
-                            <th>IdMedio</th>
-                            <th>IdFormato</th>
+                            <th>Medio</th>
+                            <th>Formato</th>
                             <th>AcumulaDatos</th>
                             <th>Evalua</th>
                             <th>MetrosContacto</th>
                             <th>Coeficiente</th>
+                            <th>Baja Logica</th>
 
                             </thead>
 
@@ -38,6 +39,7 @@
                                 <td>${elemento.evalua}</td>
                                 <td>${elemento.metrosContacto}</td>
                                 <td>${elemento.coeficiente}</td>
+                                <td>${elemento.bajaLogica}</td>
                             </tr>
 
 

@@ -34,10 +34,10 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private MapProvinciaService mapProvinciaService;
 
-    private AudLocalidadService audLocalidadService;
+    private MapLocalidadService mapLocalidadService;
 
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, AudLocalidadService audLocalidadService) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, MapLocalidadService mapLocalidadService) {
         this.dao = dao;
         this.filterDao = filterDao;
         this.fileService = fileService;
@@ -46,7 +46,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         this.mapFormatoService = mapFormatoService;
         this.mapMedioService = mapMedioService;
         this.mapProvinciaService = mapProvinciaService;
-        this.audLocalidadService = audLocalidadService;
+        this.mapLocalidadService = mapLocalidadService;
     }
 
     @Override
@@ -106,8 +106,8 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         }
 
         if(Objects.nonNull(request.getIdLocalidad())){
-            AudLocalidad localidad = audLocalidadService.get(request.getIdLocalidad());
-            results.forEach(mapUbicacion -> mapUbicacion.setAudLocalidad(localidad));
+            MapLocalidad localidad = mapLocalidadService.get(request.getIdLocalidad());
+            results.forEach(mapUbicacion -> mapUbicacion.setMapLocalidad(localidad));
         }
 
 

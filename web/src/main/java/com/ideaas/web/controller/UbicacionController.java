@@ -41,7 +41,7 @@ public class UbicacionController {
 
     private MapMedioService mapMedioService;
 
-    private AudLocalidadService audLocalidadService;
+    private MapLocalidadService mapLocalidadService;
 
     private MapProvinciaService mapProvinciaService;
 
@@ -49,13 +49,13 @@ public class UbicacionController {
 
 
     @Autowired
-    public UbicacionController(MapUbicacionService mapUbicacionService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService) {
+    public UbicacionController(MapUbicacionService mapUbicacionService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapLocalidadService mapLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService) {
         this.mapUbicacionService = mapUbicacionService;
         this.mapEmpresaService = mapEmpresaService;
         this.mapElementoService = mapElementoService;
         this.mapFormatoService = mapFormatoService;
         this.mapMedioService = mapMedioService;
-        this.audLocalidadService = audLocalidadService;
+        this.mapLocalidadService = mapLocalidadService;
         this.mapProvinciaService = mapProvinciaService;
         this.mapBusService = mapBusService;
     }
@@ -136,8 +136,8 @@ public class UbicacionController {
     }
 
     @ModelAttribute("localidades")
-    public List<AudLocalidad> localidades(){
-        return audLocalidadService.findAll();
+    public List<MapLocalidad> localidades(){
+        return mapLocalidadService.findAll();
     }
 
     @ModelAttribute("provincias")

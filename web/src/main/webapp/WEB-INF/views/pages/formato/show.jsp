@@ -15,6 +15,7 @@
                             <thead>
                             <th>ID</th>
                             <th>Elemento</th>
+                            <th>Evalua</th>
                             </thead>
 
                             <tbody>
@@ -23,6 +24,7 @@
                             <tr>
                                 <td>${formato.id}</td>
                                 <td>${formato.descripcion}</td>
+                                <td>${formato.evalua}</td>
                             </tr>
 
 

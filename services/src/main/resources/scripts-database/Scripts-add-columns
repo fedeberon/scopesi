@@ -1,6 +1,9 @@
 alter table aud_empresas
 add bajaLogica boolean;
 
+alter table aud_localidades
+add bajaLogica boolean;
+
 alter table map_empresas
 add bajaLogica boolean;
 
@@ -16,7 +19,7 @@ add bajaLogica boolean;
 alter table map_provincias
 add bajaLogica boolean;
 
-alter table aud_localidades
+alter table map_localidades
 add bajaLogica boolean;
 
 alter table map_pois

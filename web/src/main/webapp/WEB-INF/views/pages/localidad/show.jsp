@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Localidades</h4>
+                        <h4 class="card-title">Localidad</h4>
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
@@ -16,6 +16,7 @@
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>Provincia</th>
+                            <th>Baja Logica</th>
                             </thead>
 
                             <tbody>
@@ -24,6 +25,7 @@
                                 <td>${localidad.id}</td>
                                 <td>${localidad.descripcion}</td>
                                 <td>${localidad.audProvincia.descripcion}</td>
+                                <td>${localidad.bajaLogica}</td>
                             </tr>
                             </tbody>
                         </table>

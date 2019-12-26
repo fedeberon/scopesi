@@ -1,15 +1,11 @@
 package com.ideaas.services.domain;
 
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ideaas.services.bean.Image;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -22,7 +18,6 @@ public class MapUbicacion {
     @GeneratedValue(generator = "MapUbicacionSeqGen")
     private Long id;
 
-    //deberia apuntar a MapEmpresa
     @ManyToOne
     @JoinColumn(name = "idEmpresa")
     private MapEmpresa mapEmpresa;
@@ -56,11 +51,9 @@ public class MapUbicacion {
     @JsonIgnore
     private MapProvincia mapProvincia;
 
-    //deberia apuntar a Maplocalidad
     @ManyToOne
     @JoinColumn(name = "idLocalidad")
-    @JsonIgnore
-    private AudLocalidad audLocalidad;
+    private MapLocalidad mapLocalidad;
 
     @Column(name = "Anunciante")
     private String anunciante;
@@ -226,12 +219,12 @@ public class MapUbicacion {
         this.mapProvincia = mapProvincia;
     }
 
-    public AudLocalidad getAudLocalidad() {
-        return audLocalidad;
+    public MapLocalidad getMapLocalidad() {
+        return mapLocalidad;
     }
 
-    public void setAudLocalidad(AudLocalidad audLocalidad) {
-        this.audLocalidad = audLocalidad;
+    public void setMapLocalidad(MapLocalidad mapLocalidad) {
+        this.mapLocalidad = mapLocalidad;
     }
 
     public String getAnunciante() {

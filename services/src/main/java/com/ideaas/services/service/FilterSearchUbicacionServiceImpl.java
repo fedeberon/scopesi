@@ -31,7 +31,7 @@ public class FilterSearchUbicacionServiceImpl implements Function<MapUbicacionRe
         clauses.put("mapElemento.descripcion", request.getMapElemento());
         clauses.put("mapProvincia.descripcion", request.getMapProvincia());
         clauses.put("mapFormato.descripcion", request.getMapFormato());
-        clauses.put("audLocalidad.descripcion", request.getAudLocalidad());
+        clauses.put("audLocalidad.descripcion", request.getMapLocalidad());
         clauses.put("mapMedio.descripcion", request.getMapMedio());
         List<MapUbicacion> ubicaciones = dao.filterSearchUbicacion(clauses);
 
@@ -47,8 +47,8 @@ public class FilterSearchUbicacionServiceImpl implements Function<MapUbicacionRe
         Set<MapFormato> formato = new HashSet<>();
         ubicaciones.forEach(line -> formato.add(line.getMapFormato()));
 
-        Set<AudLocalidad> localidad = new HashSet<>();
-        ubicaciones.forEach(line -> localidad.add(line.getAudLocalidad()));
+        Set<MapLocalidad> localidad = new HashSet<>();
+        ubicaciones.forEach(line -> localidad.add(line.getMapLocalidad()));
 
         Set<MapMedio> medios = new HashSet<>();
         ubicaciones.stream().filter(line -> medios.add(line.getMapMedio()));

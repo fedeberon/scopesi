@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Localidad</label>
-                                            <select class="form-control" id="street1_id" name="audLocalidad.id">
+                                            <select class="form-control" id="street1_id" name="mapLocalidad.id">
                                                 <c:forEach items="${localidades}" var="bo" varStatus="status">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>

@@ -16,11 +16,14 @@
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>Panos</th>
-                            <th>IdMedio</th>
-                                <th>MetrosContacto</th>
+                            <th>Medio</th>
+                            <th>Formato</th>
+                            <th>Acumula Datos</th>
+                            <th>Evalua</th>
+                            <th>MetrosContacto</th>
                             <th>Coeficiente</th>
                             <th class="text-center">Editar</th>
-                            <th class="text-center">Estado Baja Logica</th>
+                            <th class="text-center">Baja/Alta Logica</th>
                             </thead>
 
                             <tbody>
@@ -43,9 +46,9 @@
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/elemento/dropBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/assets/img/icons/delete.png" alt="">
+                                        <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/resources/assets/img/icons/delete.png" alt="">
                                         <a ${bo.bajaLogica == false ? 'class="d-none"' : ''} href="<c:url value='/elemento/upBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/assets/icons/arrowUP.png" alt="">
+                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
                                     </td>
                                 </tr>
 
