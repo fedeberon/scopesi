@@ -42,20 +42,12 @@
                                     <td>${ubicaciones.referencia}</td>
                                 </tr>
                                 <tr>
-                                    <th>Nro_Anuncio:</th>
-                                    <td>${ubicaciones.nroAnuncio}</td>
-                                </tr>
-                                <tr>
                                     <th>Provincia:</th>
                                     <td>${ubicaciones.mapProvincia.descripcion}</td>
                                 </tr>
                                 <tr>
                                     <th>Localidad:</th>
                                     <td>${ubicaciones.mapLocalidad.descripcion}</td>
-                                </tr>
-                                <tr>
-                                    <th>Anunciante:</th>
-                                    <td>${ubicaciones.anunciante}</td>
                                 </tr>
                                 <tr>
                                     <th>Cantidad:</th>
@@ -72,10 +64,6 @@
                                 <tr>
                                     <th>Medidas:</th>
                                     <td>${ubicaciones.medidas}</td>
-                                </tr>
-                                <tr>
-                                    <th>Metros cuadrados:</th>
-                                    <td>${ubicaciones.m2}</td>
                                 </tr>
                                 <tr>
                                     <th>Direccion normalizada:</th>
@@ -98,32 +86,12 @@
                                     <td>${ubicaciones.coeficiente}</td>
                                 </tr>
                                 <tr>
-                                    <th>Zona:</th>
-                                    <td>${ubicaciones.zona}</td>
-                                </tr>
-                                <tr>
-                                    <th>Saturacion:</th>
-                                    <td>${ubicaciones.saturacion}</td>
-                                </tr>
-                                <tr>
-                                    <th>Visibilidad:</th>
-                                    <td>${ubicaciones.visibilidad}</td>
-                                </tr>
-                                <tr>
-                                    <th>Circulacion peatonal:</th>
-                                    <td>${ubicaciones.circulacionPeatonal}</td>
-                                </tr>
-                                <tr>
-                                    <th>Circulacion vehicular:</th>
-                                    <td>${ubicaciones.circulacionVehicular}</td>
-                                </tr>
-                                <tr>
                                     <th>ID.Referencia:</th>
                                     <td>${ubicaciones.idReferencia}</td>
                                 </tr>
                                 <tr>
-                                    <th>ID.Bus:</th>
-                                    <td>${ubicaciones.mapBuses.id}</td>
+                                    <th>Bus:</th>
+                                    <td>${ubicaciones.mapBuses.linea}</td>
                                 </tr>
                                 <tr>
                                     <th>Baja logica:</th>

@@ -25,8 +25,6 @@ public class MapMedio {
     public MapMedio() {
     }
 
-
-
     public Long getId() {
         return id;
     }
@@ -42,6 +40,8 @@ public class MapMedio {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public Boolean getBajaLogica() { return bajaLogica; }
 
     public void setBajaLogica(Boolean bajaLogica) {
         this.bajaLogica = bajaLogica;

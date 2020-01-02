@@ -43,18 +43,21 @@ public class MapUbicacion {
     @Column(name = "Referencia")
     private String referencia;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Nro_Anuncio")
     private Long nroAnuncio;
 
     @ManyToOne
     @JoinColumn(name = "idProvincia")
-    @JsonIgnore
     private MapProvincia mapProvincia;
 
     @ManyToOne
     @JoinColumn(name = "idLocalidad")
     private MapLocalidad mapLocalidad;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Anunciante")
     private String anunciante;
 
@@ -70,9 +73,13 @@ public class MapUbicacion {
     @Column(name = "Medidas")
     private String medidas;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "M2")
     private String m2;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Direccion_Normalizada")
     private String direccionNormalizada;
 
@@ -88,18 +95,28 @@ public class MapUbicacion {
     @Column(name = "coeficiente")
     private BigDecimal coeficiente;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "zona")
     private Long zona;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Saturacion")
     private String saturacion;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "visibilidad")
     private Long visibilidad;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "circulacion_peatonal")
     private String circulacionPeatonal;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Circulacion_Vehicular")
     private String circulacionVehicular;
 

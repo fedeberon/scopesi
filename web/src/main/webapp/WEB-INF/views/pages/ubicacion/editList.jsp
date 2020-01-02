@@ -41,25 +41,16 @@
                                     <th>Direccion</th>
                                     <th>Nro.Agip</th>
                                     <th>Referencia</th>
-                                    <th>Nro.Anuncio</th>
                                     <th>Localidad</th>
                                     <th>Provincia</th>
-                                    <th>Anunciante</th>
                                     <th>Cantidad</th>
                                     <th>Transito</th>
                                     <th>Iluminacion</th>
                                     <th>Medidas</th>
-                                    <th>Metros Cuadrados</th>
-                                    <th>Direccion Normalizada</th>
                                     <th>Latitud</th>
                                     <th>Longitud</th>
                                     <th>Metros Contacto</th>
                                     <th>Coeficiente</th>
-                                    <th>Zona</th>
-                                    <th>Saturacion</th>
-                                    <th>Visibilidad</th>
-                                    <th>Circulacion Peatonal</th>
-                                    <th>Circulacion Vehicular</th>
                                     <th>Id.Referencia</th>
                                     <th>Buses</th>
                                     <th>Baja Logica</th>
@@ -85,24 +76,16 @@
                                         <td>${bo.nroAnuncio}</td>
                                         <td>${bo.mapLocalidad.descripcion}</td>
                                         <td>${bo.mapProvincia.descripcion}</td>
-                                        <td>${bo.anunciante}</td>
                                         <td>${bo.cantidad}</td>
                                         <td>${bo.transito}</td>
                                         <td>${bo.iluminacion}</td>
                                         <td>${bo.medidas}</td>
-                                        <td>${bo.m2}</td>
-                                        <td>${bo.direccionNormalizada}</td>
                                         <td>${bo.latitud}</td>
                                         <td>${bo.longitud}</td>
                                         <td>${bo.metrosContacto}</td>
                                         <td>${bo.coeficiente}</td>
-                                        <td>${bo.zona}</td>
-                                        <td>${bo.saturacion}</td>
-                                        <td>${bo.visibilidad}</td>
-                                        <td>${bo.circulacionPeatonal}</td>
-                                        <td>${bo.circulacionVehicular}</td>
                                         <td>${bo.idReferencia}</td>
-                                        <td> - </td>
+                                        <td>${bo.mapBuses.linea}</td>
                                         <td>${bo.bajaLogica}</td>
                                         <td>${bo.fechaTransf}</td>
                                         <td>${bo.fechaAlta}</td>
