@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
@@ -117,4 +118,8 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         return results;
     }
 
+    @Transactional
+    public void saveLatLong(MapUbicacionRequest request) {
+        dao.saveLatLong(request.getId(), request.getLatitud(), request.getLongitud());
+    }
 }

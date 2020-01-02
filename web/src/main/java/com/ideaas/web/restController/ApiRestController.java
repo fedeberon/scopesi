@@ -3,7 +3,11 @@ package com.ideaas.web.restController;
 import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
 import com.ideaas.services.service.interfaces.MapUbicacionService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Map;
 import java.util.function.Function;
 
@@ -24,8 +28,8 @@ public class ApiRestController {
     }
 
     @PostMapping("api/filter")
-    public @ResponseBody
-    Map filter(@RequestBody MapUbicacionRequest request){
+    @ResponseBody
+    public Map filter(@RequestBody MapUbicacionRequest request){
         return service.apply(request);
     }
 
@@ -33,5 +37,15 @@ public class ApiRestController {
     public @ResponseBody MapUbicacion get(@PathVariable Long id){
         return mapUbicacionService.get(id);
     }
+
+
+
+    @PutMapping("api/ubicacion")
+    public ResponseEntity<MapUbicacion> update(@RequestBody MapUbicacionRequest request){
+        mapUbicacionService.saveLatLong(request);
+
+        return new ResponseEntity(new HttpHeaders(), HttpStatus.OK);
+    }
+
 
 }
