@@ -301,29 +301,29 @@ demo = {
                 infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(' + id + ')" class="mapaboton" >Ver Detalles</button>');
 
 
-
                 infowindow.open(map,this);
             });
 
             marker.addListener('dragend', function(event){
 
+                $("#mi-modal").modal('show');
+
                 modalConfirm(function(confirm){
                     if(confirm){
                         //Acciones si el usuario confirma
-                        $("#result").html("CONFIRMADO");
                         handleEventToUpdate(event, marker);
-                    }else{
+
+                    } else {
                         //Acciones si el usuario no confirma
-                        $("#result").html("NO CONFIRMADO");
                     }
                 });
 
 
             });
 
-            marker.addListener('click', function() {
+/*            marker.addListener('click', function() {
                 infowindow.open(map, marker);
-            });
+            });*/
 
             markers.push(marker);
             bounds.extend(latLong);
@@ -457,15 +457,15 @@ function handleEventToUpdate(event, marker){
         contentType:"application/json; charset=utf-8",
         dataType:"json"
     });
+
+
+    $.notify({
+        title: '<strong>Guardado!</strong>',
+        message: 'Bootstrap Notify uses Bootstrap Info Alert styling as its default setting.'
+    });
 }
 
-
 var modalConfirm = function(callback){
-
-    $(".marker").on("click", function(){
-        console.log('en funcion');
-        $("#mi-modal").modal('show');
-    });
 
     $("#modal-btn-si").on("click", function(){
         callback(true);

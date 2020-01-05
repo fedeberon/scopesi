@@ -11,13 +11,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 
 @Service
-public class MapUbicacionServiceImpl implements MapUbicacionService{
+public class MapUbicacionServiceImpl implements MapUbicacionService {
 
     private MapUbicacionDao dao;
 
@@ -37,8 +36,12 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private AudLocalidadService audLocalidadService;
 
+    private GoogleMapsService googleMapsService;
+
+
+
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, AudLocalidadService audLocalidadService) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, AudLocalidadService audLocalidadService, GoogleMapsService googleMapsService) {
         this.dao = dao;
         this.filterDao = filterDao;
         this.fileService = fileService;
@@ -48,6 +51,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         this.mapMedioService = mapMedioService;
         this.mapProvinciaService = mapProvinciaService;
         this.audLocalidadService = audLocalidadService;
+        this.googleMapsService = googleMapsService;
     }
 
     @Override
@@ -111,15 +115,17 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
             results.forEach(mapUbicacion -> mapUbicacion.setAudLocalidad(localidad));
         }
 
-
-
         dao.saveAll(results);
 
         return results;
     }
 
-    @Transactional
     public void saveLatLong(MapUbicacionRequest request) {
-        dao.saveLatLong(request.getId(), request.getLatitud(), request.getLongitud());
+        MapUbicacion ubicacion = this.get(request.getId());
+        String address =  googleMapsService.locate(request.getLatitud(), request.getLongitud());
+        ubicacion.setLatitud(request.getLatitud());
+        ubicacion.setLongitud(request.getLongitud());
+        ubicacion.setDireccion(address);
+        save(ubicacion);
     }
 }

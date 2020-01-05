@@ -221,4 +221,17 @@
 </div>
 
 
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Desea modificar la geolocalizaci&oacute;n</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 
