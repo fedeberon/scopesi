@@ -1,5 +1,6 @@
 package com.ideaas.services.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,7 +24,9 @@ public class MapElemento {
     @Column(name = "panos")
     private Long panos;
 
-    @ManyToOne
+    @Transient
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "idMedio")
     private MapMedio mapMedio;
 
