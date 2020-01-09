@@ -1,5 +1,6 @@
-package com.ideaas.services.exception;
+package com.ideaas.api.error;
 
+import com.ideaas.services.bean.ApiError;
 import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,18 +36,11 @@ public class GlobalExceptionHandler  extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Object> entityNotFoundException(Exception ex, WebRequest request) {
+    public ResponseEntity<ApiError> entityNotFoundException(Exception ex, WebRequest request) {
         LOGGER.error("Handled Error by geoplanning application. ", ex);
-        String bodyOfResponse = "[ERROR-GEOPLANING] from $REQUEST: ".concat(request.toString()).concat("\n $EXECPTION:" .concat(ex.toString()));
-        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
-    }
+        ApiError error = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "[ERROR-GEOPLANING] *Database error data", ex);
 
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity customHandleException(Exception ex, WebRequest request) {
-        LOGGER.error("[ERROR-GEOPLANING] Not handled Exception. ", ex);
-
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
