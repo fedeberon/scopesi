@@ -15,13 +15,13 @@
     <ul class="nav">
         <li>
             <a class="nav-link" href="/dashboard/panel">
-                <i class="nc-icon nc-chart-pie-35"></i>
+                <i class="fas fa-chart-line"></i>
                 <p class="wordsMenu">Dashboard</p>
             </a>
         </li>
         <li>
             <a class="nav-link" href="/user/list">
-                <i class="nc-icon nc-circle-09"></i>
+                <i class="fas fa-users"></i>
                 <p class="wordsMenu">Usuarios</p>
             </a>
         </li>
@@ -39,13 +39,13 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="/maps/show">
-                <i class="nc-icon nc-pin-3"></i>
+                <i class="fas fa-globe-americas"></i>
                 <p class="wordsMenu load-data">Mapas</p>
             </a>
         </li>
         <li>
             <a class="nav-link" href="/tablas">
-                <i class="nc-icon nc-single-copy-04"></i>
+                <i class="fas fa-list"></i>
                 <p class="wordsMenu">Tablas</p>
             </a>
         </li>

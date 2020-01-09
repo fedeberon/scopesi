@@ -86,7 +86,7 @@
 <script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.print.min.js'/>"></script>
 <script src="<c:url value='/resources/DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js'/>"></script>
 <script src="<c:url value='/resources/assets/js/filemanager.js'/>"></script>
-
+<script src="https://kit.fontawesome.com/d2e2e9031b.js" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
