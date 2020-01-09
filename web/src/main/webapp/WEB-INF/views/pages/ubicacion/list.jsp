@@ -333,7 +333,7 @@
 
                         <div class="form-group col-6">
                             <label for="maxResults">Cantidad resultados</label>
-                            <select name="maxResults">
+                            <select name="request.maxResults">
                                 <option value="10" selected>10</option>
                                 <option value="20">20</option>
                                 <option value="50">50</option>
