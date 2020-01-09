@@ -321,16 +321,21 @@ demo = {
 
             });
 
-/*            marker.addListener('click', function() {
-                infowindow.open(map, marker);
-            });*/
-
             markers.push(marker);
             bounds.extend(latLong);
 
         });
 
         map.fitBounds(bounds);
+
+        var defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(-33.8902, 151.1759),
+            new google.maps.LatLng(-33.8474, 151.2631));
+
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
     },
 
     showNotification: function(from, align) {
@@ -455,14 +460,26 @@ function handleEventToUpdate(event, marker){
         type:"PUT",
         data: JSON.stringify(dataToSend),
         contentType:"application/json; charset=utf-8",
-        dataType:"json"
+        dataType:"json",
+        success: function(data) {
+            $.notify({
+                title: '<strong>Geolocalizacion Guardada !</strong>',
+                message: 'La nueva direccion del punto seleccionado es ' + data.direccion + '.'
+            });
+
+            $('#'+data.id+'-lat').html(data.latitud);
+            $('#'+data.id+'-lng').html(data.longitud);
+            $('#'+data.id+'-address').html(data.direccion);
+
+        },
+        error: function(data) {
+            $.notify({
+                title: '<strong>hubo un problema !</strong>',
+                message: 'Se produjo un error al intentar guardar la nueva ubicacion.'
+            });
+        },
     });
 
-
-    $.notify({
-        title: '<strong>Guardado!</strong>',
-        message: 'Bootstrap Notify uses Bootstrap Info Alert styling as its default setting.'
-    });
 }
 
 var modalConfirm = function(callback){

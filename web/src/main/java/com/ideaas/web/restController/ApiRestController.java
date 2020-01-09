@@ -44,7 +44,9 @@ public class ApiRestController {
     public ResponseEntity<MapUbicacion> update(@RequestBody MapUbicacionRequest request){
         mapUbicacionService.saveLatLong(request);
 
-        return new ResponseEntity(new HttpHeaders(), HttpStatus.OK);
+        MapUbicacion ubicacion = mapUbicacionService.get(request.getId());
+
+        return new ResponseEntity(ubicacion, HttpStatus.OK);
     }
 
 
