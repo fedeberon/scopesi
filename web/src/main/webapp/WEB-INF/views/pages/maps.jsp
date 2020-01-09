@@ -45,6 +45,8 @@
 
 <div class="map-container">
 
+    <%--<input id="pac-input"/>--%>
+
     <div id="map"></div>
 
     <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
@@ -64,8 +66,8 @@
 
 <div class="table-ubicaciones" id="table-ubicaciones">
 
-    <img id="arrowUp" src="resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
-    <img id="arrowDown" src="resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
+    <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
+    <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
 
     <div class="container-fluid">
         <div class="row">
@@ -91,7 +93,7 @@
                         <tr>
                             <td>${bo.id}</td>
                             <td>${bo.name}</td>
-                            <td>${bo.address}</td>
+                            <td id="${bo.id}-address">${bo.address}</td>
                             <td>${bo.description}</td>
                             <td id="${bo.id}-lat">${bo.lat}</td>
                             <td id="${bo.id}-lon">${bo.lon}</td>
@@ -165,7 +167,6 @@
 </li>
 
 
-
 <table class="table table-bordered table-data-ubicaciones hidden">
     <thead>
         <tr>
@@ -221,4 +222,17 @@
 </div>
 
 
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Desea modificar la geolocalizaci&oacute;n</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
 

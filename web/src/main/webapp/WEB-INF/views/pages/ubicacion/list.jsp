@@ -366,7 +366,6 @@
     </div>
 </div>
 
-
 <li class="nav-item more-options" style="display: none">
     <a href="#" class="nav-link">
         <i id="icon-options" class="nc-icon nc-simple-add"></i>

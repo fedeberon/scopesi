@@ -1,10 +1,13 @@
 package com.ideaas.services.request;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class MapUbicacionRequest {
+
+    private Long id;
 
     private Long idEmpresa;
 
@@ -38,9 +41,21 @@ public class MapUbicacionRequest {
 
     private List<Long> idsSelected;
 
+    private BigDecimal latitud;
+
+    private BigDecimal longitud;
+
     private Integer maxResults = 10;
 
     private Integer page = 0;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Boolean getLangLongEmpty() {
         return langLongEmpty;
@@ -184,6 +199,22 @@ public class MapUbicacionRequest {
 
     public void setIdsSelected(List<Long> idsSelected) {
         this.idsSelected = idsSelected;
+    }
+
+    public BigDecimal getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(BigDecimal longitud) {
+        this.longitud = longitud;
+    }
+
+    public BigDecimal getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(BigDecimal latitud) {
+        this.latitud = latitud;
     }
 
     private static String EMPTY = "";
