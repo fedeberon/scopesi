@@ -24,9 +24,7 @@ public class MapElemento {
     @Column(name = "panos")
     private Long panos;
 
-    @Transient
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name = "idMedio")
     private MapMedio mapMedio;
 

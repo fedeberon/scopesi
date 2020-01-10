@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -43,7 +44,7 @@ public class MapElementoServiceImpl implements MapElementoService {
     }
 
     @Override
-    public List<MapElemento> findAll() {
+    public List<MapElemento> findAll() throws EntityNotFoundException {
         Iterable<MapElemento> iterator = dao.findAll();
 
         return  StreamSupport
