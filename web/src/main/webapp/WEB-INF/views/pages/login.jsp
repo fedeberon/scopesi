@@ -71,5 +71,12 @@
                  </div>
              </div>
          </div>
+
+        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+            <div class="error">
+                <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+            </div>
+        </c:if>
+
     </div>
 </div>

@@ -9,4 +9,6 @@ public interface UsuarioDao extends PagingAndSortingRepository<Usuario, Long> {
 
     Usuario findByUsername(String username);
 
+    Usuario findByEstadoAndUsernameIs(String estado ,String username);
+
 }
