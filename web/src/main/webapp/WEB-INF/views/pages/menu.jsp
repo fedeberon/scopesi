@@ -13,37 +13,37 @@
         </a>
     </div>
     <ul class="nav">
-        <li>
+        <li id="dashboard">
             <a class="nav-link" href="/dashboard/panel">
                 <i class="fas fa-chart-line"></i>
                 <p class="wordsMenu">Dashboard</p>
             </a>
         </li>
-        <li>
-            <a class="nav-link" href="/user/list">
+        <li id="users">
+            <a  class="nav-link" href="/user/list">
                 <i class="fas fa-users"></i>
                 <p class="wordsMenu">Usuarios</p>
             </a>
         </li>
-        <li>
+        <li id="auditorias">
             <a class="nav-link" href="./table.html">
                 <i class="nc-icon nc-notes"></i>
                 <p class="wordsMenu">Auditorias</p>
             </a>
         </li>
-        <li>
+        <li id="ubicacion-list">
             <a class="nav-link" href="/ubicacion/list">
                 <i class="nc-icon nc-square-pin"></i>
                 <p class="wordsMenu load-data">Ubicaciones</p>
             </a>
         </li>
-        <li class="nav-item active">
+        <li id="maps-show" class="nav-item">
             <a class="nav-link" href="/maps/show">
                 <i class="fas fa-globe-americas"></i>
                 <p class="wordsMenu load-data">Mapas</p>
             </a>
         </li>
-        <li>
+        <li id="tablas">
             <a class="nav-link" href="/tablas">
                 <i class="fas fa-list"></i>
                 <p class="wordsMenu">Tablas</p>

@@ -278,8 +278,8 @@ demo = {
         $('#table-markers tbody>tr').each(function () {
             var id = $(this).find("td").eq(0).html();
             var title = $(this).find("td").eq(1).html();
-            var lat = $(this).find("td").eq(4).html();
-            var lon = $(this).find("td").eq(5).html();
+            var lat = $(this).find("td").eq(6).html();
+            var lon = $(this).find("td").eq(7).html();
             var latLong = new google.maps.LatLng(lat, lon);
 
             var marker = new google.maps.Marker({
@@ -464,7 +464,7 @@ function handleEventToUpdate(event, marker){
         success: function(data) {
             $.notify({
                 title: '<strong>Geolocalizacion Guardada !</strong>',
-                message: 'La nueva direccion del punto seleccionado es ' + data.direccion + '.'
+                message: 'La nueva posicion del punto seleccionado es lat:' + data.latitud + '. , lng: .' + data.longitud
             });
 
             $('#'+data.id+'-lat').html(data.latitud);
