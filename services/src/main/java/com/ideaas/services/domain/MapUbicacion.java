@@ -124,8 +124,7 @@ public class MapUbicacion {
     private String idReferencia;
 
     //Problemas con id=0
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "IdMapBuses")
     @JsonIgnore
     private MapBus mapBuses;
