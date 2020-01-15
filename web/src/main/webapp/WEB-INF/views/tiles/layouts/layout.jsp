@@ -411,6 +411,7 @@
         var text = $('#span-close-option').html();
 
         if(text === '&nbsp;Ocultar Menu'){
+            $('.container').css('max-width', '100%');
             $('#icon-close-menu').removeClass('nc-stre-left').addClass('nc-stre-right');
             $('#span-close-option').html('&nbsp;Mostrar Menu');
         }

@@ -38,10 +38,8 @@ public class MapUbicacionServiceImpl implements MapUbicacionService {
 
     private GoogleMapsService googleMapsService;
 
-
-
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, AudLocalidadService audLocalidadService, GoogleMapsService googleMapsService) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, MapLocalidadService mapLocalidadService, GoogleMapsService googleMapsService) {
         this.dao = dao;
         this.filterDao = filterDao;
         this.fileService = fileService;
@@ -51,6 +49,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService {
         this.mapMedioService = mapMedioService;
         this.mapProvinciaService = mapProvinciaService;
         this.mapLocalidadService = mapLocalidadService;
+        this.googleMapsService = googleMapsService;
     }
 
     @Override
@@ -124,7 +123,6 @@ public class MapUbicacionServiceImpl implements MapUbicacionService {
         String address =  googleMapsService.locate(request.getLatitud(), request.getLongitud());
         ubicacion.setLatitud(request.getLatitud());
         ubicacion.setLongitud(request.getLongitud());
-        ubicacion.setDireccion(address);
         save(ubicacion);
     }
 }

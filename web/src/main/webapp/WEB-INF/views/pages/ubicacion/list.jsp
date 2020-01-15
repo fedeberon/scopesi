@@ -11,13 +11,12 @@
         display: none;
     }
 
-    /*.modal-dialog.modal-lg {*/
-    /*    margin-top: 20% !important;*/
-    /*}*/
-
-
-
 </style>
+
+<script>
+    var element = document.getElementById("ubicacion-list");
+    element.classList.add("active");
+</script>
 
 <div class="content">
     <div class="container-fluid">
@@ -115,8 +114,14 @@
                                     </td>
                                     <td>${bo.nroAgip}</td>
                                     <td>${bo.referencia}</td>
-                                    <td>${bo.mapLocalidad.descripcion}</td>
-                                    <td>${bo.mapProvincia.descripcion}</td>
+                                    <td>
+                                            ${bo.mapLocalidad.descripcion}
+                                                <input type="hidden" value="${bo.mapLocalidad.descripcion}" name="list[${status.index}].localidad"/>
+                                    </td>
+                                    <td>
+                                            ${bo.mapProvincia.descripcion}
+                                                <input type="hidden" value="${bo.mapProvincia.descripcion}" name="list[${status.index}].provincia"/>
+                                    </td>
                                     <td>${bo.cantidad}</td>
                                     <td>${bo.transito}</td>
                                     <td>${bo.iluminacion}</td>
@@ -124,7 +129,6 @@
                                     <td>
                                             ${bo.latitud}
                                                 <input type="hidden" value="${bo.latitud}" name="list[${status.index}].lat"/>
-
                                     </td>
                                     <td>
                                             ${bo.longitud}

@@ -17,6 +17,9 @@ public class MyObject {
     private String name;
     private String description;
     private String address;
+    private String provincia;
+    private String localidad;
+
 
     public String getDescription() {
         return description;
@@ -72,5 +75,21 @@ public class MyObject {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
     }
 }

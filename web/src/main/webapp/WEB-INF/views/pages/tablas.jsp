@@ -9,13 +9,18 @@
     -moz-box-shadow: 3px 0px 17px -8px rgba(0,0,0,0.75);
     box-shadow: 3px 0px 17px -8px rgba(0,0,0,0.75);
 }
-    .border{
-
-        border-color: #c3b9b9!important;
-    }
-
+.border{
+    border-color: #c3b9b9!important;
+}
 
 </style>
+
+
+<script>
+    var element = document.getElementById("tablas");
+    element.classList.add("active");
+</script>
+
 
 <div class="content">
     <div class="container-fluid">
