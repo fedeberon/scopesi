@@ -28,6 +28,8 @@
 
                             </tbody>
                         </table>
+                        <a href="list" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Volver</a>
+
                     </div>
                 </div>
             </div>

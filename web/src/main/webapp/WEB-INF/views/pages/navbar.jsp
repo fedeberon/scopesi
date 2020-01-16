@@ -31,7 +31,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link"> 
                         <i class="nc-icon nc-zoom-split"></i>
                         <span class="d-lg-block" data-toggle="modal" data-target="#searchModal">&nbsp;Buscar</span>
                     </a>
@@ -40,17 +40,15 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <span class="no-icon">Cuenta</span>
+                        <span class="no-icon"></span>
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="no-icon">
-
                             <sec:authorize access="isAuthenticated()">
                                 <sec:authentication property="name"/>
                             </sec:authorize>
-
                         </span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -62,7 +60,7 @@
                         <a class="dropdown-item" href="#">Soporte tecnico</a>
                     </div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ml-5">
                     <a class="nav-link" href="/logout">
                         <span class="no-icon">Salir</span>
                     </a>

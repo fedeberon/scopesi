@@ -33,6 +33,9 @@
 
                         <a href="<c:url value='/poiEntidad/updateBajaLogica?id=${poiEntidades.id}'/>"
                            class="btn btn-primary"><i class="nc-icon nc-simple-remove"></i>&nbsp;Baja Logica</a>
+
+                        <a href="list" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Volver</a>
+
                     </div>
                 </div>
             </div>

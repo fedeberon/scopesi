@@ -80,32 +80,32 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
     public List<MapUbicacion> saveList(MapUbicacionRequest request) {
         List<MapUbicacion> results = filterDao.find(request);
 
-        if(Objects.nonNull(request.getIdEmpresa())){
+        if(Objects.nonNull(request.getIdEmpresa()) && !request.getIdEmpresa().equals(-1)){
             AudEmpresa empresa = audEmpresaService.get(request.getIdEmpresa());
             results.forEach(mapUbicacion -> mapUbicacion.setAudEmpresa(empresa));
         }
 
-        if(Objects.nonNull(request.getIdElemento())){
+        if(Objects.nonNull(request.getIdElemento()) && !request.getIdElemento().equals(-1)){
             MapElemento elemento = mapElementoService.get(request.getIdElemento());
             results.forEach(mapUbicacion -> mapUbicacion.setMapElemento(elemento));
         }
 
-        if(Objects.nonNull(request.getIdFormato())){
+        if(Objects.nonNull(request.getIdFormato()) && !request.getIdFormato().equals(-1)){
             MapFormato formato = mapFormatoService.get(request.getIdFormato());
             results.forEach(mapUbicacion -> mapUbicacion.setMapFormato(formato));
         }
 
-        if(Objects.nonNull(request.getIdMedio())){
+        if(Objects.nonNull(request.getIdMedio()) && !request.getIdMedio().equals(-1)){
             MapMedio medio = mapMedioService.get(request.getIdMedio());
             results.forEach(mapUbicacion -> mapUbicacion.setMapMedio(medio));
         }
 
-        if(Objects.nonNull(request.getMapProvincia())){
+        if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().equals(-1)){
             MapProvincia provincia = mapProvinciaService.get(request.getIdProvincia());
             results.forEach(mapUbicacion -> mapUbicacion.setMapProvincia(provincia));
         }
 
-        if(Objects.nonNull(request.getIdLocalidad())){
+        if(Objects.nonNull(request.getIdLocalidad()) && !request.getIdLocalidad().equals(-1)){
             AudLocalidad localidad = audLocalidadService.get(request.getIdLocalidad());
             results.forEach(mapUbicacion -> mapUbicacion.setAudLocalidad(localidad));
         }

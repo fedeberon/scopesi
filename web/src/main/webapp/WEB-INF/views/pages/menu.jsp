@@ -3,8 +3,11 @@
         font-style: italic;
         font-size: 18px;
     }
-
+    .dropdown-menu{
+        display: none;
+    }
 </style>
+
 <div class="sidebar-wrapper collapse show" id="collapseExample">
 
     <div class="logo">
@@ -31,23 +34,19 @@
                 <p class="wordsMenu">Auditorias</p>
             </a>
         </li>
-        <li>
-            <a class="nav-link" href="/ubicacion/list">
-                <i class="nc-icon nc-square-pin"></i>
-                <p class="wordsMenu load-data">Ubicaciones</p>
-            </a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="/maps/show">
-                <i class="nc-icon nc-pin-3"></i>
-                <p class="wordsMenu load-data">Mapas</p>
-            </a>
-        </li>
-        <li>
-            <a class="nav-link" href="/tablas">
+
+        <li class="dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="nc-icon nc-single-copy-04"></i>
-                <p class="wordsMenu">Tablas</p>
+                <p class="wordsMenu">Geoplaning</p>
             </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                <a class="dropdown-item" href="/ubicacion/list">Ubicaciones</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/maps/show">Mapas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/tablas">Tablas</a>
+            </div>
         </li>
 
     </ul>
