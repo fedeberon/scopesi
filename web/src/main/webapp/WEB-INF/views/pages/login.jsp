@@ -72,4 +72,11 @@
              </div>
          </div>
     </div>
+    <div class="pt-2" style="text-align: center; color: red;">
+        <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+            <div class="error">
+                <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+            </div>
+        </c:if>
+    </div>
 </div>

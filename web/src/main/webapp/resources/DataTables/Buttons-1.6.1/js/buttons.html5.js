@@ -1392,7 +1392,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 		if ( info.messageTop ) {
 			doc.content.unshift( {
 				text: info.messageTop,
-				style: 'message',
+				style: 'aaaaaa.properties',
 				margin: [ 0, 0, 0, 12 ]
 			} );
 		}
@@ -1400,7 +1400,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 		if ( info.messageBottom ) {
 			doc.content.push( {
 				text: info.messageBottom,
-				style: 'message',
+				style: 'aaaaaa.properties',
 				margin: [ 0, 0, 0, 12 ]
 			} );
 		}

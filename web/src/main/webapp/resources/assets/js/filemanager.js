@@ -31,7 +31,7 @@ function uploadSingleFile(file) {
             singleFileUploadSuccess.style.display = "block";
         } else {
             singleFileUploadSuccess.style.display = "none";
-            singleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
+            singleFileUploadError.innerHTML = (response && response.aaaaaa) || "Some Error Occurred";
         }
 
     }
@@ -64,7 +64,7 @@ function uploadMultipleFiles(files) {
             multipleFileUploadSuccess.style.display = "block";
         } else {
             multipleFileUploadSuccess.style.display = "none";
-            multipleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
+            multipleFileUploadError.innerHTML = (response && response.aaaaaa) || "Some Error Occurred";
         }
     };
 
