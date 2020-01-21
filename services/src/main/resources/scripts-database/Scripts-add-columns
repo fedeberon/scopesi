@@ -31,3 +31,5 @@ add bajaLogica boolean;
 alter table map_pois_entidad
 add bajaLogica boolean;
 
+alter table usuarios
+add fechaExpiracion datetime;

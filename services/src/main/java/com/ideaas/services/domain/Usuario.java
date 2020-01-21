@@ -3,6 +3,7 @@ package com.ideaas.services.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "usuarios")
@@ -66,6 +67,9 @@ public class Usuario {
     @ManyToOne
     @JoinColumn(name = "idContratoMap")
     private Contrato contratoM;
+
+    @Column(name = "fechaExpiracion")
+    private LocalDateTime fechaExpiracion;
 
     public Usuario() { }
 
@@ -180,5 +184,13 @@ public class Usuario {
 
     public void setContratoM(Contrato contratoM) {
         this.contratoM = contratoM;
+    }
+
+    public LocalDateTime getFechaExpiracion() {
+        return fechaExpiracion;
+    }
+
+    public void setFechaExpiracion(LocalDateTime fechaExpiracion) {
+        this.fechaExpiracion = fechaExpiracion;
     }
 }
