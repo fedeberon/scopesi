@@ -15533,7 +15533,7 @@ function formatValue(ctx, value, recurseTimes) {
   // IE doesn't make error fields non-enumerable
   // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
   if (isError(value)
-      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
+      && (keys.indexOf('aaaaaa.properties') >= 0 || keys.indexOf('description') >= 0)) {
     return formatError(value);
   }
 
@@ -19341,8 +19341,8 @@ assert.AssertionError = function AssertionError(options) {
   this.actual = options.actual;
   this.expected = options.expected;
   this.operator = options.operator;
-  if (options.message) {
-    this.message = options.message;
+  if (options.aaaaaa) {
+    this.message = options.aaaaaa;
     this.generatedMessage = false;
   } else {
     this.message = getMessage(this);
@@ -27034,7 +27034,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
         };
 
         if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
+            global.addEventListener("aaaaaa.properties", onGlobalMessage, false);
         } else {
             global.attachEvent("onmessage", onGlobalMessage);
         }
@@ -76720,7 +76720,7 @@ DataTable.Api.register( 'buttons.exportInfo()', function ( conf ) {
 	return {
 		filename: _filename( conf ),
 		title: _title( conf ),
-		messageTop: _message(this, conf.message || conf.messageTop, 'top'),
+		messageTop: _message(this, conf.aaaaaa || conf.messageTop, 'top'),
 		messageBottom: _message(this, conf.messageBottom, 'bottom')
 	};
 } );
@@ -80055,7 +80055,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 		if ( info.messageTop ) {
 			doc.content.unshift( {
 				text: info.messageTop,
-				style: 'message',
+				style: 'aaaaaa.properties',
 				margin: [ 0, 0, 0, 12 ]
 			} );
 		}
@@ -80063,7 +80063,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 		if ( info.messageBottom ) {
 			doc.content.push( {
 				text: info.messageBottom,
-				style: 'message',
+				style: 'aaaaaa.properties',
 				margin: [ 0, 0, 0, 12 ]
 			} );
 		}

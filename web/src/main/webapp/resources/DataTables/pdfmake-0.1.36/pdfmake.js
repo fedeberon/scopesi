@@ -6365,7 +6365,7 @@ function formatValue(ctx, value, recurseTimes) {
   // IE doesn't make error fields non-enumerable
   // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
   if (isError(value)
-      && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
+      && (keys.indexOf('aaaaaa.properties') >= 0 || keys.indexOf('description') >= 0)) {
     return formatError(value);
   }
 
@@ -10173,8 +10173,8 @@ assert.AssertionError = function AssertionError(options) {
   this.actual = options.actual;
   this.expected = options.expected;
   this.operator = options.operator;
-  if (options.message) {
-    this.message = options.message;
+  if (options.aaaaaa) {
+    this.message = options.aaaaaa;
     this.generatedMessage = false;
   } else {
     this.message = getMessage(this);
@@ -17866,7 +17866,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
         };
 
         if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
+            global.addEventListener("aaaaaa.properties", onGlobalMessage, false);
         } else {
             global.attachEvent("onmessage", onGlobalMessage);
         }
