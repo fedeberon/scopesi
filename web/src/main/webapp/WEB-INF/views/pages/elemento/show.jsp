@@ -44,7 +44,12 @@
 
 
                             </tbody>
+
+
+
                         </table>
+                        <a href="list" class="btn btn-primary"><i class=""></i>Volver a la lista</a>
+
                     </div>
                 </div>
             </div>

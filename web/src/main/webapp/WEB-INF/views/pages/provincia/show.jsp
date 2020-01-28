@@ -32,6 +32,8 @@
 
                             </tbody>
                         </table>
+                        <a href="list" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>Volver a la lista</a>
+
                     </div>
                 </div>
             </div>

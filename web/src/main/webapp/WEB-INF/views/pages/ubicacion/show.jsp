@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="py-2" style="text-align: center;">
-                        <a class="btn btn-primary" href="list">&nbsp;Volver</a>
+                        <a class="btn btn-primary" href="list">Volver a la lista</a>
                     </div>
                 </div>
             </div>

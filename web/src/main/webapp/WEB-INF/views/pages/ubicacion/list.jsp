@@ -167,15 +167,17 @@
                                         <div class="form-group col-6">
                                             <label for="idEmpresa">Empresas</label>
                                             <select name="request.idEmpresa" class="form-control" title="Seleccione una empresa">
+                                                <option  value="-1">Seleccione una Empresa</option>
                                                 <c:forEach items="${empresas}" var="bo">
-                                                    <option value="${bo.id}">${bo.descripcion}</option>
+                                                    <option  value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
 
                                         <div class="form-group col-6">
                                             <label for="idElemento">Elementos</label>
-                                            <select name="request.idElemento" class="form-control" title="Seleccione un Elemento">
+                                            <select name="request.idElemento" class="form-control">
+                                                <option  value="-1">Seleccione un Elemento</option>
                                                 <c:forEach items="${elementos}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -185,6 +187,7 @@
                                         <div class="form-group col-6">
                                             <label for="idFormato">Formatos</label>
                                             <select name="request.idFormato" items="${formatos}" class="form-control" title="Seleccione un formato">
+                                                <option  value="-1">Seleccione un Formato</option>
                                                 <c:forEach items="${formatos}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -194,6 +197,7 @@
                                         <div class="form-group col-6">
                                             <label for="idMedio">Medios</label>
                                             <select name="request.idMedio" class="form-control" title="Seleccione un Medio   ">
+                                                <option  value="-1">Seleccione una Medio</option>
                                                 <c:forEach items="${medios}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -201,8 +205,9 @@
                                         </div>
 
                                         <div class="form-group col-6">
-                                            <label for="idLocalidad">Localidadades</label>
+                                            <label for="idLocalidad">Localidades</label>
                                             <select name="request.idLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
+                                                <option  value="-1">Seleccione una Localidad</option>
                                                 <c:forEach items="${localidades}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -212,6 +217,7 @@
                                         <div class="form-group col-6">
                                             <label for="idProvincia">Provincias</label>
                                             <select name="request.idProvincia" items="${provincias}" class="form-control" title="Seleccione una Provincia">
+                                                <option  value="-1">Seleccione una Provincia</option>
                                                 <c:forEach items="${provincias}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>

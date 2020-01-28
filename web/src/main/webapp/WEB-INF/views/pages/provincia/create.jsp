@@ -19,7 +19,34 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-info btn-fill pull-left ">Guardar</button>
+                    <a href="list" class="btn btn-light btn-fill pull-left ml-3"><i class=""></i>Volver</a>
+
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
+                        Guardar
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>Confirmar registro.</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

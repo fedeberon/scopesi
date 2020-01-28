@@ -60,15 +60,18 @@
                                         <input type="hidden" value="${bo.descripcion}" name="list[${status.index}].descripcion"/>
                                     </td>
                                     <td>${bo.descripcion}</td>
+
+
                                     <td>${bo.mapPoiEntidad.descripcion}</td>
                                     <td>${bo.mapProvincia.descripcion}</td>
                                     <td>
-                                            ${bo.geoLatitud}
-                                                <input type="hidden" value="${bo.geoLatitud}" name="list[${status.index}].lat"/>
+                                        ${bo.geoLatitud}
+                                            <input type="hidden" value="${bo.geoLatitud}" name="list[${status.index}].lat"/>
+
                                     </td>
                                     <td>
-                                            ${bo.geoLongitud}
-                                                <input type="hidden" value="${bo.geoLongitud}" name="list[${status.index}].lon"/>
+                                        ${bo.geoLongitud}
+                                            <input type="hidden" value="${bo.geoLongitud}" name="list[${status.index}].lon"/>
                                     </td>
                                     <td>${bo.icono}</td>
                                     <td class="text-center">
@@ -79,7 +82,7 @@
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/poi/dropBajaLogica?id=${bo.id}'/>"/>
                                         <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/resources/assets/img/icons/delete.png" alt="">
                                         <a ${bo.bajaLogica == false ? 'class="d-none"' : ''} href="<c:url value='/poi/upBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
+                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/flechaUp.png" alt="">
                                     </td>
                                 </tr>
 
