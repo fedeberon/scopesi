@@ -76,7 +76,7 @@
                                     <td>${bo.icono}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/poi/update?id=${bo.id}'/>"/>
-                                        <img src="resources/assets/img/icons/edit2.png" alt="">
+                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/poi/dropBajaLogica?id=${bo.id}'/>"/>

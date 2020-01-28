@@ -6,6 +6,9 @@
     .dropdown-menu{
         display: none;
     }
+    .cursorPointer{
+        cursor: pointer;
+    }
 </style>
 
 <div class="sidebar-wrapper collapse show" id="collapseExample">
@@ -30,22 +33,28 @@
         </li>
         <li id="auditorias">
             <a class="nav-link" href="./table.html">
-                <i class="nc-icon nc-notes"></i>
+                <i class="fab fa-buffer"></i>
                 <p class="wordsMenu">Auditorias</p>
             </a>
         </li>
 
-        <li class="dropdown">
-            <a class="nav-link dropdown-toggle" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="nc-icon nc-single-copy-04"></i>
+        <li>
+            <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-atlas"></i>
                 <p class="wordsMenu">Geoplaning</p>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                <a id="ubicacion-list" class="dropdown-item" href="/ubicacion/list">Ubicaciones</a>
+                <a class="dropdown-item" href="/ubicacion/list">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ubicaciones</a>
                 <div class="dropdown-divider"></div>
-                <a id="maps-show" class="dropdown-item" href="/maps/show">Mapas</a>
+                <a class="dropdown-item" href="/maps/show">
+                    <i class="fas fa-globe-americas"></i>
+                    Mapas</a>
                 <div class="dropdown-divider"></div>
-                <a id="tablas" class="dropdown-item" href="/tablas">Tablas</a>
+                <a class="dropdown-item" href="/tablas">
+                    <i class="fas fa-table"></i>
+                    Tablas</a>
             </div>
         </li>
 
