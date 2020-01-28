@@ -4,7 +4,6 @@ import com.ideaas.services.bean.DateTimeUtil;
 import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Repository
 public class FilterDaoImpl implements FilterDao {
@@ -42,9 +40,9 @@ public class FilterDaoImpl implements FilterDao {
         boolean isFirstClause = true;
 
 
-        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
+        if(Objects.nonNull(request.getMapEmpresa()) && !request.getMapEmpresa().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append("u.audEmpresa.descripcion in (:audEmpresa)");
+            builder.append("u.mapEmpresa.descripcion in (:mapEmpresa)");
 
             isFirstClause = false;
         }
@@ -72,9 +70,9 @@ public class FilterDaoImpl implements FilterDao {
 
             isFirstClause = false;
         }
-        if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().trim().isEmpty()){
+        if(Objects.nonNull(request.getMapLocalidad()) && !request.getMapLocalidad().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append(" u.audLocalidad.descripcion = :audLocalidad");
+            builder.append(" u.mapLocalidad.descripcion = :mapLocalidad");
 
         }
         if(Objects.nonNull(request.getFechaAlta())){
@@ -101,8 +99,8 @@ public class FilterDaoImpl implements FilterDao {
         }
 
         Query query = entityManager.createQuery(builder.toString());
-        if(Objects.nonNull(request.getAudEmpresa()) && !request.getAudEmpresa().trim().isEmpty()){
-            query.setParameter("audEmpresa", Arrays.asList(request.getAudEmpresa().split(",")));
+        if(Objects.nonNull(request.getMapEmpresa()) && !request.getMapEmpresa().trim().isEmpty()){
+            query.setParameter("mapEmpresa", Arrays.asList(request.getMapEmpresa().split(",")));
         }
         if(Objects.nonNull(request.getMapElemento()) && !request.getMapElemento().trim().isEmpty()){
             query.setParameter("mapElemento", Arrays.asList(request.getMapElemento().split(",")));
@@ -116,8 +114,8 @@ public class FilterDaoImpl implements FilterDao {
         if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().trim().isEmpty()){
             query.setParameter("mapProvincia", Arrays.asList(request.getMapProvincia().split(",")));
         }
-        if(Objects.nonNull(request.getAudLocalidad()) && !request.getAudLocalidad().trim().isEmpty()){
-            query.setParameter("audLocalidad", Arrays.asList(request.getAudLocalidad().split(",")));
+        if(Objects.nonNull(request.getMapLocalidad()) && !request.getMapLocalidad().trim().isEmpty()){
+            query.setParameter("mapLocalidad", Arrays.asList(request.getMapLocalidad().split(",")));
         }
         if(Objects.nonNull(request.getFechaAlta())){
             LocalDateTime  dateToSearch = DateTimeUtil.convertToLocalDateTimeViaSqlTimestamp(request.getFechaAlta());

@@ -24,7 +24,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private FileService fileService;
 
-    private AudEmpresaService audEmpresaService;
+    private MapEmpresaService mapEmpresaService;
 
     private MapElementoService mapElementoService;
 
@@ -34,19 +34,22 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private MapProvinciaService mapProvinciaService;
 
-    private AudLocalidadService audLocalidadService;
+    private MapLocalidadService mapLocalidadService;
+
+    private GoogleMapsService googleMapsService;
 
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, AudLocalidadService audLocalidadService) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, MapLocalidadService mapLocalidadService, GoogleMapsService googleMapsService) {
         this.dao = dao;
         this.filterDao = filterDao;
         this.fileService = fileService;
-        this.audEmpresaService = audEmpresaService;
+        this.mapEmpresaService = mapEmpresaService;
         this.mapElementoService = mapElementoService;
         this.mapFormatoService = mapFormatoService;
         this.mapMedioService = mapMedioService;
         this.mapProvinciaService = mapProvinciaService;
-        this.audLocalidadService = audLocalidadService;
+        this.mapLocalidadService = mapLocalidadService;
+        this.googleMapsService = googleMapsService;
     }
 
     @Override
@@ -80,41 +83,46 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
     public List<MapUbicacion> saveList(MapUbicacionRequest request) {
         List<MapUbicacion> results = filterDao.find(request);
 
-        if(Objects.nonNull(request.getIdEmpresa()) && !request.getIdEmpresa().equals(-1)){
-            AudEmpresa empresa = audEmpresaService.get(request.getIdEmpresa());
-            results.forEach(mapUbicacion -> mapUbicacion.setAudEmpresa(empresa));
+        if(Objects.nonNull(request.getIdEmpresa())){
+            MapEmpresa empresa = mapEmpresaService.get(request.getIdEmpresa());
+            results.forEach(mapUbicacion -> mapUbicacion.setMapEmpresa(empresa));
         }
 
-        if(Objects.nonNull(request.getIdElemento()) && !request.getIdElemento().equals(-1)){
+        if(Objects.nonNull(request.getIdElemento())){
             MapElemento elemento = mapElementoService.get(request.getIdElemento());
             results.forEach(mapUbicacion -> mapUbicacion.setMapElemento(elemento));
         }
 
-        if(Objects.nonNull(request.getIdFormato()) && !request.getIdFormato().equals(-1)){
+        if(Objects.nonNull(request.getIdFormato())){
             MapFormato formato = mapFormatoService.get(request.getIdFormato());
             results.forEach(mapUbicacion -> mapUbicacion.setMapFormato(formato));
         }
 
-        if(Objects.nonNull(request.getIdMedio()) && !request.getIdMedio().equals(-1)){
+        if(Objects.nonNull(request.getIdMedio())){
             MapMedio medio = mapMedioService.get(request.getIdMedio());
             results.forEach(mapUbicacion -> mapUbicacion.setMapMedio(medio));
         }
 
-        if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().equals(-1)){
+        if(Objects.nonNull(request.getMapProvincia())){
             MapProvincia provincia = mapProvinciaService.get(request.getIdProvincia());
             results.forEach(mapUbicacion -> mapUbicacion.setMapProvincia(provincia));
         }
 
-        if(Objects.nonNull(request.getIdLocalidad()) && !request.getIdLocalidad().equals(-1)){
-            AudLocalidad localidad = audLocalidadService.get(request.getIdLocalidad());
-            results.forEach(mapUbicacion -> mapUbicacion.setAudLocalidad(localidad));
+        if(Objects.nonNull(request.getIdLocalidad())){
+            MapLocalidad localidad = mapLocalidadService.get(request.getIdLocalidad());
+            results.forEach(mapUbicacion -> mapUbicacion.setMapLocalidad(localidad));
         }
-
-
 
         dao.saveAll(results);
 
         return results;
     }
 
+    public void saveLatLong(MapUbicacionRequest request) {
+        MapUbicacion ubicacion = this.get(request.getId());
+        String address =  googleMapsService.locate(request.getLatitud(), request.getLongitud());
+        ubicacion.setLatitud(request.getLatitud());
+        ubicacion.setLongitud(request.getLongitud());
+        save(ubicacion);
+    }
 }

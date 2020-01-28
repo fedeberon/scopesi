@@ -11,13 +11,12 @@
         display: none;
     }
 
-    /*.modal-dialog.modal-lg {*/
-    /*    margin-top: 20% !important;*/
-    /*}*/
-
-
-
 </style>
+
+<script>
+    var element = document.getElementById("ubicacion-list");
+    element.classList.add("active");
+</script>
 
 <div class="content">
     <div class="container-fluid">
@@ -47,6 +46,7 @@
                                     </label>
                                 </div>
                             </th>
+                            <th>Editar</th>
                             <th>ID</th>
                             <th>Empresa</th>
                             <th>Elemento</th>
@@ -55,25 +55,16 @@
                             <th>Direccion</th>
                             <th>Nro.Agip</th>
                             <th>Referencia</th>
-                            <th>Nro.Anuncio</th>
                             <th>Localidad</th>
                             <th>Provincia</th>
-                            <th>Anunciante</th>
                             <th>Cantidad</th>
                             <th>Transito</th>
                             <th>Iluminacion</th>
                             <th>Medidas</th>
-                            <th>Metros Cuadrados</th>
-                            <th>Direccion Normalizada</th>
                             <th>Latitud</th>
                             <th>Longitud</th>
                             <th>Metros Contacto</th>
                             <th>Coeficiente</th>
-                            <th>Zona</th>
-                            <th>Saturacion</th>
-                            <th>Visibilidad</th>
-                            <th>Circulacion Peatonal</th>
-                            <th>Circulacion Vehicular</th>
                             <th>Id.Referencia</th>
                             <th>Buses</th>
                             <th>Baja Logica</th>
@@ -81,7 +72,6 @@
                             <th>Fecha de Alta</th>
                             <th>Id.Altura</th>
                             <th>Id.Visibilidad</th>
-                            <th>Editar</th>
                         </thead>
 
                             <tbody>
@@ -98,13 +88,17 @@
                                             </label>
                                         </div>
                                     </td>
+                                    <td class="text-center">
+                                        <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
+                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
+                                    </td>
                                     <td>
                                         <a href="/ubicacion/${bo.id}">${bo.id}</a>
                                              <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
                                     </td>
                                     <td>
-                                            ${bo.audEmpresa.descripcion}
-                                                <input type="hidden" value="${bo.audEmpresa.descripcion}" name="list[${status.index}].name"/>
+                                            ${bo.mapEmpresa.descripcion}
+                                                <input type="hidden" value="${bo.mapEmpresa.descripcion}" name="list[${status.index}].name"/>
                                     </td>
 
                                     <td>
@@ -120,20 +114,21 @@
                                     </td>
                                     <td>${bo.nroAgip}</td>
                                     <td>${bo.referencia}</td>
-                                    <td>${bo.nroAnuncio}</td>
-                                    <td>${bo.audLocalidad.descripcion}</td>
-                                    <td>${bo.mapProvincia.descripcion}</td>
-                                    <td>${bo.anunciante}</td>
+                                    <td>
+                                            ${bo.mapLocalidad.descripcion}
+                                                <input type="hidden" value="${bo.mapLocalidad.descripcion}" name="list[${status.index}].localidad"/>
+                                    </td>
+                                    <td>
+                                            ${bo.mapProvincia.descripcion}
+                                                <input type="hidden" value="${bo.mapProvincia.descripcion}" name="list[${status.index}].provincia"/>
+                                    </td>
                                     <td>${bo.cantidad}</td>
                                     <td>${bo.transito}</td>
                                     <td>${bo.iluminacion}</td>
                                     <td>${bo.medidas}</td>
-                                    <td>${bo.m2}</td>
-                                    <td>${bo.direccionNormalizada}</td>
                                     <td>
                                             ${bo.latitud}
                                                 <input type="hidden" value="${bo.latitud}" name="list[${status.index}].lat"/>
-
                                     </td>
                                     <td>
                                             ${bo.longitud}
@@ -141,22 +136,13 @@
                                     </td>
                                     <td>${bo.metrosContacto}</td>
                                     <td>${bo.coeficiente}</td>
-                                    <td>${bo.zona}</td>
-                                    <td>${bo.saturacion}</td>
-                                    <td>${bo.visibilidad}</td>
-                                    <td>${bo.circulacionPeatonal}</td>
-                                    <td>${bo.circulacionVehicular}</td>
                                     <td>${bo.idReferencia}</td>
-                                    <td> - </td>
+                                    <td>${bo.mapBuses.linea}</td>
                                     <td>${bo.bajaLogica}</td>
                                     <td>${bo.fechaTransf}</td>
                                     <td>${bo.fechaAlta}</td>
                                     <td>${bo.mapUbicacionAltura.descripcion}</td>
                                     <td>${bo.mapUbicacionVisibilidad.descripcion}</td>
-                                    <td class="text-center">
-                                        <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
-                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
-                                    </td>
                                 </tr>
 
                             </c:forEach>
@@ -282,7 +268,7 @@
 
                         <div class="form-group col-6">
                             <label for="empresa">Empresas</label>
-                            <select id="select-empresas" name="request.audEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
+                            <select id="select-empresas" name="request.mapEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
                                 <c:forEach items="${empresas}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -318,7 +304,7 @@
 
                         <div class="form-group col-6">
                             <label for="localidad">Localidadades</label>
-                            <select id="select-localidades" name="request.audLocalidad" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
+                            <select id="select-localidades" name="request.mapLocalidad" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una Localidad">
                                 <c:forEach items="${localidades}" var="bo">
                                     <option value="${bo.descripcion}">${bo.descripcion}</option>
                                 </c:forEach>
@@ -357,7 +343,7 @@
 
                         <div class="form-group col-6">
                             <label for="maxResults">Cantidad resultados</label>
-                            <select name="maxResults">
+                            <select name="request.maxResults">
                                 <option value="10" selected>10</option>
                                 <option value="20">20</option>
                                 <option value="50">50</option>
@@ -389,7 +375,6 @@
         </div>
     </div>
 </div>
-
 
 <li class="nav-item more-options" style="display: none">
     <a href="#" class="nav-link">

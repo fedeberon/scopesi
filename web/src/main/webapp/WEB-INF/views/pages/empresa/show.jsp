@@ -15,6 +15,12 @@
                             <thead>
                             <th>ID</th>
                             <th>Empresa</th>
+                            <th>Telefono</th>
+                            <th>E-Mail</th>
+                            <th>Logo</th>
+                            <th>Html</th>
+                            <th>GP+</th>
+                            <th>Baja Logica</th>
                             </thead>
 
                             <tbody>
@@ -23,6 +29,12 @@
                                 <tr>
                                     <td>${empresa.id}</td>
                                     <td>${empresa.descripcion}</td>
+                                    <td>${empresa.telefono}</td>
+                                    <td>${empresa.mail}</td>
+                                    <td>${empresa.logo}</td>
+                                    <td>${empresa.html}</td>
+                                    <td>${empresa.GPMas}</td>
+                                    <td>${empresa.bajaLogica}</td>
                                 </tr>
 
 

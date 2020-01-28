@@ -41,25 +41,16 @@
                                     <th>Direccion</th>
                                     <th>Nro.Agip</th>
                                     <th>Referencia</th>
-                                    <th>Nro.Anuncio</th>
                                     <th>Localidad</th>
                                     <th>Provincia</th>
-                                    <th>Anunciante</th>
                                     <th>Cantidad</th>
                                     <th>Transito</th>
                                     <th>Iluminacion</th>
                                     <th>Medidas</th>
-                                    <th>Metros Cuadrados</th>
-                                    <th>Direccion Normalizada</th>
                                     <th>Latitud</th>
                                     <th>Longitud</th>
                                     <th>Metros Contacto</th>
                                     <th>Coeficiente</th>
-                                    <th>Zona</th>
-                                    <th>Saturacion</th>
-                                    <th>Visibilidad</th>
-                                    <th>Circulacion Peatonal</th>
-                                    <th>Circulacion Vehicular</th>
                                     <th>Id.Referencia</th>
                                     <th>Buses</th>
                                     <th>Baja Logica</th>
@@ -75,7 +66,7 @@
 
                                     <tr>
                                         <td>${bo.id}</td>
-                                        <td>${bo.audEmpresa.descripcion}</td>
+                                        <td>${bo.mapEmpresa.descripcion}</td>
                                         <td>${bo.mapElemento.descripcion}</td>
                                         <td>${bo.mapFormato.descripcion}</td>
                                         <td>${bo.mapMedio.descripcion}</td>
@@ -83,26 +74,18 @@
                                         <td>${bo.nroAgip}</td>
                                         <td>${bo.referencia}</td>
                                         <td>${bo.nroAnuncio}</td>
-                                        <td>${bo.audLocalidad.descripcion}</td>
+                                        <td>${bo.mapLocalidad.descripcion}</td>
                                         <td>${bo.mapProvincia.descripcion}</td>
-                                        <td>${bo.anunciante}</td>
                                         <td>${bo.cantidad}</td>
                                         <td>${bo.transito}</td>
                                         <td>${bo.iluminacion}</td>
                                         <td>${bo.medidas}</td>
-                                        <td>${bo.m2}</td>
-                                        <td>${bo.direccionNormalizada}</td>
                                         <td>${bo.latitud}</td>
                                         <td>${bo.longitud}</td>
                                         <td>${bo.metrosContacto}</td>
                                         <td>${bo.coeficiente}</td>
-                                        <td>${bo.zona}</td>
-                                        <td>${bo.saturacion}</td>
-                                        <td>${bo.visibilidad}</td>
-                                        <td>${bo.circulacionPeatonal}</td>
-                                        <td>${bo.circulacionVehicular}</td>
                                         <td>${bo.idReferencia}</td>
-                                        <td> - </td>
+                                        <td>${bo.mapBuses.linea}</td>
                                         <td>${bo.bajaLogica}</td>
                                         <td>${bo.fechaTransf}</td>
                                         <td>${bo.fechaAlta}</td>
@@ -155,7 +138,7 @@
 
                     <div class="form-group col-6">
                         <label for="empresa">Empresas</label>
-                        <select name="audEmpresa" data-done-button="true" class="form-control" title="Seleccione una empresa">
+                        <select name="mapEmpresa" data-done-button="true" class="form-control" title="Seleccione una empresa">
                             <c:forEach items="${empresas}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>
@@ -191,7 +174,7 @@
 
                     <div class="form-group col-6">
                         <label for="localidad">Localidadades</label>
-                        <select name="audLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
+                        <select name="mapLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
                             <c:forEach items="${localidades}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>

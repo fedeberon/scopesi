@@ -9,6 +9,10 @@
 
 </style>
 
+<script>
+    var element = document.getElementById("dashboard");
+    element.classList.add("active");
+</script>
 
 <div class="content">
     <div class="container-fluid">

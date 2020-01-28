@@ -1,15 +1,11 @@
 package com.ideaas.services.domain;
 
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ideaas.services.bean.Image;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -22,10 +18,9 @@ public class MapUbicacion {
     @GeneratedValue(generator = "MapUbicacionSeqGen")
     private Long id;
 
-    //deberia apuntar a MapEmpresa
     @ManyToOne
     @JoinColumn(name = "idEmpresa")
-    private AudEmpresa audEmpresa;
+    private MapEmpresa mapEmpresa;
 
     @ManyToOne
     @JoinColumn(name = "idElemento")
@@ -48,20 +43,21 @@ public class MapUbicacion {
     @Column(name = "Referencia")
     private String referencia;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Nro_Anuncio")
     private Long nroAnuncio;
 
     @ManyToOne
     @JoinColumn(name = "idProvincia")
-    @JsonIgnore
     private MapProvincia mapProvincia;
 
-    //deberia apuntar a Maplocalidad
     @ManyToOne
     @JoinColumn(name = "idLocalidad")
-    @JsonIgnore
-    private AudLocalidad audLocalidad;
+    private MapLocalidad mapLocalidad;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Anunciante")
     private String anunciante;
 
@@ -77,9 +73,13 @@ public class MapUbicacion {
     @Column(name = "Medidas")
     private String medidas;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "M2")
     private String m2;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Direccion_Normalizada")
     private String direccionNormalizada;
 
@@ -95,18 +95,28 @@ public class MapUbicacion {
     @Column(name = "coeficiente")
     private BigDecimal coeficiente;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "zona")
     private Long zona;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Saturacion")
     private String saturacion;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "visibilidad")
     private Long visibilidad;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "circulacion_peatonal")
     private String circulacionPeatonal;
 
+    @Transient
+    @JsonIgnore
     @Column(name = "Circulacion_Vehicular")
     private String circulacionVehicular;
 
@@ -114,8 +124,7 @@ public class MapUbicacion {
     private String idReferencia;
 
     //Problemas con id=0
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "IdMapBuses")
     @JsonIgnore
     private MapBus mapBuses;
@@ -154,12 +163,12 @@ public class MapUbicacion {
         this.id = id;
     }
 
-    public AudEmpresa getAudEmpresa() {
-        return audEmpresa;
+    public MapEmpresa getMapEmpresa() {
+        return mapEmpresa;
     }
 
-    public void setAudEmpresa(AudEmpresa audEmpresa) {
-        this.audEmpresa = audEmpresa;
+    public void setMapEmpresa(MapEmpresa mapEmpresa) {
+        this.mapEmpresa = mapEmpresa;
     }
 
     public MapElemento getMapElemento() {
@@ -226,12 +235,12 @@ public class MapUbicacion {
         this.mapProvincia = mapProvincia;
     }
 
-    public AudLocalidad getAudLocalidad() {
-        return audLocalidad;
+    public MapLocalidad getMapLocalidad() {
+        return mapLocalidad;
     }
 
-    public void setAudLocalidad(AudLocalidad audLocalidad) {
-        this.audLocalidad = audLocalidad;
+    public void setMapLocalidad(MapLocalidad mapLocalidad) {
+        this.mapLocalidad = mapLocalidad;
     }
 
     public String getAnunciante() {
@@ -417,7 +426,6 @@ public class MapUbicacion {
     public void setMapUbicacionVisibilidad(MapUbicacionVisibilidad mapUbicacionVisibilidad) {
         this.mapUbicacionVisibilidad = mapUbicacionVisibilidad;
     }
-
 
 
     public List<Image> getImages() {

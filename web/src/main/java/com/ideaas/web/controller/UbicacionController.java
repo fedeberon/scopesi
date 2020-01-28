@@ -33,7 +33,7 @@ public class UbicacionController {
 
     private MapUbicacionService mapUbicacionService;
 
-    private AudEmpresaService audEmpresaService;
+    private MapEmpresaService mapEmpresaService;
 
     private MapElementoService mapElementoService;
 
@@ -41,7 +41,7 @@ public class UbicacionController {
 
     private MapMedioService mapMedioService;
 
-    private AudLocalidadService audLocalidadService;
+    private MapLocalidadService mapLocalidadService;
 
     private MapProvinciaService mapProvinciaService;
 
@@ -49,13 +49,13 @@ public class UbicacionController {
 
 
     @Autowired
-    public UbicacionController(MapUbicacionService mapUbicacionService, AudEmpresaService audEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, AudLocalidadService audLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService) {
+    public UbicacionController(MapUbicacionService mapUbicacionService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapLocalidadService mapLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService) {
         this.mapUbicacionService = mapUbicacionService;
-        this.audEmpresaService = audEmpresaService;
+        this.mapEmpresaService = mapEmpresaService;
         this.mapElementoService = mapElementoService;
         this.mapFormatoService = mapFormatoService;
         this.mapMedioService = mapMedioService;
-        this.audLocalidadService = audLocalidadService;
+        this.mapLocalidadService = mapLocalidadService;
         this.mapProvinciaService = mapProvinciaService;
         this.mapBusService = mapBusService;
     }
@@ -96,7 +96,7 @@ public class UbicacionController {
 
 
     @RequestMapping(value = "search", params = "paginate")
-    public String list(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
+    public String listPaginated(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
         wrapper.getRequest().setPage(wrapper.getPage());
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(wrapper.getRequest()));
         model.addAttribute("ubicacionRequest", wrapper.getRequest());
@@ -116,8 +116,8 @@ public class UbicacionController {
     }
 
     @ModelAttribute("empresas")
-    public List<AudEmpresa> empresas(){
-        return audEmpresaService.findAll();
+    public List<MapEmpresa> empresas(){
+        return mapEmpresaService.findAll();
     }
 
     @ModelAttribute("elementos")
@@ -136,8 +136,8 @@ public class UbicacionController {
     }
 
     @ModelAttribute("localidades")
-    public List<AudLocalidad> localidades(){
-        return audLocalidadService.findAll();
+    public List<MapLocalidad> localidades(){
+        return mapLocalidadService.findAll();
     }
 
     @ModelAttribute("provincias")

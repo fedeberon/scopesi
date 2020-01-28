@@ -16,19 +16,19 @@
         </a>
     </div>
     <ul class="nav">
-        <li>
+        <li id="dashboard">
             <a class="nav-link" href="/dashboard/panel">
-                <i class="nc-icon nc-chart-pie-35"></i>
+                <i class="fas fa-chart-line"></i>
                 <p class="wordsMenu">Dashboard</p>
             </a>
         </li>
-        <li>
-            <a class="nav-link" href="/user/list">
-                <i class="nc-icon nc-circle-09"></i>
+        <li id="users">
+            <a  class="nav-link" href="/user/list">
+                <i class="fas fa-users"></i>
                 <p class="wordsMenu">Usuarios</p>
             </a>
         </li>
-        <li>
+        <li id="auditorias">
             <a class="nav-link" href="./table.html">
                 <i class="nc-icon nc-notes"></i>
                 <p class="wordsMenu">Auditorias</p>
@@ -41,11 +41,11 @@
                 <p class="wordsMenu">Geoplaning</p>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                <a class="dropdown-item" href="/ubicacion/list">Ubicaciones</a>
+                <a id="ubicacion-list" class="dropdown-item" href="/ubicacion/list">Ubicaciones</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/maps/show">Mapas</a>
+                <a id="maps-show" class="dropdown-item" href="/maps/show">Mapas</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/tablas">Tablas</a>
+                <a id="tablas" class="dropdown-item" href="/tablas">Tablas</a>
             </div>
         </li>
 

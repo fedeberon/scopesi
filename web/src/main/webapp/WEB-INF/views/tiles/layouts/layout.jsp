@@ -66,7 +66,7 @@
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="<c:url value='/resources/assets/js/plugins/bootstrap-switch.js'/>"></script>
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANGywbfxItEbdle738SiU-AVJGIjadVYM"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANGywbfxItEbdle738SiU-AVJGIjadVYM&libraries=places"></script>
 <!--  Chartist Plugin  -->
 <script src="<c:url value='/resources/assets/js/plugins/chartist.min.js'/>"></script>
 <!--  Notifications Plugin    -->
@@ -86,7 +86,7 @@
 <script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.print.min.js'/>"></script>
 <script src="<c:url value='/resources/DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js'/>"></script>
 <script src="<c:url value='/resources/assets/js/filemanager.js'/>"></script>
-
+<script src="https://kit.fontawesome.com/d2e2e9031b.js" crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
@@ -411,6 +411,7 @@
         var text = $('#span-close-option').html();
 
         if(text === '&nbsp;Ocultar Menu'){
+            $('.container').css('max-width', '100%');
             $('#icon-close-menu').removeClass('nc-stre-left').addClass('nc-stre-right');
             $('#span-close-option').html('&nbsp;Mostrar Menu');
         }

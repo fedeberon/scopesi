@@ -81,7 +81,7 @@ function createCarrusel(id) {
 
             var idEmpresa = $('<input>', {
                 type : 'hidden',
-                value : data.audEmpresa.id,
+                value : data.mapEmpresa.id,
                 id : 'idEmpresa'
             });
             idEmpresa.appendTo('.data-ubicacion');
@@ -98,7 +98,7 @@ function createCarrusel(id) {
                         class : 'fancybox hidden',
                         rel : 'group',
                         href: data.images[i].url,
-                        'data-caption': data.audEmpresa.descripcion,
+                        'data-caption': data.mapEmpresa.descripcion,
                         'data-fancybox':'gallery',
                         'data-buttons' : '["slideShow","fullScreen","thumbs","fb"]'
                     });
@@ -161,7 +161,7 @@ function createTableUbicacionInformation(data){
 
     var tr = $('<tr>');
     var td = $('<td>');
-    td.append(data.audEmpresa.descripcion);
+    td.append(data.mapEmpresa.descripcion);
     td.appendTo(tr);
 
     var tdDireccion = $('<td>');

@@ -27,16 +27,16 @@ public class FilterSearchUbicacionServiceImpl implements Function<MapUbicacionRe
     @Override
     public Map apply(MapUbicacionRequest request){
         Map clauses = new HashMap();
-        clauses.put("audEmpresa.descripcion", request.getAudEmpresa());
+        clauses.put("mapEmpresa.descripcion", request.getMapEmpresa());
         clauses.put("mapElemento.descripcion", request.getMapElemento());
         clauses.put("mapProvincia.descripcion", request.getMapProvincia());
         clauses.put("mapFormato.descripcion", request.getMapFormato());
-        clauses.put("audLocalidad.descripcion", request.getAudLocalidad());
+        clauses.put("audLocalidad.descripcion", request.getMapLocalidad());
         clauses.put("mapMedio.descripcion", request.getMapMedio());
         List<MapUbicacion> ubicaciones = dao.filterSearchUbicacion(clauses);
 
-        Set<AudEmpresa> empresas = new HashSet();
-        ubicaciones.forEach(line -> empresas.add(line.getAudEmpresa()));
+        Set<MapEmpresa> empresas = new HashSet();
+        ubicaciones.forEach(line -> empresas.add(line.getMapEmpresa()));
 
         Set<MapElemento> elementos = new HashSet();
         ubicaciones.forEach(line -> elementos.add(line.getMapElemento()));
@@ -47,8 +47,8 @@ public class FilterSearchUbicacionServiceImpl implements Function<MapUbicacionRe
         Set<MapFormato> formato = new HashSet<>();
         ubicaciones.forEach(line -> formato.add(line.getMapFormato()));
 
-        Set<AudLocalidad> localidad = new HashSet<>();
-        ubicaciones.forEach(line -> localidad.add(line.getAudLocalidad()));
+        Set<MapLocalidad> localidad = new HashSet<>();
+        ubicaciones.forEach(line -> localidad.add(line.getMapLocalidad()));
 
         Set<MapMedio> medios = new HashSet<>();
         ubicaciones.stream().filter(line -> medios.add(line.getMapMedio()));

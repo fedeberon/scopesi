@@ -16,8 +16,13 @@
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
+                            <th>Telefono</th>
+                            <th>E-Mail</th>
+                            <th>Logo</th>
+                            <th>Html</th>
+                            <th>GP+</th>
                             <th class="text-center">Editar</th>
-                            <th class="text-center">Estado baja Logica</th>
+                            <th class="text-center">Baja/Alta Logica</th>
                             </thead>
 
                             <tbody>
@@ -27,15 +32,20 @@
                                 <tr>
                                     <td><a href="/empresa/${bo.id}">${bo.id}</a></td>
                                     <td>${bo.descripcion}</td>
+                                    <td>${bo.telefono}</td>
+                                    <td>${bo.mail}</td>
+                                    <td>${bo.logo}</td>
+                                    <td>${bo.html}</td>
+                                    <td>${bo.GPMas}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/empresa/update?id=${bo.id}'/>"/>
-                                        <img src="\resources\assets\img\icons\edit2.png" alt="">
+                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/empresa/dropBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="\resources\assets\img\icons\delete.png" alt="">
+                                        <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/resources/assets/img/icons/delete.png" alt="">
                                         <a ${bo.bajaLogica == false ? 'class="d-none"' : ''} href="<c:url value='/empresa/upBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="" alt="">
+                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
                                     </td>
                                 </tr>
 

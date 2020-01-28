@@ -7,14 +7,15 @@
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
                     <div class="card-header ">
-                        <h4 class="card-title">Poi Sector</h4>
+                        <h4 class="card-title">POI Sector</h4>
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
                         <table id="example" class="table table-hover table-striped" style="width:100%">
                             <thead>
                             <th>ID</th>
-                            <th>Elemento</th>
+                            <th>Descripcion</th>
+                            <th>Baja Logica</th>
                             </thead>
 
                             <tbody>
@@ -23,6 +24,7 @@
                             <tr>
                                 <td>${poiSector.id}</td>
                                 <td>${poiSector.descripcion}</td>
+                                <td>${poiSector.bajaLogica}</td>
                             </tr>
 
 

@@ -1,15 +1,17 @@
 package com.ideaas.services.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class MapUbicacionRequest {
 
+    private Long id;
+
     private Long idEmpresa;
 
-    private String audEmpresa;
+    private String mapEmpresa;
 
     private Long idElemento;
 
@@ -25,7 +27,7 @@ public class MapUbicacionRequest {
 
     private Long idLocalidad;
 
-    private String audLocalidad;
+    private String mapLocalidad;
 
     private Long idMedio;
 
@@ -39,9 +41,21 @@ public class MapUbicacionRequest {
 
     private List<Long> idsSelected;
 
+    private BigDecimal latitud;
+
+    private BigDecimal longitud;
+
     private Integer maxResults = 10;
 
     private Integer page = 0;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Boolean getLangLongEmpty() {
         return langLongEmpty;
@@ -51,12 +65,12 @@ public class MapUbicacionRequest {
         this.langLongEmpty = langLongEmpty;
     }
 
-    public String getAudEmpresa() {
-        return audEmpresa;
+    public String getMapEmpresa() {
+        return mapEmpresa;
     }
 
-    public void setAudEmpresa(String audEmpresa) {
-        this.audEmpresa = audEmpresa;
+    public void setMapEmpresa(String mapEmpresa) {
+        this.mapEmpresa = mapEmpresa;
     }
 
     public String getMapElemento() {
@@ -83,12 +97,12 @@ public class MapUbicacionRequest {
         this.mapFormato = mapFormato;
     }
 
-    public String getAudLocalidad() {
-        return audLocalidad;
+    public String getMapLocalidad() {
+        return mapLocalidad;
     }
 
-    public void setAudLocalidad(String audLocalidad) {
-        this.audLocalidad = audLocalidad;
+    public void setMapLocalidad(String mapLocalidad) {
+        this.mapLocalidad = mapLocalidad;
     }
 
     public String getMapMedio() {
@@ -187,14 +201,30 @@ public class MapUbicacionRequest {
         this.idsSelected = idsSelected;
     }
 
+    public BigDecimal getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(BigDecimal longitud) {
+        this.longitud = longitud;
+    }
+
+    public BigDecimal getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(BigDecimal latitud) {
+        this.latitud = latitud;
+    }
+
     private static String EMPTY = "";
     private static String LEFT = "[";
     private static String RIGTH = "]";
 
     public String getEmpresasSelected(){
-        if(Objects.isNull(audEmpresa)) return EMPTY;
+        if(Objects.isNull(mapEmpresa)) return EMPTY;
 
-        return buildFormatValuesSelected(audEmpresa);
+        return buildFormatValuesSelected(mapEmpresa);
     }
 
     public String getElementosSelected(){
@@ -216,9 +246,9 @@ public class MapUbicacionRequest {
     }
 
     public String getLocalidadesSelected(){
-        if(Objects.isNull(audLocalidad)) return EMPTY;
+        if(Objects.isNull(mapLocalidad)) return EMPTY;
 
-        return buildFormatValuesSelected(audLocalidad);
+        return buildFormatValuesSelected(mapLocalidad);
     }
 
     public String getProvinciasSelected(){

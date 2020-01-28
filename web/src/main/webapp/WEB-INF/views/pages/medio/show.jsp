@@ -14,7 +14,8 @@
                         <table id="example"class="table table-hover table-striped" style="width:100%">
                             <thead>
                             <th>ID</th>
-                            <th>Elemento</th>
+                            <th>Descripcion</th>
+                            <th>Baja Logica</th>
                             </thead>
 
                             <tbody>
@@ -23,6 +24,7 @@
                             <tr>
                                 <td>${medio.id}</td>
                                 <td>${medio.descripcion}</td>
+                                <td>${medio.bajaLogica}</td>
                             </tr>
 
 

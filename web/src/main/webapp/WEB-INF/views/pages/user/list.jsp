@@ -1,6 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
+<script>
+    var element = document.getElementById("users");
+    element.classList.add("active");
+</script>
 
 <div class="content">
     <div class="container-fluid">

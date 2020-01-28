@@ -31,7 +31,7 @@
                             <th>Longitud</th>
                             <th>Icono</th>
                             <th class="text-center">Editar</th>
-                            <th class="text-center">Estado Baja Logica</th>
+                            <th class="text-center">Baja/Alta Logica</th>
 
                             </thead>
 
@@ -76,7 +76,7 @@
                                     <td>${bo.icono}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/poi/update?id=${bo.id}'/>"/>
-                                        <img src="\resources\assets\img\icons\edit2.png" alt="">
+                                        <img src="resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/poi/dropBajaLogica?id=${bo.id}'/>"/>

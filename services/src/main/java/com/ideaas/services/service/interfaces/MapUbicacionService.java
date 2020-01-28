@@ -16,4 +16,6 @@ public interface MapUbicacionService {
     List<MapUbicacion> findAll(MapUbicacionRequest mapUbicacionRequest);
 
     List<MapUbicacion> saveList(MapUbicacionRequest mapUbicacionRequest);
+
+    void saveLatLong(MapUbicacionRequest request);
 }

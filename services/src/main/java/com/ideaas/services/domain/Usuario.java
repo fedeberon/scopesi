@@ -37,14 +37,12 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
 
     //problemas con el id=0/DB
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idAnunciante")
     private Anunciante mapAnunciante;
 
     //problemas con el id=0/DB
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idProducto")
     private Producto producto;
 
@@ -52,22 +50,22 @@ public class Usuario {
     private String cargo;
 
     //problemas con el id=0/DB
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "idContratoInv")
-    private ContratoInversion contratoInversion;
+    private Contrato contrato;
 
     //problemas con el id=0/DB
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "idContratoAud")
-    private ContratoAuditoria contratoAuditoria;
+    private Contrato contratoA;
 
     //problemas con el id=0/DB
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name = "idContratoMap")
-    private ContratoMapping contratoMapping;
+    private Contrato contratoM;
 
     public Usuario() { }
 
@@ -160,27 +158,27 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public ContratoInversion getContratoInversion() {
-        return contratoInversion;
+    public Contrato getContrato() {
+        return contrato;
     }
 
-    public void setContratoInversion(ContratoInversion contratoInversion) {
-        this.contratoInversion = contratoInversion;
+    public void setContrato(Contrato contrato) {
+        this.contrato = contrato;
     }
 
-    public ContratoAuditoria getContratoAuditoria() {
-        return contratoAuditoria;
+    public Contrato getContratoA() {
+        return contratoA;
     }
 
-    public void setContratoAuditoria(ContratoAuditoria contratoAuditoria) {
-        this.contratoAuditoria = contratoAuditoria;
+    public void setContratoA(Contrato contratoA) {
+        this.contratoA = contratoA;
     }
 
-    public ContratoMapping getContratoMapping() {
-        return contratoMapping;
+    public Contrato getContratoM() {
+        return contratoM;
     }
 
-    public void setContratoMapping(ContratoMapping contratoMapping) {
-        this.contratoMapping = contratoMapping;
+    public void setContratoM(Contrato contratoM) {
+        this.contratoM = contratoM;
     }
 }
