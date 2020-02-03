@@ -1,11 +1,14 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.service.interfaces.EmailService;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by federicoberon on 08/10/2019.
@@ -25,6 +28,5 @@ public class UserController {
 
         return "user/list";
     }
-
 
 }

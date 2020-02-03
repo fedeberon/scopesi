@@ -7,6 +7,7 @@ import org.bouncycastle.crypto.paddings.PaddedBufferedBlockCipher;
 import org.bouncycastle.crypto.paddings.ZeroBytePadding;
 import org.bouncycastle.crypto.params.KeyParameter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 
@@ -79,5 +80,23 @@ public class AESPasswordEncoder implements PasswordEncoder {
         return output;
     }
 
+    @SuppressWarnings("Duplicates")
+    public String decrypt(String password) throws InvalidCipherTextException {
+        byte[] data = password.getBytes();
+        byte[] encryptionKey = key.getBytes();
 
+        KeyParameter keyParameter = new KeyParameter(encryptionKey);
+
+        PaddedBufferedBlockCipher bufferedBlockCipher = new PaddedBufferedBlockCipher(new RijndaelEngine(256), new ZeroBytePadding());
+        bufferedBlockCipher.init(false, keyParameter);
+
+        byte[] buffer = new byte[bufferedBlockCipher.getOutputSize(data.length)];
+        int processedBytes = bufferedBlockCipher.processBytes(data, 0, data.length, buffer, 0);
+        processedBytes += bufferedBlockCipher.doFinal(buffer, processedBytes);
+
+        byte[] result = Arrays.copyOfRange(buffer, 0, processedBytes);
+        String output = Base64.encodeBase64String(result);
+
+        return output;
+    }
 }

@@ -23,6 +23,7 @@
                             <th>Nombre Completo</th>
                             <th>Email</th>
                             <th>Telefono</th>
+                            <th>Enviar crendeciales</th>
                             </thead>
 
                             <tbody>
@@ -35,6 +36,9 @@
                                     <td>${bo.nombreCompleto}</td>
                                     <td>${bo.eMail}</td>
                                     <td>${bo.telefono}</td>
+                                    <td class="text-center">
+                                        <i onclick="sendMailCredentialsTo(${bo.id})"  class="far fa-envelope"></i>
+                                    </td>
                                 </tr>
 
                             </c:forEach>

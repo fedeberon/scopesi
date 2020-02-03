@@ -38,12 +38,14 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
 
     //problemas con el id=0/DB
-    @ManyToOne
+    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idAnunciante")
     private Anunciante mapAnunciante;
 
     //problemas con el id=0/DB
-    @ManyToOne
+    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProducto")
     private Producto producto;
 
@@ -51,22 +53,22 @@ public class Usuario {
     private String cargo;
 
     //problemas con el id=0/DB
-
-    @ManyToOne
+    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idContratoInv")
-    private Contrato contrato;
+    private ContratoInversion contratoInversion;
 
     //problemas con el id=0/DB
-
-    @ManyToOne
+    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idContratoAud")
-    private Contrato contratoA;
+    private ContratoAuditoria contratoAuditoria;
 
     //problemas con el id=0/DB
-
-    @ManyToOne
+    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idContratoMap")
-    private Contrato contratoM;
+    private ContratoMapping contratoMapping;
 
     @Column(name = "fechaExpiracion")
     private LocalDateTime fechaExpiracion;
@@ -162,28 +164,28 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public Contrato getContrato() {
-        return contrato;
+    public ContratoInversion getContratoInversion() {
+        return contratoInversion;
     }
 
-    public void setContrato(Contrato contrato) {
-        this.contrato = contrato;
+    public void setContratoInversion(ContratoInversion contratoInversion) {
+        this.contratoInversion = contratoInversion;
     }
 
-    public Contrato getContratoA() {
-        return contratoA;
+    public ContratoAuditoria getContratoAuditoria() {
+        return contratoAuditoria;
     }
 
-    public void setContratoA(Contrato contratoA) {
-        this.contratoA = contratoA;
+    public void setContratoAuditoria(ContratoAuditoria contratoAuditoria) {
+        this.contratoAuditoria = contratoAuditoria;
     }
 
-    public Contrato getContratoM() {
-        return contratoM;
+    public ContratoMapping getContratoMapping() {
+        return contratoMapping;
     }
 
-    public void setContratoM(Contrato contratoM) {
-        this.contratoM = contratoM;
+    public void setContratoMapping(ContratoMapping contratoMapping) {
+        this.contratoMapping = contratoMapping;
     }
 
     public LocalDateTime getFechaExpiracion() {
