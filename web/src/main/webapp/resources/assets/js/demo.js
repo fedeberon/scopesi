@@ -413,8 +413,9 @@ function centerFromMarker(id) {
 function showMap(lat, lon){
 
     var latLong = new google.maps.LatLng(lat, lon);
+
     var mapaOptions = {
-        zoom: 13,
+        zoom: 7,
         center: latLong,
         scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
         zoomControlOptions: {
@@ -431,6 +432,9 @@ function showMap(lat, lon){
         draggable: true,
         animation: google.maps.Animation.DROP
     });
+
+
+
 
     marker.addListener('dragend', handleEvent);
 
@@ -452,7 +456,7 @@ function handleEventToUpdate(event, marker){
     var dataToSend = {
         "id" : marker.id,
         "latitud": event.latLng.lat(),
-        "longitud" : event.latLng.lng()
+        "longitud" : event.latLng.lng(),
     };
 
     $.ajax({

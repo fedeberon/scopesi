@@ -159,11 +159,11 @@
                             </div>
                         </div>
                     </div>
-                    <a href="list" class="btn btn-light btn-fill pull-left ml-3"><i class=""></i>Volver</a>
+                    <a href="list" class="btn btn-light pull-left ml-3"><i class=""></i>Volver</a>
 
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-secondary btn-fill pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
                         Guardar
                     </button>
 
@@ -182,13 +182,13 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="submit" class="btn btn-secondaary btn-fill">Guardar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <a href="#" class="btn btn-info btn-fill pull-right" onclick="showMap('${ubicacion.latitud}', '${ubicacion.longitud}')">Mapa</a>
+                    <a href="#" class="btn btn-info btn-fill pull-right mr-1" onclick="showMap('${ubicacion.latitud}', '${ubicacion.longitud}')">Mapa</a>
                 </div>
             </div>
             <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

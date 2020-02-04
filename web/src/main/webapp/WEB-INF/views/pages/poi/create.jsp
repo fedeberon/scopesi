@@ -47,11 +47,11 @@
                             </div>
                         </div>
                     </div>
-                    <a href="list" class="btn btn-light btn-fill pull-left ml-3"><i class=""></i>Volver</a>
+                    <a href="list" class="btn btn-light pull-left ml-3"><i class=""></i>Volver</a>
 
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-success pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-secondary btn-fill pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
                         Guardar
                     </button>
 
@@ -69,8 +69,8 @@
                                     <h5>Confirmar registro.</h5>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-success">Guardar</button>
+                                    <button type="#" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-secondary btn-fill">Guardar</button>
                                 </div>
                             </div>
                         </div>
