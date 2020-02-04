@@ -98,10 +98,10 @@
 
                                         <tags:paginador page="${page}" formName="search"/>
 
-                                        <a href="create" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Nuevo</a>
+                                        <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
                                     </form>
-                                <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
+                                <button type="submit" name="maps" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Mapa</button>
 
 
                             </div>
