@@ -18,7 +18,7 @@
                             <th>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
+                                        <input type="checkbox" value=""  id="checkbox-all" onclick="selectAll()">
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
@@ -44,7 +44,6 @@
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" id="form-check-input-${bo.id}" name="list[${status.index}].checked">
-                                                    <%--<form:checkbox cssClass="form-check-input"  path="list[${status.index}].checked"/>--%>
                                                 <span class="form-check-sign" id="${bo.id}"></span>
                                             </label>
                                         </div>

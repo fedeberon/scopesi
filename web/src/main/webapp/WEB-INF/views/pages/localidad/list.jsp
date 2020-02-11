@@ -11,7 +11,7 @@
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
-                        <table id="dataTable" class="display" style="width:100%">
+                        <table id="dataTableToCompleteList" class="display" style="width:100%">
                             <thead>
                             <th>ID</th>
                             <th>Descripcion</th>
@@ -49,10 +49,8 @@
                             <div class="col-6">
 
                                 <form name="search" action="list" method="get">
-                                    <input type="hidden" name="page" value="${page}"/>
 
-                                    <tags:paginador page="${page}" formName="search"/>
-
+                                    <a href="../tablas" class="btn btn-light pull-left mr-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
                                     <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
                                 </form>

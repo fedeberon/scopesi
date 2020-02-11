@@ -276,10 +276,10 @@ demo = {
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
         $('#table-markers tbody>tr').each(function () {
-            var id = $(this).find("td").eq(0).html();
-            var title = $(this).find("td").eq(1).html();
-            var lat = $(this).find("td").eq(6).html();
-            var lon = $(this).find("td").eq(7).html();
+            var id = $(this).find("td").eq(1).html();
+            var title = $(this).find("td").eq(2).html();
+            var lat = $(this).find("td").eq(7).html();
+            var lon = $(this).find("td").eq(8).html();
             var latLong = new google.maps.LatLng(lat, lon);
 
             var marker = new google.maps.Marker({
@@ -358,15 +358,19 @@ demo = {
 
 var markers = [];
 
-function displayMarkers(id) {
+function displayMarkers(element, id) {
     var i;
     for (i = 0; i < markers.length; i++) {
         if (markers[i].id == id) {
             var marker = markers[i];
             if (!marker.getVisible()) {
                 marker.setVisible(true);
+                $(element).find('a').html('&nbsp;&nbsp;Ocultar pin');
+                $(element).find( "i" ).removeClass('fa-eye').addClass('fa-eye-slash');
             } else {
                 marker.setVisible(false);
+                $(element).find('a').html('&nbsp;&nbsp;Mostrar pin');
+                $(element).find( "i" ).removeClass('fa-eye-slash').addClass('fa-eye');
             }
         }
     }

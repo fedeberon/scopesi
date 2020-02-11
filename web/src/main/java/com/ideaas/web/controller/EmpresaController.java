@@ -34,11 +34,9 @@ public class EmpresaController {
     }
 
     @GetMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                      @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<MapEmpresa> empresas = empresaService.findAll(size, page,"id");
+    public String findAll(Model model){
+        List<MapEmpresa> empresas = empresaService.findAll();
         model.addAttribute("empresas", empresas);
-        model.addAttribute("page" , page);
 
         return "empresa/list";
     }

@@ -48,7 +48,7 @@
 
 
                         </table>
-                        <a href="list" class="btn btn-primary"><i class=""></i>Volver a la lista</a>
+                        <a href="list" class="btn btn-primary"><i class="fas fa-angle-double-left pr-2"></i>Volver a la lista</a>
 
                     </div>
                 </div>

@@ -13,11 +13,6 @@
 
 </style>
 
-<script>
-    var element = document.getElementById("ubicacion-list");
-    element.classList.add("active");
-</script>
-
 <div class="content">
     <div class="container-fluid">
 
@@ -41,7 +36,7 @@
                             <th>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
+                                        <input type="checkbox" value=""  id="checkbox-all" onclick="selectAll()">
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
@@ -83,7 +78,6 @@
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" id="form-check-input-${bo.id}" name="list[${status.index}].checked">
-                                                <%--<form:checkbox cssClass="form-check-input"  path="list[${status.index}].checked"/>--%>
                                                 <span class="form-check-sign" id="${bo.id}"></span>
                                             </label>
                                         </div>
@@ -228,7 +222,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
-                                        <button name="saveList" type="submit" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Guardar Resultados</button>
+                                        <button name="saveList" type="submit" class="btn btn-primary"><i class="far fa-save"></i>&nbsp;Guardar resultados</button>
                                     </div>
 
                                 </div>

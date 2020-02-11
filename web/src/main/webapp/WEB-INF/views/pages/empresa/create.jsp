@@ -48,7 +48,7 @@
 
                             </div>
                         </div>
-                        <a href="list" class="btn btn-light pull-left ml-3"><i class=""></i>Volver</a>
+                        <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
 
                         <!-- Button trigger modal -->

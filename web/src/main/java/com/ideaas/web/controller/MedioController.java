@@ -36,12 +36,10 @@ public class MedioController {
     }
 
     @RequestMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<MapMedio> medios = medioService.findAll(size, page,"id");
+    public String findAll(Model model){
+        List<MapMedio> medios = medioService.findAll();
 
         model.addAttribute("medios", medios);
-        model.addAttribute("page" , page);
 
         return "medio/list";
     }

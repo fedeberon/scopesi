@@ -37,12 +37,10 @@ public class LocalidadController {
     }
 
     @GetMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<MapLocalidad> localidades = localidadService.findAll(size, page,"id");
+    public String findAll(Model model){
+        List<MapLocalidad> localidades = localidadService.findAll();
 
         model.addAttribute("localidades", localidades);
-        model.addAttribute("page" , page);
 
         return "localidad/list";
     }

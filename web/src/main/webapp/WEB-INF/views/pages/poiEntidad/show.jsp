@@ -33,10 +33,7 @@
                             </tbody>
                         </table>
 
-                        <a href="<c:url value='/poiEntidad/updateBajaLogica?id=${poiEntidades.id}'/>"
-                           class="btn btn-primary"><i class="nc-icon nc-simple-remove"></i>&nbsp;Baja Logica</a>
-
-                        <a href="list" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>Volver a la lista</a>
+                        <a href="list" class="btn btn-light"><i class="fas fa-angle-double-left pr-2"></i>Volver a la lista</a>
 
                     </div>
                 </div>

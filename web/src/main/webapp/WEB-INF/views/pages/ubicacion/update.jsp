@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Empresa</label>
-                                <select class="form-control" id="street1_id" name="audEmpresa.id">
+                                <select class="form-control" id="street1_id" name="mapEmpresa.id">
                                     <c:forEach items="${empresas}" var="bo" varStatus="status">
                                         <option ${bo.descripcion == ubicacion.mapEmpresa.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="list" class="btn btn-light pull-left ml-3"><i class=""></i>Volver</a>
+                    <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
 
                     <!-- Button trigger modal -->
@@ -178,7 +178,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5>Confirmar cambios.</h5>
+                                    <h5>¿Desea confirmar los cambios?</h5>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

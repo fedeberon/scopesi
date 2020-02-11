@@ -39,12 +39,10 @@ public class PoiEntidadController{
     }
 
     @GetMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<MapPoiEntidad> poiEntidades = poiEntidadService.findAll(size, page,"id");
+    public String findAll(Model model){
+        List<MapPoiEntidad> poiEntidades = poiEntidadService.findAll();
 
         model.addAttribute("poiEntidades", poiEntidades);
-        model.addAttribute("page" , page);
 
         return "poiEntidad/list";
     }

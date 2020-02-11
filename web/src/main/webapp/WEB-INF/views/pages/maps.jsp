@@ -34,6 +34,9 @@
         stroke-width: 0;
     }
 
+    .dropdown-toggle::after{
+        display: none !important;
+    }
 </style>
 
 <script>
@@ -74,25 +77,60 @@
             <div class="col-12">
                 <table class="table display" id="table-markers">
                     <thead>
+                        <th>opciones</th>
                         <th>id</th>
-                        <th>name</th>
-                        <th>address</th>
+                        <th>empresa</th>
+                        <th>direccion</th>
                         <th>localidad</th>
                         <th>provincia</th>
                         <th>description</th>
                         <th>lat</th>
                         <th>long</th>
-                        <th>-</th>
 
-                        <%--<th>show/hide</th>
-                        <th>touch</th>
-                        <th>go to</th>--%>
                     </thead>
                     <tbody>
 
                     <c:forEach items="${registros}" var="bo">
 
                         <tr>
+                            <td>
+                                    <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bars"></i>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+
+                                            <div class="dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}', '${bo.id}')">
+                                            <i class="fas fa-sync"></i>
+                                            <button id="${bo.id}-save" class="btn btn-danger hidden btn-fill">Guardar</button>
+                                            <a>&nbsp;&nbsp;GeoReferenciar</a>
+                                            </div>
+
+                                            <div class="dropdown-divider"></div>
+
+                                            <div class="dropdown-item cursorPointer" id="icon-view-marker-${bo.id}" onclick="displayMarkers(this, '${bo.id}')">
+                                            <i class="far fa-eye-slash"></i><a>&nbsp;&nbsp;Ocultar pin</a>
+                                            </div>
+
+                                            <div class="dropdown-divider"></div>
+
+                                            <div class="dropdown-item cursorPointer" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
+                                            <i class="nc-icon nc-tap-01 pr-0" style="font-size: 16px"></i><a>&nbsp;&nbsp;Resaltar pin</a>
+                                            </div>
+
+                                            <div class="dropdown-divider"></div>
+
+                                            <div class="dropdown-item cursorPointer" onclick="centerFromMarker('${bo.id}')">
+                                            <i class="fas fa-location-arrow"></i><a>&nbsp;&nbsp;Ir</a>
+                                            </div>
+
+                                            <div class="dropdown-divider"></div>
+
+                                            <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
+                                            <i class="fas fa-camera"></i><a>&nbsp;&nbsp;Fotos</a>
+                                            </div>
+                                    </div>
+
+                            </td>
                             <td>${bo.id}</td>
                             <td>${bo.name}</td>
                             <td id="${bo.id}-address">${bo.address}</td>
@@ -101,30 +139,6 @@
                             <td>${bo.description}</td>
                             <td id="${bo.id}-lat">${bo.lat}</td>
                             <td id="${bo.id}-lon">${bo.lon}</td>
-
-                            <td>
-                                <i id="${bo.id}-update" class="fas fa-sync" onclick="actualizarCoordenadas('${bo.address}', '${bo.id}')"></i>
-                                <button id="${bo.id}-save" class="btn btn-danger hidden btn-fill">Guardar</button>
-                            </td>
-
-
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign" onclick="displayMarkers('${bo.id}')"></span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <i class="nc-icon nc-tap-01" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')"></i>
-                            </td>
-                            <td>
-                                <i class="fas fa-location-arrow" onclick="centerFromMarker('${bo.id}')"></i>
-                            </td>
-                            <td>
-                                <i class="fas fa-camera" onclick="createCarrusel('${bo.id}')"></i>
-                            </td>
 
                         </tr>
 

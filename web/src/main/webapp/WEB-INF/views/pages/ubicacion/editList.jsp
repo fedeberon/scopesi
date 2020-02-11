@@ -116,7 +116,7 @@
 <li class="nav-item more-options" style="display: none">
     <a href="#" class="nav-link">
         <i id="icon-options" class="nc-icon nc-simple-add"></i>
-        <span id="span-more-options" class="d-lg-block" data-toggle="modal" data-target="#optionModal">&nbsp;Datosa Editar</span>
+        <span id="span-more-options" class="d-lg-block" data-toggle="modal" data-target="#optionModal">&nbsp;Datos a Editar</span>
     </a>
 </li>
 
@@ -127,7 +127,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Datos a Cambiar</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Datos a modificar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -147,7 +147,7 @@
 
                     <div class="form-group col-6">
                         <label for="elemento">Elementos</label>
-                        <select name="mapElemento" class="form-control" title="Seleccione un Elemento">
+                        <select name="mapElemento" class="form-control" title="Seleccione un elemento">
                             <c:forEach items="${elementos}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>
@@ -165,7 +165,7 @@
 
                     <div class="form-group col-6">
                         <label for="medio">Medios</label>
-                        <select name="mapMedio" class="form-control" title="Seleccione un Medio   ">
+                        <select name="mapMedio" class="form-control" title="Seleccione un medio   ">
                             <c:forEach items="${medios}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>
@@ -174,7 +174,7 @@
 
                     <div class="form-group col-6">
                         <label for="localidad">Localidadades</label>
-                        <select name="mapLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
+                        <select name="mapLocalidad" items="${localidades}" class="form-control" title="Seleccione una localidad">
                             <c:forEach items="${localidades}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>
@@ -183,7 +183,7 @@
 
                     <div class="form-group col-6">
                         <label for="provincia">Provincias</label>
-                        <select name="mapProvincia" items="${provincias}" class="form-control" title="Seleccione una Provincia">
+                        <select name="mapProvincia" items="${provincias}" class="form-control" title="Seleccione una provincia">
                             <c:forEach items="${provincias}" var="bo">
                                 <option value="${bo.descripcion}">${bo.descripcion}</option>
                             </c:forEach>
