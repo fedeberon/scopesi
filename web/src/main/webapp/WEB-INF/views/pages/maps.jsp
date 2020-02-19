@@ -17,7 +17,7 @@
         margin-top: -150px;
         background-color: white;
         opacity: 0.8;
-        min-width: 100%;
+        min-width: 99%;
     }
 
     .hidden{
@@ -46,36 +46,31 @@
 
 <div class="container">
 
-<div class="map-container">
+    <div class="map-container">
+        <%--<input id="pac-input"/>--%>
 
-    <%--<input id="pac-input"/>--%>
+        <div id="map"></div>
 
-    <div id="map"></div>
-
-    <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
-        <div class="col-md-12">
-            <div class="loader">
-                <div class="loader-inner box1"></div>
-                <div class="loader-inner box2"></div>
-                <div class="loader-inner box3"></div>
+        <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
+            <div class="col-md-12">
+                <div class="loader">
+                    <div class="loader-inner box1"></div>
+                    <div class="loader-inner box2"></div>
+                    <div class="loader-inner box3"></div>
+                </div>
             </div>
+            <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
         </div>
-        <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+
     </div>
 
 
-</div>
+    <div class="table-ubicaciones" id="table-ubicaciones">
 
+                <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
+                <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
 
-<div class="table-ubicaciones" id="table-ubicaciones">
-
-    <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
-    <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <table class="table display" id="table-markers">
+                <table class="table" id="table-markers">
                     <thead>
                         <th>opciones</th>
                         <th>id</th>
@@ -90,67 +85,61 @@
                     </thead>
                     <tbody>
 
-                    <c:forEach items="${registros}" var="bo">
+                        <c:forEach items="${registros}" var="bo">
 
-                        <tr>
-                            <td>
+                            <tr>
+                                <td>
                                     <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-bars"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 
-                                            <div class="dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}', '${bo.id}')">
-                                            <i class="fas fa-sync"></i>
-                                            <button id="${bo.id}-save" class="btn btn-danger hidden btn-fill">Guardar</button>
-                                            <a>&nbsp;&nbsp;GeoReferenciar</a>
-                                            </div>
+                                        <i class="fas fa-sync dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}', '${bo.id}')"><a>&nbsp;&nbsp;GeoReferenciar</a></i>
+                                        <button style="margin-left: 30px; margin-top: 8px;" id="${bo.id}-save" class="btn btn-danger hidden btn-fill">Guardar</button>
 
-                                            <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div>
 
-                                            <div class="dropdown-item cursorPointer" id="icon-view-marker-${bo.id}" onclick="displayMarkers(this, '${bo.id}')">
+                                        <div class="dropdown-item cursorPointer" id="icon-view-marker-${bo.id}" onclick="displayMarkers(this, '${bo.id}')">
                                             <i class="far fa-eye-slash"></i><a>&nbsp;&nbsp;Ocultar pin</a>
-                                            </div>
+                                        </div>
 
-                                            <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div>
 
-                                            <div class="dropdown-item cursorPointer" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
+                                        <div class="dropdown-item cursorPointer" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
                                             <i class="nc-icon nc-tap-01 pr-0" style="font-size: 16px"></i><a>&nbsp;&nbsp;Resaltar pin</a>
-                                            </div>
+                                        </div>
 
-                                            <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div>
 
-                                            <div class="dropdown-item cursorPointer" onclick="centerFromMarker('${bo.id}')">
+                                        <div class="dropdown-item cursorPointer" onclick="centerFromMarker('${bo.id}')">
                                             <i class="fas fa-location-arrow"></i><a>&nbsp;&nbsp;Ir</a>
-                                            </div>
+                                        </div>
 
-                                            <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div>
 
-                                            <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
+                                        <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
                                             <i class="fas fa-camera"></i><a>&nbsp;&nbsp;Fotos</a>
-                                            </div>
+                                        </div>
                                     </div>
 
-                            </td>
-                            <td>${bo.id}</td>
-                            <td>${bo.name}</td>
-                            <td id="${bo.id}-address">${bo.address}</td>
-                            <td>${bo.localidad}</td>
-                            <td>${bo.provincia}</td>
-                            <td>${bo.description}</td>
-                            <td id="${bo.id}-lat">${bo.lat}</td>
-                            <td id="${bo.id}-lon">${bo.lon}</td>
+                                </td>
+                                <td>${bo.id}</td>
+                                <td>${bo.name}</td>
+                                <td id="${bo.id}-address">${bo.address}</td>
+                                <td>${bo.localidad}</td>
+                                <td>${bo.provincia}</td>
+                                <td>${bo.description}</td>
+                                <td id="${bo.id}-lat">${bo.lat}</td>
+                                <td id="${bo.id}-lon">${bo.lon}</td>
 
-                        </tr>
+                            </tr>
 
-                    </c:forEach>
+                        </c:forEach>
 
                     </tbody>
 
                 </table>
-            </div>
-        </div>
     </div>
-</div>
 
 </div>
 

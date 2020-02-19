@@ -24,16 +24,17 @@ function uploadSingleFile(file) {
 
     xhr.onload = function() {
         console.log(xhr.responseText);
-        var response = JSON.parse(xhr.responseText);
+        var response = "";
         if(xhr.status == 200) {
+            response = JSON.parse(xhr.responseText);
             singleFileUploadError.style.display = "none";
             singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>DownloadUrl : <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
             singleFileUploadSuccess.style.display = "block";
         } else {
             singleFileUploadSuccess.style.display = "none";
-            singleFileUploadError.innerHTML = (response && response.aaaaaa) || "Some Error Occurred";
+            console.log(response);
+            singleFileUploadError.innerHTML = "Hubo un error.";
         }
-
     }
 
     xhr.send(formData);

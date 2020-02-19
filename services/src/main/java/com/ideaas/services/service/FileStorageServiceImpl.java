@@ -51,7 +51,7 @@ public class FileStorageServiceImpl  implements FileStorageService {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            fileName = resolveFileName(file , fileName);
+            fileName = resolveFileName(file, folder, fileName);
 
             Path targetLocation = this.fileStorageLocation.resolve(folder.concat("//").concat(fileName));
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
@@ -97,19 +97,21 @@ public class FileStorageServiceImpl  implements FileStorageService {
         }
     }
 
-    private String resolveFileName(MultipartFile file,  String fileNamme) throws IOException {
-        int i = 0 ;
-        Path path ;
-        String extention = getFileExtension(file);
-        do {
-            String newFileName = fileNamme.concat("(" + i +")");
-            path = this.fileStorageLocation.resolve(newFileName.concat(".").concat(extention));
-            i++;
-        }
-        while(Files.exists(path));
+    private String resolveFileName(MultipartFile file, String folder, String fileNamme) throws IOException {
+    int i = 1 ;
+    String fileName;
+    File newFile;
+    String extention = getFileExtension(file);
 
-        return path.getFileName().toString();
+    do {
+        String newFileName = fileNamme;
+        fileName = fileStorageLocation.toAbsolutePath().toString().concat(File.separator).concat(folder).concat(File.separator).concat(newFileName).concat("(" + i +")").concat(".").concat(extention);
+        newFile = new File(fileName);
+        i++;
     }
+    while(newFile.getAbsoluteFile().exists());
 
+    return newFile.getName();
+}
 
 }
