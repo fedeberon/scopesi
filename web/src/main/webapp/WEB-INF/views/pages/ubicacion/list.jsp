@@ -16,6 +16,17 @@
 <div class="content">
     <div class="container-fluid">
 
+        <div class="col load mt-5" style="display: none; position:absolute; z-index: 1000; top: 123px;">
+            <div class="col-md-12">
+                <div class="loader">
+                    <div class="loader-inner box1"></div>
+                    <div class="loader-inner box2"></div>
+                    <div class="loader-inner box3"></div>
+                </div>
+            </div>
+            <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+        </div>
+
         <div class="row">
 
             <div class="col-12">
@@ -31,7 +42,6 @@
                         <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">
                             <input type="hidden" name="page" value="${ubicacionRequest.page}"/>
                             <table id="dataTable" class="display" style="width:100%">
-
                             <thead>
                             <th>
                                 <div class="form-check">
@@ -41,6 +51,7 @@
                                     </label>
                                 </div>
                             </th>
+                            <th>Fotos</th>
                             <th>Editar</th>
                             <th>ID</th>
                             <th>Empresa</th>
@@ -82,6 +93,13 @@
                                             </label>
                                         </div>
                                     </td>
+
+                                    <td>
+                                        <div class="text-center cursorPointer" onclick="createCarrusel('${bo.id}')">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                    </td>
+
                                     <td class="text-center">
                                         <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
                                         <img src="/resources/assets/img/icons/edit2.png" alt="">
@@ -366,6 +384,69 @@
                 </div>
 
             </form:form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-info-marker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-top: 0px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos de la ubicaci&oacute;n</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body data-ubicacion"></div>
+            <div class="modal-footer">
+                <button onclick="showImages()" class="btn btn-primary">Ver Imagenes</button>
+
+                <a data-toggle="modal" href="#myModal2" class="btn btn-primary">Subir Imagenes</a>
+
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal2">
+    <div class="modal-dialog  modal-md">
+        <div class="modal-content" style="margin-top: 0px;">
+            <div class="modal-header">
+                <h4 class="modal-title">Subir Imagenes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div><div class="container"></div>
+
+            <div class="upload-container">
+                <div class="upload-content">
+                    <div class="single-upload">
+                        <h3>Upload Single File</h3>
+                        <form id="singleUploadForm" name="singleUploadForm">
+                            <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="singleFileUploadError"></div>
+                            <div id="singleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                    <div class="multiple-upload">
+                        <h3>Upload Multiple Files</h3>
+                        <form id="multipleUploadForm" name="multipleUploadForm">
+                            <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="multipleFileUploadError"></div>
+                            <div id="multipleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

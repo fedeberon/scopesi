@@ -71,6 +71,8 @@ function existValue(value, data){
 function createCarrusel(id) {
     $('.load').show();
     $('.map-container').css('opacity', '0.3');
+    $('.content').css('opacity', '0.3');
+
     $.ajax( {
         url: '/api/ubicacion/' + id,
         dataType: 'json',
@@ -113,6 +115,7 @@ function createCarrusel(id) {
 
             $('.load').hide();
             $('.map-container').css('opacity', '1');
+            $('.content').css('opacity', '1');
             $('#modal-info-marker').modal('show');
 
         }
