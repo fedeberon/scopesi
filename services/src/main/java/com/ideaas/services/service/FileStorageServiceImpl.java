@@ -79,7 +79,7 @@ public class FileStorageServiceImpl  implements FileStorageService {
 
     @Override
     public void delete(String folder, String fileName) {
-        Path fileToDeletePath = this.fileStorageLocation.resolve(folder.concat("//").concat(fileName));
+        Path fileToDeletePath = this.fileStorageLocation.resolve(folder.concat("/").concat(fileName));
         try {
             Files.delete(fileToDeletePath);
         } catch (IOException e) {
