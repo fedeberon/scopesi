@@ -143,19 +143,30 @@ function showImages() {
 
 // Make buttons clickable using event delegation
 $('body').on('click', '[data-fancybox-fb]', function() {
-    var idEmpresa = document.querySelector("#idEmpresa").value;
     var idUbicacion = document.querySelector("#idUbicacion").value;
     var src = $.fancybox.getInstance().current.src;
     var url = src.split('/');
-    var file = url[url.length - 1];
+    var fileName = url[url.length - 1];
+
+    $("#modal-confirmacion").modal('show');
 
     var functionSuccess =   function (){
         $('#myModal2').modal('close');
         createCarrusel(idUbicacion);
     };
 
-    deleteFile(idEmpresa, file, functionSuccess);
-    $.fancybox.close();
+    modalConfirm(function(confirm){
+        if(confirm){
+            //Acciones si el usuario confirma
+            deleteFile(fileName, functionSuccess);
+            $("#modal-confirmacion").modal('hide');
+            $.fancybox.close();
+
+        } else {
+            //Acciones si el usuario no confirma
+            $("#modal-confirmacion").modal('hide');
+        }
+    });
 });
 
 
@@ -186,10 +197,9 @@ function createTableUbicacionInformation(data){
 }
 
 
-function deleteFile(folder, file, functionSuccess) {
+function deleteFile(fileName, functionSuccess) {
     var dataToSend = {
-        "folder": folder,
-        "file" : file
+        "fileName" : fileName
     };
 
     $.ajax( {

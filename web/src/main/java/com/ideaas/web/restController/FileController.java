@@ -58,8 +58,8 @@ public class FileController {
     }
 
     @PostMapping("/deleteFile")
-    public ResponseEntity delete(@RequestParam String folder, @RequestParam String file) {
-        fileStorageService.delete(folder, file);
+    public ResponseEntity delete( @RequestParam String fileName) {
+        fileStorageService.delete(fileName);
 
         return new ResponseEntity(HttpStatus.OK);
     }

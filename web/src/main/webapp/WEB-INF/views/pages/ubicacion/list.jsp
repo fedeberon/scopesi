@@ -23,6 +23,12 @@
     .fancybox-button--fb svg path{
         stroke-width: 0;
     }
+
+    .confirm-modal{
+        margin-top: 124px;
+        z-index: 100000;
+    }
+
 </style>
 
 <div class="content">
@@ -476,3 +482,18 @@
         <span id="span-more-options" class="d-lg-block" data-toggle="modal" data-target="#optionModal">&nbsp;Editar Resultados</span>
     </a>
 </li>
+
+<!-- Modal -->
+<div class="modal fade confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modal-confirmacion">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top: 0;" id="myModalLabel">&iquest;Desea eliminar esta imagen?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
