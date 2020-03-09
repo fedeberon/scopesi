@@ -59,5 +59,4 @@ public class MapUbicacionRestController {
     public List<MapUbicacion> findAll(@RequestBody MapUbicacionRequest mapUbicacionRequest){
         return mapUbicacionService.findAll(mapUbicacionRequest);
     }
-
 }

@@ -221,8 +221,8 @@ function actualizarCoordenadas(address, id){
 
         },
         success:  function (data) {
-            $("#" + id + "-lat").append(data.location.lat);
-            $("#" + id + "-lon").append(data.location.lng);
+            $("#" + id + "-lat").html(data.location.lat);
+            $("#" + id + "-lon").html(data.location.lng);
 
             var latLong = new google.maps.LatLng(data.location.lat, data.location.lng);
             var marker = new google.maps.Marker({
@@ -239,6 +239,50 @@ function actualizarCoordenadas(address, id){
             map.fitBounds(bounds);
             $("#" + id + "-save").show();
             $("#" + id + "-update").hide();
+        }
+    });
+}
+
+
+
+
+function guardarCoordenadas(id) {
+    var lat = $("#" + id + "-lat").html();
+    var lng  = $("#" + id + "-lon").html();
+    var dataToSend = { "id": id, "latitud": lat, "longitud": lng };
+
+    let dataJson = JSON.stringify(dataToSend);
+    $.ajax( {
+        url: '/api/updateCoordenadas',
+        type: "post",
+        dataType: 'json',
+        data: dataJson,
+        beforeSend: function () {
+            $("#icon-" + id).removeClass("fa-bars").addClass("fa-cog fa-spin");
+            $("#" + id + "-save").html('Guardando');
+        },
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        success:  function (data) {
+            $("#icon-" + id).removeClass("fa-cog fa-spin").addClass("fa-bars");
+            $("#" + id + "-save").hide();
+            $("#" + id + "-update").show();
+            $("#" + id + "-save").html('Guardar');
+
+            $.notify({
+                title: '<strong>Geolocalizacion Guardada !</strong>',
+                message: 'La nueva posicion del punto seleccionado es lat:' + data.latitud + '. , lng: .' + data.longitud
+            }, {
+                timer: 8000
+            });
+
+
+        },
+        error: function (jqXHR, exception) {
+            console.log(jqXHR);
+            // Your error handling logic here..
         }
     });
 
