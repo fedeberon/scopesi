@@ -94,7 +94,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 
-                                        <i class="fas fa-sync dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}', '${bo.id}')"><a>&nbsp;&nbsp;GeoReferenciar</a></i>
+                                        <i class="fas fa-sync dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}','${bo.id}')"><a>&nbsp;&nbsp;GeoReferenciar</a></i>
                                         <button style="margin-left: 30px; margin-top: 8px;" id="${bo.id}-save" class="btn btn-danger hidden btn-fill">Guardar</button>
 
                                         <div class="dropdown-divider"></div>
@@ -126,7 +126,7 @@
                                 <td>${bo.id}</td>
                                 <td>${bo.name}</td>
                                 <td id="${bo.id}-address">${bo.address}</td>
-                                <td>${bo.localidad}</td>
+                                <td id="${bo.localidad}-localidad">${bo.localidad}</td>
                                 <td>${bo.provincia}</td>
                                 <td>${bo.description}</td>
                                 <td id="${bo.id}-lat">${bo.lat}</td>

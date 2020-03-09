@@ -219,8 +219,11 @@ function deleteFile(fileName, functionSuccess) {
 
 
 
-function actualizarCoordenadas(address, id){
-    var dataToSend = { "address": address };
+function actualizarCoordenadas(address,localidad, provincia, id){
+    var newData = address + ',' + localidad + ',' + provincia ;
+    var dataToSend = {
+        "address": newData,
+    };
 
     $.ajax( {
         url: '/map/searchCoordinatesByAdress',

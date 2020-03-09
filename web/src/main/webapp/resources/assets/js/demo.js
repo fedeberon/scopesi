@@ -477,7 +477,7 @@ function handleEventToUpdate(event, marker){
 
             $('#'+data.id+'-lat').html(data.latitud);
             $('#'+data.id+'-lng').html(data.longitud);
-            $('#'+data.id+'-address').html(data.direccion);
+            // $('#'+data.id+'-address').html(data.direccion);
 
         },
         error: function(data) {
