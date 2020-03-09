@@ -90,7 +90,7 @@
             // (<br> vs <br /> for example)
             // So we have to force-parse this as HTML here!
             var isSameTitle = title === $("<div>" + notification.settings.content.title + "</div>").html().trim();
-            var isSameMsg = message === $("<div>" + notification.settings.content.aaaaaa + "</div>").html().trim();
+            var isSameMsg = message === $("<div>" + notification.settings.content.message + "</div>").html().trim();
             var isSameType = $el.hasClass('alert-' + notification.settings.type);
 
             if (isSameTitle && isSameMsg && isSameType) {
@@ -107,7 +107,7 @@
         // Setup Content of Notify
         var contentObj = {
             content: {
-                message: typeof content === 'object' ? content.aaaaaa : content,
+                message: typeof content === 'object' ? content.message : content,
                 title: content.title ? content.title : '',
                 icon: content.icon ? content.icon : '',
                 url: content.url ? content.url : '#',
@@ -209,7 +209,7 @@
         },
         buildNotify: function() {
             var content = this.settings.content;
-            this.$ele = $(String.format(this.settings.template, this.settings.type, content.title, content.aaaaaa, content.url, content.target));
+            this.$ele = $(String.format(this.settings.template, this.settings.type, content.title, content.message, content.url, content.target));
             this.$ele.attr('data-notify-position', this.settings.placement.from + '-' + this.settings.placement.align);
             if (!this.settings.allow_dismiss) {
                 this.$ele.find('[data-notify="dismiss"]').css('display', 'none');

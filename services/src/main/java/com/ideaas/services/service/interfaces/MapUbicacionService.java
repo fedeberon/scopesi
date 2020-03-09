@@ -3,6 +3,7 @@ package com.ideaas.services.service.interfaces;
 import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface MapUbicacionService {
@@ -18,4 +19,5 @@ public interface MapUbicacionService {
     List<MapUbicacion> saveList(MapUbicacionRequest mapUbicacionRequest);
 
     void saveLatLong(MapUbicacionRequest request);
+
 }

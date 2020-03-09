@@ -31,6 +31,17 @@ function disabledOptionsNotFounds(){
             checkOptions('#select-medios' , data.medios);
             $('.load').hide();
             $('.modal-body').css('opacity', '1');
+        },
+        error: function(data) {
+            $.notify({
+                title: '<strong>Hubo un problema!</strong>',
+                message: 'Se produjo un error al intentar chequear resultados.'
+            },
+            {
+                timer: 'none',
+                z_index:2000,
+                type: 'danger'
+            });
         }
     });
 }
@@ -234,8 +245,10 @@ function actualizarCoordenadas(address,localidad, provincia, id){
 
         },
         success:  function (data) {
-            $("#" + id + "-lat").append(data.location.lat);
-            $("#" + id + "-lon").append(data.location.lng);
+            deleteMarker(id);
+
+            $("#" + id + "-lat").html(data.location.lat);
+            $("#" + id + "-lon").html(data.location.lng);
 
             var latLong = new google.maps.LatLng(data.location.lat, data.location.lng);
             var marker = new google.maps.Marker({
@@ -252,6 +265,50 @@ function actualizarCoordenadas(address,localidad, provincia, id){
             map.fitBounds(bounds);
             $("#" + id + "-save").show();
             $("#" + id + "-update").hide();
+        }
+    });
+}
+
+
+
+
+function guardarCoordenadas(id) {
+    var lat = $("#" + id + "-lat").html();
+    var lng  = $("#" + id + "-lon").html();
+    var dataToSend = { "id": id, "latitud": lat, "longitud": lng };
+
+    var dataJson = JSON.stringify(dataToSend);
+    $.ajax( {
+        url: '/api/updateCoordenadas',
+        type: "POST",
+        dataType: 'json',
+        data: dataJson,
+        beforeSend: function () {
+            $("#icon-" + id).removeClass("fa-bars").addClass("fa-spinner fa-spin");
+            $("#" + id + "-save").html('Guardando');
+        },
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        success:  function (data) {
+            $("#icon-" + id).removeClass("fa-spinner fa-spin").addClass("fa-bars");
+            $("#" + id + "-save").hide();
+            $("#" + id + "-update").show();
+            $("#" + id + "-save").html('Guardar');
+
+            $.notify({
+                title: '<strong>Geolocalizacion guardada exitosamente!</strong>',
+                message: 'La nueva posicion del punto seleccionado es lat:' + data.latitud + '. , lng: .' + data.longitud
+            }, {
+                timer: 8000
+            });
+
+
+        },
+        error: function (jqXHR, exception) {
+            console.log(jqXHR);
+            // Your error handling logic here..
         }
     });
 
