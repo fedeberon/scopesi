@@ -7,5 +7,5 @@ services:
     container_name: scopesi
     ports:
       - 80:80
-    volume:
+    volumes:
       - ~/images/fotos_map:/images/fotos_map
