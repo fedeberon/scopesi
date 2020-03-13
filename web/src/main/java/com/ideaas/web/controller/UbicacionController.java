@@ -80,8 +80,9 @@ public class UbicacionController {
     }
 
     @RequestMapping(value = "search", params = "maps" , method = RequestMethod.POST)
-    public String findAll(@ModelAttribute Wrapper ubicaciones, Model model){
-        model.addAttribute("registros", ubicaciones.getSelectedElements());
+    public String findAll(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
+        model.addAttribute("registros", wrapper.getSelectedElements());
+        model.addAttribute("ubicacionRequest", wrapper.getRequest());
 
         return "ubicacion/map";
     }

@@ -41,7 +41,7 @@
         <li>
             <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-atlas"></i>
-                <p class="wordsMenu">Geoplaning</p>
+                <p class="wordsMenu">Geoplanning</p>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                 <a class="dropdown-item" href="/ubicacion/list">

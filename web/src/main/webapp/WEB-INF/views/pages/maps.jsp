@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
 
     .modal-content {
@@ -174,6 +175,23 @@
     </a>
 </li>
 
+<form:form  action="search" modelAttribute="myWrapper">
+
+    <input type="text" name="request.mapEmpresa" value="${ubicacionRequest.mapEmpresa}">
+
+    <input name="request.mapElemento" type="text" value="${ubicacionRequest.mapElemento}">
+    <input type="text" value="${ubicacionRequest.mapFormato}">
+    <input type="text" value="${ubicacionRequest.mapMedio}">
+    <input type="text" value="${ubicacionRequest.mapLocalidad}">
+    <input type="text" value="${ubicacionRequest.mapProvincia}">
+    <input type="text" value="${ubicacionRequest.bajaLogica}">
+    <input type="text" value="${ubicacionRequest.langLongEmpty}">
+    <input type="text" value="${ubicacionRequest.maxResults}">
+
+
+    <button type="submit" class="nav-link" name="paginate">Volver</button>
+
+</form:form>
 
 <table class="table table-bordered table-data-ubicaciones hidden">
     <thead>

@@ -305,9 +305,10 @@
 </script>
 
 <script>
+
     $( ".form-check-sign" ).on( "click", function() {
-        var check = $( this ).attr('id');
-        $('form-check-input-' + check).val(true);
+        var check = $( this ).data( 'id' );
+        $('#form-check-input-' + check).val(true);
     });
 
     var selectpickerIsClicked = false;
@@ -353,6 +354,12 @@
         });
 
         $('#select-geolocalizacion').selectpicker({
+            container: 'body',
+            dropupAuto: false,
+            liveSearch: false
+        });
+
+        $('#select-cantidad').selectpicker({
             container: 'body',
             dropupAuto: false,
             liveSearch: false
