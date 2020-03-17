@@ -123,7 +123,6 @@ public class MapUbicacion {
     @Column(name = "id_referencia")
     private String idReferencia;
 
-    //Problemas con id=0
     @ManyToOne
     @JoinColumn(name = "IdMapBuses")
     @JsonIgnore
