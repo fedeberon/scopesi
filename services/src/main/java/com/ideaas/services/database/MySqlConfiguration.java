@@ -32,9 +32,9 @@ public class MySqlConfiguration {
     public DataSource sqlServerDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://scopesi.cluster-coklxqif6wnp.us-west-2.rds.amazonaws.com/sistema_web"); //jdbc:mysql://190.210.180.187:3306/sistema_web
+        dataSource.setUrl("jdbc:mysql://190.210.180.187:3306/sistema_web");
         dataSource.setUsername("root");
-        dataSource.setPassword("admScopesi15849!"); //viapublica2012
+        dataSource.setPassword("viapublica2012");
         return dataSource;
     }
 
