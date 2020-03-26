@@ -37,6 +37,11 @@
     .dropdown-toggle::after{
         display: none !important;
     }
+
+    .confirm-modal{
+        margin-top: 124px;
+        z-index: 100000;
+    }
 </style>
 
 <script>
@@ -244,3 +249,32 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modal-confirmacion">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top: 0;" id="myModalLabel">&iquest;Desea eliminar esta imagen?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn2-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn2-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-confirm-polyg">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top: 0px;" id="myModalLabel">&iquest;Desea guardar los datos del pol&iacute;gono?</h4>
+            </div>
+            <div class="modal-body" style="text-align: center" id="info"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn3-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn3-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
