@@ -166,7 +166,7 @@ $('body').on('click', '[data-fancybox-fb]', function() {
         createCarrusel(idUbicacion);
     };
 
-    modalConfirm(function(confirm){
+    modalConfirm2(function(confirm){
         if(confirm){
             //Acciones si el usuario confirma
             deleteFile(fileName, functionSuccess);

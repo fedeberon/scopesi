@@ -44,12 +44,9 @@
                                     <td>${bo.estado}</td>
                                     <td>${bo.tipoUsuario.descripcion}</td>
                                     <td>${bo.cargo}</td>
-<%--                                    <td>${bo.contratoInversion.id}</td>--%>
-<%--                                    <td>${bo.contratoAuditoria.id}</td>--%>
-<%--                                    <td>${bo.contratoMapping.id}</td>--%>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
+                                    <td>${bo.contratoInversion.id}</td>
+                                    <td>${bo.contratoAuditoria.id}</td>
+                                    <td>${bo.contratoMapping.id}</td>
                                 </tr>
 
                             </c:forEach>

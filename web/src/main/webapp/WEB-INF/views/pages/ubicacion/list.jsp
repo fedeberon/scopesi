@@ -491,8 +491,8 @@
                 <h4 class="modal-title" style="margin-top: 0;" id="myModalLabel">&iquest;Desea eliminar esta imagen?</h4>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
-                <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
+                <button type="button" class="btn btn-default" id="modal-btn2-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn2-no">No</button>
             </div>
         </div>
     </div>

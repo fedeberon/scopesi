@@ -177,8 +177,51 @@ demo = {
             streetViewControl: false,
         };
 
-
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var polygonArray = [];
+
+        var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: google.maps.drawing.OverlayType.NULL,
+            drawingControl: true,
+            drawingControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT,
+                drawingModes: ['polygon']
+            },
+            polygonOptions: {
+                fillColor: '#b2b2b2',
+                fillOpacity: 0.5,
+                strokeWeight: 2,
+                strokeColor: '#000000',
+                clickable: false,
+                editable: false,
+                zIndex: 1
+            }
+        });
+
+        drawingManager.setMap(map);
+
+        google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
+            document.getElementById('info').innerHTML += "Puntos del pol&iacute;gono:" + "<br>";
+            for (var i = 0; i < polygon.getPath().getLength(); i++) {
+                document.getElementById('info').innerHTML += polygon.getPath().getAt(i).toUrlValue(6) + "<br>";
+            }
+            polygonArray.push(polygon);
+
+            $("#modal-confirm-polyg").modal('show');
+
+            modalConfirm3(function(confirm){
+                if(confirm){
+                    //Acciones si el usuario confirma
+                    $("#modal-confirm-polyg").modal('hide');
+
+
+                } else {
+                    //Acciones si el usuario no confirma
+                    $("#modal-confirm-polyg").modal('hide');
+                }
+            });
+        });
 
         $('#table-markers tbody>tr').each(function () {
             var id = $(this).find("td").eq(1).html();
@@ -220,6 +263,7 @@ demo = {
 
                     } else {
                         //Acciones si el usuario no confirma
+                        $("#mi-modal").modal('hide');
                     }
                 });
             });
@@ -510,6 +554,34 @@ var modalConfirm = function(callback){
         callback(false);
         $("#mi-modal").modal('hide');
     });
+};
+
+var modalConfirm2 = function(callback){
+
+    $("#modal-btn2-si").on("click", function(){
+        callback(true);
+        $("#modal-confirmacion").modal('hide');
+    });
+
+    $("#modal-btn2-no").on("click", function(){
+        callback(false);
+        $("#modal-confirmacion").modal('hide');
+    });
+
+};
+
+var modalConfirm3 = function(callback){
+
+    $("#modal-btn3-si").on("click", function(){
+        callback(true);
+        $("#modal-confirm-polyg").modal('hide');
+    });
+
+    $("#modal-btn3-no").on("click", function(){
+        callback(false);
+        $("#modal-confirm-polyg").modal('hide');
+    });
+
 };
 
 function onPlaceChanged() {

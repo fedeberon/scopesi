@@ -52,18 +52,15 @@ public class Usuario {
     @Column(name = "cargo")
     private String cargo;
 
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idContratoInv")
     private ContratoInversion contratoInversion;
 
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idContratoAud")
     private ContratoAuditoria contratoAuditoria;
 
-    @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idContratoMap")
     private ContratoMapping contratoMapping;
 
