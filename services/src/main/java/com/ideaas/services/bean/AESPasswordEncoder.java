@@ -80,4 +80,25 @@ public class AESPasswordEncoder implements PasswordEncoder {
     }
 
 
+    @SuppressWarnings("Duplicates")
+    public String dencrypt(String password) throws InvalidCipherTextException {
+        byte[] data = password.getBytes();
+        byte[] encryptionKey = key.getBytes();
+
+        KeyParameter keyParameter = new KeyParameter(encryptionKey);
+
+        PaddedBufferedBlockCipher bufferedBlockCipher = new PaddedBufferedBlockCipher(new RijndaelEngine(256), new ZeroBytePadding());
+        bufferedBlockCipher.init(false, keyParameter);
+
+        byte[] buffer = new byte[bufferedBlockCipher.getOutputSize(data.length)];
+        int processedBytes = bufferedBlockCipher.processBytes(data, 0, data.length, buffer, 0);
+        processedBytes += bufferedBlockCipher.doFinal(buffer, processedBytes);
+
+        byte[] result = Arrays.copyOfRange(buffer, 0, processedBytes);
+        String output = Base64.encodeBase64String(result);
+
+        return output;
+    }
+
+
 }
