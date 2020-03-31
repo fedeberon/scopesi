@@ -227,7 +227,40 @@ function deleteFile(fileName, functionSuccess) {
         }
     });
 }
+function modificarCoordenadas(id) {
 
+    deleteMarker(id);
+    var lat = map.getCenter().lat();
+    var lng = map.getCenter().lng();
+    console.log(lat);
+    console.log(lng);
+
+    var latLong = new google.maps.LatLng(lat, lng);
+
+    var marker = new google.maps.Marker({
+        id: id,
+        position: latLong,
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP
+    });
+
+    marker.addListener('dragend', function(event){
+
+        $("#mi-modal").modal('show');
+
+        modalConfirm(function(confirm){
+            if(confirm){
+                //Acciones si el usuario confirma
+                handleEventToUpdate(event, marker);
+
+            } else {
+                //Acciones si el usuario no confirma
+                $("#mi-modal").modal('hide');
+            }
+        });
+    });
+}
 
 
 function actualizarCoordenadas(address,localidad, provincia, id){

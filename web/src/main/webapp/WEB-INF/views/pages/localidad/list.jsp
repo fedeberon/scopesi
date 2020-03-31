@@ -13,11 +13,11 @@
                     <div class="card-body table-full-width table-responsive">
                         <table id="dataTableToCompleteList" class="display" style="width:100%">
                             <thead>
-                            <th>ID</th>
-                            <th>Descripcion</th>
-                            <th>IdProvincia</th>
-                            <th class="text-center">Editar</th>
-                            <th class="text-center">Baja/Alta Logica</th>
+                                <th>ID</th>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Baja/Alta Logica</th>
+                                <th>Descripcion</th>
+                                <th>IdProvincia</th>
                             </thead>
 
                             <tbody>
@@ -26,8 +26,6 @@
 
                                 <tr>
                                     <td><a href="/localidad/${bo.id}">${bo.id}</a></td>
-                                    <td>${bo.descripcion}</td>
-                                    <td>${bo.audProvincia.descripcion}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/localidad/update?id=${bo.id}'/>"/>
                                         <img src="/resources/assets/img/icons/edit2.png" alt="">
@@ -38,7 +36,8 @@
                                         <a ${bo.bajaLogica == false ? 'class="d-none"' : ''} href="<c:url value='/localidad/upBajaLogica?id=${bo.id}'/>"/>
                                         <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
                                     </td>
-
+                                    <td>${bo.descripcion}</td>
+                                    <td>${bo.audProvincia.descripcion}</td>
                                 </tr>
 
                             </c:forEach>

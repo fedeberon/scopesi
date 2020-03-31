@@ -170,7 +170,7 @@ demo = {
         var mapOptions = {
             zoom: 13,
             center: myLatlng,
-            scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+            scrollwheel: true,
             zoomControlOptions: {
                 position: google.maps.ControlPosition.LEFT_CENTER
             },
@@ -475,7 +475,7 @@ function showMap(lat, lon){
     var mapaOptions = {
         zoom: 7,
         center: latLong,
-        scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+        scrollwheel: true,
         zoomControlOptions: {
             position: google.maps.ControlPosition.LEFT_CENTER
         },
@@ -594,7 +594,6 @@ function onPlaceChanged() {
         document.getElementById('autocomplete').placeholder = 'Enter a city';
     }
 }
-
 
 function deleteMarker(id) {
     for (i = 0; i < markers.length; i++) {
