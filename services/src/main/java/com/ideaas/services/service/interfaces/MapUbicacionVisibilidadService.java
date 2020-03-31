@@ -11,4 +11,6 @@ public interface MapUbicacionVisibilidadService {
     MapUbicacionVisibilidad save(MapUbicacionVisibilidad mapUbicacionVisibilidad);
 
     List<MapUbicacionVisibilidad> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapUbicacionVisibilidad> findAll();
 }

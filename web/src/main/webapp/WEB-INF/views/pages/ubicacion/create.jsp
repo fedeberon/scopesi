@@ -175,16 +175,25 @@
                                             <label for="street1_id" class="control-label pt-2">Fecha Transf</label>
                                             <form:input  path="fechaTransf" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                                         </div>
+
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Ubicacion Altura</label>
-                                            <form:input  path="mapUbicacionAltura" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <select class="form-control" id="street1_id" name="mapUbicacionAltura.id">
+                                                <c:forEach items="${alturas}" var="bo" varStatus="status">
+                                                    <option value="${bo.id}">${bo.descripcion}</option>
+                                                </c:forEach>
+                                            </select>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Ubicacion visibilidad</label>
-                                            <form:input  path="mapUbicacionVisibilidad" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <select class="form-control" id="street1_id" name="mapUbicacionVisibilidad.id">
+                                                <c:forEach items="${visibilidades}" var="bo" varStatus="status">
+                                                    <option value="${bo.id}">${bo.descripcion}</option>
+                                                </c:forEach>
+                                            </select>
                                       </div>
                                     </div>
                             </div>

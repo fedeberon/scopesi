@@ -47,9 +47,13 @@ public class UbicacionController {
 
     private MapBusService mapBusService;
 
+    private MapUbicacionAlturaService mapUbicacionAlturaService;
+
+    private MapUbicacionVisibilidadService mapUbicacionVisibilidadService;
+
 
     @Autowired
-    public UbicacionController(MapUbicacionService mapUbicacionService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapLocalidadService mapLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService) {
+    public UbicacionController(MapUbicacionService mapUbicacionService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapLocalidadService mapLocalidadService, MapProvinciaService mapProvinciaService, MapBusService mapBusService, MapUbicacionAlturaService mapUbicacionAlturaService, MapUbicacionVisibilidadService mapUbicacionVisibilidadService) {
         this.mapUbicacionService = mapUbicacionService;
         this.mapEmpresaService = mapEmpresaService;
         this.mapElementoService = mapElementoService;
@@ -58,6 +62,8 @@ public class UbicacionController {
         this.mapLocalidadService = mapLocalidadService;
         this.mapProvinciaService = mapProvinciaService;
         this.mapBusService = mapBusService;
+        this.mapUbicacionAlturaService = mapUbicacionAlturaService;
+        this.mapUbicacionVisibilidadService = mapUbicacionVisibilidadService;
     }
 
     @RequestMapping("/list/whitParameter")
@@ -143,6 +149,16 @@ public class UbicacionController {
     @ModelAttribute("provincias")
     public List<MapProvincia> provincias(){
         return mapProvinciaService.findAll();
+    }
+
+    @ModelAttribute("alturas")
+    public List<MapUbicacionAltura> alturas(){
+        return mapUbicacionAlturaService.findAll();
+    }
+
+    @ModelAttribute("visibilidades")
+    public List<MapUbicacionVisibilidad> visibilidades(){
+        return mapUbicacionVisibilidadService.findAll();
     }
 
     @ModelAttribute("mapUbicacionRequest")

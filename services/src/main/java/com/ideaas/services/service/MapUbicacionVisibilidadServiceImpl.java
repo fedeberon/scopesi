@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class MapUbicacionVisibilidadServiceImpl implements MapUbicacionVisibilidadService {
@@ -38,5 +40,14 @@ public class MapUbicacionVisibilidadServiceImpl implements MapUbicacionVisibilid
         Page<MapUbicacionVisibilidad> mapUbicacionesVisibilidades = dao.findAll(paging);
 
         return mapUbicacionesVisibilidades.getContent();
+    }
+
+    @Override
+    public List<MapUbicacionVisibilidad> findAll() {
+        Iterable<MapUbicacionVisibilidad> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

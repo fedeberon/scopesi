@@ -94,8 +94,8 @@
                             <th>Baja Logica</th>
                             <th>Fecha de Tranferencia</th>
                             <th>Fecha de Alta</th>
-                            <th>Id.Altura</th>
-                            <th>Id.Visibilidad</th>
+                            <th>Altura</th>
+                            <th>Visibilidad</th>
                         </thead>
 
                             <tbody>
