@@ -15,3 +15,6 @@ values (0 , 0, 0);
 
 insert into map_buses (idMapBuses, linea , color, fecha_alta)
 values (0 , '', '', 0);
+
+insert into map_anunciantes (idAnunciante , Descripcion)
+values (0 , '');

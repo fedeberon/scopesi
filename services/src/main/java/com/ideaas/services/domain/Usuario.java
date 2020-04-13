@@ -54,15 +54,15 @@ public class Usuario {
 
     @ManyToOne
     @JoinColumn(name = "idContratoInv")
-    private ContratoInversion contratoInversion;
+    private Contrato contratoInv;
 
     @ManyToOne
     @JoinColumn(name = "idContratoAud")
-    private ContratoAuditoria contratoAuditoria;
+    private Contrato contratoAud;
 
     @ManyToOne
     @JoinColumn(name = "idContratoMap")
-    private ContratoMapping contratoMapping;
+    private Contrato contratoMap;
 
     public Usuario() { }
 
@@ -155,27 +155,27 @@ public class Usuario {
         this.cargo = cargo;
     }
 
-    public ContratoInversion getContrato() {
-        return contratoInversion;
+    public Contrato getContratoInv() {
+        return contratoInv;
     }
 
-    public void setContrato(ContratoInversion contratoInversion) {
-        this.contratoInversion = contratoInversion;
+    public void setContratoInv(Contrato contratoInv) {
+        this.contratoInv = contratoInv;
     }
 
-    public ContratoAuditoria getContratoAuditoria() {
-        return contratoAuditoria;
+    public Contrato getContratoAud() {
+        return contratoAud;
     }
 
-    public void setContratoAuditoria(ContratoAuditoria contratoAuditoria) {
-        this.contratoAuditoria = contratoAuditoria;
+    public void setContratoAud(Contrato contratoAud) {
+        this.contratoAud = contratoAud;
     }
 
-    public ContratoMapping getContratoMapping() {
-        return contratoMapping;
+    public Contrato getContratoMap() {
+        return contratoMap;
     }
 
-    public void setContratoMapping(ContratoMapping contratoMapping) {
-        this.contratoMapping = contratoMapping;
+    public void setContratoMap(Contrato contratoMap) {
+        this.contratoMap = contratoMap;
     }
 }
