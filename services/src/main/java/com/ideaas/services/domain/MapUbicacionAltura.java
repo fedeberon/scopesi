@@ -23,6 +23,9 @@ public class MapUbicacionAltura {
     @Column(name = "ponderador")
     private Double ponderador;
 
+    @Column(name = "descripcion_larga")
+    private String descripcionLarga;
+
     public MapUbicacionAltura() {
     }
 }

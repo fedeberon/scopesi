@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Empresa</label>
-                                <select class="form-control" id="street1_id" name="audEmpresa.id">
+                                <select class="form-control" id="street1_id" name="mapEmpresa.id">
                                     <c:forEach items="${empresas}" var="bo" varStatus="status">
                                         <option ${bo.descripcion == ubicacion.mapEmpresa.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
@@ -149,19 +149,54 @@
                             </div>
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Ubicacion Altura</label>
-                                <form:input  path="mapUbicacionAltura" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <select class="form-control" id="street1_id" name="mapUbicacionAltura.id">
+                                    <c:forEach items="${alturas}" var="bo" varStatus="status">
+                                        <option ${bo.descripcion == ubicacion.mapUbicacionAltura.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Ubicacion visibilidad</label>
-                                <form:input  path="mapUbicacionVisibilidad" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <select class="form-control" id="street1_id" name="mapUbicacionVisibilidad.id">
+                                    <c:forEach items="${visibilidades}" var="bo" varStatus="status">
+                                        <option ${bo.descripcion == ubicacion.mapUbicacionVisibilidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-info btn-fill pull-left ">Guardar</button>
+                    <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
-                    <a href="#" class="btn btn-info btn-fill pull-right" onclick="showMap('${ubicacion.latitud}', '${ubicacion.longitud}')">Mapa</a>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-secondary btn-fill pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
+                        Guardar
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel1"></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>¿Desea confirmar los cambios?</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-secondaary btn-fill">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn btn-info btn-fill pull-right mr-1" onclick="showMap('${ubicacion.latitud}', '${ubicacion.longitud}')">Mapa</a>
                 </div>
             </div>
             <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -165,6 +165,140 @@ demo = {
         // lbd.startAnimationForLineChart(dailySalesChart);
     },
 
+    initGoogleMaps: function() {
+        var myLatlng = new google.maps.LatLng(-34.600966, -58.462361);
+        var mapOptions = {
+            zoom: 13,
+            center: myLatlng,
+            scrollwheel: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_CENTER
+            },
+            streetViewControl: false,
+        };
+
+        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        var polygonArray = [];
+
+        var drawingManager = new google.maps.drawing.DrawingManager({
+            drawingMode: google.maps.drawing.OverlayType.NULL,
+            drawingControl: true,
+            drawingControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT,
+                drawingModes: ['polygon']
+            },
+            polygonOptions: {
+                fillColor: '#b2b2b2',
+                fillOpacity: 0.5,
+                strokeWeight: 2,
+                strokeColor: '#000000',
+                clickable: false,
+                editable: false,
+                zIndex: 1
+            }
+        });
+
+        drawingManager.setMap(map);
+
+        google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
+            document.getElementById('info').innerHTML += "Puntos del pol&iacute;gono:" + "<br>";
+            for (var i = 0; i < polygon.getPath().getLength(); i++) {
+                document.getElementById('info').innerHTML += polygon.getPath().getAt(i).toUrlValue(6) + "<br>";
+            }
+            polygonArray.push(polygon);
+
+            $("#modal-confirm-polyg").modal('show');
+
+            modalConfirm3(function(confirm){
+                if(confirm){
+                    //Acciones si el usuario confirma
+                    $("#modal-confirm-polyg").modal('hide');
+
+
+                } else {
+                    //Acciones si el usuario no confirma
+                    $("#modal-confirm-polyg").modal('hide');
+                }
+            });
+        });
+
+        $('#table-markers tbody>tr').each(function () {
+            var id = $(this).find("td").eq(1).html();
+            var title = $(this).find("td").eq(2).html();
+            var lat = $(this).find("td").eq(7).html();
+            var lon = $(this).find("td").eq(8).html();
+            var latLong = new google.maps.LatLng(lat, lon);
+
+            var marker = new google.maps.Marker({
+                id: id,
+                class: "marker",
+                position: latLong,
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                title: id + ' - ' + title
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: title + ' ' + id
+            });
+
+
+            marker.addListener('click',function(){
+                infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(' + id + ')" class="mapaboton" >Ver Detalles</button>');
+
+
+                infowindow.open(map,this);
+            });
+
+            marker.addListener('dragend', function(event){
+
+                $("#mi-modal").modal('show');
+
+                modalConfirm(function(confirm){
+                    if(confirm){
+                        //Acciones si el usuario confirma
+                        handleEventToUpdate(event, marker);
+
+                    } else {
+                        //Acciones si el usuario no confirma
+                        $("#mi-modal").modal('hide');
+                    }
+                });
+            });
+            markers.push(marker);
+            bounds.extend(latLong);
+
+        });
+
+        map.fitBounds(bounds);
+
+        var defaultBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(-33.8902, 151.1759),
+            new google.maps.LatLng(-33.8474, 151.2631));
+
+        var input = document.getElementById('searchInput');
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        autocomplete.bindTo('bounds', map);
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);  // Why 17? Because it looks good.
+            }
+        });
+    },
+
     initDashboardPageCharts: function() {
 
         var dataPreferences = {
@@ -260,84 +394,6 @@ demo = {
         var chartActivity = Chartist.Bar('#chartActivity', data, options, responsiveOptions);
     },
 
-    initGoogleMaps: function() {
-        var myLatlng = new google.maps.LatLng(-34.600966, -58.462361);
-        var mapOptions = {
-            zoom: 13,
-            center: myLatlng,
-            scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
-            zoomControlOptions: {
-                position: google.maps.ControlPosition.LEFT_CENTER
-            },
-            streetViewControl: false,
-        };
-
-
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-        $('#table-markers tbody>tr').each(function () {
-            var id = $(this).find("td").eq(0).html();
-            var title = $(this).find("td").eq(1).html();
-            var lat = $(this).find("td").eq(6).html();
-            var lon = $(this).find("td").eq(7).html();
-            var latLong = new google.maps.LatLng(lat, lon);
-
-            var marker = new google.maps.Marker({
-                id: id,
-                class: "marker",
-                position: latLong,
-                map: map,
-                draggable: true,
-                animation: google.maps.Animation.DROP,
-                title: id + ' - ' + title
-            });
-
-            var infowindow = new google.maps.InfoWindow({
-                content: title + ' ' + id
-            });
-
-
-            marker.addListener('click',function(){
-                infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(' + id + ')" class="mapaboton" >Ver Detalles</button>');
-
-
-                infowindow.open(map,this);
-            });
-
-            marker.addListener('dragend', function(event){
-
-                $("#mi-modal").modal('show');
-
-                modalConfirm(function(confirm){
-                    if(confirm){
-                        //Acciones si el usuario confirma
-                        handleEventToUpdate(event, marker);
-
-                    } else {
-                        //Acciones si el usuario no confirma
-                    }
-                });
-
-
-            });
-
-            markers.push(marker);
-            bounds.extend(latLong);
-
-        });
-
-        map.fitBounds(bounds);
-
-        var defaultBounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(-33.8902, 151.1759),
-            new google.maps.LatLng(-33.8474, 151.2631));
-
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-    },
-
     showNotification: function(from, align) {
         color = Math.floor((Math.random() * 4) + 1);
 
@@ -358,15 +414,19 @@ demo = {
 
 var markers = [];
 
-function displayMarkers(id) {
+function displayMarkers(element, id) {
     var i;
     for (i = 0; i < markers.length; i++) {
         if (markers[i].id == id) {
             var marker = markers[i];
             if (!marker.getVisible()) {
                 marker.setVisible(true);
+                $(element).find('a').html('&nbsp;&nbsp;Ocultar pin');
+                $(element).find( "i" ).removeClass('fa-eye').addClass('fa-eye-slash');
             } else {
                 marker.setVisible(false);
+                $(element).find('a').html('&nbsp;&nbsp;Mostrar pin');
+                $(element).find( "i" ).removeClass('fa-eye-slash').addClass('fa-eye');
             }
         }
     }
@@ -411,12 +471,11 @@ function centerFromMarker(id) {
 
 
 function showMap(lat, lon){
-
     var latLong = new google.maps.LatLng(lat, lon);
     var mapaOptions = {
-        zoom: 13,
+        zoom: 7,
         center: latLong,
-        scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+        scrollwheel: true,
         zoomControlOptions: {
             position: google.maps.ControlPosition.LEFT_CENTER
         },
@@ -452,32 +511,34 @@ function handleEventToUpdate(event, marker){
     var dataToSend = {
         "id" : marker.id,
         "latitud": event.latLng.lat(),
-        "longitud" : event.latLng.lng()
+        "longitud" : event.latLng.lng(),
     };
 
     $.ajax({
-        url:"/api/ubicacion",
-        type:"PUT",
+        url:"/api/updateCoordenadas",
+        type:"POST",
         data: JSON.stringify(dataToSend),
         contentType:"application/json; charset=utf-8",
         dataType:"json",
         success: function(data) {
             $.notify({
-                title: '<strong>Geolocalizacion Guardada !</strong>',
+                title: '<strong>Geolocalizacion guardada exitosamente!</strong>',
                 message: 'La nueva posicion del punto seleccionado es lat:' + data.latitud + '. , lng: .' + data.longitud
             });
 
             $('#'+data.id+'-lat').html(data.latitud);
             $('#'+data.id+'-lng').html(data.longitud);
-            $('#'+data.id+'-address').html(data.direccion);
+            // $('#'+data.id+'-address').html(data.direccion);
 
         },
         error: function(data) {
             $.notify({
-                title: '<strong>hubo un problema !</strong>',
+                title: '<strong>Hubo un problema!</strong>',
                 message: 'Se produjo un error al intentar guardar la nueva ubicacion.'
+            },{
+                type: 'danger'
             });
-        },
+        }
     });
 
 }
@@ -494,3 +555,51 @@ var modalConfirm = function(callback){
         $("#mi-modal").modal('hide');
     });
 };
+
+var modalConfirm2 = function(callback){
+
+    $("#modal-btn2-si").on("click", function(){
+        callback(true);
+        $("#modal-confirmacion").modal('hide');
+    });
+
+    $("#modal-btn2-no").on("click", function(){
+        callback(false);
+        $("#modal-confirmacion").modal('hide');
+    });
+
+};
+
+var modalConfirm3 = function(callback){
+
+    $("#modal-btn3-si").on("click", function(){
+        callback(true);
+        $("#modal-confirm-polyg").modal('hide');
+    });
+
+    $("#modal-btn3-no").on("click", function(){
+        callback(false);
+        $("#modal-confirm-polyg").modal('hide');
+    });
+
+};
+
+function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+    if (place.geometry) {
+        map.panTo(place.geometry.location);
+        map.setZoom(15);
+        search();
+    } else {
+        document.getElementById('autocomplete').placeholder = 'Enter a city';
+    }
+}
+
+function deleteMarker(id) {
+    for (i = 0; i < markers.length; i++) {
+        if (markers[i].id == id) {
+            var marker = markers[i];
+            marker.setMap(null);
+        }
+    }
+}

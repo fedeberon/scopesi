@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class MapUbicacionAlturaServiceImpl implements MapUbicacionAlturaService {
@@ -38,5 +40,14 @@ public class MapUbicacionAlturaServiceImpl implements MapUbicacionAlturaService 
         Page<MapUbicacionAltura> mapUbicacionesAlturas = dao.findAll(paging);
 
         return mapUbicacionesAlturas.getContent();
+    }
+
+    @Override
+    public List<MapUbicacionAltura> findAll() {
+        Iterable<MapUbicacionAltura> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

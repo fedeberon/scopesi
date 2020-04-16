@@ -12,5 +12,5 @@ public interface MapUbicacionAlturaService {
 
     List<MapUbicacionAltura> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
-
+    List<MapUbicacionAltura> findAll();
 }

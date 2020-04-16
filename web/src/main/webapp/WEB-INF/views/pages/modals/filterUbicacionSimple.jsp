@@ -25,7 +25,7 @@
 
                     <div class="form-group col-6">
                         <label for="idElemento">Elementos</label>
-                        <select name="request.idElemento" class="form-control" title="Seleccione un Elemento">
+                        <select name="request.idElemento" class="form-control" title="Seleccione un elemento">
                             <c:forEach items="${elementos}" var="bo">
                                 <option value="${bo.id}">${bo.descripcion}</option>
                             </c:forEach>
@@ -43,7 +43,7 @@
 
                     <div class="form-group col-6">
                         <label for="idMedio">Medios</label>
-                        <select name="request.idMedio" class="form-control" title="Seleccione un Medio   ">
+                        <select name="request.idMedio" class="form-control" title="Seleccione un medio   ">
                             <c:forEach items="${medios}" var="bo">
                                 <option value="${bo.id}">${bo.descripcion}</option>
                             </c:forEach>
@@ -52,7 +52,7 @@
 
                     <div class="form-group col-6">
                         <label for="idLocalidad">Localidadades</label>
-                        <select name="request.idLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
+                        <select name="request.idLocalidad" items="${localidades}" class="form-control" title="Seleccione una localidad">
                             <c:forEach items="${localidades}" var="bo">
                                 <option value="${bo.id}">${bo.descripcion}</option>
                             </c:forEach>
@@ -61,7 +61,7 @@
 
                     <div class="form-group col-6">
                         <label for="idProvincia">Provincias</label>
-                        <select name="request.idProvincia" items="${provincias}" class="form-control" title="Seleccione una Provincia">
+                        <select name="request.idProvincia" items="${provincias}" class="form-control" title="Seleccione una provincia">
                             <c:forEach items="${provincias}" var="bo">
                                 <option value="${bo.id}">${bo.descripcion}</option>
                             </c:forEach>
@@ -72,7 +72,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
-                    <button name="saveList" type="submit" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Guardar Resultados</button>
+                    <button name="saveList" type="submit" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Guardar resultados</button>
                 </div>
 
         </div>

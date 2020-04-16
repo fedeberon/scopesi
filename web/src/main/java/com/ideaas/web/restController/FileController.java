@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -57,17 +58,17 @@ public class FileController {
     }
 
     @PostMapping("/deleteFile")
-    public ResponseEntity delete(@RequestParam String folder, @RequestParam String file) {
-        fileStorageService.delete(folder, file);
+    public ResponseEntity delete( @RequestParam String fileName) {
+        fileStorageService.delete(fileName);
 
         return new ResponseEntity(HttpStatus.OK);
     }
 
 
-    @GetMapping("/downloadFile/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
+    @GetMapping("/downloadFile/{folder}/{fileName:.+}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String folder,  @PathVariable String fileName, HttpServletRequest request) {
         // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
+        Resource resource = fileStorageService.loadFileAsResource(folder.concat(File.separator).concat(fileName));
 
         // Try to determine file's content type
         String contentType = null;

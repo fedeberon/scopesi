@@ -18,9 +18,8 @@ public class ContratoInversion {
     @JoinColumn(name = "idContrato")
     private Contrato contrato;
 
-    @ManyToOne
-    @JoinColumn(name = "idRubro")
-    private Rubro rubro;
+    @Column(name = "idRubro")
+    private String rubro;
 
     @Column(name = "fechaDesde")
     private String fechaDesde;

@@ -43,11 +43,9 @@ public class ElementoController {
     }
 
     @GetMapping ("list")
-        public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                              @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<MapElemento> elementos = elementoService.findAll(size, page,"id");
+        public String findAll(Model model){
+        List<MapElemento> elementos = elementoService.findAll();
         model.addAttribute("elementos", elementos);
-        model.addAttribute("page" , page);
 
         return "elemento/list";
     }

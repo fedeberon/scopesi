@@ -7,19 +7,43 @@
         margin-top: 10px;
     }
 
+    .hidden{
+        display: none;
+    }
+
     .dt-buttons{
         display: none;
     }
 
-</style>
+    .fancybox-button--fb {
+        padding: 10px;
+        margin-right: 5px;
+    }
 
-<script>
-    var element = document.getElementById("ubicacion-list");
-    element.classList.add("active");
-</script>
+    .fancybox-button--fb svg path{
+        stroke-width: 0;
+    }
+
+    .confirm-modal{
+        margin-top: 124px;
+        z-index: 100000;
+    }
+
+</style>
 
 <div class="content">
     <div class="container-fluid">
+
+        <div class="col load mt-5" style="display: none; position:absolute; z-index: 1000; top: 123px;">
+            <div class="col-md-12">
+                <div class="loader">
+                    <div class="loader-inner box1"></div>
+                    <div class="loader-inner box2"></div>
+                    <div class="loader-inner box3"></div>
+                </div>
+            </div>
+            <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+        </div>
 
         <div class="row">
 
@@ -36,16 +60,16 @@
                         <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">
                             <input type="hidden" name="page" value="${ubicacionRequest.page}"/>
                             <table id="dataTable" class="display" style="width:100%">
-
                             <thead>
                             <th>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
+                                        <input type="checkbox" value=""  id="checkbox-all" onclick="selectAll()">
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                             </th>
+                            <th>Fotos</th>
                             <th>Editar</th>
                             <th>ID</th>
                             <th>Empresa</th>
@@ -70,8 +94,8 @@
                             <th>Baja Logica</th>
                             <th>Fecha de Tranferencia</th>
                             <th>Fecha de Alta</th>
-                            <th>Id.Altura</th>
-                            <th>Id.Visibilidad</th>
+                            <th>Altura</th>
+                            <th>Visibilidad</th>
                         </thead>
 
                             <tbody>
@@ -83,11 +107,17 @@
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" id="form-check-input-${bo.id}" name="list[${status.index}].checked">
-                                                <%--<form:checkbox cssClass="form-check-input"  path="list[${status.index}].checked"/>--%>
                                                 <span class="form-check-sign" id="${bo.id}"></span>
                                             </label>
                                         </div>
                                     </td>
+
+                                    <td>
+                                        <div class="text-center cursorPointer" onclick="createCarrusel('${bo.id}')">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                    </td>
+
                                     <td class="text-center">
                                         <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
                                         <img src="/resources/assets/img/icons/edit2.png" alt="">
@@ -167,15 +197,17 @@
                                         <div class="form-group col-6">
                                             <label for="idEmpresa">Empresas</label>
                                             <select name="request.idEmpresa" class="form-control" title="Seleccione una empresa">
+                                                <option  value="-1">Seleccione una Empresa</option>
                                                 <c:forEach items="${empresas}" var="bo">
-                                                    <option value="${bo.id}">${bo.descripcion}</option>
+                                                    <option  value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
 
                                         <div class="form-group col-6">
                                             <label for="idElemento">Elementos</label>
-                                            <select name="request.idElemento" class="form-control" title="Seleccione un Elemento">
+                                            <select name="request.idElemento" class="form-control">
+                                                <option  value="-1">Seleccione un Elemento</option>
                                                 <c:forEach items="${elementos}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -185,6 +217,7 @@
                                         <div class="form-group col-6">
                                             <label for="idFormato">Formatos</label>
                                             <select name="request.idFormato" items="${formatos}" class="form-control" title="Seleccione un formato">
+                                                <option  value="-1">Seleccione un Formato</option>
                                                 <c:forEach items="${formatos}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -194,6 +227,7 @@
                                         <div class="form-group col-6">
                                             <label for="idMedio">Medios</label>
                                             <select name="request.idMedio" class="form-control" title="Seleccione un Medio   ">
+                                                <option  value="-1">Seleccione una Medio</option>
                                                 <c:forEach items="${medios}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -201,8 +235,9 @@
                                         </div>
 
                                         <div class="form-group col-6">
-                                            <label for="idLocalidad">Localidadades</label>
+                                            <label for="idLocalidad">Localidades</label>
                                             <select name="request.idLocalidad" items="${localidades}" class="form-control" title="Seleccione una Localidad">
+                                                <option  value="-1">Seleccione una Localidad</option>
                                                 <c:forEach items="${localidades}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -212,6 +247,7 @@
                                         <div class="form-group col-6">
                                             <label for="idProvincia">Provincias</label>
                                             <select name="request.idProvincia" items="${provincias}" class="form-control" title="Seleccione una Provincia">
+                                                <option  value="-1">Seleccione una Provincia</option>
                                                 <c:forEach items="${provincias}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
@@ -222,7 +258,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
-                                        <button name="saveList" type="submit" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Guardar Resultados</button>
+                                        <button name="saveList" type="submit" class="btn btn-primary"><i class="far fa-save"></i>&nbsp;Guardar resultados</button>
                                     </div>
 
                                 </div>
@@ -232,9 +268,9 @@
                         <div class="col-8">
                             <tags:paginador page="${ubicacionRequest.page}"  formName="myWrapper"/>
 
-                            <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
+                            <button type="submit" name="maps" class="btn btn-info btn-fill"><i class="fas fa-map-marker-alt"></i>&nbsp;Mapa</button>
 
-                            <a href="create" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Nuevo</a>
+                            <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i></i>&nbsp;Nuevo</a>
 
                         </div>
 
@@ -370,6 +406,69 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="modal-info-marker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="margin-top: 0px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Datos de la ubicaci&oacute;n</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body data-ubicacion"></div>
+            <div class="modal-footer">
+                <button onclick="showImages()" class="btn btn-primary">Ver Imagenes</button>
+
+                <a data-toggle="modal" href="#myModal2" class="btn btn-primary">Subir Imagenes</a>
+
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal2">
+    <div class="modal-dialog  modal-md">
+        <div class="modal-content" style="margin-top: 0px;">
+            <div class="modal-header">
+                <h4 class="modal-title">Subir Imagenes</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div><div class="container"></div>
+
+            <div class="upload-container">
+                <div class="upload-content">
+                    <div class="single-upload">
+                        <h3>Upload Single File</h3>
+                        <form id="singleUploadForm" name="singleUploadForm">
+                            <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="singleFileUploadError"></div>
+                            <div id="singleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                    <div class="multiple-upload">
+                        <h3>Upload Multiple Files</h3>
+                        <form id="multipleUploadForm" name="multipleUploadForm">
+                            <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
+                            <button type="submit" class="primary submit-btn">Submit</button>
+                        </form>
+                        <div class="upload-response">
+                            <div id="multipleFileUploadError"></div>
+                            <div id="multipleFileUploadSuccess"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <li class="nav-item more-options" style="display: none">
     <a href="#" class="nav-link">
         <i id="icon-options" class="nc-icon nc-simple-add"></i>
@@ -383,3 +482,18 @@
         <span id="span-more-options" class="d-lg-block" data-toggle="modal" data-target="#optionModal">&nbsp;Editar Resultados</span>
     </a>
 </li>
+
+<!-- Modal -->
+<div class="modal fade confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modal-confirmacion">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top: 0;" id="myModalLabel">&iquest;Desea eliminar esta imagen?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn2-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn2-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>

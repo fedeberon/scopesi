@@ -66,7 +66,7 @@
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="<c:url value='/resources/assets/js/plugins/bootstrap-switch.js'/>"></script>
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANGywbfxItEbdle738SiU-AVJGIjadVYM&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANGywbfxItEbdle738SiU-AVJGIjadVYM&libraries=drawing,places"></script>
 <!--  Chartist Plugin  -->
 <script src="<c:url value='/resources/assets/js/plugins/chartist.min.js'/>"></script>
 <!--  Notifications Plugin    -->
@@ -110,7 +110,7 @@
 <script>
     $(document).ready(function() {
         var table = $('#dataTable').DataTable( {
-            "scrollX": "400px",
+            'scrollX': '400px',
             dom: "Bfrtip",
             searching: false,
             paging: false,
@@ -172,8 +172,70 @@
         } );
 
         var tableToEdit = $('#dataTableToEdit').DataTable( {
-            "scrollX": "400px",
+            'scrollX': '400px',
             dom: "Bfrtip",
+            buttons: [
+                {
+                    extend: 'pdfHtml5',
+                    text: 'PDF',
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: 'Excel',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            page: 'current'
+                        }
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'colvis',
+                    text: 'Filtro de Columnas',
+                    columnText: function (dt, idx, title) {
+                        return (idx + 1) + ': ' + title;
+                    },
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'copyHtml5',
+                    text: 'Copiar en Portapapeles',
+                    copySuccess: {
+                        1: "Copied one row to clipboard",
+                        _: "Copied %d rows to clipboard"
+                    },
+                    exportOptions: {
+                        columns: ':visible'
+                    },
+                    copyTitle: 'Copiar en portapapeles',
+                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
+                    className: 'btn btn-primary'
+                },
+                {
+                    extend: 'print',
+                    text: 'Imprimir resultados',
+                    exportOptions: {
+                        columns: ':visible',
+                        modifier: {
+                            page: 'current'
+                        }
+                    },
+                    className: 'btn btn-primary'
+                }
+            ],
+        } );
+
+        var dataTableToCompleteList = $('#dataTableToCompleteList').DataTable( {
+            'scrollX': '400px',
+            dom: "Bfrtip",
+            searching: true,
+            paging: false,
+            bInfo: false,
             buttons: [
                 {
                     extend: 'pdfHtml5',
@@ -422,6 +484,29 @@
         }
     }
 
+</script>
+<script>
+    var element = document.getElementById("ubicacion-list");
+    element.classList.add("active");
+
+    function selectAll() {
+        var inputCheckAll = document.getElementById('checkbox-all');
+        var inputs = document.getElementsByClassName("form-check-input");
+
+        if(inputCheckAll.checked){
+            iterateInputWithValue(inputs, true);
+        }
+        else {
+            iterateInputWithValue(inputs, false);
+        }
+    }
+
+    function iterateInputWithValue(inputs, checked) {
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            input.checked = checked;
+        }
+    }
 
 
 </script>

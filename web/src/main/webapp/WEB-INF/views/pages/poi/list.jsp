@@ -18,21 +18,20 @@
                             <th>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
+                                        <input type="checkbox" value=""  id="checkbox-all" onclick="selectAll()">
                                         <span class="form-check-sign"></span>
                                     </label>
                                 </div>
                             </th>
-                            <th>ID</th>
-                            <th>Descripcion</th>
-                            <th>Entidad</th>
-                            <th>Provincia</th>
-                            <th>Latitud</th>
-                            <th>Longitud</th>
-                            <th>Icono</th>
-                            <th class="text-center">Editar</th>
-                            <th class="text-center">Baja/Alta Logica</th>
-
+                                <th>ID</th>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Baja/Alta Logica</th>
+                                <th>Descripcion</th>
+                                <th>Entidad</th>
+                                <th>Provincia</th>
+                                <th>Latitud</th>
+                                <th>Longitud</th>
+                                <th>Icono</th>
                             </thead>
 
                             <tbody>
@@ -44,7 +43,6 @@
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox" id="form-check-input-${bo.id}" name="list[${status.index}].checked">
-                                                    <%--<form:checkbox cssClass="form-check-input"  path="list[${status.index}].checked"/>--%>
                                                 <span class="form-check-sign" id="${bo.id}"></span>
                                             </label>
                                         </div>
@@ -53,24 +51,9 @@
                                         <a href="/poi/${bo.id}">${bo.id}</a>
                                         <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
 
-                                        <input type="hidden" value="${bo.descripcion}" name="list[${status.index}].name"/>
-
                                         <input type="hidden" value="" name="list[${status.index}].direccion"/>
 
-                                        <input type="hidden" value="${bo.descripcion}" name="list[${status.index}].descripcion"/>
                                     </td>
-                                    <td>${bo.descripcion}</td>
-                                    <td>${bo.mapPoiEntidad.descripcion}</td>
-                                    <td>${bo.mapProvincia.descripcion}</td>
-                                    <td>
-                                            ${bo.geoLatitud}
-                                                <input type="hidden" value="${bo.geoLatitud}" name="list[${status.index}].lat"/>
-                                    </td>
-                                    <td>
-                                            ${bo.geoLongitud}
-                                                <input type="hidden" value="${bo.geoLongitud}" name="list[${status.index}].lon"/>
-                                    </td>
-                                    <td>${bo.icono}</td>
                                     <td class="text-center">
                                         <a href="<c:url value='/poi/update?id=${bo.id}'/>"/>
                                         <img src="/resources/assets/img/icons/edit2.png" alt="">
@@ -79,8 +62,32 @@
                                         <a ${bo.bajaLogica == true ? 'class="d-none"' : ''} href="<c:url value='/poi/dropBajaLogica?id=${bo.id}'/>"/>
                                         <img ${bo.bajaLogica == true ? 'class="d-none"' : ''} src="/resources/assets/img/icons/delete.png" alt="">
                                         <a ${bo.bajaLogica == false ? 'class="d-none"' : ''} href="<c:url value='/poi/upBajaLogica?id=${bo.id}'/>"/>
-                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
+                                        <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png"" alt="">
                                     </td>
+                                    <td>
+                                        ${bo.descripcion}
+                                        <input type="hidden" value="${bo.descripcion}" name="list[${status.index}].name"/>
+                                    </td>
+
+
+                                    <td>
+                                        ${bo.mapPoiEntidad.descripcion}
+                                        <input type="hidden" value="${bo.mapPoiEntidad.descripcion}" name="list[${status.index}].description"/>
+                                    </td>
+                                    <td>
+                                        ${bo.mapProvincia.descripcion}
+                                        <input type="hidden" value="${bo.mapProvincia.descripcion}" name="list[${status.index}].provincia"/>
+                                    </td>
+                                    <td>
+                                        ${bo.geoLatitud}
+                                        <input type="hidden" value="${bo.geoLatitud}" name="list[${status.index}].lat"/>
+
+                                    </td>
+                                    <td>
+                                        ${bo.geoLongitud}
+                                        <input type="hidden" value="${bo.geoLongitud}" name="list[${status.index}].lon"/>
+                                    </td>
+                                    <td>${bo.icono}</td>
                                 </tr>
 
                             </c:forEach>
@@ -95,10 +102,10 @@
 
                                         <tags:paginador page="${page}" formName="search"/>
 
-                                        <a href="create" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Nuevo</a>
+                                        <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
                                     </form>
-                                <button type="submit" name="maps" class="btn btn-primary"><i class="nc-icon nc-map-big"></i>&nbsp;Mapa</button>
+                                <button type="submit" name="maps" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Mapa</button>
 
 
                             </div>

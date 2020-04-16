@@ -20,6 +20,9 @@ public class MapUbicacionVisibilidad {
     @Column(name = "ponderador")
     private Double ponderador;
 
+    @Column(name = "desripcion_larga")
+    private String descripcionLarga;
+
     public MapUbicacionVisibilidad() {
     }
 }

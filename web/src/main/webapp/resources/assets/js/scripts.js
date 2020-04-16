@@ -31,6 +31,17 @@ function disabledOptionsNotFounds(){
             checkOptions('#select-medios' , data.medios);
             $('.load').hide();
             $('.modal-body').css('opacity', '1');
+        },
+        error: function(data) {
+            $.notify({
+                title: '<strong>Hubo un problema!</strong>',
+                message: 'Se produjo un error al intentar chequear resultados.'
+            },
+            {
+                timer: 'none',
+                z_index:2000,
+                type: 'danger'
+            });
         }
     });
 }
@@ -71,6 +82,8 @@ function existValue(value, data){
 function createCarrusel(id) {
     $('.load').show();
     $('.map-container').css('opacity', '0.3');
+    $('.content').css('opacity', '0.3');
+
     $.ajax( {
         url: '/api/ubicacion/' + id,
         dataType: 'json',
@@ -100,7 +113,7 @@ function createCarrusel(id) {
                         href: data.images[i].url,
                         'data-caption': data.mapEmpresa.descripcion,
                         'data-fancybox':'gallery',
-                        'data-buttons' : '["slideShow","fullScreen","thumbs","fb"]'
+                        'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
                     });
                 var img = $('<img>',{
                    src: data.images[i].url
@@ -113,6 +126,7 @@ function createCarrusel(id) {
 
             $('.load').hide();
             $('.map-container').css('opacity', '1');
+            $('.content').css('opacity', '1');
             $('#modal-info-marker').modal('show');
 
         }
@@ -121,9 +135,9 @@ function createCarrusel(id) {
 
 function showImages() {
 
-    $.fancybox.defaults.btnTpl.fb = '<button data-fancybox-fb class="fancybox-button fancybox-button--fb" title="Facebook">' +
-        '<svg viewBox="0 0 24 24">' +
-        '<path d="M22.676 0H1.324C.594 0 0 .593 0 1.324v21.352C0 23.408.593 24 1.324 24h11.494v-9.294h-3.13v-3.62h3.13V8.41c0-3.1 1.894-4.785 4.66-4.785 1.324 0 2.463.097 2.795.14v3.24h-1.92c-1.5 0-1.793.722-1.793 1.772v2.31h3.584l-.465 3.63h-3.12V24h6.115c.733 0 1.325-.592 1.325-1.324V1.324C24 .594 23.408 0 22.676 0"/>' +
+    $.fancybox.defaults.btnTpl.fb = '<button style="font-size: small" data-fancybox-fb class="fancybox-button fancybox-button--fb" title="Delete">' +
+        '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 512">' +
+        '<path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>' +
         '</svg>' +
         '</button>';
 
@@ -140,19 +154,30 @@ function showImages() {
 
 // Make buttons clickable using event delegation
 $('body').on('click', '[data-fancybox-fb]', function() {
-    var idEmpresa = document.querySelector("#idEmpresa").value;
     var idUbicacion = document.querySelector("#idUbicacion").value;
     var src = $.fancybox.getInstance().current.src;
     var url = src.split('/');
-    var file = url[url.length - 1];
+    var fileName = url[url.length - 1];
+
+    $("#modal-confirmacion").modal('show');
 
     var functionSuccess =   function (){
         $('#myModal2').modal('close');
         createCarrusel(idUbicacion);
     };
 
-    deleteFile(idEmpresa, file, functionSuccess);
-    $.fancybox.close();
+    modalConfirm2(function(confirm){
+        if(confirm){
+            //Acciones si el usuario confirma
+            deleteFile(fileName, functionSuccess);
+            $("#modal-confirmacion").modal('hide');
+            $.fancybox.close();
+
+        } else {
+            //Acciones si el usuario no confirma
+            $("#modal-confirmacion").modal('hide');
+        }
+    });
 });
 
 
@@ -183,10 +208,9 @@ function createTableUbicacionInformation(data){
 }
 
 
-function deleteFile(folder, file, functionSuccess) {
+function deleteFile(fileName, functionSuccess) {
     var dataToSend = {
-        "folder": folder,
-        "file" : file
+        "fileName" : fileName
     };
 
     $.ajax( {
@@ -203,11 +227,47 @@ function deleteFile(folder, file, functionSuccess) {
         }
     });
 }
+function modificarCoordenadas(id) {
+
+    deleteMarker(id);
+    var lat = map.getCenter().lat();
+    var lng = map.getCenter().lng();
+    console.log(lat);
+    console.log(lng);
+
+    var latLong = new google.maps.LatLng(lat, lng);
+
+    var marker = new google.maps.Marker({
+        id: id,
+        position: latLong,
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP
+    });
+
+    marker.addListener('dragend', function(event){
+
+        $("#mi-modal").modal('show');
+
+        modalConfirm(function(confirm){
+            if(confirm){
+                //Acciones si el usuario confirma
+                handleEventToUpdate(event, marker);
+
+            } else {
+                //Acciones si el usuario no confirma
+                $("#mi-modal").modal('hide');
+            }
+        });
+    });
+}
 
 
-
-function actualizarCoordenadas(address, id){
-    var dataToSend = { "address": address };
+function actualizarCoordenadas(address,localidad, provincia, id){
+    var newData = address + ',' + localidad + ',' + provincia ;
+    var dataToSend = {
+        "address": newData,
+    };
 
     $.ajax( {
         url: '/map/searchCoordinatesByAdress',
@@ -218,8 +278,10 @@ function actualizarCoordenadas(address, id){
 
         },
         success:  function (data) {
-            $("#" + id + "-lat").append(data.location.lat);
-            $("#" + id + "-lon").append(data.location.lng);
+            deleteMarker(id);
+
+            $("#" + id + "-lat").html(data.location.lat);
+            $("#" + id + "-lon").html(data.location.lng);
 
             var latLong = new google.maps.LatLng(data.location.lat, data.location.lng);
             var marker = new google.maps.Marker({
@@ -236,6 +298,50 @@ function actualizarCoordenadas(address, id){
             map.fitBounds(bounds);
             $("#" + id + "-save").show();
             $("#" + id + "-update").hide();
+        }
+    });
+}
+
+
+
+
+function guardarCoordenadas(id) {
+    var lat = $("#" + id + "-lat").html();
+    var lng  = $("#" + id + "-lon").html();
+    var dataToSend = { "id": id, "latitud": lat, "longitud": lng };
+
+    var dataJson = JSON.stringify(dataToSend);
+    $.ajax( {
+        url: '/api/updateCoordenadas',
+        type: "POST",
+        dataType: 'json',
+        data: dataJson,
+        beforeSend: function () {
+            $("#icon-" + id).removeClass("fa-bars").addClass("fa-spinner fa-spin");
+            $("#" + id + "-save").html('Guardando');
+        },
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        success:  function (data) {
+            $("#icon-" + id).removeClass("fa-spinner fa-spin").addClass("fa-bars");
+            $("#" + id + "-save").hide();
+            $("#" + id + "-update").show();
+            $("#" + id + "-save").html('Guardar');
+
+            $.notify({
+                title: '<strong>Geolocalizacion guardada exitosamente!</strong>',
+                message: 'La nueva posicion del punto seleccionado es lat:' + data.latitud + '. , lng: .' + data.longitud
+            }, {
+                timer: 8000
+            });
+
+
+        },
+        error: function (jqXHR, exception) {
+            console.log(jqXHR);
+            // Your error handling logic here..
         }
     });
 

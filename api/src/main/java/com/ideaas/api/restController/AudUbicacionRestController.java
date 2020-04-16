@@ -51,5 +51,4 @@ public class AudUbicacionRestController {
 
         return new ResponseEntity(audUbicacion, HttpStatus.CREATED);
     }
-
 }

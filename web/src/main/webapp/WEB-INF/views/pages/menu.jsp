@@ -3,8 +3,14 @@
         font-style: italic;
         font-size: 18px;
     }
-
+    .dropdown-menu{
+        display: none;
+    }
+    .cursorPointer{
+        cursor: pointer;
+    }
 </style>
+
 <div class="sidebar-wrapper collapse show" id="collapseExample">
 
     <div class="logo">
@@ -27,27 +33,29 @@
         </li>
         <li id="auditorias">
             <a class="nav-link" href="./table.html">
-                <i class="nc-icon nc-notes"></i>
+                <i class="fab fa-buffer"></i>
                 <p class="wordsMenu">Auditorias</p>
             </a>
         </li>
-        <li id="ubicacion-list">
-            <a class="nav-link" href="/ubicacion/list">
-                <i class="nc-icon nc-square-pin"></i>
-                <p class="wordsMenu load-data">Ubicaciones</p>
+
+        <li>
+            <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-atlas"></i>
+                <p class="wordsMenu">Geoplanning</p>
             </a>
-        </li>
-        <li id="maps-show" class="nav-item">
-            <a class="nav-link" href="/maps/show">
-                <i class="fas fa-globe-americas"></i>
-                <p class="wordsMenu load-data">Mapas</p>
-            </a>
-        </li>
-        <li id="tablas">
-            <a class="nav-link" href="/tablas">
-                <i class="fas fa-list"></i>
-                <p class="wordsMenu">Tablas</p>
-            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                <a class="dropdown-item" href="/ubicacion/list">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Ubicaciones</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/maps/show">
+                    <i class="fas fa-globe-americas"></i>
+                    Mapas</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/tablas">
+                    <i class="fas fa-table"></i>
+                    Tablas</a>
+            </div>
         </li>
 
     </ul>

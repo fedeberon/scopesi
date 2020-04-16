@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class MapUbicacionServiceImpl implements MapUbicacionService {
+public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private MapUbicacionDao dao;
 
@@ -83,32 +83,32 @@ public class MapUbicacionServiceImpl implements MapUbicacionService {
     public List<MapUbicacion> saveList(MapUbicacionRequest request) {
         List<MapUbicacion> results = filterDao.find(request);
 
-        if(Objects.nonNull(request.getIdEmpresa())){
+        if(Objects.nonNull(request.getIdEmpresa()) && !request.getIdEmpresa().equals(-1l)){
             MapEmpresa empresa = mapEmpresaService.get(request.getIdEmpresa());
             results.forEach(mapUbicacion -> mapUbicacion.setMapEmpresa(empresa));
         }
 
-        if(Objects.nonNull(request.getIdElemento())){
+        if(Objects.nonNull(request.getIdElemento()) && !request.getIdElemento().equals(-1l)){
             MapElemento elemento = mapElementoService.get(request.getIdElemento());
             results.forEach(mapUbicacion -> mapUbicacion.setMapElemento(elemento));
         }
 
-        if(Objects.nonNull(request.getIdFormato())){
+        if(Objects.nonNull(request.getIdFormato()) && !request.getIdFormato().equals(-1l)){
             MapFormato formato = mapFormatoService.get(request.getIdFormato());
             results.forEach(mapUbicacion -> mapUbicacion.setMapFormato(formato));
         }
 
-        if(Objects.nonNull(request.getIdMedio())){
+        if(Objects.nonNull(request.getIdMedio()) && !request.getIdMedio().equals(-1l)){
             MapMedio medio = mapMedioService.get(request.getIdMedio());
             results.forEach(mapUbicacion -> mapUbicacion.setMapMedio(medio));
         }
 
-        if(Objects.nonNull(request.getMapProvincia())){
+        if(Objects.nonNull(request.getMapProvincia()) && !request.getIdProvincia().equals(-1l)){
             MapProvincia provincia = mapProvinciaService.get(request.getIdProvincia());
             results.forEach(mapUbicacion -> mapUbicacion.setMapProvincia(provincia));
         }
 
-        if(Objects.nonNull(request.getIdLocalidad())){
+        if(Objects.nonNull(request.getIdLocalidad()) && !request.getIdLocalidad().equals(-1l)){
             MapLocalidad localidad = mapLocalidadService.get(request.getIdLocalidad());
             results.forEach(mapUbicacion -> mapUbicacion.setMapLocalidad(localidad));
         }

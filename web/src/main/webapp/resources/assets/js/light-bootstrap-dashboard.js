@@ -86,13 +86,16 @@ lbd = {
             mobile_menu_content = '';
 
             //add the content from the regular header to the mobile menu
-            $navbar.children('ul').each(function() {
-
-                content_buff = $(this).html();
-                nav_content = nav_content + content_buff;
+            $navbar.children('ul').each(function(index) {
+                if(index == 1) {
+                    content_buff = $(this).find('.nav-item').clone(true);
+                    nav_content = nav_content + content_buff[1].innerHTML + content_buff[2].innerHTML;
+                }
             });
 
-            nav_content = '<ul class="nav nav-mobile-menu">' + nav_content + '</ul>';
+            // nav_content = $('nav').find('.nav-item .ml-5').clone(true);
+
+            nav_content = '<ul class="nav nav-mobile-menu d-lg-none">' + nav_content + '</ul>';
 
             $navbar_form = $('nav').find('.navbar-form').clone(true);
 

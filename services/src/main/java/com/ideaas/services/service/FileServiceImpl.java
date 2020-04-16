@@ -24,41 +24,43 @@ public class FileServiceImpl implements FileService {
 
 
     @Override
-    public List<Image> readFiles(MapUbicacion mapUbicacion)  {
+    public List<Image> readFiles(MapUbicacion mapUbicacion) {
         final List<Image> images = new ArrayList();
         String path = folderImage.concat(mapUbicacion.getMapEmpresa().getId().toString());
-        try {
-            Files.walkFileTree(Paths.get(path), new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-                    try {
-                        String url = urlFileServer.concat(mapUbicacion.getMapEmpresa().getId().toString()).concat(File.separator).concat(file.getFileName().toString());
-                        String nameImage = file.getFileName().toString().substring(0 , file.getFileName().toString().indexOf("."));
-
-                        if(file.getFileName().toString().contains("(")) {
-                            nameImage = file.getFileName().toString().substring(0, file.getFileName().toString().indexOf("("));
-                        }
-
-                        images.add(new Image( url , nameImage, false));
-                    }
-                    finally {
-                        return FileVisitResult.CONTINUE;
-                    }
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
         }
+            try {
+                Files.walkFileTree(Paths.get(path), new SimpleFileVisitor<Path>() {
+                    @Override
+                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                        try {
+                            String url = urlFileServer.concat(mapUbicacion.getMapEmpresa().getId().toString()).concat(File.separator).concat(file.getFileName().toString());
+                            String nameImage = file.getFileName().toString().substring(0, file.getFileName().toString().indexOf("."));
+
+                            if (file.getFileName().toString().contains("(")) {
+                                nameImage = file.getFileName().toString().substring(0, file.getFileName().toString().indexOf("("));
+                            }
+
+                            images.add(new Image(url, nameImage, false));
+                        } finally {
+                            return FileVisitResult.CONTINUE;
+                        }
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         List<Image> imageOfUbicacion = new ArrayList<>();
         images.forEach(image -> {
-            if(image.getName().equals(mapUbicacion.getId().toString())){
+            if (image.getName().equals(mapUbicacion.getId().toString())) {
                 imageOfUbicacion.add(image);
             }
         });
 
         return imageOfUbicacion;
-
     }
 }
 

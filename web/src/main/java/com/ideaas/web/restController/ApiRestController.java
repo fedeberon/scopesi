@@ -3,7 +3,6 @@ package com.ideaas.web.restController;
 import com.ideaas.services.domain.MapUbicacion;
 import com.ideaas.services.request.MapUbicacionRequest;
 import com.ideaas.services.service.interfaces.MapUbicacionService;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,10 +39,9 @@ public class ApiRestController {
 
 
 
-    @PutMapping("api/ubicacion")
+    @PostMapping("api/updateCoordenadas")
     public ResponseEntity<MapUbicacion> update(@RequestBody MapUbicacionRequest request){
         mapUbicacionService.saveLatLong(request);
-
         MapUbicacion ubicacion = mapUbicacionService.get(request.getId());
 
         return new ResponseEntity(ubicacion, HttpStatus.OK);

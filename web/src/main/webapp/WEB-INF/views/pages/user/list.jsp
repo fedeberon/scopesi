@@ -23,6 +23,12 @@
                             <th>Nombre Completo</th>
                             <th>Email</th>
                             <th>Telefono</th>
+                            <th>Estado</th>
+                            <th>Tipo de usuario</th>
+                            <th>Cargo</th>
+                            <th>C.Inversion</th>
+                            <th>C.Auditoria</th>
+                            <th>C.Mapping</th>
                             <th>Enviar crendeciales</th>
                             </thead>
 
@@ -36,6 +42,12 @@
                                     <td>${bo.nombreCompleto}</td>
                                     <td>${bo.eMail}</td>
                                     <td>${bo.telefono}</td>
+                                    <td>${bo.estado}</td>
+                                    <td>${bo.tipoUsuario.descripcion}</td>
+                                    <td>${bo.cargo}</td>
+                                    <td>${bo.contratoInversion.id}</td>
+                                    <td>${bo.contratoAuditoria.id}</td>
+                                    <td>${bo.contratoMapping.id}</td>
                                     <td class="text-center">
                                         <i onclick="sendMailCredentialsTo(${bo.id})"  class="far fa-envelope"></i>
                                     </td>

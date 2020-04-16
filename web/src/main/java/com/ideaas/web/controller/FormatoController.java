@@ -33,12 +33,10 @@ public class FormatoController{
     }
 
     @GetMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<MapFormato> formatos = formatoService.findAll(size, page,"id");
+    public String findAll(Model model){
+        List<MapFormato> formatos = formatoService.findAll();
 
         model.addAttribute("formatos", formatos);
-        model.addAttribute("page",page);
 
         return "formato/list";
     }

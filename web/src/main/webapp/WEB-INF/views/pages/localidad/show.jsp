@@ -29,6 +29,8 @@
                             </tr>
                             </tbody>
                         </table>
+                        <a href="list" class="btn btn-light"><i class="fas fa-angle-double-left pr-2"></i>Volver a la lista</a>
+
                     </div>
                 </div>
             </div>

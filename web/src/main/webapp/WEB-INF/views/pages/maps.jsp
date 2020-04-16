@@ -17,7 +17,7 @@
         margin-top: -150px;
         background-color: white;
         opacity: 0.8;
-        min-width: 100%;
+        min-width: 99%;
     }
 
     .hidden{
@@ -34,6 +34,14 @@
         stroke-width: 0;
     }
 
+    .dropdown-toggle::after{
+        display: none !important;
+    }
+
+    .confirm-modal{
+        margin-top: 124px;
+        z-index: 100000;
+    }
 </style>
 
 <script>
@@ -43,100 +51,107 @@
 
 <div class="container">
 
-<div class="map-container">
+    <div class="map-container">
+        <%--<input id="pac-input"/>--%>
+        <input id="searchInput" class="form-control col-sm-6" type="text" style="margin-top: 10px" placeholder="Ingrese una lugar ..">
 
-    <%--<input id="pac-input"/>--%>
+        <div id="map"></div>
 
-    <div id="map"></div>
-
-    <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
-        <div class="col-md-12">
-            <div class="loader">
-                <div class="loader-inner box1"></div>
-                <div class="loader-inner box2"></div>
-                <div class="loader-inner box3"></div>
+        <div class="col load mt-5" style="display: none; position:absolute; top: 123px;">
+            <div class="col-md-12">
+                <div class="loader">
+                    <div class="loader-inner box1"></div>
+                    <div class="loader-inner box2"></div>
+                    <div class="loader-inner box3"></div>
+                </div>
             </div>
+            <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
         </div>
-        <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+
     </div>
 
 
-</div>
+    <div class="table-ubicaciones" id="table-ubicaciones">
 
+                <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
+                <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
 
-<div class="table-ubicaciones" id="table-ubicaciones">
-
-    <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
-    <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <table class="table display" id="table-markers">
+                <table class="table" id="table-markers">
                     <thead>
+                        <th>opciones</th>
                         <th>id</th>
-                        <th>name</th>
-                        <th>address</th>
+                        <th>empresa</th>
+                        <th>direccion</th>
                         <th>localidad</th>
                         <th>provincia</th>
                         <th>description</th>
                         <th>lat</th>
                         <th>long</th>
-                        <th>-</th>
 
-                        <%--<th>show/hide</th>
-                        <th>touch</th>
-                        <th>go to</th>--%>
                     </thead>
                     <tbody>
 
-                    <c:forEach items="${registros}" var="bo">
+                        <c:forEach items="${registros}" var="bo">
 
-                        <tr>
-                            <td>${bo.id}</td>
-                            <td>${bo.name}</td>
-                            <td id="${bo.id}-address">${bo.address}</td>
-                            <td>${bo.localidad}</td>
-                            <td>${bo.provincia}</td>
-                            <td>${bo.description}</td>
-                            <td id="${bo.id}-lat">${bo.lat}</td>
-                            <td id="${bo.id}-lon">${bo.lon}</td>
+                            <tr>
+                                <td>
+                                    <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-bars" id="icon-${bo.id}"></i>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 
-                            <td>
-                                <i id="${bo.id}-update" class="fas fa-sync" onclick="actualizarCoordenadas('${bo.address}', '${bo.id}')"></i>
-                                <button id="${bo.id}-save" class="btn btn-danger hidden btn-fill">Guardar</button>
-                            </td>
+                                        <div class="dropdown-item cursorPointer" onclick="modificarCoordenadas('${bo.id}')">
+                                        <i class="fas fa-map-marker-alt"></i><a>&nbsp;&nbsp;Ubicar punto</a>
+                                        </div>
 
+                                        <div class="dropdown-divider"></div>
 
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" value="">
-                                        <span class="form-check-sign" onclick="displayMarkers('${bo.id}')"></span>
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
-                                <i class="nc-icon nc-tap-01" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')"></i>
-                            </td>
-                            <td>
-                                <i class="fas fa-location-arrow" onclick="centerFromMarker('${bo.id}')"></i>
-                            </td>
-                            <td>
-                                <i class="fas fa-camera" onclick="createCarrusel('${bo.id}')"></i>
-                            </td>
+                                        <i class="fas fa-sync dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"><a>&nbsp;&nbsp;GeoReferenciar</a></i>
+                                        <button style="margin-left: 30px; margin-top: 8px;" id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
 
-                        </tr>
+                                        <div class="dropdown-divider"></div>
 
-                    </c:forEach>
+                                        <div class="dropdown-item cursorPointer" id="icon-view-marker-${bo.id}" onclick="displayMarkers(this, '${bo.id}')">
+                                            <i class="far fa-eye-slash"></i><a>&nbsp;&nbsp;Ocultar pin</a>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-item cursorPointer" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
+                                            <i class="nc-icon nc-tap-01 pr-0" style="font-size: 16px"></i><a>&nbsp;&nbsp;Resaltar pin</a>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-item cursorPointer" onclick="centerFromMarker('${bo.id}')">
+                                            <i class="fas fa-location-arrow"></i><a>&nbsp;&nbsp;Ir</a>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
+                                            <i class="fas fa-camera"></i><a>&nbsp;&nbsp;Fotos</a>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>${bo.id}</td>
+                                <td>${bo.name}</td>
+                                <td id="${bo.id}-address">${bo.address}</td>
+                                <td>${bo.localidad}</td>
+                                <td>${bo.provincia}</td>
+                                <td>${bo.description}</td>
+                                <td id="${bo.id}-lat">${bo.lat}</td>
+                                <td id="${bo.id}-lon">${bo.lon}</td>
+
+                            </tr>
+
+                        </c:forEach>
 
                     </tbody>
 
                 </table>
-            </div>
-        </div>
     </div>
-</div>
 
 </div>
 
@@ -230,7 +245,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Desea modificar la geolocalizaci&oacute;n</h4>
+                <h4 class="modal-title" id="myModalLabel">&iquest;Desea modificar la geolocalizaci&oacute;n?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>
@@ -240,3 +255,32 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modal-confirmacion">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top: 0;" id="myModalLabel">&iquest;Desea eliminar esta imagen?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn2-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn2-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="modal-confirm-polyg">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top: 0px;" id="myModalLabel">&iquest;Desea guardar los datos del pol&iacute;gono?</h4>
+            </div>
+            <div class="modal-body" style="text-align: center" id="info"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn3-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn3-no">No</button>
+            </div>
+        </div>
+    </div>
+</div>
