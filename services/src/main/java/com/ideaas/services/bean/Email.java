@@ -1,11 +1,13 @@
 package com.ideaas.services.bean;
 
+import javax.mail.internet.InternetAddress;
 import java.util.Arrays;
 import java.util.Map;
 
 public class Email {
 
     private String[] to;
+    private InternetAddress[] toAll;
     private String from;
     private String subject;
     private String text;
@@ -51,6 +53,15 @@ public class Email {
         this.model = model;
     }
 
+
+    public InternetAddress[] getToAll() {
+        return toAll;
+    }
+
+    public void setToAll(InternetAddress[] toAll) {
+        this.toAll = toAll;
+    }
+
     @Override
     public String toString() {
         return "Email{" +
@@ -59,12 +70,5 @@ public class Email {
                 '}';
     }
 
-    //    @Override
-//    public String toString() {
-//        return "Mail{" +
-//                "to='" + to + '\'' +
-//                ", subject='" + subject + '\'' +
-//                '}';
-//    }
 
 }

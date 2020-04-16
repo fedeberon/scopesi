@@ -5,7 +5,6 @@ import com.ideaas.services.service.interfaces.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
 import javax.mail.MessagingException;
 
 @Service

@@ -14,17 +14,13 @@ import javax.mail.MessagingException;
 
 @RestController
 @RequestMapping("email")
-@Api(value = "Send Mail", description = "Operations pertaining to import league.")
 public class EmailRestController {
 
     @Autowired
     private EmailService emailService;
 
-    @ApiResponses(value = {
-            @ApiResponse(code = 202, message = "Send mail Successfully"),
-            @ApiResponse(code = 502, message = "Failed when try to send a email"),
-    })
-    @GetMapping("send")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/send")
     public ResponseEntity<?> sendMail(@RequestBody Email email){
         try {
             emailService.send(email);
