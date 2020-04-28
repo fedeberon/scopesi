@@ -73,8 +73,6 @@ public class MapUbicacion {
     @Column(name = "Medidas")
     private String medidas;
 
-    @Transient
-    @JsonIgnore
     @Column(name = "M2")
     private String m2;
 
@@ -125,7 +123,6 @@ public class MapUbicacion {
 
     @ManyToOne
     @JoinColumn(name = "IdMapBuses")
-    @JsonIgnore
     private MapBus mapBuses;
 
     @Column(name = "bajaLogica")
@@ -140,12 +137,10 @@ public class MapUbicacion {
 
     @ManyToOne
     @JoinColumn(name = "id_altura")
-    @JsonIgnore
     private MapUbicacionAltura mapUbicacionAltura;
 
     @ManyToOne
     @JoinColumn(name = "id_visibilidad")
-    @JsonIgnore
     private MapUbicacionVisibilidad mapUbicacionVisibilidad;
 
     @Transient

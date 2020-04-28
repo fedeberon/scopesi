@@ -68,6 +68,34 @@
                         </select>
                     </div>
 
+                    <div class="form-group col-6">
+                        <label for="idAltura">Alturas</label>
+                        <select name="request.idAltura" items="${alturas}" class="form-control" title="Seleccione una altura">
+                            <c:forEach items="${alturas}" var="bo">
+                                <option value="${bo.id}">${bo.descripcion}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="idVisibilidades">Visibilidades</label>
+                        <select name="request.idVisibilidades" items="${visibilidades}" class="form-control" title="Seleccione una visibilidad">
+                            <c:forEach items="${visibilidades}" var="bo">
+                                <option value="${bo.id}">${bo.descripcion}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="metrosContactoRequest">Metros Contact</label>
+                        <input type="number" name="request.metrosContactoRequest" class="form-control" title="Metros Contacto" placeholder="Ingrese metros de contacto">
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="coeficienteRequest">Metros Contact</label>
+                        <input type="number" name="request.coeficienteRequest" class="form-control" title="Coeficiente" placeholder="Ingrese coeficiente">
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

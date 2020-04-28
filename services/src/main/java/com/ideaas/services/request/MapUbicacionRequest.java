@@ -45,6 +45,14 @@ public class MapUbicacionRequest {
 
     private BigDecimal longitud;
 
+    private Long idAltura;
+
+    private Long idVisibilidad;
+
+    private Long metrosContactoRequest;
+
+    private BigDecimal coeficienteRequest;
+
     private Integer maxResults = 10;
 
     private Integer page = 0;
@@ -215,6 +223,38 @@ public class MapUbicacionRequest {
 
     public void setLatitud(BigDecimal latitud) {
         this.latitud = latitud;
+    }
+
+    public Long getIdAltura() {
+        return idAltura;
+    }
+
+    public void setIdAltura(Long idAltura) {
+        this.idAltura = idAltura;
+    }
+
+    public Long getIdVisibilidad() {
+        return idVisibilidad;
+    }
+
+    public void setIdVisibilidad(Long idVisibilidad) {
+        this.idVisibilidad = idVisibilidad;
+    }
+
+    public Long getMetrosContactoRequest() {
+        return metrosContactoRequest;
+    }
+
+    public void setMetrosContactoRequest(Long metrosContactoRequest) {
+        this.metrosContactoRequest = metrosContactoRequest;
+    }
+
+    public BigDecimal getCoeficienteRequest() {
+        return coeficienteRequest;
+    }
+
+    public void setCoeficienteRequest(BigDecimal coeficienteRequest) {
+        this.coeficienteRequest = coeficienteRequest;
     }
 
     private static String EMPTY = "";

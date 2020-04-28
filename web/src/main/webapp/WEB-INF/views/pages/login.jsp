@@ -31,29 +31,29 @@
 
             <!-- Default form login -->
             <form class="form-signin" name='f' action="login" style="text-align: center" method='POST'>  <!--action='/j_spring_security_check'-->
-                <p class="h4 mb-4">Sign in</p>
+                <p class="h4 mb-4">Iniciar sesi&oacute;n</p>
 
                 <!-- Email -->
-                <input type="username" name="username" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username"> <!-- name='j_username' -->
+                <input type="username" name="username" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Usuario"> <!-- name='j_username' -->
 
                 <!-- Password -->
-                <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"> <!-- name='j_password' -->
+                <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Contraseña"> <!-- name='j_password' -->
 
                 <!-- Check box -->
                 <div class="ml-4 d-flex justify-content-left">
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
-                        Remember me
+                        Recuerdame
                     </label>
                 </div>
 
                 <!-- Sign in button -->
-                <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+                <button class="btn btn-info btn-block my-4" type="submit">Ingresar</button>
 
                 <!-- Register -->
-                <p>Not a member?
-                    <a href="">Register</a>
-                </p>
+<%--                <p>Not a member?--%>
+<%--                    <a href="">Registrate</a>--%>
+<%--                </p>--%>
 
 <%--                <!-- Social login -->--%>
 <%--                <p>or sign in with:</p>--%>
@@ -67,7 +67,7 @@
              <div class="d-flex justify-content-around">
                  <div>
                      <!-- Forgot password -->
-                     <a href="">Forgot password?</a>
+                     <a href="/forgot-password">&iquest;Olvidaste tu contraseña?</a>
                  </div>
              </div>
          </div>

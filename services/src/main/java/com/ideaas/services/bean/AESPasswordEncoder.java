@@ -9,6 +9,7 @@ import org.bouncycastle.crypto.params.KeyParameter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 
@@ -81,22 +82,21 @@ public class AESPasswordEncoder implements PasswordEncoder {
     }
 
     @SuppressWarnings("Duplicates")
-    public String decrypt(String password) throws InvalidCipherTextException {
-        byte[] data = password.getBytes();
-        byte[] encryptionKey = key.getBytes();
+    public String decrypt(String password) throws InvalidCipherTextException, UnsupportedEncodingException {
+        byte[] passwordBytes = Base64.decodeBase64(password);                                // Base64-decode the ciphertext (1)
+        byte[] encryptionKey = key.getBytes("UTF-8");
 
-        KeyParameter keyParameter = new KeyParameter(encryptionKey);
+        RijndaelEngine rijndaelEngine = new RijndaelEngine(256);
+        KeyParameter keyParam = new KeyParameter(encryptionKey);
+        rijndaelEngine.init(false, keyParam); // 2
+        PaddedBufferedBlockCipher bufferedBlock = new PaddedBufferedBlockCipher(rijndaelEngine, new ZeroBytePadding());
 
-        PaddedBufferedBlockCipher bufferedBlockCipher = new PaddedBufferedBlockCipher(new RijndaelEngine(256), new ZeroBytePadding());
-        bufferedBlockCipher.init(false, keyParameter);
+        byte[] decryptedBytes = new byte[bufferedBlock.getOutputSize(passwordBytes.length)];
+        int processed = bufferedBlock.processBytes(passwordBytes, 0, passwordBytes.length, decryptedBytes, 0);
+        processed += bufferedBlock.doFinal(decryptedBytes, processed);                                      // Refresh the parameter containing the length of the decrypted data (2a)
+        decryptedBytes = Arrays.copyOfRange(decryptedBytes, 0, processed);                            // Reduce the byte-array accordingly (2b)
 
-        byte[] buffer = new byte[bufferedBlockCipher.getOutputSize(data.length)];
-        int processedBytes = bufferedBlockCipher.processBytes(data, 0, data.length, buffer, 0);
-        processedBytes += bufferedBlockCipher.doFinal(buffer, processedBytes);
-
-        byte[] result = Arrays.copyOfRange(buffer, 0, processedBytes);
-        String output = Base64.encodeBase64String(result);
-
-        return output;
+        //return String.valueOf(bufferedBlock.doFinal(decryptedBytes, processed));                  // Remove
+        return new String(decryptedBytes, "UTF-8");
+        }
     }
-}

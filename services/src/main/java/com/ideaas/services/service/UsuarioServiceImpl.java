@@ -11,9 +11,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -36,11 +37,25 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Usuario getByEmail(String email) {
+        return dao.getByEmail(email);
+    }
+
+    @Override
     public List<Usuario> findAll(Integer pageSize, Integer pageNo, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<Usuario> usuarios = dao.findAll(paging);
 
         return usuarios.getContent();
+    }
+
+    @Override
+    public List<Usuario> findAll() {
+        Iterable<Usuario> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

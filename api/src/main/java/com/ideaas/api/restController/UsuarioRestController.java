@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -27,9 +28,9 @@ public class UsuarioRestController {
     private EmailService emailService;
 
     @Autowired
-    public UsuarioRestController(UsuarioService usuarioService, AESPasswordEncoder aesPasswordEncoder, EmailService emailService) {
+    public UsuarioRestController(UsuarioService usuarioService, EmailService emailService) {
         this.usuarioService = usuarioService;
-        this.aesPasswordEncoder = aesPasswordEncoder;
+        this.aesPasswordEncoder = new AESPasswordEncoder();
         this.emailService = emailService;
     }
 
@@ -74,9 +75,10 @@ public class UsuarioRestController {
         Usuario usuario = usuarioService.get(id);
         Email email = new Email();
         email.setTo(new String[]{usuario.geteMail()});
+        email.setSubject("Solicitud de credenciales SCOPESI");
         try {
             String password = aesPasswordEncoder.decrypt(usuario.getPassword());
-            email.setText("Su password es: ".concat(password));
+            email.setText("Your Password is: ".concat(password));
             emailService.send(email);
 
         } catch (InvalidCipherTextException e) {
@@ -84,6 +86,8 @@ public class UsuarioRestController {
         } catch (MessagingException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }

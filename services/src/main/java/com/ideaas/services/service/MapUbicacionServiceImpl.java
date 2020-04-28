@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,10 +37,14 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private MapLocalidadService mapLocalidadService;
 
+    private MapUbicacionAlturaService mapUbicacionAlturaService;
+
+    private MapUbicacionVisibilidadService mapUbicacionVisibilidadService;
+
     private GoogleMapsService googleMapsService;
 
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, MapLocalidadService mapLocalidadService, GoogleMapsService googleMapsService) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, MapLocalidadService mapLocalidadService, MapUbicacionAlturaService mapUbicacionAlturaService, MapUbicacionVisibilidadService mapUbicacionVisibilidadService,GoogleMapsService googleMapsService) {
         this.dao = dao;
         this.filterDao = filterDao;
         this.fileService = fileService;
@@ -49,6 +54,8 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         this.mapMedioService = mapMedioService;
         this.mapProvinciaService = mapProvinciaService;
         this.mapLocalidadService = mapLocalidadService;
+        this.mapUbicacionAlturaService = mapUbicacionAlturaService;
+        this.mapUbicacionVisibilidadService = mapUbicacionVisibilidadService;
         this.googleMapsService = googleMapsService;
     }
 
@@ -112,6 +119,25 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
             MapLocalidad localidad = mapLocalidadService.get(request.getIdLocalidad());
             results.forEach(mapUbicacion -> mapUbicacion.setMapLocalidad(localidad));
         }
+
+        if(Objects.nonNull(request.getIdAltura()) && !request.getIdAltura().equals(-1l)){
+            MapUbicacionAltura altura = mapUbicacionAlturaService.get(request.getIdAltura());
+            results.forEach(mapUbicacion -> mapUbicacion.setMapUbicacionAltura(altura));
+        }
+
+        if(Objects.nonNull(request.getIdVisibilidad()) && !request.getIdVisibilidad().equals(-1l)){
+            MapUbicacionVisibilidad visibilidad = mapUbicacionVisibilidadService.get(request.getIdVisibilidad());
+            results.forEach(mapUbicacion -> mapUbicacion.setMapUbicacionVisibilidad(visibilidad));
+        }
+
+        if(Objects.nonNull(request.getMetrosContactoRequest()) && request.getMetrosContactoRequest() instanceof Long){
+            results.forEach(mapUbicacion -> mapUbicacion.setMetrosContacto(request.getMetrosContactoRequest()));
+        }
+
+        if(Objects.nonNull(request.getCoeficienteRequest()) && request.getCoeficienteRequest() instanceof BigDecimal){
+            results.forEach(mapUbicacion -> mapUbicacion.setCoeficiente(request.getCoeficienteRequest()));
+        }
+
 
         dao.saveAll(results);
 

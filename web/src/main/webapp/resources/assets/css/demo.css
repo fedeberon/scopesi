@@ -826,3 +826,51 @@
 .documentation .dropdown .dropdown-menu.show {
     transform: translate3d(0, 39px, 0) !important;
 }
+.fondo{
+    background-color: #343a40;
+    height: 100%;
+}
+.fontStyle{
+     color: #38a76f;
+     font-family: Bahnschrift light!important;
+     text-align: center;
+ }
+.fontStyleError{
+    color: #e22b2b;
+    font-family: Bahnschrift light!important;
+    text-align: center;
+}
+
+.formELement h1{
+    font-size: 1em;
+}
+.formElement p{
+    text-align: left;
+    font-size: 11px;
+}
+.btnSend{
+    text-align: center;
+    background-color: #38a76f;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 5px 15px;
+    width: 82%;
+}
+
+.emailInput{
+    height: 40px;
+    border-radius: 5px;
+    width: 100%;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#supportBrowsersLog{
+    margin: 75px auto 0;
+    width: 240px;
+    text-align: center;
+}

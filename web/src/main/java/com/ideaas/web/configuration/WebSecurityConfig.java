@@ -1,6 +1,8 @@
 package com.ideaas.web.configuration;
 
 import com.ideaas.services.bean.AESPasswordEncoder;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.exception.VelocityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.io.IOException;
+import java.util.Properties;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         security.csrf().disable().
                 authorizeRequests()
-                .antMatchers("/resources/**", "/user/auth").permitAll()
+                .antMatchers("/resources/**", "/user/auth", "/forgot-password", "/sendEmail","/email-sent-successfully", "/email-not-exist").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -49,4 +54,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         };
     }
 
+    @Bean
+    public VelocityEngine getVelocityEngine() throws VelocityException, IOException {
+
+        Properties properties = new Properties();
+        properties.setProperty("input.encoding", "UTF-8");
+        properties.setProperty("output.encoding", "UTF-8");
+        properties.setProperty("resource.loader", "class");
+        properties.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+        VelocityEngine velocityEngine = new VelocityEngine(properties);
+        return velocityEngine;
+    }
 }

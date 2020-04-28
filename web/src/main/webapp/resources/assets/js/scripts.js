@@ -348,13 +348,34 @@ function guardarCoordenadas(id) {
 }
 
 
-function sendMailCredentialsTo(id) {
-    $.getJSON( "api/usuario/sendMailToUser?id=".concat(id))
-        .done(function( json ) {
-            console.log( "JSON Data: ");
-        })
-        .fail(function( jqxhr, textStatus, error ) {
-            var err = textStatus + ", " + error;
-            console.log( "Request Failed: " + err );
-        });
+// function sendMailCredentialsTo(id) {
+//     $.getJSON( "sendMailToUser?id=".concat(id))
+//     $.ajax( {
+//         success:  function () {
+//
+//             $.notify({
+//                 title: '<strong>Crendenciales enviadas exitosamente!</strong>',
+//                 message: 'Se ha enviado un mail.'
+//             }, {
+//                 timer: 8000
+//             });
+//
+//
+//         },
+//         error: function() {
+//             $.notify({
+//                     title: '<strong>Hubo un problema!</strong>',
+//                     message: 'Se produjo un error al intentar enviar credenciales.'
+//                 },
+//                 {
+//                     timer: '8000',
+//                     z_index:2000,
+//                     type: 'danger'
+//                 });
+//         }
+//     });
 }
+
+$(document).ready(function() {
+    $('#emailForm').bootstrapValidator();
+});

@@ -1,8 +1,9 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.bean.AESPasswordEncoder;
+import com.ideaas.services.domain.Usuario;
+import com.ideaas.services.service.interfaces.EmailService;
 import com.ideaas.services.service.interfaces.UsuarioService;
-import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,9 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -25,22 +25,19 @@ import java.util.Objects;
 public class UserController {
 
     private UsuarioService usuarioService;
-    private AESPasswordEncoder encoder;
 
     @Autowired
     public UserController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
-        this.encoder = new AESPasswordEncoder();
     }
 
     @RequestMapping("list")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        model.addAttribute("users", usuarioService.findAll(size, page, "id"));
+    public String findAll(Model model){
+        List<Usuario> users = usuarioService.findAll();
+        model.addAttribute("users", users );
 
         return "user/list";
     }
-
 
     @RequestMapping("/auth")
     public String hello(HttpServletRequest request, @CookieValue("Authorization") String authorization, @CookieValue("Token") String token) {
@@ -56,4 +53,25 @@ public class UserController {
 
             else return "login";
     }
+
+//    @RequestMapping("/sendMailToUser")
+//    public ResponseEntity<?> sendMailToUser(@RequestParam Long id){
+//        Usuario usuario = usuarioService.get(id);
+//        Email email = new Email();
+//        email.setTo(new String[]{usuario.geteMail()});
+//        email.setSubject("Recuperacion de cuenta");
+//        try {
+//            String password = encoder.decrypt(usuario.getPassword());
+//            email.setText("Your username is: '"+ usuario.getUsername() + "'" + "\r\n" +"and your password is: '".concat(password) + "'");
+//            emailService.send(email);
+//        } catch (InvalidCipherTextException e) {
+//            e.printStackTrace();
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+//    }
 }
