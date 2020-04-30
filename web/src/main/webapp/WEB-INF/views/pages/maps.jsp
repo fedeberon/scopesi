@@ -175,11 +175,11 @@
     </a>
 </li>
 
-<form:form  action="search" modelAttribute="myWrapper">
+<form:form  action="search" modelAttribute="myWrapper" id="searchModalFilter" name="searchModalFilter">
 
     <input type="text" name="request.mapEmpresa" value="${ubicacionRequest.mapEmpresa}">
+    <input type="text" name="request.mapElemento" value="${ubicacionRequest.mapElemento}">
 
-    <input name="request.mapElemento" type="text" value="${ubicacionRequest.mapElemento}">
     <input type="text" value="${ubicacionRequest.mapFormato}">
     <input type="text" value="${ubicacionRequest.mapMedio}">
     <input type="text" value="${ubicacionRequest.mapLocalidad}">

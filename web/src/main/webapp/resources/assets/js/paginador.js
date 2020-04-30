@@ -13,3 +13,8 @@ function pagAnterior(form){
 function onSubmit(form) {
     document.forms[form].submit();
 }
+
+function onSubmitMap (form) {
+    document.forms[form].action = '/maps/search';
+    document.forms[form].submit();
+}

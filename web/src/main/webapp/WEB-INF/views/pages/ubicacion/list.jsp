@@ -268,7 +268,7 @@
                             <div class="col-8">
                                 <tags:paginador page="${ubicacionRequest.page}"  formName="myWrapper"/>
 
-                                <button onclick="onSubmit('searchModalFilter')" name="maps" class="btn btn-info btn-fill"><i class="fas fa-map-marker-alt"></i>&nbsp;Mapa</button>
+                                <button onclick="onSubmitMap('searchModalFilter')" class="btn btn-info btn-fill"><i class="fas fa-map-marker-alt"></i>&nbsp;Mapa</button>
 
                                 <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i></i>&nbsp;Nuevo</a>
 

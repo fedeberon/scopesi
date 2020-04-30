@@ -79,13 +79,7 @@ public class UbicacionController {
         return "ubicacion/list";
     }
 
-    @RequestMapping(value = "search", params = "maps" , method = RequestMethod.POST)
-    public String findAll(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
-        model.addAttribute("registros", wrapper.getSelectedElements());
-        model.addAttribute("ubicacionRequest", wrapper.getRequest());
 
-        return "ubicacion/map";
-    }
 
     @RequestMapping("list")
     public String list(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
