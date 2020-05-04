@@ -126,6 +126,12 @@
                                         <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
                                             <i class="fas fa-camera"></i><a>&nbsp;&nbsp;Fotos</a>
                                         </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-item cursorPointer" onclick="initDrawingControl()">
+                                            <i class="fas fa-draw-polygon"></i><a>&nbsp;&nbsp;Dibujar poligono</a>
+                                        </div>
                                     </div>
 
                                 </td>
