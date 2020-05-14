@@ -23,7 +23,7 @@
 <div class="container fondo">
     <div class="row justify-content-center">
         <div class="col-md-4 p-3" style="margin-top: 6%">
-            <form class="form-signin fontStyle formELement" name="form-login" action="sendEmail" method="POST" id="emailForm" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove">
+            <form class="form-signin fontStyle formELement" name="form-login" action="sendEmail" method="POST">
                 <h5 class="mb-4">Recuperaci&oacute;n de cuenta</h5>
 
                 <div class="row justify-content-center">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <div class="col-sm-10 form-label-group"><input type="email" name="email" class="form-control emailInput" placeholder="ejemplo@gmail.com" required data-bv-notempty-message="Por favor ingrese su correo electronico" ></div>
+                    <div class="col-sm-10 form-label-group"><input type="email" name="email" class="form-control emailInput" placeholder="ejemplo@gmail.com" required></div>
                 </div>
 
                 <button class="btnSend mt-3" type="submit">Enviar correo</button>

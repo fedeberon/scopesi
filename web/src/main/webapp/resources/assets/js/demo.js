@@ -168,7 +168,7 @@ demo = {
     initGoogleMaps: function() {
         var myLatlng = new google.maps.LatLng(-34.600966, -58.462361);
         var mapOptions = {
-            zoom: 13,
+            zoom: 14,
             center: myLatlng,
             scrollwheel: true,
             zoomControlOptions: {
@@ -181,10 +181,10 @@ demo = {
 
 
         $('#table-markers tbody>tr').each(function () {
-            var id = $(this).find("td").eq(1).html();
-            var title = $(this).find("td").eq(2).html();
-            var lat = $(this).find("td").eq(7).html();
-            var lon = $(this).find("td").eq(8).html();
+            var id = $(this).find("td").eq(3).html();
+            var title = $(this).find("td").eq(4).html();
+            var lat = $(this).find("td").eq(9).html();
+            var lon = $(this).find("td").eq(10).html();
             var latLong = new google.maps.LatLng(lat, lon);
 
             var marker = new google.maps.Marker({
@@ -430,7 +430,7 @@ function centerFromMarker(id) {
 function showMap(lat, lon){
     var latLong = new google.maps.LatLng(lat, lon);
     var mapaOptions = {
-        zoom: 7,
+        zoom: 13,
         center: latLong,
         scrollwheel: true,
         zoomControlOptions: {

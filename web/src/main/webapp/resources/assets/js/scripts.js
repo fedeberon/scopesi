@@ -527,7 +527,3 @@ function disablePolygon(id) {
 //         }
 //     });
 // }
-
-$(document).ready(function() {
-    $('#emailForm').bootstrapValidator();
-});

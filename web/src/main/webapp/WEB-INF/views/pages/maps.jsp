@@ -6,9 +6,9 @@
     }
 
     .marker-touched{
-        background-color: yellow;
+        background-color: #6dfea9;
         border: 0.1px solid #cabdbd;
-        padding: 2px;
+        text-align: center;
     }
 
 
@@ -17,7 +17,7 @@
         margin-top: -150px;
         background-color: white;
         opacity: 0.8;
-        min-width: 99%;
+        min-width: 98%;
     }
 
     .hidden{
@@ -71,14 +71,16 @@
     </div>
 
 
-    <div class="table-ubicaciones" id="table-ubicaciones">
+    <div class="table-ubicaciones" id="table-ubicaciones" style="width: 98%; overflow-x: scroll; border-radius: 3px;">
 
-                <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="margin-top: -30px;z-index: 500;">
-                <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="margin-top: -30px; display: none">
+                <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="width:3%; z-index: 500;">
+                <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="width:4%; display: none">
 
                 <table class="table" id="table-markers">
                     <thead>
                         <th>opciones</th>
+                        <th>Resaltar pin</th>
+                        <th>GeoReferenciar</th>
                         <th>id</th>
                         <th>empresa</th>
                         <th>direccion</th>
@@ -106,19 +108,8 @@
 
                                         <div class="dropdown-divider"></div>
 
-                                        <i class="fas fa-sync dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"><a>&nbsp;&nbsp;GeoReferenciar</a></i>
-                                        <button style="margin-left: 30px; margin-top: 8px;" id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
-
-                                        <div class="dropdown-divider"></div>
-
                                         <div class="dropdown-item cursorPointer" id="icon-view-marker-${bo.id}" onclick="displayMarkers(this, '${bo.id}')">
                                             <i class="far fa-eye-slash"></i><a>&nbsp;&nbsp;Ocultar pin</a>
-                                        </div>
-
-                                        <div class="dropdown-divider"></div>
-
-                                        <div class="dropdown-item cursorPointer" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
-                                            <i class="nc-icon nc-tap-01 pr-0" style="font-size: 16px"></i><a>&nbsp;&nbsp;Resaltar pin</a>
                                         </div>
 
                                         <div class="dropdown-divider"></div>
@@ -147,6 +138,15 @@
                                         </div>
                                     </div>
 
+                                </td>
+                                <td>
+                                    <div class="dropdown-item cursorPointer" style="text-align: center;" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
+                                        <i class="nc-icon nc-tap-01 pr-0" style="font-size: 24px"></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <i class="fas fa-sync dropdown-item cursorPointer" style="text-align: center;" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"></i>
+                                    <button id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
                                 </td>
                                 <td>${bo.id}</td>
                                 <td>${bo.name}</td>

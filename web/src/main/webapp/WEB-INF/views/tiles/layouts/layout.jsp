@@ -434,7 +434,7 @@
         $( ".table-ubicaciones" ).animate({
             marginTop: "-150px",
             opacity: 0.9
-        }, 1000 );
+        }, 500 );
 
         $( "#arrowDown" ).hide();
         $( "#arrowUp" ).show();
