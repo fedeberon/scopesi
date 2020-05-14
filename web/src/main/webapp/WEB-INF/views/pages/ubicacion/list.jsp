@@ -90,12 +90,13 @@
                             <th>Metros Contacto</th>
                             <th>Coeficiente</th>
                             <th>Id.Referencia</th>
-                            <th>Buses</th>
+                            <th>Id.Buses</th>
                             <th>Baja Logica</th>
                             <th>Fecha de Tranferencia</th>
                             <th>Fecha de Alta</th>
                             <th>Id.Altura</th>
                             <th>Id.Visibilidad</th>
+                            <th>Poligono</th>
                         </thead>
 
                             <tbody>
@@ -167,12 +168,13 @@
                                     <td>${bo.metrosContacto}</td>
                                     <td>${bo.coeficiente}</td>
                                     <td>${bo.idReferencia}</td>
-                                    <td>${bo.mapBuses.linea}</td>
+                                    <td>${bo.mapBuses.id}</td>
                                     <td>${bo.bajaLogica}</td>
                                     <td>${bo.fechaTransf}</td>
                                     <td>${bo.fechaAlta}</td>
                                     <td>${bo.mapUbicacionAltura.descripcion}</td>
                                     <td>${bo.mapUbicacionVisibilidad.descripcion}</td>
+                                    <td>${bo.polygonLatLong} <input type="hidden" value='${bo.polygonLatLong}' name="list[${status.index}].polygonCoordinates"/></td>
                                 </tr>
 
                             </c:forEach>
@@ -226,7 +228,7 @@
 
                                         <div class="form-group col-6">
                                             <label for="idMedio">Medios</label>
-                                            <select name="request.idMedio" class="form-control" title="Seleccione un Medio   ">
+                                            <select name="request.idMedio" items="${medios}" class="form-control" title="Seleccione un Medio   ">
                                                 <option  value="-1">Seleccione una Medio</option>
                                                 <c:forEach items="${medios}" var="bo">
                                                     <option value="${bo.id}">${bo.descripcion}</option>
@@ -252,6 +254,36 @@
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
                                             </select>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="idAltura">Alturas</label>
+                                            <select name="request.idAltura" class="form-control" title="Seleccione una Altura">
+                                                <option  value="-1">Seleccione una altura</option>
+                                                <c:forEach items="${alturas}" var="bo">
+                                                    <option value="${bo.id}">${bo.descripcion}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="idVisibilidad">Visibilidades</label>
+                                            <select name="request.idVisibilidad" class="form-control" title="Seleccione una Visibilidad">
+                                                <option  value="-1">Seleccione una visibilidad</option>
+                                                <c:forEach items="${visibilidades}" var="bo">
+                                                    <option value="${bo.id}">${bo.descripcion}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="metrosContactoRequest">Metros Contacto</label>
+                                            <input  type="number" name="request.metrosContactoRequest" class="form-control" title="Metros Contacto" placeholder="Ingrese metros de contacto">
+                                        </div>
+
+                                        <div class="form-group col-6">
+                                            <label for="coeficienteRequest">Coeficiente</label>
+                                            <input  type="number" step="any" name="request.coeficienteRequest" class="form-control" title="Coeficiente" placeholder="Ingrese coeficiente">
                                         </div>
 
                                     </div>

@@ -314,45 +314,72 @@ function guardarCoordenadas(id) {
 
 }
 
-// function initiatePolygon() {
-//     //Allowing to draw shapes in the Client Side
-//     if(drawingManager.getMap()) {
-//         drawingManager.setMap(null); // Used to disable the Polygon tool
-//     }
-//     drawingManager.setOptions({
-//         drawingMode : google.maps.drawing.OverlayType.POLYGON,
-//         drawingControl : true,
-//         drawingControlOptions : {
-//             position : google.maps.ControlPosition.TOP_CENTER,
-//             drawingModes : [google.maps.drawing.OverlayType.POLYGON]
-//         }
-//     });
-//     //Loading the drawn shape in the Map.
-//     drawingManager.setMap(map);
-//
-//     google.maps.event.addListener(drawingManager,'polygoncomplete',function(polygon) {
-//         drawPolygon(polygon);
-//     });
-// }
-//
-// function stopDrawing() {
-//     drawingTool.setMap(null);
-// }
+function guardarPoligono(id , polygon) {
 
+    var polygonCoords = [];
 
+    if (polygon.id === id) {
+        for (var i = 0; i < polygon.getPath().getLength(); i++) {
+            var onePolygon = { //vertices
+                'lat': polygon.getPath().getAt(i).lat(),
+                'lng': polygon.getPath().getAt(i).lng()
+            };
+            polygonCoords.push(onePolygon);
+        }
 
-function initDrawingControl(){
+        var dataToSend = {"id": id, 'polygonLatLong': JSON.stringify(polygonCoords)};
 
-    var polygonArray = [];
+        var dataJson = JSON.stringify(dataToSend);
+
+        $.ajax({
+            url: '/api/savePolygon',
+            type: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: dataJson,
+
+            success: function (data) {
+
+                $.notify({
+                    title: '<strong>Poligono guardado exitosamente!</strong>',
+                    message: 'Se ha persistido correctamente el poligono para el registro: ' + data.id
+                }, {
+                    type: 'success',
+                    timer: 8000
+                });
+
+            },
+            error: function (data) {
+                $.notify({
+                    title: '<strong>Hubo un problema!</strong>',
+                    message: 'Se produjo un error al intentar guardar el poligono.'
+                }, {
+                    type: 'danger'
+                });
+            }
+        });
+
+    }
+
+}
+
+var stopDrawing = true;
+
+var polygonsArray = [];
+
+function initDrawingControl(element , id){
+
+    stopDrawing = !stopDrawing;
 
     var drawingManager = new google.maps.drawing.DrawingManager({
-        drawingMode: google.maps.drawing.OverlayType.NULL,
+        drawingMode: google.maps.drawing.OverlayType.POLYGON,
         drawingControl: true,
         drawingControlOptions: {
             position: google.maps.ControlPosition.TOP_RIGHT,
             drawingModes: ['polygon']
         },
         polygonOptions: {
+            id: id,
             fillColor: '#b2b2b2',
             fillOpacity: 0.5,
             strokeWeight: 2,
@@ -365,32 +392,96 @@ function initDrawingControl(){
 
     drawingManager.setMap(map);
 
-
     google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
         document.getElementById('info').innerHTML += "Puntos del pol&iacute;gono:" + "<br>";
+
         for (var i = 0; i < polygon.getPath().getLength(); i++) {
             document.getElementById('info').innerHTML += polygon.getPath().getAt(i).toUrlValue(6) + "<br>";
         }
-        polygonArray.push(polygon);
+        polygonsArray.push(polygon);
 
         $("#modal-confirm-polyg").modal('show');
 
         modalConfirm3(function(confirm){
             if(confirm){
-                //Acciones si el usuario confirma
-                $("#modal-confirm-polyg").modal('hide');
-
-                //persistir en base de datos
+                guardarPoligono(id , polygon);
+                document.getElementById('info').innerHTML = "";
                 drawingManager.setMap(null);
-                document.getElementById('info').innerHTML = null;
+
             } else {
-                //Acciones si el usuario no confirma
-                $("#modal-confirm-polyg").modal('hide');
-                polygon.setMap(null);
-                document.getElementById('info').innerHTML = null;
-
-
+                polygon.setMap(null)
+                drawingManager.setMap(null);
+                document.getElementById('info').innerHTML = "";
+                polygon.id = null;
             }
         });
     });
 }
+
+var polygons = [];
+
+function initPolygon(element ,id ){
+
+    var coordinates = $('#pol-' + id).val();
+    var jsonCoordinates = JSON.parse(coordinates);
+
+    // Construct the polygon.
+    var poligono = new google.maps.Polygon({
+        id: id,
+        paths: jsonCoordinates,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        visible: true
+    });
+
+    polygons.push(poligono);
+    poligono.setMap(map);
+
+    poligono.addListener('click', function (event) {
+
+        var contentString = '<b>Poligono seleccionado: </b>'+ this.id + '<br>' + '<br>' + '<button onclick="disablePolygon(' + this.id + ')"><i class="fas fa-eye-slash"></i>Ocultar poligono</button>';
+
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(event.latLng);
+
+        infoWindow.open(map);
+
+    });
+
+    infoWindow = new google.maps.InfoWindow;
+
+}
+
+function disablePolygon(id) {
+    var i;
+    for (i = 0; i < polygons.length; i++) {
+        if (polygons[i].id == id) {
+            var polygon = polygons[i];
+            polygon.setVisible(false);
+            infoWindow.close(map);
+        }
+    }
+
+}
+
+// if (stopDrawing === true) {
+//     drawingManager.drawingControl = false;
+//     drawingManager.drawingMode = google.maps.drawing.OverlayType.NULL;
+//     drawingManager.setMap(null);
+//     drawingManager.polygon.setMap(null);
+//     document.getElementById('info').innerHTML = "";
+//
+//     $(element).find('a').html('&nbsp;&nbsp;Dibujar poligono');
+//     $(element).find( "i" ).removeClass('fa-stop-circle').addClass('fa-draw-polygon');
+//
+// } else {
+//     drawingManager.drawingControl = true;
+//     drawingManager.drawingMode = google.maps.drawing.OverlayType.POLYGON;
+//     drawingManager.setMap(map);
+//
+//     $(element).find('a').html('&nbsp;&nbsp;Dejar de dibujar');
+//     $(element).find("i").removeClass('fa-draw-polygon').addClass('fa-stop-circle');
+// }

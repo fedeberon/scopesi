@@ -73,8 +73,6 @@ public class MapUbicacion {
     @Column(name = "Medidas")
     private String medidas;
 
-    @Transient
-    @JsonIgnore
     @Column(name = "M2")
     private String m2;
 
@@ -125,7 +123,6 @@ public class MapUbicacion {
 
     @ManyToOne
     @JoinColumn(name = "IdMapBuses")
-    @JsonIgnore
     private MapBus mapBuses;
 
     @Column(name = "bajaLogica")
@@ -140,16 +137,17 @@ public class MapUbicacion {
 
     @ManyToOne
     @JoinColumn(name = "id_altura")
-    @JsonIgnore
     private MapUbicacionAltura mapUbicacionAltura;
 
     @ManyToOne
     @JoinColumn(name = "id_visibilidad")
-    @JsonIgnore
     private MapUbicacionVisibilidad mapUbicacionVisibilidad;
 
     @Transient
     private List<Image> images;
+
+    @Column(name = "geo_poligono_latitud_longitud")
+    private String polygonLatLong;
 
     public MapUbicacion() {
     }
@@ -426,6 +424,13 @@ public class MapUbicacion {
         this.mapUbicacionVisibilidad = mapUbicacionVisibilidad;
     }
 
+    public String getPolygonLatLong() {
+        return polygonLatLong;
+    }
+
+    public void setPolygonLatLong(String polygonLatLong) {
+        this.polygonLatLong = polygonLatLong;
+    }
 
     public List<Image> getImages() {
         return images;

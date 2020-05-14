@@ -100,6 +100,12 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 
+                                        <div class="dropdown-item cursorPointer" onclick="modificarCoordenadas('${bo.id}')">
+                                        <i class="fas fa-map-marker-alt"></i><a>&nbsp;&nbsp;Ubicar punto</a>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
                                         <i class="fas fa-sync dropdown-item cursorPointer" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"><a>&nbsp;&nbsp;GeoReferenciar</a></i>
                                         <button style="margin-left: 30px; margin-top: 8px;" id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
 
@@ -129,8 +135,15 @@
 
                                         <div class="dropdown-divider"></div>
 
-                                        <div class="dropdown-item cursorPointer" onclick="initDrawingControl()">
-                                            <i class="fas fa-draw-polygon"></i><a>&nbsp;&nbsp;Dibujar poligono</a>
+                                        <div class="dropdown-item cursorPointer" onclick="initPolygon(this,'${bo.id}')">
+                                            <i class="fas fa-eye"></i><a>&nbsp;&nbsp;Ver poligono</a>
+                                            <input type="hidden" id="pol-${bo.id}" value='${bo.polygonCoordinates}'>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-item cursorPointer" onclick="initDrawingControl(this, '${bo.id}')">
+                                            <i class="fas fa-draw-polygon"></i><a>&nbsp;&nbsp;Asignar poligono</a>
                                         </div>
                                     </div>
 
@@ -245,7 +258,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel">Desea modificar la geolocalizaci&oacute;n</h4>
+                <h4 class="modal-title" id="myModalLabel">&iquest;Desea modificar la geolocalizaci&oacute;n?</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="modal-btn-si">Si</button>

@@ -125,4 +125,10 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         ubicacion.setLongitud(request.getLongitud());
         save(ubicacion);
     }
+
+    public void savePolygon(MapUbicacionRequest request) {
+        MapUbicacion ubicacion = this.get(request.getId());
+        ubicacion.setPolygonLatLong(request.getPolygonLatLong());
+        save(ubicacion);
+    }
 }
