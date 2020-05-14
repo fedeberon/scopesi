@@ -47,5 +47,11 @@ public class ApiRestController {
         return new ResponseEntity(ubicacion, HttpStatus.OK);
     }
 
+    @PostMapping("api/savePolygon")
+    public ResponseEntity<MapUbicacion> savePolygon(@RequestBody MapUbicacionRequest request){
+        mapUbicacionService.savePolygon(request);
+        MapUbicacion ubicacion = mapUbicacionService.get(request.getId());
 
+        return new ResponseEntity(ubicacion, HttpStatus.OK);
+    }
 }

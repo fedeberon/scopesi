@@ -96,6 +96,7 @@
                             <th>Fecha de Alta</th>
                             <th>Altura</th>
                             <th>Visibilidad</th>
+                            <th>Poligono</th>
                         </thead>
 
                             <tbody>
@@ -173,6 +174,7 @@
                                     <td>${bo.fechaAlta}</td>
                                     <td>${bo.mapUbicacionAltura.descripcion}</td>
                                     <td>${bo.mapUbicacionVisibilidad.descripcion}</td>
+                                    <td>${bo.polygonLatLong} <input type="hidden" value='${bo.polygonLatLong}' name="list[${status.index}].polygonCoordinates"/></td>
                                 </tr>
 
                             </c:forEach>

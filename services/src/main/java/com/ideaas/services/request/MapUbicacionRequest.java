@@ -57,6 +57,8 @@ public class MapUbicacionRequest {
 
     private Integer page = 0;
 
+    private String polygonLatLong;
+
     public Long getId() {
         return id;
     }
@@ -255,6 +257,14 @@ public class MapUbicacionRequest {
 
     public void setCoeficienteRequest(BigDecimal coeficienteRequest) {
         this.coeficienteRequest = coeficienteRequest;
+    }
+
+    public String getPolygonLatLong() {
+        return polygonLatLong;
+    }
+
+    public void setPolygonLatLong(String polygonLatLong) {
+        this.polygonLatLong = polygonLatLong;
     }
 
     private static String EMPTY = "";

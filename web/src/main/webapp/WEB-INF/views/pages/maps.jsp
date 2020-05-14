@@ -132,6 +132,19 @@
                                         <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
                                             <i class="fas fa-camera"></i><a>&nbsp;&nbsp;Fotos</a>
                                         </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-item cursorPointer" onclick="initPolygon(this,'${bo.id}')">
+                                            <i class="fas fa-eye"></i><a>&nbsp;&nbsp;Ver poligono</a>
+                                            <input type="hidden" id="pol-${bo.id}" value='${bo.polygonCoordinates}'>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <div class="dropdown-item cursorPointer" onclick="initDrawingControl(this, '${bo.id}')">
+                                            <i class="fas fa-draw-polygon"></i><a>&nbsp;&nbsp;Asignar poligono</a>
+                                        </div>
                                     </div>
 
                                 </td>

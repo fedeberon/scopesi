@@ -19,6 +19,7 @@ public class MyObject {
     private String address;
     private String provincia;
     private String localidad;
+    private String polygonCoordinates;
 
 
     public String getDescription() {
@@ -91,5 +92,13 @@ public class MyObject {
 
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
+    }
+
+    public String getPolygonCoordinates() {
+        return polygonCoordinates;
+    }
+
+    public void setPolygonCoordinates(String polygonCoordinates) {
+        this.polygonCoordinates = polygonCoordinates;
     }
 }

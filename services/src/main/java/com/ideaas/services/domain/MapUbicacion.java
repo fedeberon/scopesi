@@ -146,6 +146,9 @@ public class MapUbicacion {
     @Transient
     private List<Image> images;
 
+    @Column(name = "geo_poligono_latitud_longitud")
+    private String polygonLatLong;
+
     public MapUbicacion() {
     }
 
@@ -421,6 +424,13 @@ public class MapUbicacion {
         this.mapUbicacionVisibilidad = mapUbicacionVisibilidad;
     }
 
+    public String getPolygonLatLong() {
+        return polygonLatLong;
+    }
+
+    public void setPolygonLatLong(String polygonLatLong) {
+        this.polygonLatLong = polygonLatLong;
+    }
 
     public List<Image> getImages() {
         return images;

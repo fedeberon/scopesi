@@ -20,4 +20,6 @@ public interface MapUbicacionService {
 
     void saveLatLong(MapUbicacionRequest request);
 
+    void savePolygon(MapUbicacionRequest request);
+
 }

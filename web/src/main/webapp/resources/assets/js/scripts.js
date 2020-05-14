@@ -347,6 +347,158 @@ function guardarCoordenadas(id) {
 
 }
 
+function guardarPoligono(id , polygon) {
+
+    var polygonCoords = [];
+
+    if (polygon.id === id) {
+        for (var i = 0; i < polygon.getPath().getLength(); i++) {
+            var onePolygon = { //vertices
+                'lat': polygon.getPath().getAt(i).lat(),
+                'lng': polygon.getPath().getAt(i).lng()
+            };
+            polygonCoords.push(onePolygon);
+        }
+
+        var dataToSend = {"id": id, 'polygonLatLong': JSON.stringify(polygonCoords)};
+
+        var dataJson = JSON.stringify(dataToSend);
+
+        $.ajax({
+            url: '/api/savePolygon',
+            type: "POST",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: dataJson,
+
+            success: function (data) {
+
+                $.notify({
+                    title: '<strong>Poligono guardado exitosamente!</strong>',
+                    message: 'Se ha persistido correctamente el poligono para el registro: ' + data.id
+                }, {
+                    type: 'success',
+                    timer: 8000
+                });
+
+            },
+            error: function (data) {
+                $.notify({
+                    title: '<strong>Hubo un problema!</strong>',
+                    message: 'Se produjo un error al intentar guardar el poligono.'
+                }, {
+                    type: 'danger'
+                });
+            }
+        });
+
+    }
+
+}
+
+var stopDrawing = true;
+
+var polygonsArray = [];
+
+function initDrawingControl(element , id){
+
+    stopDrawing = !stopDrawing;
+
+    var drawingManager = new google.maps.drawing.DrawingManager({
+        drawingMode: google.maps.drawing.OverlayType.POLYGON,
+        drawingControl: true,
+        drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_RIGHT,
+            drawingModes: ['polygon']
+        },
+        polygonOptions: {
+            id: id,
+            fillColor: '#b2b2b2',
+            fillOpacity: 0.5,
+            strokeWeight: 2,
+            strokeColor: '#000000',
+            clickable: false,
+            editable: false,
+            zIndex: 1
+        }
+    });
+
+    drawingManager.setMap(map);
+
+    google.maps.event.addListener(drawingManager, 'polygoncomplete', function (polygon) {
+        document.getElementById('info').innerHTML += "Puntos del pol&iacute;gono:" + "<br>";
+
+        for (var i = 0; i < polygon.getPath().getLength(); i++) {
+            document.getElementById('info').innerHTML += polygon.getPath().getAt(i).toUrlValue(6) + "<br>";
+        }
+        polygonsArray.push(polygon);
+
+        $("#modal-confirm-polyg").modal('show');
+
+        modalConfirm3(function(confirm){
+            if(confirm){
+                guardarPoligono(id , polygon);
+                document.getElementById('info').innerHTML = "";
+                drawingManager.setMap(null);
+
+            } else {
+                polygon.setMap(null)
+                drawingManager.setMap(null);
+                document.getElementById('info').innerHTML = "";
+                polygon.id = null;
+            }
+        });
+    });
+}
+
+var polygons = [];
+
+function initPolygon(element ,id ){
+
+    var coordinates = $('#pol-' + id).val();
+    var jsonCoordinates = JSON.parse(coordinates);
+
+    // Construct the polygon.
+    var poligono = new google.maps.Polygon({
+        id: id,
+        paths: jsonCoordinates,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        visible: true
+    });
+
+    polygons.push(poligono);
+    poligono.setMap(map);
+
+    poligono.addListener('click', function (event) {
+
+        var contentString = '<b>Poligono seleccionado: </b>'+ this.id + '<br>' + '<br>' + '<button onclick="disablePolygon(' + this.id + ')"><i class="fas fa-eye-slash"></i>Ocultar poligono</button>';
+
+        infoWindow.setContent(contentString);
+        infoWindow.setPosition(event.latLng);
+
+        infoWindow.open(map);
+
+    });
+
+    infoWindow = new google.maps.InfoWindow;
+
+}
+
+function disablePolygon(id) {
+    var i;
+    for (i = 0; i < polygons.length; i++) {
+        if (polygons[i].id == id) {
+            var polygon = polygons[i];
+            polygon.setVisible(false);
+            infoWindow.close(map);
+        }
+    }
+
+}
 
 // function sendMailCredentialsTo(id) {
 //     $.getJSON( "sendMailToUser?id=".concat(id))
@@ -374,7 +526,7 @@ function guardarCoordenadas(id) {
 //                 });
 //         }
 //     });
-}
+// }
 
 $(document).ready(function() {
     $('#emailForm').bootstrapValidator();
