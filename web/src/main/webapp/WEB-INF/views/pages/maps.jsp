@@ -18,6 +18,10 @@
         background-color: white;
         opacity: 0.8;
         min-width: 98%;
+        width: 98%;
+        height: 52%;
+        overflow: scroll;
+        border-radius: 3px;
     }
 
     .hidden{
@@ -71,7 +75,7 @@
     </div>
 
 
-    <div class="table-ubicaciones" id="table-ubicaciones" style="width: 98%; overflow-x: scroll; border-radius: 3px;">
+    <div class="table-ubicaciones" id="table-ubicaciones">
 
                 <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="width:3%; z-index: 500;">
                 <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="width:4%; display: none">
