@@ -3,7 +3,8 @@
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="<c:url value='/resources/assets/img/apple-icon.png'/>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Scopesi</title>
+    <title>Scopesi - Manager</title>
+    <link rel="shortcut icon" type="image/png" href="/resources/assets/img/icons/faviconScopesi.png"/>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
