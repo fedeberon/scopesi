@@ -15,4 +15,7 @@ public interface UsuarioDao extends PagingAndSortingRepository<Usuario, Long> {
 
     @Query("SELECT u FROM Usuario u WHERE u.eMail = :email")
     Usuario getByEmail(@Param("email") String email);
+
+    @Query("SELECT u FROM Usuario u WHERE u.username = :username")
+    Usuario getByUsername(@Param("username") String username);
 }

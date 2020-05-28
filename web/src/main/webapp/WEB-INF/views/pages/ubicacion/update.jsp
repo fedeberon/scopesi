@@ -133,7 +133,7 @@
                                 <label for="street1_id" class="control-label pt-2">Buses</label>
                                 <select class="form-control" id="street1_id" name="mapBuses.id">
                                     <c:forEach items="${buses}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapBuses.descripcion ? 'selected' : ''} value="${bo.id}">${bo.linea}</option>
+                                        <option ${bo.id == ubicacion.mapBuses.id ? 'selected' : ''} value="${bo.id}">${bo.id}</option>
                                     </c:forEach>
                                 </select>
                             </div>

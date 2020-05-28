@@ -68,13 +68,33 @@
 
 
 
-    <definition name="user/list" extends="template-def">
+    <definition name="usuario/list" extends="template-def">
         <put-attribute name="title" value="Maps" />
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
         <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
         <put-attribute name="body"  value="/WEB-INF/views/pages/user/list.jsp" />
     </definition>
 
+    <definition name="usuario/create" extends="template-def">
+        <put-attribute name="title" value="Crear usuario" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/user/create.jsp" />
+    </definition>
+
+    <definition name="usuario/update" extends="template-def">
+        <put-attribute name="title" value="Usuario" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/user/update.jsp" />
+    </definition>
+
+    <definition name="usuario/show" extends="template-def">
+        <put-attribute name="title" value="Usuario" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/user/show.jsp" />
+    </definition>
 
     <definition name="ubicacion/list" extends="template-def">
         <put-attribute name="title" value="Maps" />

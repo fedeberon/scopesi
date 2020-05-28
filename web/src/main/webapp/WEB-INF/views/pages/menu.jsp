@@ -26,7 +26,7 @@
             </a>
         </li>
         <li id="users">
-            <a  class="nav-link" href="/user/list">
+            <a  class="nav-link" href="/usuario/list">
                 <i class="fas fa-users"></i>
                 <p class="wordsMenu">Usuarios</p>
             </a>

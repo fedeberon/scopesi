@@ -23,6 +23,14 @@
         margin-top: 6%;
     }
 
+    .field-icon {
+        float: right;
+        margin-right: 12px;
+        margin-top: -51px;
+        position: relative;
+        z-index: 2;
+    }
+
 </style>
 
 <div class="container">
@@ -37,7 +45,8 @@
                 <input type="username" name="username" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Usuario"> <!-- name='j_username' -->
 
                 <!-- Password -->
-                <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Contraseña"> <!-- name='j_password' -->
+                <input type="password" name="password" id="inputPassword" class="form-control mb-4" placeholder="Contraseña"> <!-- name='j_password' -->
+                <span id="showPassword" class="fas fa-eye field-icon" onclick="showPassword()"></span>
 
                 <!-- Check box -->
                 <div class="ml-4 d-flex justify-content-left">

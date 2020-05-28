@@ -500,30 +500,15 @@ function disablePolygon(id) {
 
 }
 
-// function sendMailCredentialsTo(id) {
-//     $.getJSON( "sendMailToUser?id=".concat(id))
-//     $.ajax( {
-//         success:  function () {
-//
-//             $.notify({
-//                 title: '<strong>Crendenciales enviadas exitosamente!</strong>',
-//                 message: 'Se ha enviado un mail.'
-//             }, {
-//                 timer: 8000
-//             });
-//
-//
-//         },
-//         error: function() {
-//             $.notify({
-//                     title: '<strong>Hubo un problema!</strong>',
-//                     message: 'Se produjo un error al intentar enviar credenciales.'
-//                 },
-//                 {
-//                     timer: '8000',
-//                     z_index:2000,
-//                     type: 'danger'
-//                 });
-//         }
-//     });
-// }
+
+function showPassword() {
+    var x = document.getElementById("inputPassword");
+
+    if (x.type === "password") {
+        x.type = "text";
+        $('#showPassword').removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+        x.type = "password";
+        $('#showPassword').removeClass("fa-eye-slash").addClass("fa-eye");
+    }
+}

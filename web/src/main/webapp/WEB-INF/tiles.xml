@@ -45,7 +45,7 @@
 
 
 
-    <definition name="user/list" extends="template-def">
+    <definition name="usuario/list" extends="template-def">
         <put-attribute name="title" value="Maps" />
         <put-attribute name="navbar" value="/tiles/pages/navbar.jsp" />
         <put-attribute name="menu" value="/tiles/pages/menu.jsp" />

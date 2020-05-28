@@ -31,5 +31,5 @@ add bajaLogica boolean;
 alter table map_pois_entidad
 add bajaLogica boolean;
 
-alter table usuarios
-add fechaExpiracion datetime;
+ALTER TABLE `sistema_web`.`productos`
+CHANGE COLUMN `idProducto` `idProducto` INT(10) UNSIGNED NOT NULL DEFAULT 0 ;

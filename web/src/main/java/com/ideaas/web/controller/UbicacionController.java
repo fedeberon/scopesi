@@ -151,6 +151,11 @@ public class UbicacionController {
         return mapProvinciaService.findAll();
     }
 
+    @ModelAttribute("buses")
+    public List<MapBus> buses(){
+        return mapBusService.findAll();
+    }
+
     @ModelAttribute("alturas")
     public List<MapUbicacionAltura> alturas(){
         return mapUbicacionAlturaService.findAll();

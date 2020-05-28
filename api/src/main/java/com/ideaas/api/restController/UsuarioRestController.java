@@ -66,6 +66,8 @@ public class UsuarioRestController {
         return new ResponseEntity(usuario, HttpStatus.CREATED);
     }
 
+
+
     @ApiResponses(value = {
             @ApiResponse(code = 202, message = "Send mail Successfully"),
             @ApiResponse(code = 502, message = "Failed when try to send a email"),

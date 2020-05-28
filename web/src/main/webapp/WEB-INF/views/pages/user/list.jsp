@@ -2,7 +2,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <script>
-    var element = document.getElementById("users");
+    var element = document.getElementById("usuarios");
     element.classList.add("active");
 </script>
 
@@ -17,39 +17,51 @@
                     <div class="card-body table-full-width table-responsive">
                         <table id="dataTableToCompleteList" class="display" style="width:100%">
                             <thead>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Nombre Completo</th>
-                            <th>Email</th>
-                            <th>Telefono</th>
-                            <th>Estado</th>
-                            <th>Tipo de usuario</th>
-                            <th>Cargo</th>
-                            <th>C.Inversion</th>
-                            <th>C.Auditoria</th>
-                            <th>C.Mapping</th>
-<%--                            <th>Enviar crendeciales</th>--%>
+                                <th>ID</th>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Baja/Alta</th>
+                                <th>Usuario</th>
+                                <th>Contrase&ntilde;a</th>
+                                <th>Nombre Completo</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                                <th>Estado</th>
+                                <th>Tipo de usuario</th>
+                                <th>Cargo</th>
+                                <th>C.Inversion</th>
+                                <th>C.Auditoria</th>
+                                <th>C.Mapping</th>
                             </thead>
 
                             <tbody>
 
-                            <c:forEach items="${users}" var="bo">
+                            <c:forEach items="${usuarios}" var="bo">
 
                                 <tr>
-                                    <td><a href="/user/${bo.id}">${bo.id}</a></td>
+                                    <td><a href="/usuario/${bo.id}">${bo.id}</a></td>
+                                    <td class="text-center">
+                                        <a href="<c:url value='/usuario/update?id=${bo.id}'/>"/>
+                                        <img src="/resources/assets/img/icons/edit2.png" alt="">
+                                    </td>
+                                    <td class="text-center">
+                                        <a ${bo.estado == "B" ? 'class="d-none"' : ''} href="<c:url value='/usuario/dropState?id=${bo.id}'/>"/>
+                                        <img ${bo.estado == "B" ? 'class="d-none"' : ''} src="/resources/assets/img/icons/delete.png" alt="">
+                                        <a ${bo.estado == "A" ? 'class="d-none"' : ''} href="<c:url value='/usuario/upState?id=${bo.id}'/>"/>
+                                        <img ${bo.estado == "A" ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
+<%--                                        <a ${bo.estado == "A" || bo.estado == "M" ? 'class="d-none"' : ''} href="<c:url value='/usuario/upState?id=${bo.id}'/>"/>--%>
+<%--                                        <img ${bo.estado == "A" || bo.estado == "M" ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">--%>
+                                    </td>
                                     <td>${bo.username}</td>
+                                    <td>${bo.password}</td>
                                     <td>${bo.nombreCompleto}</td>
                                     <td>${bo.eMail}</td>
                                     <td>${bo.telefono}</td>
                                     <td>${bo.estado}</td>
                                     <td>${bo.tipoUsuario.descripcion}</td>
                                     <td>${bo.cargo}</td>
-                                    <td>${bo.contratoInv.id}</td>
-                                    <td>${bo.contratoAud.id}</td>
-                                    <td>${bo.contratoMap.id}</td>
-<%--                                    <td class="text-center">--%>
-<%--                                        <i onclick="sendMailCredentialsTo(${bo.id})"  class="far fa-envelope"></i>--%>
-<%--                                    </td>--%>
+                                    <td>${bo.contratoInv.descripcion}</td>
+                                    <td>${bo.contratoAud.descripcion}</td>
+                                    <td>${bo.contratoMap.descripcion}</td>
                                 </tr>
 
                             </c:forEach>
@@ -57,14 +69,8 @@
                             </tbody>
                         </table>
                         <div class="row pt-4 px-2">
-                            <div class="col-6">
-
-<%--                                <form name="search" action="list" method="get">--%>
-<%--                                    <input type="hidden" name="page" value="${page}"/>--%>
-
-<%--                                    <tags:paginador page="${page}" formName="search"/>--%>
-
-<%--                                </form>--%>
+                            <div class="col-8">
+                                <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i></i>&nbsp;Nuevo</a>
 
                             </div>
                         </div>

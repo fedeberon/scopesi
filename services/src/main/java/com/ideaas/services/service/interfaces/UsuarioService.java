@@ -12,6 +12,8 @@ public interface UsuarioService extends UserDetailsService {
 
     Usuario getByEmail(String email);
 
+    Usuario getByUsername (String username);
+
     List<Usuario> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<Usuario> findAll();

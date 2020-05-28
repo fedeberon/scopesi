@@ -13,6 +13,8 @@ public class Usuario {
 
     @Id
     @Column(name = "idUsuario")
+    @SequenceGenerator(name = "UsuarioSeqGen", sequenceName = "SEQ_USUARIO", allocationSize = 1)
+    @GeneratedValue(generator = "UsuarioSeqGen")
     private Long id;
 
     @Column(name = "usuario")
@@ -39,14 +41,10 @@ public class Usuario {
 
     //Cliente depreco esta columna
     @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idAnunciante")
     private MapAnunciante mapAnunciante;
 
     //Cliente depreco esta columna
     @Transient
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProducto")
     private Producto producto;
 
     @Column(name = "cargo")
