@@ -66,7 +66,7 @@ public class UserController {
         return "usuario/list";
     }
 
-    @RequestMapping("/auth")
+    @RequestMapping("/autorizacion")
     public String hello(HttpServletRequest request, @CookieValue("Authorization") String authorization, @CookieValue("Token") String token) {
             String username = authorization.substring(6);
             UserDetails userDetails = usuarioService.loadUserByUsername(username);
