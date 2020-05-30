@@ -358,6 +358,12 @@
             liveSearch: false
         });
 
+        $('#select-maxResults').selectpicker({
+            container: 'body',
+            dropupAuto: false,
+            liveSearch: false
+        });
+
         $('.dropdown-menu').on('click', function (e) {
             if ($(e.target).closest('.bootstrap-select.open').is(':visible') || $(e.target).closest('.btn.dropdown-toggle').is(':visible')) {
                 selectpickerIsClicked = true;

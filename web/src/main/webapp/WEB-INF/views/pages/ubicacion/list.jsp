@@ -400,12 +400,12 @@
 
                         <div class="form-group col-6">
                             <label for="fechaAlta">Fecha de alta</label>
-                            <input name="request.fechaAlta" autocomplete="off"  class="form-control datepicker" title="Seleccione una fecha"/>
+                            <input name="request.fechaAlta" autocomplete="off"  class="form-control datepicker" title="Seleccione una fecha" style="border:2px solid #a0a0a0"/>
                         </div>
 
                         <div class="form-group col-6">
                             <label for="maxResults">Cantidad resultados</label>
-                            <select name="request.maxResults">
+                            <select id="select-maxResults" class="form-control" name="request.maxResults" data-live-search="true">
                                 <option value="10" selected>10</option>
                                 <option value="20">20</option>
                                 <option value="50">50</option>
