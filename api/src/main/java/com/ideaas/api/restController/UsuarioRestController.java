@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -66,6 +68,22 @@ public class UsuarioRestController {
         return new ResponseEntity(usuario, HttpStatus.CREATED);
     }
 
+    @PostMapping("/auth")
+    public ResponseEntity<Usuario> auth(@RequestParam String username , @RequestParam String token , HttpServletResponse response){
+        Cookie usernameCookie = new Cookie("Authorization", "Basic " + username);
+        Cookie tokenCookie = new Cookie("Token", token);
+
+        usernameCookie.setPath("/");
+        tokenCookie.setPath("/");
+
+        usernameCookie.setMaxAge(3600);
+        tokenCookie.setMaxAge(3600);
+
+        response.addCookie(usernameCookie);
+        response.addCookie(tokenCookie);
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 
 
     @ApiResponses(value = {

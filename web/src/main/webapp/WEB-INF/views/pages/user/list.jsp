@@ -46,10 +46,8 @@
                                     <td class="text-center">
                                         <a ${bo.estado == "B" ? 'class="d-none"' : ''} href="<c:url value='/usuario/dropState?id=${bo.id}'/>"/>
                                         <img ${bo.estado == "B" ? 'class="d-none"' : ''} src="/resources/assets/img/icons/delete.png" alt="">
-                                        <a ${bo.estado == "A" ? 'class="d-none"' : ''} href="<c:url value='/usuario/upState?id=${bo.id}'/>"/>
-                                        <img ${bo.estado == "A" ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
-<%--                                        <a ${bo.estado == "A" || bo.estado == "M" ? 'class="d-none"' : ''} href="<c:url value='/usuario/upState?id=${bo.id}'/>"/>--%>
-<%--                                        <img ${bo.estado == "A" || bo.estado == "M" ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">--%>
+                                        <a ${bo.estado == "A" || bo.estado == "M" ? 'class="d-none"' : ''} href="<c:url value='/usuario/upState?id=${bo.id}'/>"/>
+                                        <img ${bo.estado == "A" || bo.estado == "M" ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
                                     </td>
                                     <td>${bo.username}</td>
                                     <td>${bo.password}</td>

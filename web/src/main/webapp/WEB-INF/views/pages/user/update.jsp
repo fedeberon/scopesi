@@ -39,8 +39,6 @@
                                     <form:input  path="telefono" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                                 </div>
 
-                                <input type="hidden"  path="estado" cssClass="form-control" name="street1" value="M"/>
-
                                 <div class="col-6">
                                     <label for="street1_id" class="control-label pt-2">Tipo de Usuario</label>
                                     <select class="form-control" id="street1_id" name="tipoUsuario.id">
@@ -78,8 +76,9 @@
                                     </select>
                                 </div>
 
-                                <input type="hidden" value="0" name="mapAnunciante.id">
-                                <input type="hidden" value="0" name="producto.id">
+                                <input type="hidden" name="estado" value="M"/>
+                                <input type="hidden" name="mapAnunciante.id" value="0">
+                                <input type="hidden" name="producto.id" value="0">
                             </div>
                         </div>
                         <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>

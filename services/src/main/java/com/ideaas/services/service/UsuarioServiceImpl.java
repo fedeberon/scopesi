@@ -64,13 +64,17 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario user = dao.findByEstadoAndUsernameIs("A" , username);
+        Usuario user = dao.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
 
-        boolean enabled = (user.getEstado().equalsIgnoreCase("A") ? true : false);
+        boolean enabled = false;
 
+        String estado = user.getEstado();
+        if (estado.equals("A") || estado.equals("M")){
+            enabled = true;
+        }
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), enabled, true, true, true, new ArrayList<>());
     }
