@@ -66,21 +66,6 @@ public class UserController {
         return "usuario/list";
     }
 
-    @RequestMapping("/auth")
-    public String hello(HttpServletRequest request, @CookieValue("Authorization") String authorization, @CookieValue("Token") String token) {
-            String username = authorization.substring(6);
-            UserDetails userDetails = usuarioService.loadUserByUsername(username);
-
-            if (Objects.nonNull(userDetails) && userDetails.getPassword().equals(token)) {
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                    return "panel";
-            }
-
-            else return "login";
-    }
-
     @GetMapping("{id}")
     public String show(@PathVariable Long id, Model model) throws UnsupportedEncodingException, InvalidCipherTextException {
         Usuario usuario = usuarioService.get(id);

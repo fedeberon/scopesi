@@ -11,13 +11,20 @@ import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("api/usuario")
@@ -68,21 +75,36 @@ public class UsuarioRestController {
         return new ResponseEntity(usuario, HttpStatus.CREATED);
     }
 
-    @PostMapping("/auth")
-    public ResponseEntity<Usuario> auth(@RequestParam String username , @RequestParam String token , HttpServletResponse response){
-        Cookie usernameCookie = new Cookie("Authorization", "Basic " + username);
-        Cookie tokenCookie = new Cookie("Token", token);
 
-        usernameCookie.setPath("/");
-        tokenCookie.setPath("/");
+    @RequestMapping("authenticate")
+    public ResponseEntity<Usuario> auth(){
 
-        usernameCookie.setMaxAge(3600);
-        tokenCookie.setMaxAge(3600);
+//        json.forEach((key, value) -> {
+//            Cookie cookie = new Cookie( key , value.toString());
+//
+//            cookie.setPath("/");
+//
+//            cookie.setMaxAge(3600);
+//
+//            response.addCookie(cookie);
+//        });
 
-        response.addCookie(usernameCookie);
-        response.addCookie(tokenCookie);
+        return new ResponseEntity<>( new Usuario() , HttpStatus.ACCEPTED);
+    }
 
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    @RequestMapping("/auth")
+    public String hello(HttpServletRequest request, @CookieValue("Authorization") String authorization, @CookieValue("Token") String token) {
+        String username = authorization.substring(6);
+        UserDetails userDetails = usuarioService.loadUserByUsername(username);
+
+        if (Objects.nonNull(userDetails) && userDetails.getPassword().equals(token)) {
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            return "panel";
+        }
+
+        else return "login";
     }
 
 
