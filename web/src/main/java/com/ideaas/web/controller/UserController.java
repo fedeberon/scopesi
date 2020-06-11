@@ -173,6 +173,22 @@ public class UserController {
         return "redirect:/usuario/{id}";
     }
 
+    @RequestMapping(value ="authenticate" , method = RequestMethod.POST)
+    public String auth(@RequestParam  String authorization , @RequestParam String token , HttpServletRequest request){
+
+        String username = authorization.substring(6);
+        UserDetails userDetails = usuarioService.loadUserByUsername(username);
+
+        if (Objects.nonNull(userDetails) && userDetails.getPassword().equals(token)) {
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            return "redirect:/dashboard/panel";
+        }
+
+        else return "redirect:/login";
+    }
+
     @ModelAttribute("usuario")
     public Usuario get(){
         return new Usuario();

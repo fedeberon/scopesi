@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         security.csrf().disable().
                 authorizeRequests()
-                .antMatchers("/resources/**", "/forgot-password", "/sendEmail","/email-sent-successfully", "/email-not-exist").permitAll()
+                .antMatchers("/resources/**","/usuario/authenticate", "/forgot-password", "/sendEmail","/email-sent-successfully", "/email-not-exist").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
