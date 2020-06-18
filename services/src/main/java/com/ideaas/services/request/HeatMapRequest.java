@@ -5,26 +5,26 @@ import java.time.LocalDate;
 
 public class HeatMapRequest {
 
-    private Long[] edad;
+    private Long[] edades;
 
-    private String [] genero;
+    private String [] generos;
 
     private LocalDate fechaRecepcion;
 
-    public Long[] getEdad() {
-        return edad;
+    public Long[] getEdades() {
+        return edades;
     }
 
-    public void setEdad(Long[] edad) {
-        this.edad = edad;
+    public void setEdades(Long[] edades) {
+        this.edades = edades;
     }
 
-    public String[] getGenero() {
-        return genero;
+    public String[] getGeneros() {
+        return generos;
     }
 
-    public void setGenero(String[] genero) {
-        this.genero = genero;
+    public void setGeneros(String[] generos) {
+        this.generos = generos;
     }
 
     public LocalDate getFechaRecepcion() {
