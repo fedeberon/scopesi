@@ -4,7 +4,7 @@
 <div class="content">
     <div class="col-12">
         <div class="card">
-        <form:form action="addPoi" modelAttribute="poi" method="post">
+        <form:form action="save" modelAttribute="mapPoi" method="post" autocomplete="off">
             <div class="row ml-3">
                 <div class="col-md-11">
                     <div class="form-group">
@@ -20,6 +20,7 @@
                             <div class="col-6">
                                 <label class="control-label pt-2">Descripcion</label>
                                 <form:input path="descripcion" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:errors path="descripcion" cssStyle="color: red;"/>
                             </div>
                         </div>
                         <div class="row">
@@ -34,18 +35,23 @@
                             <div class="col-6">
                                 <label class="control-label pt-2">Latitud</label>
                                 <form:input path="geoLatitud" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:errors path="geoLatitud" cssStyle="color: red;"/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <label class="control-label pt-2">Longitud</label>
                                 <form:input path="geoLongitud" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:errors path="geoLongitud" cssStyle="color: red;"/>
                             </div>
                             <div class="col-6">
                                 <label class="control-label pt-2">Icono</label>
                                 <form:input path="icono" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:errors path="icono" cssStyle="color: red;"/>
                             </div>
                         </div>
+
+                        <form:input type="hidden" path="bajaLogica" cssClass="form-control" id="street1_id" name="street1" value="false"/>
                     </div>
                     <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
@@ -56,7 +62,7 @@
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -66,7 +72,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5>Confirmar registro.</h5>
+                                    <h5>&iquest;Desea guardar un nuevo POI?</h5>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="#" class="btn btn-light" data-dismiss="modal">Cancelar</button>

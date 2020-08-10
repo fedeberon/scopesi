@@ -385,8 +385,8 @@
                         <div class="form-group col-6">
                             <label for="bajaLogica">Estado</label>
                             <select id="select-estados" name="request.bajaLogica" class="form-control" multiple data-live-search="true" title="Seleccione un estado">
-                                <option value="true">Activo</option>
-                                <option value="false">Inactivo</option>
+                                <option value="false">Activo</option>
+                                <option value="true">Inactivo</option>
                             </select>
                         </div>
 

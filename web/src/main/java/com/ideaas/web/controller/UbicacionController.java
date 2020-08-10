@@ -10,6 +10,8 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
@@ -121,6 +123,78 @@ public class UbicacionController {
         return "ubicacion/list";
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormat.setLenient(false);
+        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
+    @GetMapping("create")
+    public String create() {
+        return "ubicacion/create";
+    }
+
+    FieldError emptyCoeficiente = new FieldError(
+            "mapUbicacion" , "coeficiente" , "Debes completar este campo"
+    );
+    FieldError emptyMetrosContacto = new FieldError(
+            "mapUbicacion" , "metrosContacto" , "Debes completar este campo"
+    );
+
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute (name = "mapUbicacion") MapUbicacion mapUbicacion, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+
+        if(mapUbicacion.getMetrosContacto() == null ){
+            bindingResult.addError(emptyCoeficiente);
+
+        }
+        if(mapUbicacion.getCoeficiente() == null){
+            bindingResult.addError(emptyMetrosContacto);
+
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "ubicacion/create";
+        }
+
+        mapUbicacion.setFechaAlta(LocalDateTime.now());
+        mapUbicacionService.save(mapUbicacion);
+        redirectAttributes.addAttribute("id", mapUbicacion.getId());
+
+        return "redirect:/ubicacion/{id}";
+
+    }
+
+    @GetMapping("{id}")
+    public String show(@PathVariable Long id, Model model) {
+        MapUbicacion ubicacion = mapUbicacionService.get(id);
+
+        model.addAttribute("ubicaciones", ubicacion);
+
+        return "ubicacion/show";
+    }
+
+    @RequestMapping(value = "editUbicacion" , method = RequestMethod.POST)
+    public String edit(@ModelAttribute MapUbicacion ubicacion, RedirectAttributes redirectAttributes){
+        mapUbicacionService.save(ubicacion);
+        redirectAttributes.addAttribute("id", ubicacion.getId());
+
+        return "redirect:/ubicacion/{id}";
+    }
+
+    @RequestMapping("update")
+    public String update(@RequestParam Long id, Model model) {
+        MapUbicacion mapUbicacion = mapUbicacionService.get(id);
+        model.addAttribute("updateUbicacion", mapUbicacion);
+        return "ubicacion/update";
+    }
+
+    @ModelAttribute("mapUbicacion")
+    public MapUbicacion get(){
+        return new MapUbicacion();
+    }
+
     @ModelAttribute("empresas")
     public List<MapEmpresa> empresas(){
         return mapEmpresaService.findAll();
@@ -174,58 +248,6 @@ public class UbicacionController {
     @ModelAttribute("myWrapper")
     public Wrapper wrapper(){
         return new Wrapper();
-    }
-
-
-    @InitBinder
-    public void initBinder(WebDataBinder webDataBinder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        dateFormat.setLenient(false);
-        webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
-
-    @GetMapping("create")
-    public String create() {
-        return "ubicacion/create";
-    }
-
-    @PostMapping("addUbicacion")
-    public String save(@ModelAttribute MapUbicacion ubicacion, RedirectAttributes redirectAttributes) {
-        ubicacion.setFechaAlta(LocalDateTime.now());
-        mapUbicacionService.save(ubicacion);
-        redirectAttributes.addAttribute("id", ubicacion.getId());
-
-        return "redirect:/ubicacion/{id}";
-
-    }
-
-    @GetMapping("{id}")
-    public String show(@PathVariable Long id, Model model) {
-        MapUbicacion ubicacion = mapUbicacionService.get(id);
-
-        model.addAttribute("ubicaciones", ubicacion);
-
-        return "ubicacion/show";
-    }
-
-    @PutMapping("editUbicacion")
-    public String edit(@ModelAttribute MapUbicacion ubicacion, RedirectAttributes redirectAttributes){
-        mapUbicacionService.save(ubicacion);
-        redirectAttributes.addAttribute("id", ubicacion.getId());
-
-        return "redirect:/{id}";
-    }
-
-    @RequestMapping("update")
-    public String update(@RequestParam Long id, Model model) {
-        MapUbicacion mapUbicacion = mapUbicacionService.get(id);
-        model.addAttribute("ubicacion", mapUbicacion);
-        return "ubicacion/update";
-    }
-
-    @ModelAttribute("ubicacion")
-    public MapUbicacion get(){
-        return new MapUbicacion();
     }
 
 }

@@ -13,7 +13,7 @@
     <link href="<c:url value='/resources/assets/css/bootstrap.min.css'/>" rel="stylesheet" />
     <link href="<c:url value='/resources/assets/css/light-bootstrap-dashboard.css?v=2.0.0'/>" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="<c:url value='/resources/assets/css/demo.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/resources/assets/css/main.css'/>" rel="stylesheet" />
     <link href="<c:url value='/resources/assets/css/loading.css'/>" rel="stylesheet" />
     <link rel="stylesheet" href="<c:url value='/resources/DataTables/DataTables-1.10.20/css/jquery.dataTables.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/DataTables/FixedColumns-3.3.0/css/fixedColumns.dataTables.min.css'/>">

@@ -131,7 +131,7 @@ public class MapUbicacion {
     @Column(name = "fechatransf")
     private LocalDateTime fechaTransf;
 
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     @Column(name = "fecha_alta")
     private LocalDateTime fechaAlta;
 

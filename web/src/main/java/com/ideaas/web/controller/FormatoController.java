@@ -5,9 +5,12 @@ import com.ideaas.services.service.interfaces.MapFormatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -47,26 +50,46 @@ public class FormatoController{
     }
 
 
-    @PostMapping("addFormato")
-    public String save(@ModelAttribute MapFormato formato, RedirectAttributes redirectAttributes){
+    FieldError emptyDescripcionFormato = new FieldError(
+            "mapFormato" , "descripcion" , "Debes completar este campo"
+    );
+    FieldError emptyEvaluaEmpresa = new FieldError(
+            "mapFormato" , "evalua" , "Debes completar este campo"
+    );
+
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute(name = "mapFormato") MapFormato formato, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(formato.getDescripcion().isEmpty()){
+            bindingResult.addError(emptyDescripcionFormato);
+        }
+        if(formato.getEvalua() == null){
+            bindingResult.addError(emptyEvaluaEmpresa);
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "formato/create";
+        }
+
+        formato.setFechaAlta(LocalDateTime.now());
         formatoService.save(formato);
         redirectAttributes.addAttribute("id", formato.getId());
 
         return "redirect:/formato/{id}";
     }
 
-    @PutMapping("editFormato")
+    @RequestMapping(value = "editFormato" , method = RequestMethod.POST)
     public String edit(@ModelAttribute MapFormato formato, RedirectAttributes redirectAttributes){
         formatoService.save(formato);
         redirectAttributes.addAttribute("id", formato.getId());
 
-        return "redirect:/{id}";
+        return "redirect:/formato/{id}";
     }
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         MapFormato mapFormato = formatoService.get(id);
-        model.addAttribute("formato", mapFormato);
+        model.addAttribute("updateFormato", mapFormato);
         return "formato/update";
     }
 
@@ -90,7 +113,7 @@ public class FormatoController{
         return "redirect:/formato/{id}";
     }
 
-    @ModelAttribute("formato")
+    @ModelAttribute("mapFormato")
     public MapFormato get(){
         return new MapFormato();
     }

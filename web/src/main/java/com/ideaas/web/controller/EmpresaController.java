@@ -6,6 +6,8 @@ import com.ideaas.services.service.interfaces.MapEmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -47,8 +49,22 @@ public class EmpresaController {
     }
 
 
-    @PostMapping("addEmpresa")
-    public String save(@ModelAttribute MapEmpresa empresa, RedirectAttributes redirectAttributes){
+    FieldError emptyDescripcionEmpresa = new FieldError(
+            "mapEmpresa" , "descripcion" , "Debes completar este campo"
+    );
+
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute MapEmpresa empresa, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(empresa.getDescripcion().isEmpty()){
+            bindingResult.addError(emptyDescripcionEmpresa);
+
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "empresa/create";
+        }
+
         empresaService.save(empresa);
         redirectAttributes.addAttribute("id", empresa.getId());
 
@@ -66,7 +82,7 @@ public class EmpresaController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         MapEmpresa mapEmpresa = empresaService.get(id);
-        model.addAttribute("empresa", mapEmpresa);
+        model.addAttribute("updateEmpresa", mapEmpresa);
         return "empresa/update";
     }
 
@@ -90,7 +106,7 @@ public class EmpresaController {
         return "redirect:/empresa/{id}";
     }
 
-    @ModelAttribute("empresa")
+    @ModelAttribute("mapEmpresa")
     public MapEmpresa get(){
         return new MapEmpresa();
     }

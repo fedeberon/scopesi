@@ -10,6 +10,8 @@ import com.ideaas.services.service.interfaces.MapProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -62,8 +64,39 @@ public class PoiController {
         return "poi/create";
     }
 
-    @PostMapping("addPoi")
-    public String save(@ModelAttribute MapPoi poi, RedirectAttributes redirectAttributes){
+    FieldError emptyDescripcionPoi = new FieldError(
+            "mapPois" , "descripcion" , "Debes completar este campo"
+    );
+    FieldError emptyLatPoi = new FieldError(
+            "mapPois" , "geoLatitud" , "Debes completar este campo"
+    );
+    FieldError emptyLngPoi = new FieldError(
+            "mapPois" , "geoLongitud" , "Debes completar este campo"
+    );
+    FieldError emptyIconoPoi = new FieldError(
+            "mapPois" , "icono" , "Debes completar este campo"
+    );
+
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute MapPoi poi, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(poi.getDescripcion().isEmpty()){
+            bindingResult.addError(emptyDescripcionPoi);
+        }
+        if(poi.getGeoLatitud() == null){
+            bindingResult.addError(emptyLatPoi);
+        }
+        if(poi.getGeoLongitud() == null){
+            bindingResult.addError(emptyLngPoi);
+        }
+        if(poi.getIcono().isEmpty()){
+            bindingResult.addError(emptyIconoPoi);
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "poi/create";
+        }
+
         mapPoiService.save(poi);
         redirectAttributes.addAttribute("id", poi.getId());
         return "redirect:/poi/{id}";
@@ -72,7 +105,7 @@ public class PoiController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         MapPoi mapPoi = mapPoiService.get(id);
-        model.addAttribute("poi", mapPoi);
+        model.addAttribute("updatePoi", mapPoi);
         model.addAttribute("poiEntidad", mapPoi.getMapPoiEntidad().getDescripcion());
 
         return "poi/update";
@@ -87,8 +120,6 @@ public class PoiController {
 
         return "redirect:/poi/{id}";
     }
-
-
 
     @RequestMapping("upBajaLogica")
     public String upBajaLogica(@RequestParam Long id, RedirectAttributes redirectAttributes){
@@ -117,7 +148,7 @@ public class PoiController {
         return mapProvinciaService.findAll();
     }
 
-    @ModelAttribute("poi")
+    @ModelAttribute("mapPoi")
     public MapPoi get() {
         return new MapPoi();
     }

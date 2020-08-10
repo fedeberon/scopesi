@@ -7,6 +7,8 @@ import com.ideaas.services.service.interfaces.MapProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
@@ -53,8 +55,20 @@ public class LocalidadController {
         return "localidad/create";
     }
 
-    @PostMapping("addLocalidad")
-    public String save(@ModelAttribute MapLocalidad localidad, RedirectAttributes redirectAttributes){
+    FieldError emptyEvaluaLocalidad = new FieldError(
+            "mapLocalidad" , "evalua" , "Debes completar este campo"
+    );
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute MapLocalidad localidad, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(localidad.getEvalua() == null){
+            bindingResult.addError(emptyEvaluaLocalidad);
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "localidad/create";
+        }
+
         localidadService.save(localidad);
         redirectAttributes.addAttribute("id", localidad.getId());
         return "redirect:/localidad/{id}";
@@ -63,7 +77,7 @@ public class LocalidadController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         MapLocalidad mapLocalidad = localidadService.get(id);
-        model.addAttribute("localidad", mapLocalidad);
+        model.addAttribute("updateLocalidad", mapLocalidad);
         return "localidad/update";
     }
 
@@ -87,7 +101,7 @@ public class LocalidadController {
         return "redirect:/localidad/{id}";
     }
 
-    @ModelAttribute("localidad")
+    @ModelAttribute("mapLocalidad")
     public MapLocalidad get(){ return  new MapLocalidad();}
 
     @ModelAttribute("provincias")

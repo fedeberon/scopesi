@@ -94,31 +94,29 @@ public class UserController {
     @RequestMapping(value = "save" , method = RequestMethod.POST)
     public String save(@ModelAttribute Usuario usuario, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws InvalidCipherTextException {
 
-        boolean error = false;
-
         if( usuarioService.getByUsername(usuario.getUsername()) != null){
             bindingResult.addError(usernameExist);
-            error = true;
+
         }
         if(usuario.getUsername().isEmpty()){
             bindingResult.addError(emptyUsername);
-            error = true;
+
         }
         if(usuario.getPassword().isEmpty()){
             bindingResult.addError(emptyPassword);
-            error = true;
+
         }
 
-        if(error) {
+        if(bindingResult.hasErrors()) {
             return "usuario/create";
-        } else {
-            usuario.setPassword(encoder.encrypt(usuario.getPassword()));
-            usuarioService.save(usuario);
-            redirectAttributes.addAttribute("id", usuario.getId());
-            error = false;
-
-            return "redirect:/usuario/{id}";
         }
+
+        usuario.setPassword(encoder.encrypt(usuario.getPassword()));
+        usuarioService.save(usuario);
+        redirectAttributes.addAttribute("id", usuario.getId());
+
+        return "redirect:/usuario/{id}";
+
     }
 
     @RequestMapping(value = "update" , method = RequestMethod.POST)

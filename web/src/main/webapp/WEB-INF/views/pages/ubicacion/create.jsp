@@ -25,7 +25,7 @@
 <div class="content">
     <div class="col-12">
         <div class="card">
-                <form:form action="addUbicacion" modelAttribute="ubicacion" method="post">
+                <form:form autocomplete="off" action="save" modelAttribute="mapUbicacion" method="post">
                     <%--<form:input path="latitud" value='${ubicacion.latitud}'/>--%>
                     <%--<form:input path="longitud" value='${ubicacion.longitud}'/>--%>
 
@@ -130,24 +130,26 @@
                                         </div>
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Metros Contacto</label>
-                                            <form:input  path="metrosContacto" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <form:input  type="number" path="metrosContacto" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <form:errors path="metrosContacto" cssStyle="color: red;"/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-6">
                                             <label class="control-label pt-2">Latitud</label>
-                                            <form:input path="latitud" value='${ubicacion.latitud}' cssClass="form-control" onchange="setLat(event)"/>
+                                            <form:input path="latitud" value='${mapUbicacion.latitud}' cssClass="form-control" onchange="setLat(event)"/>
                                         </div>
                                         <div class="col-6">
                                             <label class="control-label pt-2">Longitud</label>
-                                            <form:input path="longitud" value='${ubicacion.longitud}' cssClass="form-control" onchange="setLong(event)"/>
+                                            <form:input path="longitud" value='${mapUbicacion.longitud}' cssClass="form-control" onchange="setLong(event)"/>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Coeficiente</label>
-                                            <form:input  path="coeficiente" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <form:input type="number" step="any" path="coeficiente" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <form:errors path="coeficiente" cssStyle="color: red;"/>
                                         </div>
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Referencia</label>
@@ -165,17 +167,13 @@
                                             </select>
                                         </div>
                                         <div class="col-6">
-                                            <label for="street1_id" class="control-label pt-2">Baja Logica</label>
-                                            <form:input  path="bajaLogica" cssClass="form-control" id="street1_id" name="street1" placeholder="True/false"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Fecha Transf</label>
                                             <form:input  path="fechaTransf" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                                         </div>
 
+                                    </div>
+
+                                    <div class="row">
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Ubicacion Altura</label>
                                             <select class="form-control" id="street1_id" name="mapUbicacionAltura.id">
@@ -184,9 +182,6 @@
                                                 </c:forEach>
                                             </select>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Ubicacion visibilidad</label>
                                             <select class="form-control" id="street1_id" name="mapUbicacionVisibilidad.id">
@@ -194,8 +189,10 @@
                                                     <option value="${bo.id}">${bo.descripcion}</option>
                                                 </c:forEach>
                                             </select>
-                                      </div>
-                                    </div>
+                                        </div>
+
+                                     </div>
+                                    <form:input type="hidden" path="bajaLogica" cssClass="form-control" id="street1_id" name="street1" value="false"/>
                             </div>
                             <a href="list" class="btn btn-light pull-left"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
@@ -206,7 +203,7 @@
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -216,7 +213,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h5>Confirmar registro.</h5>
+                                            <h5>&iquest;Desea guardar una nueva ubicacion?</h5>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="#" class="btn btn-light" data-dismiss="modal">Cancelar</button>

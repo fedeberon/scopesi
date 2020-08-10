@@ -2,9 +2,11 @@ package com.ideaas.services.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "map_elementos")
@@ -43,6 +45,10 @@ public class MapElemento {
 
     @Column(name = "coeficiente")
     private BigDecimal coeficiente;
+
+    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
+    @Column(name = "fecha_alta")
+    private LocalDateTime fechaAlta;
 
     @Column(name = "bajaLogica")
     private Boolean bajaLogica;
@@ -120,6 +126,14 @@ public class MapElemento {
 
     public void setCoeficiente(BigDecimal coeficiente) {
         this.coeficiente = coeficiente;
+    }
+
+    public LocalDateTime getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(LocalDateTime fechaAlta) {
+        this.fechaAlta = fechaAlta;
     }
 
     public Boolean getBajaLogica() {

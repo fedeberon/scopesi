@@ -43,17 +43,67 @@ public class MapPoi {
     public MapPoi() {
     }
 
-
-
-    public void setBajaLogica(Boolean bajaLogica) {
-        this.bajaLogica = bajaLogica;
-    }
-
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public MapPoiEntidad getMapPoiEntidad() {
         return mapPoiEntidad;
+    }
+
+    public void setMapPoiEntidad(MapPoiEntidad mapPoiEntidad) {
+        this.mapPoiEntidad = mapPoiEntidad;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public MapProvincia getMapProvincia() {
+        return mapProvincia;
+    }
+
+    public void setMapProvincia(MapProvincia mapProvincia) {
+        this.mapProvincia = mapProvincia;
+    }
+
+    public BigDecimal getGeoLatitud() {
+        return geoLatitud;
+    }
+
+    public void setGeoLatitud(BigDecimal geoLatitud) {
+        this.geoLatitud = geoLatitud;
+    }
+
+    public BigDecimal getGeoLongitud() {
+        return geoLongitud;
+    }
+
+    public void setGeoLongitud(BigDecimal geoLongitud) {
+        this.geoLongitud = geoLongitud;
+    }
+
+    public String getIcono() {
+        return icono;
+    }
+
+    public void setIcono(String icono) {
+        this.icono = icono;
+    }
+
+    public Boolean getBajaLogica() {
+        return bajaLogica;
+    }
+
+    public void setBajaLogica(Boolean bajaLogica) {
+        this.bajaLogica = bajaLogica;
     }
 }

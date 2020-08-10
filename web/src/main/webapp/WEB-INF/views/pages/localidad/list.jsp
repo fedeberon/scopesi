@@ -18,6 +18,7 @@
                                 <th class="text-center">Baja/Alta Logica</th>
                                 <th>Descripcion</th>
                                 <th>IdProvincia</th>
+                                <th>Evalua</th>
                             </thead>
 
                             <tbody>
@@ -37,7 +38,8 @@
                                         <img ${bo.bajaLogica == false ? 'class="d-none"' : ''} src="/resources/assets/img/icons/arrowUp2.png" alt="">
                                     </td>
                                     <td>${bo.descripcion}</td>
-                                    <td>${bo.audProvincia.descripcion}</td>
+                                    <td>${bo.mapProvincia.descripcion}</td>
+                                    <td>${bo.evalua}</td>
                                 </tr>
 
                             </c:forEach>

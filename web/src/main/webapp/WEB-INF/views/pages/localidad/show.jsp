@@ -16,6 +16,7 @@
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>Provincia</th>
+                            <th>Evalua</th>
                             <th>Baja Logica</th>
                             </thead>
 
@@ -24,7 +25,8 @@
                             <tr>
                                 <td>${localidad.id}</td>
                                 <td>${localidad.descripcion}</td>
-                                <td>${localidad.audProvincia.descripcion}</td>
+                                <td>${localidad.mapProvincia.descripcion}</td>
+                                <td>${localidad.evalua}</td>
                                 <td>${localidad.bajaLogica}</td>
                             </tr>
                             </tbody>

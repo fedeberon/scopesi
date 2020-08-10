@@ -4,13 +4,13 @@
 <div class="content">
 <div class="col-12">
 <div class="card">
-<form:form action="addElemento" modelAttribute="elemento" method="post">
+<form:form action="editElemento" modelAttribute="updateElemento" method="post">
     <form:hidden path="id" value='${elemento.id}'/>
 
     <div class="form-group ml-3 mr-3">
             <div class="row">
                 <div class="col-6">
-                    <label for="street1_id" class="control-label">DESCRIPCION</label>
+                    <label for="street1_id" class="control-label">Descripcion</label>
                     <form:input value='${elemento.descripcion}' path="descripcion" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                 </div>
                 <div class="col-6">
@@ -23,7 +23,7 @@
                     <label for="street2_id" class="control-label pt-2"><strong>Medio</strong></label>
                     <select class="form-control" id="street2_id" name="mapMedio.id">
                         <c:forEach items="${medios}" var="bo" varStatus="status">
-                            <option ${bo.descripcion == elemento.mapMedio.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                            <option ${bo.descripcion == updateElemento.mapMedio.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -31,7 +31,7 @@
                     <label for="street1_id" class="control-label pt-2"><strong>Formato</strong></label>
                     <select class="form-control" id="street1_id" name="mapFormato.id">
                         <c:forEach items="${formatos}" var="bo" varStatus="status">
-                            <option ${bo.descripcion == elemento.mapFormato.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                            <option ${bo.descripcion == updateElemento.mapFormato.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -56,7 +56,8 @@
                 <form:input  path="coeficiente" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
             </div>
         </div>
-        </div>
+             <form:input  type="hidden" path="fechaAlta" value='${elemento.fechaAlta}' cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+    </div>
 
     <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
@@ -67,7 +68,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -77,7 +78,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        <h5>Confirmar cambios.</h5>
+                        <h5>&iquest;Desea confirmar los cambios?</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="#" class="btn btn-light" data-dismiss="modal">Cancelar</button>

@@ -21,7 +21,10 @@ public class MapLocalidad {
 
     @ManyToOne
     @JoinColumn (name = "idProvincia")
-    private AudProvincia audProvincia;
+    private MapProvincia mapProvincia;
+
+    @Column(name = "evalua")
+    private Long evalua;
 
     @Column(name = "bajaLogica")
     private Boolean bajaLogica;
@@ -42,12 +45,20 @@ public class MapLocalidad {
         this.descripcion = descripcion;
     }
 
-    public AudProvincia getAudProvincia() {
-        return audProvincia;
+    public MapProvincia getMapProvincia() {
+        return mapProvincia;
     }
 
-    public void setAudProvincia(AudProvincia audProvincia) {
-        this.audProvincia = audProvincia;
+    public void setMapProvincia(MapProvincia mapProvincia) {
+        this.mapProvincia = mapProvincia;
+    }
+
+    public Long getEvalua() {
+        return evalua;
+    }
+
+    public void setEvalua(Long evalua) {
+        this.evalua = evalua;
     }
 
     public Boolean getBajaLogica() {

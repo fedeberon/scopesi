@@ -51,7 +51,7 @@
                                 <form name="search" action="list" method="get">
 
                                     <a href="../tablas" class="btn btn-light pull-left mr-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
-                                    <a href="create" class="btn btn-info btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
+                                    <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
                                 </form>
 

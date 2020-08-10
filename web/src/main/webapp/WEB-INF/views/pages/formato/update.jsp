@@ -4,7 +4,7 @@
 <div class="content">
 <div class="col-12">
 <div class="card">
-        <form:form action="addFormato" modelAttribute="formato" method="post">
+        <form:form action="editFormato" modelAttribute="updateFormato" method="post">
             <form:hidden path="id" value='${formato.id}'/>
 
             <div class="row ml-3">
@@ -17,8 +17,10 @@
                             </div>
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2"><strong>Evalua</strong></label>
-                                <form:input  path="evalua" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:input type="number" path="evalua" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                             </div>
+
+                            <form:input  type="hidden" path="fechaAlta" value='${updateFormato.fechaAlta}' cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                         </div>
                     </div>
 
@@ -32,7 +34,7 @@
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -42,7 +44,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5>Confirmar cambios.</h5>
+                                    <h5>&iquest;Desea confirmar los cambios?</h5>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="#" class="btn btn-light" data-dismiss="modal">Cancelar</button>

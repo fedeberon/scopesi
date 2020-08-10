@@ -13,7 +13,7 @@
 <div class="content">
 <div class="col-12">
 <div class="card">
-<form:form action="addPoi" modelAttribute="poi" method="post">
+<form:form action="save" modelAttribute="updatePoi" method="post">
     <form:hidden path="id" value='${poi.id}'/>
 
     <div class="row ml-3">
@@ -24,7 +24,7 @@
                         <label  class="control-label">POI Entidad</label>
                         <select class="form-control" id="street1_id1" name="mapPoiEntidad.id">
                             <c:forEach items="${poiEntidades}" var="bo" varStatus="status">
-                                <option ${bo.descripcion == poi.mapPoiEntidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                <option ${bo.descripcion == updatePoi.mapPoiEntidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -38,7 +38,7 @@
                         <label class="control-label pt-2">Provincia</label>
                         <select class="form-control" id="street2_id" name="mapProvincia.id">
                             <c:forEach items="${provincias}" var="bo" varStatus="status">
-                                <option ${bo.descripcion == poi.mapProvincia.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                <option ${bo.descripcion == updatePoi.mapProvincia.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -68,7 +68,7 @@
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -78,7 +78,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h5>Confirmar cambios.</h5>
+                            <h5>&iquest;Desea confirmar los cambios?</h5>
                         </div>
                         <div class="modal-footer">
                             <button type="#" class="btn btn-light" data-dismiss="modal">Cancelar</button>

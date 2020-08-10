@@ -8,6 +8,8 @@ import com.ideaas.services.service.interfaces.MapProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -49,9 +51,20 @@ public class ProvinciaController {
         return "provincia/create";
     }
 
+    FieldError emptyEvaluaProvincia = new FieldError(
+            "mapProvincia" , "evalua" , "Debes completar este campo"
+    );
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute MapProvincia provincia, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
-    @PostMapping("addProvincia")
-    public String save(@ModelAttribute MapProvincia provincia, RedirectAttributes redirectAttributes){
+        if(provincia.getEvalua() == null){
+            bindingResult.addError(emptyEvaluaProvincia);
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "provincia/create";
+        }
+
         provinciaService.save(provincia);
         redirectAttributes.addAttribute("id", provincia.getId());
 
@@ -61,7 +74,7 @@ public class ProvinciaController {
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         MapProvincia mapProvincia = provinciaService.get(id);
-        model.addAttribute("provincia", mapProvincia);
+        model.addAttribute("updateProvincia", mapProvincia);
         return "provincia/update";
     }
 
@@ -85,7 +98,7 @@ public class ProvinciaController {
         return "redirect:/provincia/{id}";
     }
 
-    @ModelAttribute ("provincia")
+    @ModelAttribute ("mapProvincia")
     public MapProvincia get() {return new MapProvincia();}
 
 }

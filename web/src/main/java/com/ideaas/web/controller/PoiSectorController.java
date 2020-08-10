@@ -8,6 +8,8 @@ import com.ideaas.services.service.interfaces.MapPoiSectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -49,8 +51,21 @@ public class PoiSectorController{
         return "poiSector/create";
     }
 
-    @PostMapping("addPoiSector")
-    public String save(@ModelAttribute MapPoiSector poiSector, RedirectAttributes redirectAttributes){
+    FieldError emptyDescripcionPoiSector = new FieldError(
+            "mapPoiSector" , "descripcion" , "Debes completar este campo"
+    );
+
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute MapPoiSector poiSector, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+
+        if(poiSector.getDescripcion().isEmpty()){
+            bindingResult.addError(emptyDescripcionPoiSector);
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "poiSector/create";
+        }
+
         poiSectorService.save(poiSector);
         redirectAttributes.addAttribute("id", poiSector.getId());
         return "redirect:/poiSector/{id}";
@@ -59,7 +74,7 @@ public class PoiSectorController{
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
        MapPoiSector mapPoiSector = poiSectorService.get(id);
-        model.addAttribute("poiSector", mapPoiSector);
+        model.addAttribute("updatePoiSector", mapPoiSector);
         return "poiSector/update";
     }
 
@@ -83,7 +98,7 @@ public class PoiSectorController{
         return "redirect:/poiSector/{id}";
     }
 
-    @ModelAttribute("poiSector")
+    @ModelAttribute("mapPoiSector")
     public MapPoiSector get(){
         return new MapPoiSector();
     }

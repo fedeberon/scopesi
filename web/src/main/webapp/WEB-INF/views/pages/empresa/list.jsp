@@ -21,6 +21,7 @@
                                 <th>Telefono</th>
                                 <th>E-Mail</th>
                                 <th>Logo</th>
+                                <th>Orden</th>
                                 <th>Html</th>
                                 <th>GP+</th>
                             </thead>
@@ -45,6 +46,7 @@
                                     <td>${bo.telefono}</td>
                                     <td>${bo.mail}</td>
                                     <td>${bo.logo}</td>
+                                    <td>${bo.orden}</td>
                                     <td>${bo.html}</td>
                                     <td>${bo.GPMas}</td>
                                 </tr>
@@ -60,7 +62,7 @@
 
                                     <a href="../tablas" class="btn btn-light pull-left mr-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
-                                    <a href="create" class="btn btn-primary"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
+                                    <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
                                 </form>
 

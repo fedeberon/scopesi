@@ -18,6 +18,7 @@
                             <th>Telefono</th>
                             <th>E-Mail</th>
                             <th>Logo</th>
+                            <th>Orden</th>
                             <th>Html</th>
                             <th>GP+</th>
                             <th>Baja Logica</th>
@@ -32,6 +33,7 @@
                                     <td>${empresa.telefono}</td>
                                     <td>${empresa.mail}</td>
                                     <td>${empresa.logo}</td>
+                                    <td>${empresa.orden}</td>
                                     <td>${empresa.html}</td>
                                     <td>${empresa.GPMas}</td>
                                     <td>${empresa.bajaLogica}</td>

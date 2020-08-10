@@ -9,7 +9,7 @@
 <div class="content">
 <div class="col-12">
 <div class="card">
-        <form:form action="addUbicacion" modelAttribute="ubicacion" method="post">
+        <form:form action="editUbicacion" modelAttribute="updateUbicacion" method="post">
             <form:hidden path="id" value='${empresa.id}'/>
             <div class="row ml-3">
                 <div class="col-md-11">
@@ -19,7 +19,7 @@
                                 <label for="street1_id" class="control-label pt-2">Empresa</label>
                                 <select class="form-control" id="street1_id" name="mapEmpresa.id">
                                     <c:forEach items="${empresas}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapEmpresa.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapEmpresa.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -27,7 +27,7 @@
                                 <label for="street1_id" class="control-label pt-2">Elemento</label>
                                 <select class="form-control" id="street1_id" name="mapElemento.id" >
                                     <c:forEach items="${elementos}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapElemento.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapElemento.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -37,7 +37,7 @@
                                 <label for="street1_id" class="control-label pt-2">Formato</label>
                                 <select class="form-control" id="street1_id" name="mapFormato.id">
                                     <c:forEach items="${formatos}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapFormato.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapFormato.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -45,7 +45,7 @@
                                 <label for="street1_id" class="control-label pt-2">Medio</label>
                                 <select class="form-control" id="street1_id" name="mapMedio.id">
                                     <c:forEach items="${medios}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapMedio.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapMedio.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -75,7 +75,7 @@
                                 <label for="street1_id" class="control-label pt-2">Provincia</label>
                                 <select class="form-control" id="street1_id" name="mapProvincia.id">
                                     <c:forEach items="${provincias}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapProvincia.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapProvincia.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -83,7 +83,7 @@
                                 <label for="street1_id" class="control-label pt-2">Localidad</label>
                                 <select class="form-control" id="street1_id" name="mapLocalidad.id">
                                     <c:forEach items="${localidades}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapLocalidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapLocalidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -133,13 +133,16 @@
                                 <label for="street1_id" class="control-label pt-2">Buses</label>
                                 <select class="form-control" id="street1_id" name="mapBuses.id">
                                     <c:forEach items="${buses}" var="bo" varStatus="status">
-                                        <option ${bo.id == ubicacion.mapBuses.id ? 'selected' : ''} value="${bo.id}">${bo.id}</option>
+                                        <option ${bo.id == updateUbicacion.mapBuses.id ? 'selected' : ''} value="${bo.id}">${bo.id}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <label for="street1_id" class="control-label pt-2">Baja Logica</label>
-                                <form:input  path="bajaLogica" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:select path="bajaLogica" cssClass="form-control" name="">
+                                    <form:option value="false"> Activo </form:option>
+                                    <form:option value="true"> Inactivo</form:option>
+                                </form:select>
                             </div>
                         </div>
                         <div class="row">
@@ -151,7 +154,7 @@
                                 <label for="street1_id" class="control-label pt-2">Ubicacion Altura</label>
                                 <select class="form-control" id="street1_id" name="mapUbicacionAltura.id">
                                     <c:forEach items="${alturas}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapUbicacionAltura.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapUbicacionAltura.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -161,11 +164,12 @@
                                 <label for="street1_id" class="control-label pt-2">Ubicacion visibilidad</label>
                                 <select class="form-control" id="street1_id" name="mapUbicacionVisibilidad.id">
                                     <c:forEach items="${visibilidades}" var="bo" varStatus="status">
-                                        <option ${bo.descripcion == ubicacion.mapUbicacionVisibilidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
+                                        <option ${bo.descripcion == updateUbicacion.mapUbicacionVisibilidad.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                         </div>
+                        <form:input  type="hidden" path="fechaAlta" value='${ubicacion.fechaAlta}' cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                     </div>
                     <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
@@ -176,7 +180,7 @@
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                    <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -190,7 +194,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-secondaary btn-fill">Guardar</button>
+                                    <button type="submit" class="btn btn-secondary btn-fill">Guardar</button>
                                 </div>
                             </div>
                         </div>

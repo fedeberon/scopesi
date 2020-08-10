@@ -7,6 +7,8 @@ import com.ideaas.services.service.interfaces.MapMedioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -49,27 +51,37 @@ public class MedioController {
         return "medio/create";
     }
 
+    FieldError emptyDescripcionMedio = new FieldError(
+            "mapMedio" , "descripcion" , "Debes completar este campo"
+    );
+    @RequestMapping(value = "save" , method = RequestMethod.POST)
+    public String save(@ModelAttribute MapMedio medio, BindingResult bindingResult, RedirectAttributes redirectAttributes){
 
-    @PostMapping("addMedio")
-    public String save(@ModelAttribute MapMedio medio, RedirectAttributes redirectAttributes){
+        if(medio.getDescripcion().isEmpty()){
+            bindingResult.addError(emptyDescripcionMedio);
+        }
+
+        if(bindingResult.hasErrors()) {
+            return "medio/create";
+        }
         medioService.save(medio);
         redirectAttributes.addAttribute("id", medio.getId());
 
         return "redirect:/medio/{id}";
     }
 
-    @PutMapping("editMedio")
+    @RequestMapping(value = "editMedio" , method = RequestMethod.POST)
     public String edit(@ModelAttribute MapMedio medio, RedirectAttributes redirectAttributes){
         medioService.save(medio);
         redirectAttributes.addAttribute("id", medio.getId());
 
-        return "redirect:/{id}";
+        return "redirect:/medio/{id}";
     }
 
     @RequestMapping("update")
     public String update(@RequestParam Long id, Model model) {
         MapMedio mapMedio = medioService.get(id);
-        model.addAttribute("medio", mapMedio);
+        model.addAttribute("updateMedio", mapMedio);
         return "medio/update";
     }
 
@@ -94,6 +106,6 @@ public class MedioController {
     }
 
 
-    @ModelAttribute("medio")
+    @ModelAttribute("mapMedio")
         public MapMedio get(){return new MapMedio();}
 }

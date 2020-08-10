@@ -3,23 +3,26 @@
 <div class="content">
     <div class="col-6">
         <div class="card">
-            <form:form action="addPoiSector" modelAttribute="poiSector" method="post">
+            <form:form action="save" modelAttribute="mapPoiSector" method="post" autocomplete="off">
                 <div class="row ml-3">
                         <div class="col-md-11">
                             <div class="form-group">
                                 <label  class="control-label pt-2"><strong>Descripcion</strong></label>
                                 <form:input path="descripcion" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                <form:errors path="descripcion" cssStyle="color: red;"/>
+
+                                <form:input type="hidden" path="bajaLogica" cssClass="form-control" id="street1_id" name="street1" value="false"/>
                             </div>
                             <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-success pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
+                            <button type="button" class="btn btn-secondary btn-fill pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
                                 Guardar
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -29,11 +32,11 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h5>Confirmar registro.</h5>
+                                            <h5>&iquest;Desea guardar un nuevo POI Sector?</h5>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                            <button type="submit" class="btn btn-success">Guardar</button>
+                                            <button type="submit" class="btn btn-secondary btn-fill">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
