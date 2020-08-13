@@ -39,6 +39,8 @@
 
             <!-- Default form login -->
             <form class="form-signin" name='f' action="login" style="text-align: center" method='POST'>  <!--action='/j_spring_security_check'-->
+                <img src="/resources/assets/img/ScopesiLogo.png">
+
                 <p class="h4 mb-4">Iniciar sesi&oacute;n</p>
 
                 <!-- Email -->
