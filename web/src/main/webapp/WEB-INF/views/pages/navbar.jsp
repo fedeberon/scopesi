@@ -46,6 +46,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="no-icon">
+                            <i class="fas fa-user"></i>
                             <sec:authorize access="isAuthenticated()">
                                 <sec:authentication property="name"/>
                             </sec:authorize>
@@ -54,16 +55,12 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Editar perfil</a>
                         <a class="dropdown-item" href="#">Mail</a>
-                        <a class="dropdown-item" href="#">Confiugacion</a>
+                        <a class="dropdown-item" href="#">Configuración</a>
                         <a class="dropdown-item" href="#">Herramientas</a>
                         <div class="divider"></div>
                         <a class="dropdown-item" href="#">Soporte tecnico</a>
+                        <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Salir</a>
                     </div>
-                </li>
-                <li class="nav-item ml-5">
-                    <a class="nav-link" href="/logout">
-                        <span class="no-icon">Salir</span>
-                    </a>
                 </li>
             </ul>
         </div>
