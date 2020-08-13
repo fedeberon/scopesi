@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
 
     .modal-content {
@@ -76,98 +77,140 @@
 
 
     <div class="table-ubicaciones" id="table-ubicaciones">
+        <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="width:3%; z-index: 500;">
+        <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="width:4%; display: none">
 
-                <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="width:3%; z-index: 500;">
-                <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="width:4%; display: none">
+        <table class="table" id="table-markers">
+            <thead>
+                <th>opciones</th>
+                <th>Resaltar pin</th>
+                <th>GeoReferenciar</th>
+                <th>id</th>
+                <th>empresa</th>
+                <th>direccion</th>
+                <th>localidad</th>
+                <th>provincia</th>
+                <th>description</th>
+                <th>lat</th>
+                <th>long</th>
 
-                <table class="table" id="table-markers">
-                    <thead>
-                        <th>opciones</th>
-                        <th>Resaltar pin</th>
-                        <th>GeoReferenciar</th>
-                        <th>id</th>
-                        <th>empresa</th>
-                        <th>direccion</th>
-                        <th>localidad</th>
-                        <th>provincia</th>
-                        <th>description</th>
-                        <th>lat</th>
-                        <th>long</th>
+            </thead>
+            <tbody>
 
-                    </thead>
-                    <tbody>
+                <c:forEach items="${registros}" var="bo">
 
-                        <c:forEach items="${registros}" var="bo">
+                    <tr>
+                        <td>
+                            <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bars" id="icon-${bo.id}"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
 
-                            <tr>
-                                <td>
-                                    <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-bars" id="icon-${bo.id}"></i>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                                <div class="dropdown-item cursorPointer" onclick="modificarCoordenadas('${bo.id}')">
+                                <i class="fas fa-map-marker-alt"></i><a>&nbsp;&nbsp;Ubicar punto</a>
+                                </div>
 
-                                        <div class="dropdown-item cursorPointer" onclick="modificarCoordenadas('${bo.id}')">
-                                        <i class="fas fa-map-marker-alt"></i><a>&nbsp;&nbsp;Ubicar punto</a>
-                                        </div>
+                                <div class="dropdown-divider"></div>
 
-                                        <div class="dropdown-divider"></div>
+                                <div class="dropdown-item cursorPointer" id="icon-view-marker-${bo.id}" onclick="displayMarkers(this, '${bo.id}')">
+                                    <i class="far fa-eye-slash"></i><a>&nbsp;&nbsp;Ocultar pin</a>
+                                </div>
 
-                                        <div class="dropdown-item cursorPointer" id="icon-view-marker-${bo.id}" onclick="displayMarkers(this, '${bo.id}')">
-                                            <i class="far fa-eye-slash"></i><a>&nbsp;&nbsp;Ocultar pin</a>
-                                        </div>
+                                <div class="dropdown-divider"></div>
 
-                                        <div class="dropdown-divider"></div>
+                                <div class="dropdown-item cursorPointer" onclick="centerFromMarker('${bo.id}')">
+                                    <i class="fas fa-location-arrow"></i><a>&nbsp;&nbsp;Ir</a>
+                                </div>
 
-                                        <div class="dropdown-item cursorPointer" onclick="centerFromMarker('${bo.id}')">
-                                            <i class="fas fa-location-arrow"></i><a>&nbsp;&nbsp;Ir</a>
-                                        </div>
+                                <div class="dropdown-divider"></div>
 
-                                        <div class="dropdown-divider"></div>
+                                <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
+                                    <i class="fas fa-camera"></i><a>&nbsp;&nbsp;Fotos</a>
+                                </div>
 
-                                        <div class="dropdown-item cursorPointer" onclick="createCarrusel('${bo.id}')">
-                                            <i class="fas fa-camera"></i><a>&nbsp;&nbsp;Fotos</a>
-                                        </div>
+                                <div class="dropdown-divider"></div>
 
-                                        <div class="dropdown-divider"></div>
+                                <div class="dropdown-item cursorPointer" onclick="initPolygon(this,'${bo.id}')">
+                                    <i class="fas fa-eye"></i><a>&nbsp;&nbsp;Ver poligono</a>
+                                    <input type="hidden" id="pol-${bo.id}" value='${bo.polygonCoordinates}'>
+                                </div>
 
-                                        <div class="dropdown-item cursorPointer" onclick="initPolygon(this,'${bo.id}')">
-                                            <i class="fas fa-eye"></i><a>&nbsp;&nbsp;Ver poligono</a>
-                                            <input type="hidden" id="pol-${bo.id}" value='${bo.polygonCoordinates}'>
-                                        </div>
+                                <div class="dropdown-divider"></div>
 
-                                        <div class="dropdown-divider"></div>
+                                <div class="dropdown-item cursorPointer" onclick="initDrawingControl(this, '${bo.id}')">
+                                    <i class="fas fa-draw-polygon"></i><a>&nbsp;&nbsp;Asignar poligono</a>
+                                </div>
+                            </div>
 
-                                        <div class="dropdown-item cursorPointer" onclick="initDrawingControl(this, '${bo.id}')">
-                                            <i class="fas fa-draw-polygon"></i><a>&nbsp;&nbsp;Asignar poligono</a>
-                                        </div>
-                                    </div>
+                        </td>
+                        <td>
+                            <div class="dropdown-item cursorPointer" style="text-align: center;" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
+                                <i class="nc-icon nc-tap-01 pr-0" style="font-size: 24px"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <i class="fas fa-sync dropdown-item cursorPointer" style="text-align: center;" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"></i>
+                            <button id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
+                        </td>
+                        <td>${bo.id}</td>
+                        <td>${bo.name}</td>
+                        <td id="${bo.id}-address">${bo.address}</td>
+                        <td>${bo.localidad}</td>
+                        <td>${bo.provincia}</td>
+                        <td>${bo.description}</td>
+                        <td id="${bo.id}-lat">${bo.lat}</td>
+                        <td id="${bo.id}-lon">${bo.lon}</td>
 
-                                </td>
-                                <td>
-                                    <div class="dropdown-item cursorPointer" style="text-align: center;" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
-                                        <i class="nc-icon nc-tap-01 pr-0" style="font-size: 24px"></i>
-                                    </div>
-                                </td>
-                                <td>
-                                    <i class="fas fa-sync dropdown-item cursorPointer" style="text-align: center;" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"></i>
-                                    <button id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
-                                </td>
-                                <td>${bo.id}</td>
-                                <td>${bo.name}</td>
-                                <td id="${bo.id}-address">${bo.address}</td>
-                                <td>${bo.localidad}</td>
-                                <td>${bo.provincia}</td>
-                                <td>${bo.description}</td>
-                                <td id="${bo.id}-lat">${bo.lat}</td>
-                                <td id="${bo.id}-lon">${bo.lon}</td>
+                    </tr>
 
-                            </tr>
+                </c:forEach>
 
-                        </c:forEach>
+            </tbody>
 
-                    </tbody>
+        </table>
 
-                </table>
+        <form:form action="/ubicacion/search" modelAttribute="myWrapper">
+            <form:hidden path="request.id"/>
+            <form:hidden path="request.mapEmpresa"/>
+            <form:hidden path="request.mapElemento"/>
+            <form:hidden path="request.mapFormato"/>
+            <form:hidden path="request.mapMedio"/>
+            <form:hidden path="request.mapFormato"/>
+            <form:hidden path="request.mapLocalidad"/>
+            <form:hidden path="request.mapProvincia"/>
+            <form:hidden path="request.bajaLogica"/>
+            <form:hidden path="request.langLongEmpty"/>
+            <form:hidden path="request.fechaAlta"/>
+            <table border="1" class="table" style="display:none;">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>id empresa</th>
+                    <th>map empresa</th>
+                    <th>map elemento</th>
+                    <th>map formulario</th>
+                    <th>id formato</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>${request.id}</td>
+                    <td>${request.mapEmpresa}</td>
+                    <td>${request.mapElemento}</td>
+                    <td>${request.mapFormato}</td>
+                    <td>${request.mapMedio}</td>
+                    <td>${request.mapLocalidad}</td>
+                    <td>${request.mapProvincia}</td>
+                    <td>${request.bajaLogica}</td>
+                    <td>${request.langLongEmpty}</td>
+                    <td>${request.fechaAlta}</td>
+                    <td>${request.maxResults}</td>
+                </tr>
+
+                </tbody>
+            </table>
+            <button type="submit" name="paginate" class="btn btn-info btn-fill">Volver</button>
+        </form:form>
     </div>
 
 </div>
