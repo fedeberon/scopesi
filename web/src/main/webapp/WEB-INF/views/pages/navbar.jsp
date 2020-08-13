@@ -31,9 +31,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> 
+                    <a href="#" class="nav-link" onclick="openModal('searchModal')">
                         <i class="nc-icon nc-zoom-split"></i>
-                        <span class="d-lg-block" data-toggle="modal" data-target="#searchModal">&nbsp;Buscar</span>
+                        <span class="d-lg-block">&nbsp;Buscar</span>
                     </a>
                 </li>
             </ul>

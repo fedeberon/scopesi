@@ -58,8 +58,6 @@
         <put-attribute name="navbar" value="/tiles/pages/navbar.jsp" />
         <put-attribute name="menu" value="/tiles/pages/menu.jsp" />
         <put-attribute name="body"  value="/tiles/pages/ubicacion/list.jsp" />
-        <put-attribute name="filterUbicacionSimple"  value="/tiles/pages/modals/filterUbicacionSimple.jsp" />
-
     </definition>
 
     <definition name="ubicacion/editList" extends="template-def">
