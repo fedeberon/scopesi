@@ -1,13 +1,8 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.bean.AESPasswordEncoder;
-import com.ideaas.services.domain.Contrato;
-import com.ideaas.services.domain.TipoUsuario;
-import com.ideaas.services.domain.Usuario;
-import com.ideaas.services.service.interfaces.ContratoService;
-import com.ideaas.services.service.interfaces.EmailService;
-import com.ideaas.services.service.interfaces.TipoUsuarioService;
-import com.ideaas.services.service.interfaces.UsuarioService;
+import com.ideaas.services.domain.*;
+import com.ideaas.services.service.interfaces.*;
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,14 +33,18 @@ public class UserController {
     private TipoUsuarioService tipoUsuarioService;
     private ContratoService contratoService;
     private AESPasswordEncoder encoder;
+    private MenuService menuService;
+    private UsuarioMenuService usuarioMenuService;
 
 
     @Autowired
-    public UserController(UsuarioService usuarioService , TipoUsuarioService tipoUsuarioService, ContratoService contratoService) {
+    public UserController(UsuarioService usuarioService , TipoUsuarioService tipoUsuarioService, ContratoService contratoService, MenuService menuService ,UsuarioMenuService usuarioMenuService) {
         this.usuarioService = usuarioService;
         this.tipoUsuarioService = tipoUsuarioService;
         this.contratoService = contratoService;
         this.encoder = new AESPasswordEncoder();
+        this.menuService = menuService;
+        this.usuarioMenuService = usuarioMenuService;
     }
 
     @RequestMapping("list")
@@ -90,6 +90,9 @@ public class UserController {
     FieldError emptyPassword = new FieldError(
 "usuario" , "password" , "Debes completar este campo"
     );
+    FieldError emptyModule = new FieldError(
+            "usuario" , "UsuarioMenuRequest.modulos" , "Debes seleccionar al menos un modulo"
+    );
 
     @RequestMapping(value = "save" , method = RequestMethod.POST)
     public String save(@ModelAttribute Usuario usuario, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws InvalidCipherTextException {
@@ -107,6 +110,10 @@ public class UserController {
 
         }
 
+        if(usuario.getUsuarioMenuRequest().getModulos().length == 0){
+            bindingResult.addError(emptyModule);
+        }
+
         if(bindingResult.hasErrors()) {
             return "usuario/create";
         }
@@ -114,6 +121,14 @@ public class UserController {
         usuario.setPassword(encoder.encrypt(usuario.getPassword()));
         usuarioService.save(usuario);
         redirectAttributes.addAttribute("id", usuario.getId());
+
+        List<UsuarioMenu> usuarioMenus = new ArrayList<>();
+
+        for (Long modulo : usuario.getUsuarioMenuRequest().getModulos()) {
+            usuarioMenus.add(new UsuarioMenu(new UsuarioMenuId(usuario.getId(), modulo)));
+        }
+
+        usuarioMenuService.saveAll(usuarioMenus);
 
         return "redirect:/usuario/{id}";
 
@@ -200,6 +215,11 @@ public class UserController {
     @ModelAttribute("contratos")
     public List<Contrato> contratos(){
         return contratoService.findAll();
+    }
+
+    @ModelAttribute("modulos")
+    public List<Menu> modulos(){
+        return menuService.findAll();
     }
 
 }

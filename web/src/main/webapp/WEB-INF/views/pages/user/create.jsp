@@ -93,6 +93,20 @@
                                         </c:forEach>
                                     </select>
                                 </div>
+                                <div class="form-group col-12" style="text-align: center">
+                                    <label class="col-12" style="color: black;" class="control-label pt-2">Modulos</label>
+                                    <div>
+
+                                        <c:forEach items="${modulos}" var="bo" varStatus="status">
+                                            <form:checkbox path="UsuarioMenuRequest.modulos" cssClass="mx-3" value="${bo.id}"/>${bo.descripcion}
+                                        </c:forEach>
+
+<%--                                        <form:checkboxes path="UsuarioMenuRequest.modulos" cssClass="mx-3" items="${modulos}" itemLabel="descripcion" itemValue="id"/>--%>
+                                    </div>
+                                    <div>
+                                        <form:errors path="UsuarioMenuRequest.modulos" cssStyle="color: red;"/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>

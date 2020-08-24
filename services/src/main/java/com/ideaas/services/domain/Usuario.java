@@ -1,5 +1,6 @@
 package com.ideaas.services.domain;
 
+import com.ideaas.services.request.UsuarioMenuRequest;
 import lombok.*;
 
 import javax.persistence.*;
@@ -62,8 +63,10 @@ public class Usuario {
     @JoinColumn(name = "idContratoMap")
     private Contrato contratoMap;
 
-    public Usuario() { }
+    @Transient
+    private UsuarioMenuRequest usuarioMenuRequest;
 
+    public Usuario() { }
 
     public Long getId() {
         return id;
@@ -175,5 +178,13 @@ public class Usuario {
 
     public void setContratoMap(Contrato contratoMap) {
         this.contratoMap = contratoMap;
+    }
+
+    public UsuarioMenuRequest getUsuarioMenuRequest() {
+        return usuarioMenuRequest;
+    }
+
+    public void setUsuarioMenuRequest(UsuarioMenuRequest usuarioMenuRequest) {
+        this.usuarioMenuRequest = usuarioMenuRequest;
     }
 }
