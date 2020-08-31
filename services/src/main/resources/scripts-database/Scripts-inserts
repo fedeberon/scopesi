@@ -24,3 +24,6 @@ values (0 , '', 0);
 
 insert into productos (idProducto, descripcion)
 values (0 , '');
+
+insert into sistema_test.map_provincias (idProvincia , descripcion , evalua)
+values (0 , 'Sin Provincia' , 0);

@@ -1,5 +1,6 @@
 package com.ideaas.services.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,8 @@ public class MapPoi {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Transient
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idProvincia")
     private MapProvincia mapProvincia;

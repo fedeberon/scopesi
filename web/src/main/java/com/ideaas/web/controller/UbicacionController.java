@@ -146,11 +146,11 @@ public class UbicacionController {
     @RequestMapping(value = "save" , method = RequestMethod.POST)
     public String save(@ModelAttribute (name = "mapUbicacion") MapUbicacion mapUbicacion, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
-        if(mapUbicacion.getMetrosContacto() == null ){
+        if(mapUbicacion.getCoeficiente() == null ){
             bindingResult.addError(emptyCoeficiente);
 
         }
-        if(mapUbicacion.getCoeficiente() == null){
+        if(mapUbicacion.getMetrosContacto() == null){
             bindingResult.addError(emptyMetrosContacto);
 
         }
@@ -198,32 +198,32 @@ public class UbicacionController {
 
     @ModelAttribute("empresas")
     public List<MapEmpresa> empresas(){
-        return mapEmpresaService.findAll();
+        return mapEmpresaService.findByOrderByDescripcionAsc();
     }
 
     @ModelAttribute("elementos")
     public List<MapElemento> elementos(){
-        return mapElementoService.findAll();
+        return mapElementoService.findByOrderByDescripcionAsc();
     }
 
     @ModelAttribute("formatos")
     public List<MapFormato> formatos(){
-        return mapFormatoService.findAll();
+        return mapFormatoService.findByOrderByDescripcionAsc();
     }
 
     @ModelAttribute("medios")
     public List<MapMedio> medios(){
-        return mapMedioService.findAll();
+        return mapMedioService.findByOrderByDescripcionAsc();
     }
 
     @ModelAttribute("localidades")
     public List<MapLocalidad> localidades(){
-        return mapLocalidadService.findAll();
+        return mapLocalidadService.findByOrderByDescripcionAsc();
     }
 
     @ModelAttribute("provincias")
     public List<MapProvincia> provincias(){
-        return mapProvinciaService.findAll();
+        return mapProvinciaService.findByOrderByDescripcionAsc();
     }
 
     @ModelAttribute("buses")

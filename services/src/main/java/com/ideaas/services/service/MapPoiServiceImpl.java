@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class MapPoiServiceImpl implements MapPoiService {
@@ -38,5 +40,14 @@ public class MapPoiServiceImpl implements MapPoiService {
         Page<MapPoi> mapPois = dao.findAll(paging);
 
         return mapPois.getContent();
+    }
+
+    @Override
+    public List<MapPoi> findAll() {
+        Iterable<MapPoi> iterator = dao.findAll();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
     }
 }

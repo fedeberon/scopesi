@@ -72,7 +72,8 @@
                                 <div class="col-6">
                                     <label for="street1_id" class="control-label pt-2">Contrato Inversion</label>
                                     <select class="form-control" id="street3_id" name="contratoInv.id">
-                                        <c:forEach items="${contratos}" var="bo" varStatus="status">
+                                        <option value="0">SIN CONTRATO</option>
+                                        <c:forEach items="${contratosInversion}" var="bo" varStatus="status">
                                             <option value="${bo.id}">${bo.descripcion}</option>
                                         </c:forEach>
                                     </select>
@@ -80,7 +81,8 @@
                                 <div class="col-6">
                                     <label for="street1_id" class="control-label pt-2">Contrato Auditoria</label>
                                     <select class="form-control" id="street4_id" name="contratoAud.id">
-                                        <c:forEach items="${contratos}" var="bo" varStatus="status">
+                                        <option value="0">SIN CONTRATO</option>
+                                        <c:forEach items="${contratosAuditoria}" var="bo" varStatus="status">
                                             <option value="${bo.id}">${bo.descripcion}</option>
                                         </c:forEach>
                                     </select>
@@ -88,7 +90,8 @@
                                 <div class="col-6">
                                     <label for="street1_id" class="control-label pt-2">Contrato Mapping</label>
                                     <select class="form-control" id="street5_id" name="contratoMap.id">
-                                        <c:forEach items="${contratos}" var="bo" varStatus="status">
+                                        <option value="0">SIN CONTRATO</option>
+                                        <c:forEach items="${contratosMapping}" var="bo" varStatus="status">
                                             <option value="${bo.id}">${bo.descripcion}</option>
                                         </c:forEach>
                                     </select>

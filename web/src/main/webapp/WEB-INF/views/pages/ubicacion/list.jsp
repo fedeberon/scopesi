@@ -383,6 +383,13 @@
 </div>
 
 <li class="nav-item more-options" style="display: none">
+    <a href="#" class="nav-link" onclick="openModal('searchModal')">
+        <i class="nc-icon nc-zoom-split"></i>
+        <span class="d-lg-block">&nbsp;Buscar</span>
+    </a>
+</li>
+
+<li class="nav-item more-options" style="display: none">
     <a href="#" class="nav-link">
         <i id="icon-options" class="nc-icon nc-simple-add"></i>
         <span id="span-more-options" class="d-lg-block" onclick="showOptions()">&nbsp;Mas Opciones</span>
@@ -390,9 +397,9 @@
 </li>
 
 <li class="nav-item more-options" style="display: none">
-    <a href="#" class="nav-link">
+    <a href="#" class="nav-link" onclick="openModal('optionModal')">
         <i id="icon-options" class="nc-icon nc-simple-add"></i>
-        <span id="span-more-options" class="d-lg-block" data-toggle="modal" data-target="#optionModalEdit">&nbsp;Editar Resultados</span>
+        <span class="d-lg-block">&nbsp;Editar Resultados</span>
     </a>
 </li>
 

@@ -25,6 +25,8 @@ import java.util.Objects;
 /**
  * Created by federicoberon on 08/10/2019.
  */
+//TODO Revisar
+@SuppressWarnings("Duplicates")
 @Controller
 @RequestMapping("usuario")
 public class UserController {
@@ -47,9 +49,28 @@ public class UserController {
         this.usuarioMenuService = usuarioMenuService;
     }
 
-    @RequestMapping("list")
+    @RequestMapping("listComplete")
     public String findAll(Model model){
         List<Usuario> users = usuarioService.findAll();
+        users.forEach(user->{
+            String passwordDecrypt = null;
+            try {
+                passwordDecrypt = encoder.decrypt(user.getPassword());
+            } catch (InvalidCipherTextException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            user.setPassword(passwordDecrypt);
+        });
+        model.addAttribute("usuarios", users );
+
+        return "usuario/list";
+    }
+
+    @RequestMapping("list")
+    public String findByEnabledUsers(Model model){
+        List<Usuario> users = usuarioService.findByEstadoNot("B");
         users.forEach(user->{
             String passwordDecrypt = null;
             try {
@@ -215,6 +236,21 @@ public class UserController {
     @ModelAttribute("contratos")
     public List<Contrato> contratos(){
         return contratoService.findAll();
+    }
+
+    @ModelAttribute("contratosInversion")
+    public List<Contrato> contratosInversion(){
+        return contratoService.findByEstadoNotAndTipoContratoSorted("B", "I");
+    }
+
+    @ModelAttribute("contratosAuditoria")
+    public List<Contrato> contratosAuditoria(){
+        return contratoService.findByEstadoNotAndTipoContratoSorted("B", "A");
+    }
+
+    @ModelAttribute("contratosMapping")
+    public List<Contrato> contratosMapping(){
+        return contratoService.findByEstadoNotAndTipoContratoSorted("B", "M");
     }
 
     @ModelAttribute("modulos")

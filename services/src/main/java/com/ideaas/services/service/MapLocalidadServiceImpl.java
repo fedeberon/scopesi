@@ -49,4 +49,15 @@ public class MapLocalidadServiceImpl implements MapLocalidadService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MapLocalidad> findByOrderByDescripcionAsc(){
+
+        Iterable<MapLocalidad> iterator = dao.findByOrderByDescripcionAsc();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+
+    }
 }

@@ -13,4 +13,6 @@ public interface MapLocalidadService {
     List<MapLocalidad> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<MapLocalidad> findAll();
+
+    List<MapLocalidad> findByOrderByDescripcionAsc();
 }

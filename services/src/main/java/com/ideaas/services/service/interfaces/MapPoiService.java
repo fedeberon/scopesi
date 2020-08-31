@@ -11,4 +11,6 @@ public interface MapPoiService {
     MapPoi save(MapPoi mapPoi);
 
     List<MapPoi> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<MapPoi> findAll();
 }

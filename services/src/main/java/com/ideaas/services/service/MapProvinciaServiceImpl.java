@@ -50,4 +50,15 @@ public class MapProvinciaServiceImpl implements MapProvinciaService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MapProvincia> findByOrderByDescripcionAsc(){
+
+        Iterable<MapProvincia> iterator = dao.findByOrderByDescripcionAsc();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+
+    }
 }

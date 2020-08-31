@@ -50,4 +50,15 @@ public class MapFormatoServiceImpl implements MapFormatoService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MapFormato> findByOrderByDescripcionAsc(){
+
+        Iterable<MapFormato> iterator = dao.findByOrderByDescripcionAsc();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+
+    }
 }

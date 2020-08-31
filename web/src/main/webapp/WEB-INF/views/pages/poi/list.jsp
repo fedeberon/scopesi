@@ -13,7 +13,8 @@
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
-                        <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">                        <table id="dataTable" class="display" style="width:100%">
+                        <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">
+                            <table id="dataTableToCompleteList" class="display" style="width:100%">
                             <thead>
                             <th>
                                 <div class="form-check">
@@ -28,7 +29,6 @@
                                 <th class="text-center">Baja/Alta Logica</th>
                                 <th>Descripcion</th>
                                 <th>Entidad</th>
-                                <th>Provincia</th>
                                 <th>Latitud</th>
                                 <th>Longitud</th>
                                 <th>Icono</th>
@@ -73,10 +73,6 @@
                                     <td>
                                         ${bo.mapPoiEntidad.descripcion}
                                         <input type="hidden" value="${bo.mapPoiEntidad.descripcion}" name="list[${status.index}].description"/>
-                                    </td>
-                                    <td>
-                                        ${bo.mapProvincia.descripcion}
-                                        <input type="hidden" value="${bo.mapProvincia.descripcion}" name="list[${status.index}].provincia"/>
                                     </td>
                                     <td>
                                         ${bo.geoLatitud}

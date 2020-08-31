@@ -130,7 +130,7 @@
                                         </div>
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Metros Contacto</label>
-                                            <form:input  type="number" path="metrosContacto" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <form:input  value="0" type="number" path="metrosContacto" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                                             <form:errors path="metrosContacto" cssStyle="color: red;"/>
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <label for="street1_id" class="control-label pt-2">Coeficiente</label>
-                                            <form:input type="number" step="any" path="coeficiente" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
+                                            <form:input value="0.00" type="number" step="any" path="coeficiente" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                                             <form:errors path="coeficiente" cssStyle="color: red;"/>
                                         </div>
                                         <div class="col-6">
@@ -230,7 +230,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Seleccion de la geolocalizaci&oacute;n</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

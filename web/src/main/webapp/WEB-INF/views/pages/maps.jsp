@@ -23,6 +23,7 @@
         height: 52%;
         overflow: scroll;
         border-radius: 3px;
+        margin-left: 1vh;
     }
 
     .hidden{
@@ -54,7 +55,7 @@
     element.classList.add("active");
 </script>
 
-<div class="container">
+<div class="">
 
     <div class="map-container">
         <%--<input id="pac-input"/>--%>
@@ -179,17 +180,23 @@
             <form:hidden path="request.mapLocalidad"/>
             <form:hidden path="request.mapProvincia"/>
             <form:hidden path="request.bajaLogica"/>
-            <form:hidden path="request.langLongEmpty"/>
+            <form:hidden path="request.latLngEmpty"/>
             <form:hidden path="request.fechaAlta"/>
+            <form:hidden path="request.idsSearch"/>
             <table border="1" class="table" style="display:none;">
                 <thead>
                 <tr>
-                    <th>id</th>
-                    <th>id empresa</th>
-                    <th>map empresa</th>
-                    <th>map elemento</th>
-                    <th>map formulario</th>
-                    <th>id formato</th>
+                    <th>ID</th>
+                    <th>Empresa</th>
+                    <th>Elemento</th>
+                    <th>Formato</th>
+                    <th>Medio</th>
+                    <th>Localidad</th>
+                    <th>Provincia</th>
+                    <th>Baja Logica</th>
+                    <th>Geolocalizacion</th>
+                    <th>Fecha Alta</th>
+                    <th>Cant. Resultados</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -202,14 +209,14 @@
                     <td>${request.mapLocalidad}</td>
                     <td>${request.mapProvincia}</td>
                     <td>${request.bajaLogica}</td>
-                    <td>${request.langLongEmpty}</td>
+                    <td>${request.latLngEmpty}</td>
                     <td>${request.fechaAlta}</td>
                     <td>${request.maxResults}</td>
                 </tr>
 
                 </tbody>
             </table>
-            <button type="submit" name="paginate" class="btn btn-info btn-fill">Volver</button>
+<%--            <button type="submit" name="paginate" class="btn btn-info btn-fill">Volver</button>--%>
         </form:form>
     </div>
 

@@ -16,7 +16,6 @@
                             <th>ID</th>
                             <th>Descripcion</th>
                             <th>Entidad</th>
-                            <th>Provincia</th>
                             <th>Latitud</th>
                             <th>Longitud</th>
                             <th>Icono</th>
@@ -30,7 +29,6 @@
                                 <td>${poi.id}</td>
                                 <td>${poi.descripcion}</td>
                                 <td>${poi.mapPoiEntidad.descripcion}</td>
-                                <td>${poi.mapProvincia.descripcion}</td>
                                 <td>${poi.geoLatitud}</td>
                                 <td>${poi.geoLongitud}</td>
                                 <td>${poi.icono}</td>

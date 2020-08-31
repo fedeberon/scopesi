@@ -51,4 +51,15 @@ public class MapElementoServiceImpl implements MapElementoService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MapElemento> findByOrderByDescripcionAsc(){
+
+        Iterable<MapElemento> iterator = dao.findByOrderByDescripcionAsc();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+
+    }
 }

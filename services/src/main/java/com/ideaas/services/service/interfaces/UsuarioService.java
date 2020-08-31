@@ -17,4 +17,6 @@ public interface UsuarioService extends UserDetailsService {
     List<Usuario> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<Usuario> findAll();
+
+    List<Usuario> findByEstadoNot(String estado);
 }

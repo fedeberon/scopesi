@@ -112,13 +112,26 @@
         var table = $('#dataTable').DataTable( {
             'scrollX': '400px',
             dom: "Bfrtip",
-            searching: false,
+            searching: true,
             paging: false,
             bInfo: false,
+            language:{
+                "info": "Mostrando _START_ a _END_ de _TOTAL_",
+                "infoEmpty":    "Mostrando 0 de 0",
+                "lengthMenu":   "Mostrar _MENU_",
+                "search":   "Buscar:",
+                "paginate": {
+                    "first":      "First",
+                    "last":       "Last",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+            },
             buttons: [
                 {
                     extend: 'pdfHtml5',
                     text: 'PDF',
+                    orientation: 'landscape',
                     exportOptions: {
                         columns: ':visible'
                     },
@@ -159,7 +172,7 @@
                 },
                 {
                     extend: 'print',
-                    text: 'Imprimir resultados',
+                    text: 'Imprimir',
                     exportOptions: {
                         columns: ':visible',
                         modifier: {
@@ -232,18 +245,30 @@
 
         var dataTableToCompleteList = $('#dataTableToCompleteList').DataTable( {
             'scrollX': '400px',
-            dom: "Bfrtip",
-            searching: true,
-            paging: false,
-            bInfo: false,
+            lengthChange: true,
+            lengthMenu: [ [ 10, 50, 100, -1 ], [ '10', '50', '100', 'Todos' ]],
+            dom: "Blfrtip",
+            language:{
+                "info": "Mostrando _START_ a _END_ de _TOTAL_",
+                "infoEmpty":    "Mostrando 0 de 0",
+                "lengthMenu":   "Mostrar _MENU_",
+                "search":   "Buscar:",
+                "paginate": {
+                    "first":      "First",
+                    "last":       "Last",
+                    "next":       "Siguiente",
+                    "previous":   "Anterior"
+                },
+            },
             buttons: [
                 {
                     extend: 'pdfHtml5',
                     text: 'PDF',
+                    orientation: 'landscape',
                     exportOptions: {
                         columns: ':visible'
                     },
-                    className: 'btn btn-primary'
+                    className: 'dataTableButton',
                 },
                 {
                     extend: 'excelHtml5',
@@ -254,7 +279,7 @@
                             page: 'current'
                         }
                     },
-                    className: 'btn btn-primary'
+                    className: 'dataTableButton'
                 },
                 {
                     extend: 'colvis',
@@ -262,11 +287,11 @@
                     columnText: function (dt, idx, title) {
                         return (idx + 1) + ': ' + title;
                     },
-                    className: 'btn btn-primary'
+                    className: 'dataTableButton'
                 },
                 {
                     extend: 'copyHtml5',
-                    text: 'Copiar en Portapapeles',
+                    text: 'Copiar en portapapeles',
                     copySuccess: {
                         1: "Copied one row to clipboard",
                         _: "Copied %d rows to clipboard"
@@ -276,21 +301,25 @@
                     },
                     copyTitle: 'Copiar en portapapeles',
                     copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
-                    className: 'btn btn-primary'
+                    className: 'dataTableButton'
                 },
                 {
                     extend: 'print',
-                    text: 'Imprimir resultados',
+                    text: 'Imprimir',
                     exportOptions: {
                         columns: ':visible',
                         modifier: {
                             page: 'current'
                         }
                     },
-                    className: 'btn btn-primary'
+                    className: 'dataTableButton'
                 }
             ],
+
         } );
+
+        dataTableToCompleteList.buttons().container()
+            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
 
         $('a.toggle-vis').on( 'click', function (e) {
             e.preventDefault();
@@ -403,6 +432,10 @@
         $('#select-medios').selectpicker('val', ${ubicacionRequest.mediosSelected});
         $('#select-localidades').selectpicker('val', ${ubicacionRequest.localidadesSelected});
         $('#select-provincias').selectpicker('val', ${ubicacionRequest.provinciasSelected});
+        $('#select-estados').selectpicker('val' , ${ubicacionRequest.estadoSelected});
+        $('#select-geolocalizacion').selectpicker('val' , ${ubicacionRequest.geolocalizacionSelected});
+        $('#select-maxResults').selectpicker('val' , ${ubicacionRequest.maxResultsSelected});
+        $('#input-ids').val(${ubicacionRequest.idsSearching});
 
     });
 
@@ -427,7 +460,7 @@
 
         $( "#arrowUp" ).click(function() {
         $( ".table-ubicaciones" ).animate({
-            marginTop: "-400px",
+            marginTop: "-60vh",
             opacity: 1
         }, 500 );
 
@@ -438,7 +471,7 @@
 
     $( "#arrowDown" ).click(function() {
         $( ".table-ubicaciones" ).animate({
-            marginTop: "-150px",
+            marginTop: "-15vh",
             opacity: 0.9
         }, 500 );
 

@@ -63,6 +63,15 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Usuario> findByEstadoNot(String estado) {
+        Iterable<Usuario> iterator = dao.findByEstadoNot(estado);
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario user = dao.findByUsername(username);
         if (user == null) {

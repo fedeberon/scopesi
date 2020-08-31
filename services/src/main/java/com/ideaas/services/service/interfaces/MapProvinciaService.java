@@ -13,4 +13,6 @@ public interface MapProvinciaService {
     List<MapProvincia> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<MapProvincia> findAll();
+
+    List<MapProvincia> findByOrderByDescripcionAsc();
 }

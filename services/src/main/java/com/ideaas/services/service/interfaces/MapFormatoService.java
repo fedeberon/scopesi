@@ -13,4 +13,6 @@ public interface MapFormatoService {
 
     List<MapFormato> findAll();
 
+    List<MapFormato> findByOrderByDescripcionAsc();
+
 }

@@ -130,6 +130,10 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
             results.forEach(mapUbicacion -> mapUbicacion.setMapUbicacionVisibilidad(visibilidad));
         }
 
+        if(Objects.nonNull(request.getBajaLogicaRequest()) && request.getBajaLogicaRequest() instanceof Boolean){
+            results.forEach(mapUbicacion -> mapUbicacion.setBajaLogica(request.getBajaLogicaRequest()));
+        }
+
         if(Objects.nonNull(request.getMetrosContactoRequest()) && request.getMetrosContactoRequest() instanceof Long){
             results.forEach(mapUbicacion -> mapUbicacion.setMetrosContacto(request.getMetrosContactoRequest()));
         }

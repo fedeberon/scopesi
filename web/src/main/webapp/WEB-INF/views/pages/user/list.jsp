@@ -11,8 +11,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card strpied-tabled-with-hover">
-                    <div class="card-header ">
+                    <div class="card-header">
                         <h4 class="card-title">Usuarios</h4>
+                        <a class="" href="listComplete"><i class="fas fa-sort-amount-up"></i> Usuarios activos/inactivos</a>
                     </div>
                     <div class="card-body table-full-width table-responsive">
                         <table id="dataTableToCompleteList" class="display" style="width:100%">

@@ -50,4 +50,13 @@ public class ContratoServiceImpl implements ContratoService {
 
         return contratos.getContent();
     }
+
+    @Override
+    public List<Contrato> findByEstadoNotAndTipoContratoSorted(String estado , String tipoContrato){
+        Iterable<Contrato> iterator = dao.findByEstadoNotAndTipoContratoOrderByDescripcionAsc(estado , tipoContrato);
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+    }
 }

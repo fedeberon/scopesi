@@ -13,4 +13,6 @@ public interface ContratoService {
     List<Contrato> findAll();
 
     List<Contrato> findAll(Integer pageSize, Integer pageNo, String sortBy);
+
+    List<Contrato> findByEstadoNotAndTipoContratoSorted(String estado , String tipoContrato);
 }

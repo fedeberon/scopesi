@@ -54,6 +54,14 @@ public class PoiController {
         return "poi/list";
     }
 
+    @RequestMapping ("listComplete")
+    public String findAll(Model model){
+        List<MapPoi> pois = mapPoiService.findAll();
+        model.addAttribute("pois", pois);
+
+        return "poi/list";
+    }
+
     @GetMapping("create")
     public String create(Model model) {
         List<MapPoiEntidad> poiEntidades = mapPoiEntidadService.findAll();

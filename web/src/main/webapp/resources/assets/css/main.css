@@ -878,3 +878,15 @@
     top:180px;
     text-align: center;
 }
+.dataTableButton{
+    font-size: 12px!important;
+}
+.dataTables_length{
+    margin-left: 5px;
+}
+.filterInput{
+    border:2px solid #a0a0a0
+}
+.filterInput::placeholder{
+    color: #999;
+}

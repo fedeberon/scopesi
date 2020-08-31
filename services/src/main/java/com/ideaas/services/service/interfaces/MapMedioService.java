@@ -13,4 +13,6 @@ public interface MapMedioService {
     List<MapMedio> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<MapMedio> findAll();
+
+    List<MapMedio> findByOrderByDescripcionAsc();
 }

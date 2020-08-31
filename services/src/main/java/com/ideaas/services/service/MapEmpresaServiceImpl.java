@@ -50,4 +50,15 @@ public class MapEmpresaServiceImpl implements MapEmpresaService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MapEmpresa> findByOrderByDescripcionAsc(){
+
+        Iterable<MapEmpresa> iterator = dao.findByOrderByDescripcionAsc();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+
+    }
 }

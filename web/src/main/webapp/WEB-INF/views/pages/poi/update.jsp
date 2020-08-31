@@ -35,16 +35,12 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <label class="control-label pt-2">Provincia</label>
-                        <select class="form-control" id="street2_id" name="mapProvincia.id">
-                            <c:forEach items="${provincias}" var="bo" varStatus="status">
-                                <option ${bo.descripcion == updatePoi.mapProvincia.descripcion ? 'selected' : ''} value="${bo.id}">${bo.descripcion}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="col-6">
                         <label class="control-label pt-2">Latitud</label>
                         <form:input path="geoLatitud" cssClass="form-control" id="latitud" placeholder=""/>
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label pt-2">Longitud</label>
+                        <form:input path="geoLongitud" cssClass="form-control" id="longitud"  placeholder=""/>
                     </div>
                 </div>
                 <div class="row">
@@ -52,11 +48,6 @@
                         <label class="control-label pt-2">Icono</label>
                         <form:input path="icono" cssClass="form-control" id="street5_id" name="street1" placeholder=""/>
                     </div>
-                    <div class="col-6">
-                        <label class="control-label pt-2">Longitud</label>
-                        <form:input path="geoLongitud" cssClass="form-control" id="longitud"  placeholder=""/>
-                    </div>
-
                 </div>
             </div>
             <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>

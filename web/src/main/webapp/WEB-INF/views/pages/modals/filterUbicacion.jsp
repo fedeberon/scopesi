@@ -13,6 +13,11 @@
             <form:form action="search"  modelAttribute="myWrapper" id="searchModalFilter" name="searchModalFilter">
                 <div class="modal-body row">
 
+                    <div class="form-group col-6" style="padding-left: 6px">
+                        <label>Id Ubicacion</label>
+                        <input id="input-ids" name="request.idsSearch" autocomplete="off"  class="form-control filterInput" placeholder="Ingrese IDs separados por comas"/>
+                    </div>
+
                     <div class="form-group col-6">
                         <label for="empresa">Empresas</label>
                         <select id="select-empresas" name="request.mapEmpresa" data-done-button="true" class="form-control" multiple data-live-search="true" data-actions-box="true" title="Seleccione una empresa">
@@ -69,15 +74,15 @@
 
                     <div class="form-group col-6">
                         <label for="bajaLogica">Estado</label>
-                        <select id="select-estados" name="request.bajaLogica" class="form-control" multiple data-live-search="true" title="Seleccione un estado">
+                        <select id="select-estados" name="request.bajaLogica" class="form-control" multiple title="Seleccione un estado">
                             <option value="false">Activo</option>
                             <option value="true">Inactivo</option>
                         </select>
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="langLongEmpty">GeoLocalizacion</label>
-                        <select id="select-geolocalizacion" name="request.langLongEmpty" class="form-control" multiple data-live-search="true" title="Seleccione una opci&oacute;n">
+                        <label for="latLngEmpty">GeoLocalizacion</label>
+                        <select id="select-geolocalizacion" name="request.latLngEmpty" multiple class="form-control" title="Seleccione una opci&oacute;n">
                             <option value="false">Con coordenadas</option>
                             <option value="true">Sin coordenadas</option>
                         </select>
@@ -85,7 +90,7 @@
 
                     <div class="form-group col-6">
                         <label for="fechaAlta">Fecha de alta</label>
-                        <input name="request.fechaAlta" autocomplete="off"  class="form-control datepicker" title="Seleccione una fecha" style="border:2px solid #a0a0a0"/>
+                        <input name="request.fechaAlta" autocomplete="off"  class="form-control datepicker filterInput" placeholder="Seleccione una fecha"/>
                     </div>
 
                     <div class="form-group col-6">

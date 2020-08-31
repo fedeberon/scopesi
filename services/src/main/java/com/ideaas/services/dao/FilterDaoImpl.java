@@ -10,10 +10,7 @@ import javax.persistence.Query;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Repository
 public class FilterDaoImpl implements FilterDao {
@@ -75,30 +72,40 @@ public class FilterDaoImpl implements FilterDao {
             builder.append(" u.mapLocalidad.descripcion = :mapLocalidad");
 
         }
+        if(Objects.nonNull(request.getBajaLogica()) && !request.getBajaLogica().trim().isEmpty()){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" u.bajaLogica = :bajaLogica");
+
+            isFirstClause = false;
+        }
+        //TODO Revisar
+        if(Objects.nonNull(request.getLatLngEmpty()) && !request.getLatLngEmpty().trim().isEmpty()){
+            builder.append(isFirstClause ? where() : and());
+
+            if(request.getLatLngEmpty().equals("true")){
+                builder.append(" (u.latitud is null or u.longitud is null)");
+            }
+            else{
+                builder.append(" (u.latitud is not null or u.longitud is not null)");
+            }
+        }
         if(Objects.nonNull(request.getFechaAlta())){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.fechaAlta between :fechaAltaStart and :fechaAltaEnd");
 
             isFirstClause = false;
         }
-        if(Objects.nonNull(request.getBajaLogica())){
-            builder.append(isFirstClause ? where() : and());
-            builder.append(" u.bajaLogica = :bajaLogica");
-
-            isFirstClause = false;
-        }
-        if(Objects.nonNull(request.getLangLongEmpty()) && request.getLangLongEmpty() == true){
-            builder.append(isFirstClause ? where() : and());
-            builder.append(" (u.latitud is null or u.longitud is null)");
-
-        }
-
         if(Objects.nonNull(request.getIdsSelected())){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.id in (:ids)");
         }
+        if(Objects.nonNull(request.getIdsSearch()) && !request.getIdsSearch().trim().isEmpty()){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" u.id in (:idsSearch)");
+        }
 
         Query query = entityManager.createQuery(builder.toString());
+
         if(Objects.nonNull(request.getMapEmpresa()) && !request.getMapEmpresa().trim().isEmpty()){
             query.setParameter("mapEmpresa", Arrays.asList(request.getMapEmpresa().split(",")));
         }
@@ -117,6 +124,15 @@ public class FilterDaoImpl implements FilterDao {
         if(Objects.nonNull(request.getMapLocalidad()) && !request.getMapLocalidad().trim().isEmpty()){
             query.setParameter("mapLocalidad", Arrays.asList(request.getMapLocalidad().split(",")));
         }
+        //TODO Revisar
+        if(Objects.nonNull(request.getBajaLogica()) && !request.getBajaLogica().trim().isEmpty()){
+            List<String> StringList = Arrays.asList(request.getBajaLogica().split("\\s*,\\s*"));
+            List<Boolean> bajaLogica = new ArrayList<>();
+
+            for(String s : StringList) bajaLogica.add(Boolean.valueOf(s));
+
+            query.setParameter("bajaLogica", bajaLogica);
+        }
         if(Objects.nonNull(request.getFechaAlta())){
             LocalDateTime  dateToSearch = DateTimeUtil.convertToLocalDateTimeViaSqlTimestamp(request.getFechaAlta());
             LocalDate localDate = DateTimeUtil.convertToLocalDateViaInstant(request.getFechaAlta());
@@ -127,17 +143,24 @@ public class FilterDaoImpl implements FilterDao {
             query.setParameter("fechaAltaStart", startOfDay);
             query.setParameter("fechaAltaEnd", endOfDate);
         }
-        if(Objects.nonNull(request.getBajaLogica())){
-            query.setParameter("bajaLogica", Arrays.asList(request.getBajaLogica()));
-        }
-
         if(Objects.nonNull(request.getIdsSelected())){
             query.setParameter("ids", request.getIdsSelected());
         }
+        //TODO Revisar
+        if(Objects.nonNull(request.getIdsSearch()) && !request.getIdsSearch().isEmpty()){
+            List<String> idsString = Arrays.asList(request.getIdsSearch().split("\\s*,\\s*"));
+            List<Long> idsSearch = new ArrayList<>();
+
+            for(String s : idsString) idsSearch.add(Long.valueOf(s));
+
+            query.setParameter("idsSearch", idsSearch );
+        }
 
         if(getAllResults(request)){
-            query.setMaxResults(request.getMaxResults());
-            query.setFirstResult(request.getPage() * request.getMaxResults());
+            Integer maxResults = Integer.valueOf(request.getMaxResults());
+
+            query.setMaxResults(maxResults);
+            query.setFirstResult(request.getPage() * maxResults);
         }
 
         return query.getResultList();
@@ -145,7 +168,7 @@ public class FilterDaoImpl implements FilterDao {
 
 
     public Boolean getAllResults(MapUbicacionRequest request){
-        return request.getMaxResults() != -1;
+        return !request.getMaxResults().equals("-1");
     }
 
 

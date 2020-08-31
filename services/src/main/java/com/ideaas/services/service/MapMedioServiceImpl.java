@@ -50,4 +50,15 @@ public class MapMedioServiceImpl implements MapMedioService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MapMedio> findByOrderByDescripcionAsc(){
+
+        Iterable<MapMedio> iterator = dao.findByOrderByDescripcionAsc();
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+
+    }
 }

@@ -25,25 +25,17 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <label class="control-label pt-2">Provincia</label>
-                                <select class="form-control" id="street1_id" name="mapProvincia.id">
-                                    <c:forEach items="${provincias}" var="bo" varStatus="status">
-                                        <option value="${bo.id}">${bo.descripcion}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="col-6">
                                 <label class="control-label pt-2">Latitud</label>
                                 <form:input path="geoLatitud" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                                 <form:errors path="geoLatitud" cssStyle="color: red;"/>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-6">
                                 <label class="control-label pt-2">Longitud</label>
                                 <form:input path="geoLongitud" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                                 <form:errors path="geoLongitud" cssStyle="color: red;"/>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-6">
                                 <label class="control-label pt-2">Icono</label>
                                 <form:input path="icono" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
@@ -52,6 +44,7 @@
                         </div>
 
                         <form:input type="hidden" path="bajaLogica" cssClass="form-control" id="street1_id" name="street1" value="false"/>
+                        <form:input type="hidden" path="mapProvincia.id" cssClass="form-control" id="street1_id" name="street1" value="0"/>
                     </div>
                     <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 

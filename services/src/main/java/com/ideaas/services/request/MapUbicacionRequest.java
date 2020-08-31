@@ -33,11 +33,11 @@ public class MapUbicacionRequest {
 
     private String mapMedio;
 
-    private Boolean bajaLogica;
+    private String bajaLogica;
 
     private Date fechaAlta;
 
-    private Boolean langLongEmpty;
+    private String latLngEmpty;
 
     private List<Long> idsSelected;
 
@@ -53,11 +53,15 @@ public class MapUbicacionRequest {
 
     private BigDecimal coeficienteRequest;
 
-    private Integer maxResults = 10;
+    private String maxResults = "10";
 
     private Integer page = 0;
 
     private String polygonLatLong;
+
+    private Boolean bajaLogicaRequest;
+
+    private String idsSearch;
 
     public Long getId() {
         return id;
@@ -65,14 +69,6 @@ public class MapUbicacionRequest {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Boolean getLangLongEmpty() {
-        return langLongEmpty;
-    }
-
-    public void setLangLongEmpty(Boolean langLongEmpty) {
-        this.langLongEmpty = langLongEmpty;
     }
 
     public String getMapEmpresa() {
@@ -123,11 +119,11 @@ public class MapUbicacionRequest {
         this.mapMedio = mapMedio;
     }
 
-    public Boolean getBajaLogica() {
+    public String getBajaLogica() {
         return bajaLogica;
     }
 
-    public void setBajaLogica(Boolean bajaLogica) {
+    public void setBajaLogica(String bajaLogica) {
         this.bajaLogica = bajaLogica;
     }
 
@@ -195,13 +191,22 @@ public class MapUbicacionRequest {
         this.idMedio = idMedio;
     }
 
-    public Integer getMaxResults() {
+    public String getMaxResults() {
         return maxResults;
     }
 
-    public void setMaxResults(Integer maxResults) {
+    public void setMaxResults(String maxResults) {
         this.maxResults = maxResults;
     }
+
+    public String getLatLngEmpty() {
+        return latLngEmpty;
+    }
+
+    public void setLatLngEmpty(String latLngEmpty) {
+        this.latLngEmpty = latLngEmpty;
+    }
+
 
     public List<Long> getIdsSelected() {
         return idsSelected;
@@ -267,6 +272,22 @@ public class MapUbicacionRequest {
         this.polygonLatLong = polygonLatLong;
     }
 
+    public Boolean getBajaLogicaRequest() {
+        return bajaLogicaRequest;
+    }
+
+    public void setBajaLogicaRequest(Boolean bajaLogicaRequest) {
+        this.bajaLogicaRequest = bajaLogicaRequest;
+    }
+
+    public String getIdsSearch() {
+        return idsSearch;
+    }
+
+    public void setIdsSearch(String idsSearch) {
+        this.idsSearch = idsSearch;
+    }
+
     private static String EMPTY = "";
     private static String LEFT = "[";
     private static String RIGTH = "]";
@@ -305,6 +326,27 @@ public class MapUbicacionRequest {
         if(Objects.isNull(mapProvincia)) return EMPTY;
 
         return buildFormatValuesSelected(mapProvincia);
+    }
+
+    public String getEstadoSelected(){
+        if(Objects.isNull(bajaLogica)) return EMPTY;
+
+        return buildFormatValuesSelected(bajaLogica);
+    }
+    public String getGeolocalizacionSelected(){
+        if(Objects.isNull(latLngEmpty)) return EMPTY;
+
+        return buildFormatValuesSelected(latLngEmpty);
+    }
+    public String getIdsSearching(){
+        if(Objects.isNull(idsSearch)) return EMPTY;
+
+        return buildFormatValuesSelected(idsSearch);
+    }
+    public String getMaxResultsSelected(){
+        if(Objects.isNull(maxResults)) return EMPTY;
+
+        return buildFormatValuesSelected(maxResults);
     }
 
     private String buildFormatValuesSelected(String value){

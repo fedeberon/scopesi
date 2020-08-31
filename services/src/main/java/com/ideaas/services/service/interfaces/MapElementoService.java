@@ -14,4 +14,6 @@ public interface MapElementoService {
     List<MapElemento> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<MapElemento> findAll();
+
+    List<MapElemento> findByOrderByDescripcionAsc();
 }

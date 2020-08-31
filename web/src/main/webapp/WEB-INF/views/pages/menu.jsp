@@ -48,10 +48,6 @@
                     <i class="fas fa-map-marker-alt"></i>
                     Ubicaciones</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/maps/show">
-                    <i class="fas fa-globe-americas"></i>
-                    Mapas</a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/tablas">
                     <i class="fas fa-table"></i>
                     Tablas</a>
