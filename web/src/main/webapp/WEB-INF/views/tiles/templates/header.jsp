@@ -9,6 +9,7 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/d2e2e9031b.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
     <link href="<c:url value='/resources/assets/css/bootstrap.min.css'/>" rel="stylesheet" />
     <link href="<c:url value='/resources/assets/css/light-bootstrap-dashboard.css?v=2.0.0'/>" rel="stylesheet" />
@@ -21,4 +22,72 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
+
+    <!--   Core JS Files   -->
+    <script src="<c:url value='/resources/assets/js/core/jquery.3.2.1.min.js'/>" type="text/javascript"></script>
+    <script src="<c:url value='/resources/assets/js/core/popper.min.js'/>" type="text/javascript"></script>
+    <script src="<c:url value='/resources/assets/js/core/bootstrap.min.js'/>" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="<c:url value='/resources/assets/js/plugins/bootstrap-switch.js'/>"></script>
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANGywbfxItEbdle738SiU-AVJGIjadVYM&libraries=drawing,places"></script>
+    <!--  Chartist Plugin  -->
+    <script src="<c:url value='/resources/assets/js/plugins/chartist.min.js'/>"></script>
+    <!--  Notifications Plugin    -->
+    <script src="<c:url value='/resources/assets/js/plugins/bootstrap-notify.js'/>"></script>
+    <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+    <script src="<c:url value='/resources/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js'/>"></script>
+    <script src="<c:url value='/resources/assets/js/customDataTable.js'/>"></script>
+    <script src="<c:url value='/resources/assets/js/light-bootstrap-dashboard.js?v=2.0.0'/>" type="text/javascript"></script>
+    <script src="<c:url value='/resources/assets/js/demo.js'/>"></script>
+    <script src="<c:url value='/resources/assets/js/paginador.js'/>"></script>
+    <script src="<c:url value='/resources/assets/js/scripts.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/JSZip-2.5.0/jszip.min.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/pdfmake-0.1.36/pdfmake.min.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/pdfmake-0.1.36/vfs_fonts.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.html5.min.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.colVis.min.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.print.min.js'/>"></script>
+    <script src="<c:url value='/resources/DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js'/>"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- Add fancyBox -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initGoogleMaps();
+
+        });
+
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: 'dd-mm-yy'
+            });
+        });
+    </script>
+
+    <style>
+
+        th, td { white-space: nowrap; }
+        div.dataTables_wrapper {
+            width: 98%;
+            margin: 0 auto;
+        }
+
+        div.ColVis {
+            float: left;
+        }
+
+        .modal-content {
+            margin-top: -20%;
+        }
+
+    </style>
 </head>

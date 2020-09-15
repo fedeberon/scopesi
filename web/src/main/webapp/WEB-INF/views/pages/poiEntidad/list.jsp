@@ -64,3 +64,27 @@
         </div>
     </div>
 </div>
+<script>
+    var element = document.getElementById("geoplanning");
+    element.classList.add("active");
+
+    $(document).ready(function(){
+
+        var valueOfSearchStoraged = sessionStorage['poiEntidadSearchDataTable'] || '';
+        $('.dataTables_filter input[type="search"]').val(valueOfSearchStoraged).keyup();
+
+        $('.dataTables_filter input').unbind().keyup(function(e) {
+
+            var valueSearchDataTable = $(this).val();
+            if (valueSearchDataTable.length>=1) {
+                dataTableToCompleteList.search(valueSearchDataTable).draw();
+                sessionStorage['poiEntidadSearchDataTable'] = valueSearchDataTable;
+
+            } else {
+                dataTableToCompleteList.search('').draw();
+                sessionStorage['poiEntidadSearchDataTable'] = "";
+            }
+        });
+
+    });
+</script>

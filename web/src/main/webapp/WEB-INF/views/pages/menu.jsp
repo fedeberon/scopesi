@@ -32,25 +32,25 @@
             </a>
         </li>
         <li id="auditorias">
-            <a class="nav-link" href="./table.html">
+            <a class="nav-link" href="#">
                 <i class="fab fa-buffer"></i>
                 <p class="wordsMenu">Auditorias</p>
             </a>
         </li>
 
-        <li>
+        <li id="geoplanning">
             <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-atlas"></i>
                 <p class="wordsMenu">Geoplanning</p>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                 <a class="dropdown-item" href="/ubicacion/list">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Ubicaciones</a>
+                    <i class="fas fa-map-marker-alt"></i>Ubicaciones
+                </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/tablas">
-                    <i class="fas fa-table"></i>
-                    Tablas</a>
+                    <i class="fas fa-table"></i>Tablas
+                </a>
             </div>
         </li>
 

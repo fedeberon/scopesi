@@ -13,9 +13,19 @@ import java.util.stream.Collectors;
  @Component
 public class Wrapper {
 
+    private Long id;
+
     private List<MyObject> list = new ArrayList<>();
 
     private MapUbicacionRequest request = new MapUbicacionRequest();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public List<MyObject> getSelectedElements() {
         return list.stream().filter(line -> line.getChecked()).collect(Collectors.toList());

@@ -90,7 +90,7 @@
 
                     <div class="form-group col-6">
                         <label for="fechaAlta">Fecha de alta</label>
-                        <input name="request.fechaAlta" autocomplete="off"  class="form-control datepicker filterInput" placeholder="Seleccione una fecha"/>
+                        <input name="request.fechaAlta" id="fechaAlta" autocomplete="off"  class="form-control datepicker filterInput" placeholder="Seleccione una fecha"/>
                     </div>
 
                     <div class="form-group col-6">

@@ -512,3 +512,10 @@ function showPassword() {
         $('#showPassword').removeClass("fa-eye-slash").addClass("fa-eye");
     }
 }
+
+function submitEdit(id) {
+
+    $("#wrapperId").val(id);
+
+    $("#sudmit-" + id).click();
+}

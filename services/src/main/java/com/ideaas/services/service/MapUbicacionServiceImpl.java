@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class MapUbicacionServiceImpl implements MapUbicacionService{
@@ -70,6 +71,11 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
     @Override
     public MapUbicacion save(MapUbicacion mapUbicacion) {
         return dao.save(mapUbicacion);
+    }
+
+    @Override
+    public Optional<MapUbicacion> findById(Long id) {
+        return dao.findById(id);
     }
 
     @Override

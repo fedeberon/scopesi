@@ -118,8 +118,10 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>
-                                            <img src="/resources/assets/img/icons/edit2.png" alt="">
+<%--                                            <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>--%>
+
+                                            <button type="submit" id="sudmit-${bo.id}" class="updateButton" name="editar" style="display: none;"></button>
+                                            <a href="#" onclick="submitEdit(${bo.id})"><img src="/resources/assets/img/icons/edit2.png" alt=""></a>
                                         </td>
                                         <td>
                                             <a href="/ubicacion/${bo.id}">${bo.id}</a>
@@ -296,6 +298,7 @@
                   --%>
 
                         <div class="col-8">
+<%--                            <tags:paginador page="${ubicacionRequest.page}"  formName="myWrapper" noMorePages="${Integer.valueOf(ubicaciones.size() / 10) + Integer.valueOf(ubicaciones.size() % 10 >= 1 ? 1 : 0)}"/>--%>
                             <tags:paginador page="${ubicacionRequest.page}"  formName="myWrapper"/>
 
                             <button type="submit" name="maps" class="btn btn-info btn-fill"><i class="fas fa-map-marker-alt"></i>&nbsp;Mapa</button>
@@ -343,21 +346,21 @@
 
 <div class="modal" id="myModal2">
     <div class="modal-dialog  modal-md">
-        <div class="modal-content" style="margin-top: 0px;">
-            <div class="modal-header">
-                <h4 class="modal-title">Subir Imagenes</h4>
+        <div class="modal-content mt-0">
+            <div style="text-align: center;">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div><div class="container"></div>
+                <h3>Selecci&oacute;n de imagenes</h3>
+            </div>
 
-            <div class="upload-container">
+            <div class="upload-container" style="margin: 15px;">
                 <div class="upload-content">
                     <div class="single-upload">
-                        <h3>Upload Single File</h3>
+                        <h5>Subir una imagen</h5>
                         <form id="singleUploadForm" name="singleUploadForm">
                             <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
-                            <button type="submit" class="primary submit-btn">Submit</button>
+                            <button type="submit" class="btn btn-sm btn-primary btn-fill confirmUpload-button">Confirmar</button>
                         </form>
                         <div class="upload-response">
                             <div id="singleFileUploadError"></div>
@@ -365,10 +368,10 @@
                         </div>
                     </div>
                     <div class="multiple-upload">
-                        <h3>Upload Multiple Files</h3>
+                        <h5>Subir varias imagenes</h5>
                         <form id="multipleUploadForm" name="multipleUploadForm">
                             <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
-                            <button type="submit" class="primary submit-btn">Submit</button>
+                            <button type="submit" class="btn btn-sm btn-primary btn-fill confirmUpload-button">Confirmar</button>
                         </form>
                         <div class="upload-response">
                             <div id="multipleFileUploadError"></div>
@@ -417,8 +420,11 @@
         </div>
     </div>
 </div>
-
+<script src="<c:url value='/resources/assets/js/filemanager.js'/>"></script>
 <script>
+    var element = document.getElementById("geoplanning");
+    element.classList.add("active");
+
     function openModal(id){
         $('#' + id ).modal('show')
     }
@@ -426,4 +432,25 @@
     function closeModal(id){
         $('#' + id ).modal('hide')
     }
+
+    $(document).ready(function(){
+
+        var valueOfSearchingDataTable = sessionStorage['ubicacionSearchDataTable'] || '';
+        $('.dataTables_filter input[type="search"]').val(valueOfSearchingDataTable).keyup();
+
+        $('.dataTables_filter input').unbind().keyup(function(e) {
+
+            var valueSearchDataTable = $(this).val();
+            if (valueSearchDataTable.length>=1) {
+                table.search(valueSearchDataTable).draw();
+                sessionStorage['ubicacionSearchDataTable'] = valueSearchDataTable;
+
+            } else {
+                table.search('').draw();
+                sessionStorage['ubicacionSearchDataTable'] = "";
+            }
+        });
+
+    });
+
 </script>

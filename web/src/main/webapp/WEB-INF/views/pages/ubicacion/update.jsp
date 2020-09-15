@@ -9,7 +9,7 @@
 <div class="content">
 <div class="col-12">
 <div class="card">
-        <form:form action="editUbicacion" modelAttribute="updateUbicacion" method="post">
+        <form:form action="search" modelAttribute="updateUbicacion" method="post">
             <form:hidden path="id" value='${empresa.id}'/>
             <div class="row ml-3">
                 <div class="col-md-11">
@@ -171,13 +171,31 @@
                         </div>
                         <form:input  type="hidden" path="fechaAlta" value='${ubicacion.fechaAlta}' cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                     </div>
-                    <a href="list" class="btn btn-light pull-left ml-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
+                        <%-- Filter--%>
+                    <form:form action="/ubicacion/search" modelAttribute="myWrapper">
+                        <form:hidden path="request.id"/>
+                        <form:hidden path="request.idsSearch"/>
+                        <form:hidden path="request.mapEmpresa"/>
+                        <form:hidden path="request.mapElemento"/>
+                        <form:hidden path="request.mapFormato"/>
+                        <form:hidden path="request.mapMedio"/>
+                        <form:hidden path="request.mapLocalidad"/>
+                        <form:hidden path="request.mapProvincia"/>
+                        <form:hidden path="request.bajaLogica"/>
+                        <form:hidden path="request.latLngEmpty"/>
+                        <form:hidden path="request.fechaAlta"/>
+                        <form:hidden path="request.maxResults"/>
+
+                        <button type="submit" name="paginate" class="btn btn-info btn-fill"><i class="fas fa-angle-double-left pr-2"></i> Volver</button>
+                    </form:form>
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-secondary btn-fill pull-right mr-3" data-toggle="modal" data-target="#exampleModal">
                         Guardar
                     </button>
+
+                    <a href="#" class="btn btn-info btn-fill pull-right mr-1" onclick="showMap('${updateUbicacion.latitud}','${updateUbicacion.longitud}')">Mapa</a>
 
                     <!-- Modal -->
                     <div class="modal fade modal-confirm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -194,20 +212,19 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="#" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-secondary btn-fill">Guardar</button>
+                                    <button type="submit" name="editUbicacion" class="btn btn-secondary btn-fill">Guardar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <a href="#" class="btn btn-info btn-fill pull-right mr-1" onclick="showMap('${ubicacion.latitud}', '${ubicacion.longitud}')">Mapa</a>
                 </div>
             </div>
             <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Edicion de coordenadas</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

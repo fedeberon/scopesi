@@ -1,7 +1,7 @@
 <style>
-.iconLogin{
-    width: 60px;
-    margin-right: 15px;
+.iconTable{
+    width: 36px;
+    margin-right: 10px;
 }
 
 .card {
@@ -17,7 +17,7 @@
 
 
 <script>
-    var element = document.getElementById("tablas");
+    var element = document.getElementById("geoplanning");
     element.classList.add("active");
 </script>
 
@@ -27,108 +27,103 @@
         <div class="row">
             <div class="col-md-4">
 
-
                 <div class="card border rounded" >
                     <div class="card-header">
-                        <h4 class="font-italic mt-0"><a href="/empresa/list" class="card-link">
-                            <img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            Empresas</a></h4>
+                        <h4 class="font-italic mt-0">
+                            <a href="/empresa/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Empresas</a>
+                        </h4>
                     </div>
-
-
-              </div>
+                </div>
 
                 <div class="card border rounded">
                     <div class="card-header ">
-                        <h4  class="font-italic mt-0"><a href="/elemento/list" class="card-link"> <img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            Elementos</a></h4>
+                        <h4  class="font-italic mt-0">
+                            <a href="/elemento/list" class="card-link"> <img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Elementos</a>
+                        </h4>
                     </div>
-
                 </div>
-
 
                 <div class="card border rounded">
                     <div class="card-header">
-                        <h4 class="font-italic mt-0"><a href="/formato/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            Formatos</a></h4>
+                        <h4 class="font-italic mt-0">
+                            <a href="/formato/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Formatos</a>
+                        </h4>
                     </div>
-
-
-
                 </div>
 
+                <div class="card border border-primary rounded">
+                    <div class="card-header ">
+                        <h4 class="font-italic mt-0">
+                            <a href="/medio/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Medios</a>
+                        </h4>
+                    </div>
+                </div>
 
             </div>
+
             <div class="col-md-4">
-
-
-            <div class="card border border-primary rounded">
-                <div class="card-header ">
-                    <h4 class="font-italic mt-0"><a href="/medio/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                        Medios</a></h4>
-                </div>
-
-
-
-
-                </div>
 
                 <div class="card border rounded">
                     <div class="card-header">
-                        <h4 class="font-italic mt-0"> <a href="/provincia/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            Provincias</a></h4>
+                        <h4 class="font-italic mt-0">
+                            <a href="/provincia/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Provincias</a>
+                        </h4>
                     </div>
-
-
-
                 </div>
 
                 <div class="card border rounded" >
                     <div class="card-header">
-                        <h4 class="font-italic mt-0"> <a href="/localidad/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            Localidades</a></h4>
+                        <h4 class="font-italic mt-0">
+                            <a href="/localidad/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Localidades</a>
+                        </h4>
                     </div>
-
-
-
-
                 </div>
+
+                <div class="card border  rounded">
+                    <div class="card-header">
+                        <h4 class="font-italic mt-0">
+                            <a href="/poi/listComplete" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">POI</a>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="card border  rounded">
+                    <div class="card-header">
+                        <h4 class="font-italic mt-0">
+                            <a href="/poiEntidad/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">POI Entidad</a>
+                        </h4>
+                    </div>
+                </div>
+
             </div>
 
             <div class="col-md-4">
 
-
-                <div class="card border  rounded">
+                <div class="card border rounded">
                     <div class="card-header">
-                        <h4 class="font-italic mt-0"> <a href="/poi/listComplete" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            POI</a></h4>
+                        <h4 class="font-italic  mt-0">
+                            <a href="/poiSector/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">POI Sector</a>
+                        </h4>
                     </div>
-
-
-
-
-                </div>
-
-                <div class="card border  rounded">
-                    <div class="card-header">
-                        <h4 class="font-italic mt-0"><a href="/poiEntidad/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            POI Entidad</a></h4>
-                    </div>
-
-
-
-
                 </div>
 
                 <div class="card border rounded">
                     <div class="card-header">
-                        <h4 class="font-italic  mt-0"><a href="/poiSector/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconLogin">
-                            POI Sector</a></h4>
+                        <h4 class="font-italic  mt-0">
+                            <a href="/ubicacionActualizacion/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Ubicacion Actualizacion</a>
+                        </h4>
                     </div>
+                </div>
 
-
+                <div class="card border rounded">
+                    <div class="card-header">
+                        <h4 class="font-italic  mt-0">
+                            <a href="/ubicacionActEspecial/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">Ubicacion Act. Especial</a>
+                        </h4>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
     <hr>

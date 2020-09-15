@@ -6,27 +6,7 @@
 
 <tiles:insertAttribute name="header" />
 
-
 <body>
-
-<style>
-
-    th, td { white-space: nowrap; }
-    div.dataTables_wrapper {
-        width: 98%;
-        margin: 0 auto;
-    }
-
-    div.ColVis {
-        float: left;
-    }
-
-    .modal-content {
-        margin-top: -20%;
-    }
-
-
-</style>
 
     <div class="wrapper">
 
@@ -57,281 +37,6 @@
 
     <tiles:insertAttribute name="footer" />
 
-
-
-<!--   Core JS Files   -->
-<script src="<c:url value='/resources/assets/js/core/jquery.3.2.1.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/resources/assets/js/core/popper.min.js'/>" type="text/javascript"></script>
-<script src="<c:url value='/resources/assets/js/core/bootstrap.min.js'/>" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="<c:url value='/resources/assets/js/plugins/bootstrap-switch.js'/>"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANGywbfxItEbdle738SiU-AVJGIjadVYM&libraries=drawing,places"></script>
-<!--  Chartist Plugin  -->
-<script src="<c:url value='/resources/assets/js/plugins/chartist.min.js'/>"></script>
-<!--  Notifications Plugin    -->
-<script src="<c:url value='/resources/assets/js/plugins/bootstrap-notify.js'/>"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="<c:url value='/resources/assets/js/light-bootstrap-dashboard.js?v=2.0.0'/>" type="text/javascript"></script>
-<script src="<c:url value='/resources/assets/js/demo.js'/>"></script>
-<script src="<c:url value='/resources/assets/js/paginador.js'/>"></script>
-<script src="<c:url value='/resources/assets/js/scripts.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/DataTables-1.10.20/js/jquery.dataTables.min.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/JSZip-2.5.0/jszip.min.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/pdfmake-0.1.36/pdfmake.min.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/pdfmake-0.1.36/vfs_fonts.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.html5.min.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.colVis.min.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/Buttons-1.6.1/js/buttons.print.min.js'/>"></script>
-<script src="<c:url value='/resources/DataTables/FixedColumns-3.3.0/js/dataTables.fixedColumns.min.js'/>"></script>
-<script src="<c:url value='/resources/assets/js/filemanager.js'/>"></script>
-<script src="https://kit.fontawesome.com/d2e2e9031b.js" crossorigin="anonymous"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
-<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-<script>
-    $(function () {
-        $(".datepicker").datepicker({
-            dateFormat: 'dd-mm-yy'
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initGoogleMaps();
-
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        var table = $('#dataTable').DataTable( {
-            'scrollX': '400px',
-            dom: "Bfrtip",
-            searching: true,
-            paging: false,
-            bInfo: false,
-            language:{
-                "info": "Mostrando _START_ a _END_ de _TOTAL_",
-                "infoEmpty":    "Mostrando 0 de 0",
-                "lengthMenu":   "Mostrar _MENU_",
-                "search":   "Buscar:",
-                "paginate": {
-                    "first":      "First",
-                    "last":       "Last",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-            },
-            buttons: [
-                {
-                    extend: 'pdfHtml5',
-                    text: 'PDF',
-                    orientation: 'landscape',
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'excelHtml5',
-                    text: 'Excel',
-                    exportOptions: {
-                        columns: ':visible',
-                        modifier: {
-                            page: 'current'
-                        }
-                    },
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'colvis',
-                    text: 'Filtro de Columnas',
-                    columnText: function (dt, idx, title) {
-                        return (idx + 1) + ': ' + title;
-                    },
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'copyHtml5',
-                    text: 'Copiar en Portapapeles',
-                    copySuccess: {
-                        1: "Copied one row to clipboard",
-                        _: "Copied %d rows to clipboard"
-                    },
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    copyTitle: 'Copiar en portapapeles',
-                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'print',
-                    text: 'Imprimir',
-                    exportOptions: {
-                        columns: ':visible',
-                        modifier: {
-                            page: 'current'
-                        }
-                    },
-                    className: 'btn btn-primary'
-                }
-            ],
-        } );
-
-        var tableToEdit = $('#dataTableToEdit').DataTable( {
-            'scrollX': '400px',
-            dom: "Bfrtip",
-            buttons: [
-                {
-                    extend: 'pdfHtml5',
-                    text: 'PDF',
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'excelHtml5',
-                    text: 'Excel',
-                    exportOptions: {
-                        columns: ':visible',
-                        modifier: {
-                            page: 'current'
-                        }
-                    },
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'colvis',
-                    text: 'Filtro de Columnas',
-                    columnText: function (dt, idx, title) {
-                        return (idx + 1) + ': ' + title;
-                    },
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'copyHtml5',
-                    text: 'Copiar en Portapapeles',
-                    copySuccess: {
-                        1: "Copied one row to clipboard",
-                        _: "Copied %d rows to clipboard"
-                    },
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    copyTitle: 'Copiar en portapapeles',
-                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
-                    className: 'btn btn-primary'
-                },
-                {
-                    extend: 'print',
-                    text: 'Imprimir resultados',
-                    exportOptions: {
-                        columns: ':visible',
-                        modifier: {
-                            page: 'current'
-                        }
-                    },
-                    className: 'btn btn-primary'
-                }
-            ],
-        } );
-
-        var dataTableToCompleteList = $('#dataTableToCompleteList').DataTable( {
-            'scrollX': '400px',
-            lengthChange: true,
-            lengthMenu: [ [ 10, 50, 100, -1 ], [ '10', '50', '100', 'Todos' ]],
-            dom: "Blfrtip",
-            language:{
-                "info": "Mostrando _START_ a _END_ de _TOTAL_",
-                "infoEmpty":    "Mostrando 0 de 0",
-                "lengthMenu":   "Mostrar _MENU_",
-                "search":   "Buscar:",
-                "paginate": {
-                    "first":      "First",
-                    "last":       "Last",
-                    "next":       "Siguiente",
-                    "previous":   "Anterior"
-                },
-            },
-            buttons: [
-                {
-                    extend: 'pdfHtml5',
-                    text: 'PDF',
-                    orientation: 'landscape',
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    className: 'dataTableButton',
-                },
-                {
-                    extend: 'excelHtml5',
-                    text: 'Excel',
-                    exportOptions: {
-                        columns: ':visible',
-                        modifier: {
-                            page: 'current'
-                        }
-                    },
-                    className: 'dataTableButton'
-                },
-                {
-                    extend: 'colvis',
-                    text: 'Filtro de Columnas',
-                    columnText: function (dt, idx, title) {
-                        return (idx + 1) + ': ' + title;
-                    },
-                    className: 'dataTableButton'
-                },
-                {
-                    extend: 'copyHtml5',
-                    text: 'Copiar en portapapeles',
-                    copySuccess: {
-                        1: "Copied one row to clipboard",
-                        _: "Copied %d rows to clipboard"
-                    },
-                    exportOptions: {
-                        columns: ':visible'
-                    },
-                    copyTitle: 'Copiar en portapapeles',
-                    copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
-                    className: 'dataTableButton'
-                },
-                {
-                    extend: 'print',
-                    text: 'Imprimir',
-                    exportOptions: {
-                        columns: ':visible',
-                        modifier: {
-                            page: 'current'
-                        }
-                    },
-                    className: 'dataTableButton'
-                }
-            ],
-
-        } );
-
-        dataTableToCompleteList.buttons().container()
-            .appendTo( '#example_wrapper .col-md-6:eq(0)' );
-
-        $('a.toggle-vis').on( 'click', function (e) {
-            e.preventDefault();
-
-            // Get the column API object
-            var column = table.column( $(this).attr('data-column') );
-
-            // Toggle the visibility
-            column.visible( ! column.visible() );
-        } );
-    } );
-</script>
 
 <script>
     $( ".form-check-sign" ).on( "click", function() {
@@ -424,7 +129,7 @@
 
         var moreToolsOptions = $('.more-options').clone();
         moreToolsOptions.css('display', 'inline');
-        moreToolsOptions.appendTo('#tools-button')
+        moreToolsOptions.appendTo('#tools-button');
 
         $('#select-empresas').selectpicker('val', ${ubicacionRequest.empresasSelected});
         $('#select-elementos').selectpicker('val', ${ubicacionRequest.elementosSelected});
@@ -507,7 +212,6 @@
 
     });
 
-
     function buttonHideShowMenu() {
         var text = $('#span-close-option').html();
 
@@ -525,8 +229,6 @@
 
 </script>
 <script>
-    var element = document.getElementById("ubicacion-list");
-    element.classList.add("active");
 
     function selectAll() {
         var inputCheckAll = document.getElementById('checkbox-all');
@@ -550,7 +252,5 @@
 
 </script>
 
-<!-- Add fancyBox -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
 </body>
 </html>

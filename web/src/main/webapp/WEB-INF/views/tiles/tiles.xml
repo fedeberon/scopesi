@@ -415,6 +415,62 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/poiSector/update.jsp" />
     </definition>
 
+    <definition name="ubicacionActualizacion/list" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActualizacion/list.jsp" />
+    </definition>
+
+    <definition name="ubicacionActualizacion/show" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActualizacion/show.jsp" />
+    </definition>
+
+    <definition name="ubicacionActualizacion/create" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActualizacion/create.jsp" />
+    </definition>
+
+    <definition name="ubicacionActualizacion/update" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActualizacion/update.jsp" />
+    </definition>
+
+    <definition name="ubicacionActEspecial/list" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion Especial" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActEspecial/list.jsp" />
+    </definition>
+
+    <definition name="ubicacionActEspecial/show" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion Especial" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActEspecial/show.jsp" />
+    </definition>
+
+    <definition name="ubicacionActEspecial/create" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion Especial" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActEspecial/create.jsp" />
+    </definition>
+
+    <definition name="ubicacionActEspecial/update" extends="template-def">
+        <put-attribute name="title" value="Ubicacion Actualizacion Especial" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/ubicacionActEspecial/update.jsp" />
+    </definition>
+
     <definition name="error" extends="template-def">
         <put-attribute name="title" value="Formato" />
         <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />

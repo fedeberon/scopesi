@@ -2,8 +2,28 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
 <script>
-    var element = document.getElementById("usuarios");
+    var element = document.getElementById("users");
     element.classList.add("active");
+
+    $(document).ready(function(){
+
+        var valueOfSearchingDataTable = sessionStorage['usuarioSearchDataTable'] || '';
+        $('.dataTables_filter input[type="search"]').val(valueOfSearchingDataTable).keyup();
+
+        $('.dataTables_filter input').unbind().keyup(function(e) {
+
+            var valueSearchDataTable = $(this).val();
+            if (valueSearchDataTable.length>=1) {
+                dataTableToCompleteList.search(valueSearchDataTable).draw();
+                sessionStorage['usuarioSearchDataTable'] = valueSearchDataTable;
+
+            } else {
+                dataTableToCompleteList.search('').draw();
+                sessionStorage['usuarioSearchDataTable'] = "";
+            }
+        });
+
+    });
 </script>
 
 <div class="content">

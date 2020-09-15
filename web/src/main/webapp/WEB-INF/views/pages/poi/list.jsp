@@ -96,7 +96,7 @@
                                     <form name="search" action="list" method="get">
                                         <input type="hidden" name="page" value="${page}"/>
 
-                                        <tags:paginador page="${page}" formName="search"/>
+<%--                                        <tags:paginador page="${page}" formName="search"/>--%>
 
                                         <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
@@ -114,3 +114,27 @@
         </div>
     </div>
 </div>
+<script>
+    var element = document.getElementById("geoplanning");
+    element.classList.add("active");
+
+    $(document).ready(function(){
+
+        var valueOfSearchStoraged = sessionStorage['poiSearchDataTable'] || '';
+        $('.dataTables_filter input[type="search"]').val(valueOfSearchStoraged).keyup();
+
+        $('.dataTables_filter input').unbind().keyup(function(e) {
+
+            var valueSearchDataTable = $(this).val();
+            if (valueSearchDataTable.length>=1) {
+                dataTableToCompleteList.search(valueSearchDataTable).draw();
+                sessionStorage['poiSearchDataTable'] = valueSearchDataTable;
+
+            } else {
+                dataTableToCompleteList.search('').draw();
+                sessionStorage['poiSearchDataTable'] = "";
+            }
+        });
+
+    });
+</script>

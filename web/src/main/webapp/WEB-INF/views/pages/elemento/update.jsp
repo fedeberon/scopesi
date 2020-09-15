@@ -10,11 +10,11 @@
     <div class="form-group ml-3 mr-3">
             <div class="row">
                 <div class="col-6">
-                    <label for="street1_id" class="control-label">Descripcion</label>
+                    <label for="street1_id" class="control-label pt-2"><strong>Descripcion</strong></label>
                     <form:input value='${elemento.descripcion}' path="descripcion" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                 </div>
                 <div class="col-6">
-                    <label for="street1_id" class="control-label pt-2">Pano</label>
+                    <label for="street1_id" class="control-label pt-2"><strong>Pano</strong></label>
                     <form:input  path="panos" cssClass="form-control" id="street1_id" name="street1" placeholder=""/>
                 </div>
             </div>

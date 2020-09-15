@@ -117,3 +117,7 @@
         </div>
     </div>
 </div>
+<script>
+    var element = document.getElementById("users");
+    element.classList.add("active");
+</script>

@@ -50,11 +50,6 @@
     }
 </style>
 
-<script>
-    var element = document.getElementById("maps-show");
-    element.classList.add("active");
-</script>
-
 <div class="">
 
     <div class="map-container">
@@ -170,53 +165,24 @@
 
         </table>
 
+        <%-- Filter--%>
         <form:form action="/ubicacion/search" modelAttribute="myWrapper">
             <form:hidden path="request.id"/>
+            <form:hidden path="request.idsSearch"/>
             <form:hidden path="request.mapEmpresa"/>
             <form:hidden path="request.mapElemento"/>
             <form:hidden path="request.mapFormato"/>
             <form:hidden path="request.mapMedio"/>
-            <form:hidden path="request.mapFormato"/>
             <form:hidden path="request.mapLocalidad"/>
             <form:hidden path="request.mapProvincia"/>
             <form:hidden path="request.bajaLogica"/>
             <form:hidden path="request.latLngEmpty"/>
             <form:hidden path="request.fechaAlta"/>
-            <form:hidden path="request.idsSearch"/>
-            <table border="1" class="table" style="display:none;">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Empresa</th>
-                    <th>Elemento</th>
-                    <th>Formato</th>
-                    <th>Medio</th>
-                    <th>Localidad</th>
-                    <th>Provincia</th>
-                    <th>Baja Logica</th>
-                    <th>Geolocalizacion</th>
-                    <th>Fecha Alta</th>
-                    <th>Cant. Resultados</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>${request.id}</td>
-                    <td>${request.mapEmpresa}</td>
-                    <td>${request.mapElemento}</td>
-                    <td>${request.mapFormato}</td>
-                    <td>${request.mapMedio}</td>
-                    <td>${request.mapLocalidad}</td>
-                    <td>${request.mapProvincia}</td>
-                    <td>${request.bajaLogica}</td>
-                    <td>${request.latLngEmpty}</td>
-                    <td>${request.fechaAlta}</td>
-                    <td>${request.maxResults}</td>
-                </tr>
+            <form:hidden path="request.maxResults"/>
 
-                </tbody>
-            </table>
-<%--            <button type="submit" name="paginate" class="btn btn-info btn-fill">Volver</button>--%>
+            <div style="text-align: center">
+                <button type="submit" name="paginate" class="btn btn-secondary btn-fill"><i class="fas fa-angle-double-left pr-2"></i> Volver</button>
+            </div>
         </form:form>
     </div>
 
@@ -280,24 +246,24 @@
                 <div class="upload-content">
                     <div class="single-upload">
                         <h3>Upload Single File</h3>
-                        <form id="singleUploadForm" name="singleUploadForm">
-                            <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                        <form id="singleUploadFormMap" name="singleUploadFormMap">
+                            <input id="singleFileUploadInputMap" type="file" name="file" class="file-input" required />
                             <button type="submit" class="primary submit-btn">Submit</button>
                         </form>
                         <div class="upload-response">
-                            <div id="singleFileUploadError"></div>
-                            <div id="singleFileUploadSuccess"></div>
+                            <div id="singleFileUploadErrorMap"></div>
+                            <div id="singleFileUploadSuccessMap"></div>
                         </div>
                     </div>
                     <div class="multiple-upload">
                         <h3>Upload Multiple Files</h3>
-                        <form id="multipleUploadForm" name="multipleUploadForm">
-                            <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
+                        <form id="multipleUploadFormMap" name="multipleUploadFormMap">
+                            <input id="multipleFileUploadInputMap" type="file" name="files" class="file-input" multiple required />
                             <button type="submit" class="primary submit-btn">Submit</button>
                         </form>
                         <div class="upload-response">
-                            <div id="multipleFileUploadError"></div>
-                            <div id="multipleFileUploadSuccess"></div>
+                            <div id="multipleFileUploadErrorMap"></div>
+                            <div id="multipleFileUploadSuccessMap"></div>
                         </div>
                     </div>
                 </div>
@@ -351,3 +317,10 @@
         </div>
     </div>
 </div>
+
+<script src="<c:url value='/resources/assets/js/filemanager.js'/>"></script>
+<script src="<c:url value='/resources/assets/js/core/jquery.3.2.1.min.js'/>" type="text/javascript"></script>
+<script>
+    var element = document.getElementById("geoplanning");
+    element.classList.add("active");
+</script>

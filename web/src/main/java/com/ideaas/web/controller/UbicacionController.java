@@ -7,18 +7,15 @@ import com.ideaas.services.request.MapUbicacionRequest;
 import com.ideaas.services.service.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -68,33 +65,6 @@ public class UbicacionController {
         this.mapUbicacionVisibilidadService = mapUbicacionVisibilidadService;
     }
 
-    @RequestMapping("/list/whitParameter")
-    public String findAll(@RequestParam(defaultValue = "10") Integer size,
-                          @RequestParam(defaultValue = "0") Integer page, Model model){
-        List<MapUbicacion> result = mapUbicacionService.findAll(size, page, "id");
-        model.addAttribute("ubicaciones", result);
-        model.addAttribute("page", page);
-
-        return "ubicacion/list";
-
-    }
-
-    @GetMapping(name = "list")
-    public String findAll(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
-        model.addAttribute("ubicaciones", mapUbicacionService.findAll(mapUbicacionRequest));
-        model.addAttribute("ubicacionRequest", mapUbicacionRequest);
-
-        return "ubicacion/list";
-    }
-
-    @RequestMapping(value = "search", params = "maps" , method = RequestMethod.POST)
-    public String findAll(@ModelAttribute("myWrapper") Wrapper ubicaciones, Model model){
-        model.addAttribute("registros", ubicaciones.getSelectedElements());
-        model.addAttribute("request", ubicaciones.getRequest());
-
-        return "ubicacion/map";
-    }
-
     @RequestMapping("list")
     public String list(@ModelAttribute MapUbicacionRequest mapUbicacionRequest, Model model){
         model.addAttribute("ubicaciones", mapUbicacionService.findAll(mapUbicacionRequest));
@@ -102,7 +72,6 @@ public class UbicacionController {
 
         return "ubicacion/list";
     }
-
 
     @RequestMapping(value = "search", params = "paginate")
     public String listPaginated(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
@@ -122,6 +91,14 @@ public class UbicacionController {
         model.addAttribute("ubicacionRequest", request);
 
         return "ubicacion/list";
+    }
+
+    @RequestMapping(value = "search", params = "maps" , method = RequestMethod.POST)
+    public String findAll(@ModelAttribute("myWrapper") Wrapper ubicaciones, Model model){
+        model.addAttribute("registros", ubicaciones.getSelectedElements());
+        model.addAttribute("request", ubicaciones.getRequest());
+
+        return "ubicacion/map";
     }
 
     @InitBinder
@@ -171,23 +148,28 @@ public class UbicacionController {
     public String show(@PathVariable Long id, Model model) {
         MapUbicacion ubicacion = mapUbicacionService.get(id);
 
-        model.addAttribute("ubicaciones", ubicacion);
+        model.addAttribute("ubicacion", ubicacion);
 
         return "ubicacion/show";
     }
 
-    @RequestMapping(value = "editUbicacion" , method = RequestMethod.POST)
-    public String edit(@ModelAttribute MapUbicacion ubicacion, RedirectAttributes redirectAttributes){
-        mapUbicacionService.save(ubicacion);
-        redirectAttributes.addAttribute("id", ubicacion.getId());
+    @RequestMapping(value = "search" , params="editUbicacion", method = RequestMethod.POST)
+    public String edit(@ModelAttribute MapUbicacion updatedUbicacion, @ModelAttribute("myWrapper") Wrapper filtro, Model model){
+        mapUbicacionService.save(updatedUbicacion);
 
-        return "redirect:/ubicacion/{id}";
+        MapUbicacion ubicacion = mapUbicacionService.get(updatedUbicacion.getId());
+        model.addAttribute("ubicacion", ubicacion);
+        model.addAttribute("request", filtro.getRequest());
+
+        return "ubicacion/show";
     }
 
-    @RequestMapping("update")
-    public String update(@RequestParam Long id, Model model) {
-        MapUbicacion mapUbicacion = mapUbicacionService.get(id);
+    @RequestMapping(value = "search", params = {"editar"})
+    public String update(@ModelAttribute("myWrapper") Wrapper filtro, Model model) {
+        MapUbicacion mapUbicacion = mapUbicacionService.get(filtro.getId());
         model.addAttribute("updateUbicacion", mapUbicacion);
+        model.addAttribute("request", filtro.getRequest());
+
         return "ubicacion/update";
     }
 
