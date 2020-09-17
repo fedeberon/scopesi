@@ -145,7 +145,7 @@
                             </div>
                         </td>
                         <td>
-                            <i class="fas fa-sync dropdown-item cursorPointer" style="text-align: center;" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"></i>
+                            <i class="fas fa-sync dropdown-item cursorPointer" style="text-align: center; font-weight: 900;" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"></i>
                             <button id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
                         </td>
                         <td>${bo.id}</td>
@@ -319,7 +319,6 @@
 </div>
 
 <script src="<c:url value='/resources/assets/js/filemanager.js'/>"></script>
-<script src="<c:url value='/resources/assets/js/core/jquery.3.2.1.min.js'/>" type="text/javascript"></script>
 <script>
     var element = document.getElementById("geoplanning");
     element.classList.add("active");

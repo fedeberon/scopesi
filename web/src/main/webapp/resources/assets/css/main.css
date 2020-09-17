@@ -890,12 +890,6 @@
 .filterInput::placeholder{
     color: #999;
 }
-.updateButton{
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
 .confirmUpload-button{
     float: right;
     margin-right: 5px;
