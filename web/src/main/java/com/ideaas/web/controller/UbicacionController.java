@@ -103,6 +103,7 @@ public class UbicacionController {
 
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.setAutoGrowCollectionLimit(1024);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateFormat.setLenient(false);
         webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));

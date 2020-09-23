@@ -308,7 +308,7 @@
                         </div>
 
                             <%--Modal editar campos--%>
-                            <jsp:include page="../modals/filterUbicacionSimple.jsp"/>
+                            <jsp:include page="../modals/editUbicacionesModal.jsp"/>
 
                             <%--Modal filtrar campos--%>
                             <jsp:include page="../modals/filterUbicacion.jsp"/>

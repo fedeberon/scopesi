@@ -46,7 +46,7 @@
 
                     <div class="form-group col-6">
                         <label for="idMedio">Medios</label>
-                        <select name="request.idMedio" class="form-control" title="Seleccione un medio   ">
+                        <select name="request.idMedio" class="form-control" title="Seleccione un medio">
                             <option  value="-1">Seleccione una Medio</option>
                             <c:forEach items="${medios}" var="bo">
                                 <option value="${bo.id}">${bo.descripcion}</option>

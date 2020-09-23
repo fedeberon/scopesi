@@ -45,11 +45,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
                 <a class="dropdown-item" href="/ubicacion/list">
-                    <i class="fas fa-map-marker-alt"></i>Ubicaciones
+                    <i class="fas fa-map-marker-alt"></i> Ubicaciones
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/tablas">
-                    <i class="fas fa-table"></i>Tablas
+                    <i class="fas fa-table"></i> Tablas
                 </a>
             </div>
         </li>
