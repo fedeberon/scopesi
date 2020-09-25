@@ -118,7 +118,6 @@
                                         </td>
 
                                         <td class="text-center">
-<%--                                            <a href="<c:url value='/ubicacion/update?id=${bo.id}'/>"/>--%>
                                             <input type="hidden" id="wrapperId" value="${bo.id}" name="id"/>
                                             <button type="submit" id="sudmit-${bo.id}" name="editar" style="display: none;"></button>
                                             <a href="#" onclick="submitEdit(${bo.id})"><img src="/resources/assets/img/icons/edit2.png" alt=""></a>

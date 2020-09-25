@@ -12,6 +12,7 @@ $(document).ready(function() {
             "info": "Mostrando _START_ a _END_ de _TOTAL_",
             "infoEmpty":    "Mostrando 0 de 0",
             "lengthMenu":   "Mostrar _MENU_",
+            "infoFiltered": "(filtrado de _MAX_ entradas totales)",
             "search":   "Buscar:",
             "paginate": {
                 "first":      "First",
@@ -145,6 +146,7 @@ $(document).ready(function() {
             "info": "Mostrando _START_ a _END_ de _TOTAL_",
             "infoEmpty":    "Mostrando 0 de 0",
             "lengthMenu":   "Mostrar _MENU_",
+            "infoFiltered": "(filtrado de _MAX_ entradas totales)",
             "search":   "Buscar:",
             "paginate": {
                 "first":      "First",

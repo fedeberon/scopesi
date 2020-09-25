@@ -63,6 +63,10 @@ public class MapUbicacionRequest {
 
     private String idsSearch;
 
+    private String searchValue;
+
+
+
     public Long getId() {
         return id;
     }
@@ -288,6 +292,14 @@ public class MapUbicacionRequest {
         this.idsSearch = idsSearch;
     }
 
+    public String getSearchValue() {
+        return searchValue;
+    }
+
+    public void setSearchValue(String searchValue) {
+        this.searchValue = searchValue;
+    }
+
     private static String EMPTY = "";
     private static String LEFT = "[";
     private static String RIGTH = "]";
@@ -342,6 +354,11 @@ public class MapUbicacionRequest {
         if(Objects.isNull(idsSearch)) return EMPTY;
 
         return buildFormatValuesSelected(idsSearch);
+    }
+    public String getValueSearching(){
+        if(Objects.isNull(searchValue)) return EMPTY;
+
+        return buildFormatValuesSelected(searchValue);
     }
     public String getMaxResultsSelected(){
         if(Objects.isNull(maxResults)) return EMPTY;

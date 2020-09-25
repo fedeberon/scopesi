@@ -93,6 +93,11 @@
                         <input name="request.fechaAlta" id="fechaAlta" autocomplete="off"  class="form-control datepicker filterInput" placeholder="Seleccione una fecha"/>
                     </div>
 
+                    <div class="form-group col-6" style="padding-left: 6px">
+                        <label>Buscar</label>
+                        <input id="input-searching" name="request.searchValue" autocomplete="off"  class="form-control filterInput" placeholder="direccion, id referencia, altura, visibilidad "/>
+                    </div>
+
                     <div class="form-group col-6">
                         <label for="maxResults">Cantidad resultados</label>
                         <select id="select-maxResults" class="form-control" name="request.maxResults" data-live-search="true">

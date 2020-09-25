@@ -103,6 +103,10 @@ public class FilterDaoImpl implements FilterDao {
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.id in (:idsSearch)");
         }
+        if(Objects.nonNull(request.getSearchValue()) && !request.getSearchValue().trim().isEmpty()){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" (u.direccion LIKE :searchValue OR u.mapUbicacionAltura.descripcion LIKE :searchValue OR u.mapUbicacionVisibilidad.descripcion LIKE :searchValue OR u.idReferencia LIKE :searchValue)");
+        }
 
         Query query = entityManager.createQuery(builder.toString());
 
@@ -155,7 +159,9 @@ public class FilterDaoImpl implements FilterDao {
 
             query.setParameter("idsSearch", idsSearch );
         }
-
+        if(Objects.nonNull(request.getSearchValue()) && !request.getSearchValue().isEmpty()){
+            query.setParameter("searchValue",  "%"+request.getSearchValue()+"%");
+        }
         if(getAllResults(request)){
             Integer maxResults = Integer.valueOf(request.getMaxResults());
 

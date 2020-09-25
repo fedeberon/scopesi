@@ -141,6 +141,7 @@
         $('#select-geolocalizacion').selectpicker('val' , ${ubicacionRequest.geolocalizacionSelected});
         $('#select-maxResults').selectpicker('val' , ${ubicacionRequest.maxResultsSelected});
         $('#input-ids').val(${ubicacionRequest.idsSearching});
+        $('#input-searching').val(${ubicacionRequest.valueSearching});
 
     });
 

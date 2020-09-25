@@ -185,6 +185,7 @@
                         <form:hidden path="request.bajaLogica"/>
                         <form:hidden path="request.latLngEmpty"/>
                         <form:hidden path="request.fechaAlta"/>
+                        <form:hidden path="request.searchValue"/>
                         <form:hidden path="request.maxResults"/>
 
                         <button type="submit" name="paginate" class="btn btn-info btn-fill"><i class="fas fa-angle-double-left pr-2"></i> Volver</button>

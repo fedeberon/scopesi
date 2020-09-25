@@ -130,6 +130,7 @@
                         <form:hidden path="request.bajaLogica"/>
                         <form:hidden path="request.latLngEmpty"/>
                         <form:hidden path="request.fechaAlta"/>
+                        <form:hidden path="request.searchValue"/>
                         <form:hidden path="request.maxResults"/>
 
                     <div class="py-2" style="text-align: center;">

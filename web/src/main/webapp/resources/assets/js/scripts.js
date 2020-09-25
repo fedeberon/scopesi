@@ -285,11 +285,21 @@ function actualizarCoordenadas(address,localidad, provincia, id){
 
             var latLong = new google.maps.LatLng(data.location.lat, data.location.lng);
             var marker = new google.maps.Marker({
+
                 id: id,
+                class: "marker",
                 position: latLong,
                 map: map,
                 draggable: true,
-                animation: google.maps.Animation.DROP
+                animation: google.maps.Animation.DROP,
+
+            });
+
+            marker.addListener('dragend', function(event){
+
+                $('#'+id+'-lat').html(event.latLng.lat());
+                $('#'+id+'-lng').html(event.latLng.lng());
+
             });
 
             var bounds = new google.maps.LatLngBounds();
