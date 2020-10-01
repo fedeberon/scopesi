@@ -25,6 +25,14 @@
                 <p class="wordsMenu">Dashboard</p>
             </a>
         </li>
+
+        <li id="mantenimiento">
+            <a class="nav-link" href="/mantenimiento/list">
+                <i class="fas fa-wrench"></i>
+                <p class="wordsMenu">Mantenimiento</p>
+            </a>
+        </li>
+
         <li id="users">
             <a  class="nav-link" href="/usuario/list">
                 <i class="fas fa-users"></i>

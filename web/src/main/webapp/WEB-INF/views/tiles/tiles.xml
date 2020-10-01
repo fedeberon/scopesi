@@ -478,6 +478,12 @@
         <put-attribute name="body"  value="/WEB-INF/views/pages/error.jsp" />
     </definition>
 
+    <definition name="mantenimiento/list" extends="template-def">
+        <put-attribute name="title" value="Mantenimiento" />
+        <put-attribute name="navbar" value="/WEB-INF/views/pages/navbar.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/views/pages/menu.jsp" />
+        <put-attribute name="body"  value="/WEB-INF/views/pages/mantenimiento/list.jsp" />
+    </definition>
 
 </tiles-definitions>
 
