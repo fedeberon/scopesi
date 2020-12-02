@@ -14,7 +14,7 @@ public class MapUbicacion {
 
     @Id
     @Column(name = "idUbicacion")
-    @SequenceGenerator(name = "MapUbicacionSeqGen", sequenceName = "SEQ_MAP_UBICACION", allocationSize = 1)
+    @SequenceGenerator(name = "MapUbicacionSeqGen", sequenceName = "SEQ_MAP_UBICACION", allocationSize = 0)
     @GeneratedValue(generator = "MapUbicacionSeqGen")
     private Long id;
 
