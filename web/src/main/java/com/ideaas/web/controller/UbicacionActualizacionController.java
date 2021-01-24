@@ -1,7 +1,10 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.bean.Wrapper;
+import com.ideaas.services.bean.WrapperRequest;
 import com.ideaas.services.domain.MapUbicacionActualizacion;
 import com.ideaas.services.domain.MapUbicacionActualizacionPK;
+import com.ideaas.services.request.UbicacionActualizacionRequest;
 import com.ideaas.services.service.interfaces.MapUbicacionActualizacionService;
 import com.ideaas.services.service.interfaces.MapUbicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -157,6 +161,26 @@ public class UbicacionActualizacionController {
         return "redirect:/ubicacionActualizacion/show";
     }
 
+    @RequestMapping(value = "search", params = "paginate")
+    public String listPaginated(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
+        wrapper.getUbicacionActualizacionRequest().setPage(wrapper.getPage());
+        model.addAttribute("ubicacionActualizaciones", mapUbicacionActualizacionService.findAll(wrapper.getUbicacionActualizacionRequest()));
+        model.addAttribute("ubicacionActualizacionRequest", wrapper.getUbicacionActualizacionRequest());
+
+        return "ubicacionActualizacion/list";
+    }
+
+
     @ModelAttribute("mapUbicacionActualizacion")
     public MapUbicacionActualizacion get(){return new MapUbicacionActualizacion();}
+
+    @ModelAttribute("ubicacionActualizacionRequest")
+    public UbicacionActualizacionRequest ubicacionActualizacionRequest(){
+        return new UbicacionActualizacionRequest();
+    }
+
+    @ModelAttribute("myWrapper")
+    public Wrapper wrapper(){
+        return new Wrapper();
+    }
 }

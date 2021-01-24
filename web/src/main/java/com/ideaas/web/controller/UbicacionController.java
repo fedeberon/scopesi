@@ -114,6 +114,24 @@ public class UbicacionController {
         return "ubicacion/create";
     }
 
+    FieldError emptyMapEmpresa = new FieldError(
+            "mapUbicacion" , "mapEmpresa" , "Debes seleccionar una opcion"
+    );
+    FieldError emptyMapElemento = new FieldError(
+            "mapUbicacion" , "mapElemento" , "Debes seleccionar una opcion"
+    );
+    FieldError emptyMapFormato = new FieldError(
+            "mapUbicacion" , "mapFormato" , "Debes seleccionar una opcion"
+    );
+    FieldError emptyMapMedio = new FieldError(
+            "mapUbicacion" , "mapMedio" , "Debes seleccionar una opcion"
+    );
+    FieldError emptyMapProvincia = new FieldError(
+            "mapUbicacion" , "mapProvincia" , "Debes seleccionar una opcion"
+    );
+    FieldError emptyMapLocalidad = new FieldError(
+            "mapUbicacion" , "mapLocalidad" , "Debes seleccionar una opcion"
+    );
     FieldError emptyCoeficiente = new FieldError(
             "mapUbicacion" , "coeficiente" , "Debes completar este campo"
     );
@@ -124,6 +142,30 @@ public class UbicacionController {
     @RequestMapping(value = "save" , method = RequestMethod.POST)
     public String save(@ModelAttribute (name = "mapUbicacion") MapUbicacion mapUbicacion, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
+        if(mapUbicacion.getMapEmpresa().getId() == null){
+            bindingResult.addError(emptyMapEmpresa);
+
+        }
+        if(mapUbicacion.getMapElemento().getId() == null){
+            bindingResult.addError(emptyMapElemento);
+
+        }
+        if(mapUbicacion.getMapFormato().getId() == null){
+            bindingResult.addError(emptyMapFormato);
+
+        }
+        if(mapUbicacion.getMapMedio().getId() == null){
+            bindingResult.addError(emptyMapMedio);
+
+        }
+        if(mapUbicacion.getMapProvincia().getId() == null){
+            bindingResult.addError(emptyMapProvincia);
+
+        }
+        if(mapUbicacion.getMapLocalidad().getId() == null){
+            bindingResult.addError(emptyMapLocalidad);
+
+        }
         if(mapUbicacion.getCoeficiente() == null ){
             bindingResult.addError(emptyCoeficiente);
 

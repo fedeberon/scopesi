@@ -50,4 +50,12 @@ public class MapPoiEntidadServiceImpl implements MapPoiEntidadService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<MapPoiEntidad> findByMapPoiSector_DescripcionIn(List<String> poiSectorDescripciones) {
+        Iterable<MapPoiEntidad> iterator = dao.findByMapPoiSector_DescripcionIn(poiSectorDescripciones);
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+    }
 }

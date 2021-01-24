@@ -1,10 +1,12 @@
 package com.ideaas.web.controller;
 
 import com.ideaas.services.bean.AESPasswordEncoder;
+import com.ideaas.services.dao.UsuarioMenuDao;
 import com.ideaas.services.domain.*;
 import com.ideaas.services.service.interfaces.*;
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,12 +15,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.text.DateFormatter;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,16 +45,18 @@ public class UserController {
     private AESPasswordEncoder encoder;
     private MenuService menuService;
     private UsuarioMenuService usuarioMenuService;
+    private UsuarioMenuDao usuarioMenuDao;
 
 
     @Autowired
-    public UserController(UsuarioService usuarioService , TipoUsuarioService tipoUsuarioService, ContratoService contratoService, MenuService menuService ,UsuarioMenuService usuarioMenuService) {
+    public UserController(UsuarioService usuarioService , TipoUsuarioService tipoUsuarioService, ContratoService contratoService, MenuService menuService ,UsuarioMenuService usuarioMenuService , UsuarioMenuDao usuarioMenuDao) {
         this.usuarioService = usuarioService;
         this.tipoUsuarioService = tipoUsuarioService;
         this.contratoService = contratoService;
         this.encoder = new AESPasswordEncoder();
         this.menuService = menuService;
         this.usuarioMenuService = usuarioMenuService;
+        this.usuarioMenuDao = usuarioMenuDao;
     }
 
     @RequestMapping("listComplete")
@@ -140,6 +150,10 @@ public class UserController {
         }
 
         usuario.setPassword(encoder.encrypt(usuario.getPassword()));
+
+        String expirationDate = LocalDate.now().plusMonths(3).toString();
+        usuario.setFechaVencimiento(expirationDate);
+
         usuarioService.save(usuario);
         redirectAttributes.addAttribute("id", usuario.getId());
 
@@ -159,8 +173,19 @@ public class UserController {
     public String update(@ModelAttribute Usuario usuario, RedirectAttributes redirectAttributes) throws InvalidCipherTextException {
 
         usuario.setPassword(encoder.encrypt(usuario.getPassword()));
+
         usuarioService.save(usuario);
         redirectAttributes.addAttribute("id", usuario.getId());
+
+        List<UsuarioMenu> recordsToDelete  = usuarioMenuService.findByUsuarioMenuId_IdUsuario(usuario.getId());
+        usuarioMenuDao.deleteAll(recordsToDelete);
+
+        List<UsuarioMenu> usuarioMenus = new ArrayList<>();
+
+        for (Long modulo : usuario.getUsuarioMenuRequest().getModulos()) {
+            usuarioMenus.add(new UsuarioMenu(new UsuarioMenuId(usuario.getId(), modulo)));
+        }
+        usuarioMenuService.saveAll(usuarioMenus);
 
         return "redirect:/usuario/{id}";
     }
@@ -183,7 +208,11 @@ public class UserController {
         }
         usuario.setPassword(passwordDecrypt);
 
+        List<UsuarioMenu> usuarioMenuList = usuarioMenuService.findByUsuarioMenuId_IdUsuario(id);
+
         model.addAttribute("usuario", usuario);
+        model.addAttribute("modulosUsuario" , usuarioMenuList);
+
         return "usuario/update";
     }
 

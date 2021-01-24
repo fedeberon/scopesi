@@ -66,7 +66,7 @@
                                     </select>
                                 </div>
                                 <div class="col-6">
-                                    <label for="street1_id" class="control-label">Cargo</label>
+                                    <label for="street1_id" class="control-label">Empresa</label>
                                     <form:input  path="cargo" cssClass="form-control" id="street1_id" name="street1" placeholder="Ingrese un cargo"/>
                                 </div>
                                 <div class="col-6">

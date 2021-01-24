@@ -20,10 +20,10 @@
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
-                        <form:form action="list" modelAttribute="myWrapper" name="myWrapper" method="post">
-                            <input type="hidden" name="page" value="${page}"/>
+                        <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">
+                            <input type="hidden" name="page" value="${ubicacionActualizacionRequest.page}"/>
 
-                            <table id="dataTable" class="display" style="width:100%">
+                            <table id="dataTableOrderDesc" class="display" style="width:100%">
                                 <thead>
                                     <th>ID Ubicacion</th>
                                     <th class="text-center">Editar</th>
@@ -64,16 +64,18 @@
                             </table>
                             <div class="row pt-4 px-2">
                                 <div class="col-6">
-
 <%--                                        <tags:paginador page="${page}" formName="myWrapper" noMorePages="${Integer.valueOf(ubicacionActualizaciones.size() / 10) + Integer.valueOf(ubicacionActualizaciones.size() % 10 >= 1 ? 1 : 0)}"/>--%>
-                                        <tags:paginador page="${page}" formName="myWrapper"></tags:paginador>
+                                        <tags:paginador page="${ubicacionActualizacionRequest.page}" formName="myWrapper"/>
 
                                         <a href="../tablas" class="btn btn-secondary btn-fill pull-left mr-3"><i class="fas fa-angle-double-left pr-2"></i>Volver</a>
 
                                         <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
-
                                 </div>
                             </div>
+
+                            <%--Modal filtrar campos--%>
+                            <jsp:include page="../modals/filterUbicacionAct.jsp"/>
+
                         </form:form>
                     </div>
                 </div>
@@ -82,6 +84,13 @@
         </div>
     </div>
 </div>
+
+<li class="nav-item more-options" style="display: none">
+    <a href="#" class="nav-link" onclick="openModal('searchModalUbiAct')">
+        <i class="nc-icon nc-zoom-split"></i>
+        <span class="d-lg-block">&nbsp;Buscar</span>
+    </a>
+</li>
 <script>
     var element = document.getElementById("geoplanning");
     element.classList.add("active");

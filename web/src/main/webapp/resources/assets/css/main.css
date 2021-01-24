@@ -956,3 +956,9 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 /* Toggle switch end*/
+
+.selectStyle button{
+    border-color:#e3e3e3;
+    border-width: 1px;
+    color:black;
+}

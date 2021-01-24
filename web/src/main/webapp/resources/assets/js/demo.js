@@ -182,7 +182,11 @@ demo = {
 
         $('#table-markers tbody>tr').each(function () {
             var id = $(this).find("td").eq(3).html();
-            var title = $(this).find("td").eq(4).html();
+            var empresa = $(this).find("td").eq(4).html();
+            var direccion = $(this).find("td").eq(5).html();
+            var localidad = $(this).find("td").eq(6).html();
+            var provincia = $(this).find("td").eq(7).html();
+            var elemento = $(this).find("td").eq(8).html();
             var lat = $(this).find("td").eq(9).html();
             var lon = $(this).find("td").eq(10).html();
             var latLong = new google.maps.LatLng(lat, lon);
@@ -194,16 +198,16 @@ demo = {
                 map: map,
                 draggable: true,
                 animation: google.maps.Animation.DROP,
-                title: id + ' - ' + title
+                title: id + ' - ' + empresa
             });
 
             var infowindow = new google.maps.InfoWindow({
-                content: title + ' ' + id
+                content: empresa + ' ' + id
             });
 
 
             marker.addListener('click',function(){
-                infowindow.setContent('<h1> '+ title +'</h1>' + '<button id="' + id +'" onclick="createCarrusel(' + id + ')" class="mapaboton" >Ver Detalles</button>');
+                infowindow.setContent('<h5> '+ direccion +'</h5><hr><p>'+id+'<br>'+empresa+'<br>'+elemento+'<br>'+localidad+'<br>'+provincia+'</p>' + '<button id="' + id +'" onclick="createCarrusel(' + id + ')" class="mapaboton btn btn-secundary btn-sm btn-fill" ><i class="fas fa-camera"></i> Imagenes</button>');
 
 
                 infowindow.open(map,this);
@@ -427,28 +431,90 @@ function centerFromMarker(id) {
 }
 
 
-function showMap(lat, lon){
-    var latLong = new google.maps.LatLng(lat, lon);
+function showMap(lat, lon , mapId, searchInputId){
+    var latLng;
+
+    if(lat === "" || lon === ""){
+
+        var address = document.getElementById("newAddress").value;
+        var localidadSelected = document.getElementById("select-localidades").options[document.getElementById("select-localidades").selectedIndex].text;
+        var provinciaSelected = document.getElementById("select-provincias").options[document.getElementById("select-provincias").selectedIndex].text;
+
+        if(provinciaSelected === "-Dejar vacio-"){
+            provinciaSelected = "";
+        }
+
+        if(address !== "" || localidadSelected !== "" || provinciaSelected !== "") {
+            var newData = address + ',' + localidadSelected + ',' + provinciaSelected;
+
+            var dataToSend = {
+                "address": newData
+            };
+
+            $.ajax({
+                url: '/map/searchCoordinatesByAdress',
+                type: "GET",
+                dataType: 'json',
+                data: dataToSend,
+                async: false,
+
+                success: function (data) {
+                    latLng = new google.maps.LatLng(data.location.lat, data.location.lng);
+
+                    document.getElementById('latitud').value = data.location.lat;
+                    document.getElementById('longitud').value = data.location.lng;
+                }
+            });
+        }else{
+            latLng = new google.maps.LatLng("-34.61208928795937", "-58.3766645953125"); //Ciudad Autónoma de Buenos Aires
+        }
+
+    }else{
+        latLng = new google.maps.LatLng(lat, lon);
+    }
+
     var mapaOptions = {
-        zoom: 13,
-        center: latLong,
+        zoom: 11,
+        center: latLng,
         scrollwheel: true,
         zoomControlOptions: {
             position: google.maps.ControlPosition.LEFT_CENTER
         },
-        streetViewControl: false,
+        streetViewControl: false
     };
-    var mapa = new google.maps.Map(document.getElementById("mapa"), mapaOptions);
+
+    var mapa = new google.maps.Map(document.getElementById(mapId), mapaOptions);
 
     var marker = new google.maps.Marker({
         id: 'miId',
-        position: latLong,
+        position: latLng,
         map: mapa,
         draggable: true,
         animation: google.maps.Animation.DROP
     });
 
     marker.addListener('dragend', handleEvent);
+
+    var input = document.getElementById(searchInputId);
+
+    mapa.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var autocomplete = new google.maps.places.Autocomplete(input);
+
+    autocomplete.bindTo('bounds', mapa);
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            return;
+        }
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            mapa.fitBounds(place.geometry.viewport);
+        } else {
+            mapa.setCenter(place.geometry.location);
+            // mapa.setZoom(17);  // Why 17? Because it looks good.
+        }
+    });
 
     $('#mapModal').modal('show');
 }
@@ -458,10 +524,16 @@ $('#mapModal').modal({
 
 });
 
+function reCreateInputSearch(mapId,searchInputId){
+    var modalBody = document.getElementById(mapId).parentElement;
+    modalBody.innerHTML = modalBody.innerHTML + "<input id='"+ searchInputId + "' class='form-control col-sm-6' type='text' style='margin-top: 10px' placeholder='Ingrese una lugar ..'>";
+}
 
 function handleEvent(event) {
     document.getElementById('latitud').value = event.latLng.lat();
     document.getElementById('longitud').value = event.latLng.lng();
+    lat = event.latLng.lat();
+    lng = event.latLng.lng();
 }
 
 function handleEventToUpdate(event, marker){

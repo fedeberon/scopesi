@@ -1,8 +1,10 @@
 package com.ideaas.services.service;
 
+import com.ideaas.services.dao.FilterDao;
 import com.ideaas.services.dao.MapUbicacionActEspecialDao;
 import com.ideaas.services.domain.MapUbicacionActEspecial;
 import com.ideaas.services.domain.MapUbicacionActEspecialPK;
+import com.ideaas.services.request.MapUbiActEspecialRequest;
 import com.ideaas.services.service.interfaces.MapUbicacionActEspecialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,9 +22,12 @@ public class MapUbicacionActEspecialServiceImpl implements MapUbicacionActEspeci
 
     private MapUbicacionActEspecialDao dao;
 
+    private FilterDao filterDao;
+
     @Autowired
-    public MapUbicacionActEspecialServiceImpl(MapUbicacionActEspecialDao dao) {
+    public MapUbicacionActEspecialServiceImpl(MapUbicacionActEspecialDao dao, FilterDao filterDao) {
         this.dao = dao;
+        this.filterDao = filterDao;
     }
 
     @Override
@@ -37,7 +42,7 @@ public class MapUbicacionActEspecialServiceImpl implements MapUbicacionActEspeci
 
     @Override
     public List<MapUbicacionActEspecial> findAll(Integer pageSize, Integer pageNo, String sortBy) {
-        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
         Page<MapUbicacionActEspecial> mapUbicacionActEspeciales = dao.findAll(paging);
 
         return mapUbicacionActEspeciales.getContent();
@@ -50,5 +55,10 @@ public class MapUbicacionActEspecialServiceImpl implements MapUbicacionActEspeci
         return  StreamSupport
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MapUbicacionActEspecial> findAll(MapUbiActEspecialRequest mapUbiActEspecialRequest) {
+        return filterDao.find(mapUbiActEspecialRequest);
     }
 }

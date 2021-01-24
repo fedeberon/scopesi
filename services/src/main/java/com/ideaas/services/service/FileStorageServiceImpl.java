@@ -2,22 +2,24 @@ package com.ideaas.services.service;
 
 
 import com.ideaas.services.bean.FileStorageProperties;
+import com.ideaas.services.bean.Image;
 import com.ideaas.services.exception.FileStorageException;
 import com.ideaas.services.exception.MyFileNotFoundException;
 import com.ideaas.services.service.interfaces.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -25,9 +27,15 @@ import java.nio.file.StandardCopyOption;
  */
 
 @Service
-public class FileStorageServiceImpl  implements FileStorageService {
+public class FileStorageServiceImpl implements FileStorageService {
 
     private final Path fileStorageLocation;
+
+    @Value("${folderImage}")
+    private String folderImage;
+
+    @Value("${urlFileServer}")
+    private String urlFileServer;
 
     @Autowired
     public FileStorageServiceImpl(FileStorageProperties fileStorageProperties) {
@@ -39,6 +47,46 @@ public class FileStorageServiceImpl  implements FileStorageService {
         } catch (Exception ex) {
             throw new FileStorageException("Could not create the directory where the uploaded files will be stored.", ex);
         }
+    }
+
+    @Override
+    public List<Image> readFiles(Long idEmpresa, Long idUbicacion) {
+
+        final List<Image> images = new ArrayList();
+        String path = folderImage.concat(idEmpresa.toString());
+
+
+        try {
+            Files.walkFileTree(Paths.get(path), new SimpleFileVisitor<Path>() {
+                @Override
+                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+                    try {
+                        String url = urlFileServer.concat(idEmpresa.toString()).concat(File.separator).concat(file.getFileName().toString());
+                        String nameImage = file.getFileName().toString().substring(0, file.getFileName().toString().indexOf("."));
+
+                        if (file.getFileName().toString().contains("(")) {
+                            nameImage = file.getFileName().toString().substring(0, file.getFileName().toString().indexOf("("));
+                        }
+
+                        images.add(new Image(url, nameImage,false));
+                    } finally {
+                        return FileVisitResult.CONTINUE;
+                    }
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<Image> imageOfUbicacion = new ArrayList<>();
+        images.forEach(image -> {
+            if (image.getName().equals(idUbicacion.toString())) {
+                imageOfUbicacion.add(image);
+            }
+        });
+
+        return imageOfUbicacion;
     }
 
     public String storeFile(MultipartFile file, String folder, String fileName) {
@@ -78,8 +126,8 @@ public class FileStorageServiceImpl  implements FileStorageService {
 
 
     @Override
-    public void delete(String fileName) {
-        Path fileToDeletePath = this.fileStorageLocation.resolve(fileName);
+    public void delete(String idEmpresa , String fileName) {
+        Path fileToDeletePath = this.fileStorageLocation.resolve(idEmpresa.concat("//").concat(fileName));
         try {
             Files.delete(fileToDeletePath);
         } catch (IOException e) {

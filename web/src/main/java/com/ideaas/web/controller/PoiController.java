@@ -3,19 +3,27 @@ package com.ideaas.web.controller;
 import com.ideaas.services.bean.Wrapper;
 import com.ideaas.services.domain.MapPoi;
 import com.ideaas.services.domain.MapPoiEntidad;
+import com.ideaas.services.domain.MapPoiSector;
 import com.ideaas.services.domain.MapProvincia;
+import com.ideaas.services.request.MapPoiRequest;
 import com.ideaas.services.service.interfaces.MapPoiEntidadService;
+import com.ideaas.services.service.interfaces.MapPoiSectorService;
 import com.ideaas.services.service.interfaces.MapPoiService;
 import com.ideaas.services.service.interfaces.MapProvinciaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("poi")
@@ -24,14 +32,21 @@ public class PoiController {
     private MapPoiService mapPoiService;
     private MapPoiEntidadService mapPoiEntidadService;
     private MapProvinciaService mapProvinciaService;
+    private MapPoiSectorService mapPoiSectorService;
 
     private static final Boolean INACTIVE = true;
 
     @Autowired
-    public PoiController(MapPoiService mapPoiService, MapPoiEntidadService mapPoiEntidadService, MapProvinciaService mapProvinciaService) {
+    public PoiController(MapPoiService mapPoiService, MapPoiEntidadService mapPoiEntidadService, MapProvinciaService mapProvinciaService, MapPoiSectorService mapPoiSectorService) {
         this.mapPoiService = mapPoiService;
         this.mapPoiEntidadService = mapPoiEntidadService;
         this.mapProvinciaService = mapProvinciaService;
+        this.mapPoiSectorService = mapPoiSectorService;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.setAutoGrowCollectionLimit(1024);
     }
 
     @GetMapping("{id}")
@@ -146,13 +161,42 @@ public class PoiController {
         return "ubicacion/map";
     }
 
+    @RequestMapping(value = "search", params = "paginate")
+    public String listPaginated(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
+        wrapper.getMapPoiRequest().setPage(wrapper.getPage());
+        model.addAttribute("pois", mapPoiService.findAll(wrapper.getMapPoiRequest()));
+        model.addAttribute("mapPoiRequest", wrapper.getMapPoiRequest());
+
+        return "poi/list";
+    }
+
+    @RequestMapping(value = "findEntidad", method = RequestMethod.POST)
+    public ResponseEntity<List<MapPoiEntidad>> findByMapPoiSector(@RequestParam String poiSectorDescripciones, Model model){
+        List<String> listPoiSectorDescripciones = Stream.of(poiSectorDescripciones.split(",")).collect(Collectors.toList());
+
+        List<MapPoiEntidad> list = mapPoiEntidadService.findByMapPoiSector_DescripcionIn(listPoiSectorDescripciones);
+        model.addAttribute("poiEntidades", list);
+
+        return new ResponseEntity<>( list , HttpStatus.OK);
+    }
+
+    @ModelAttribute("mapPoiRequest")
+    public MapPoiRequest mapPoiRequest(){
+        return new MapPoiRequest();
+    }
+
     @ModelAttribute("poiEntidades")
-    public List<MapPoiEntidad> provincias(){
+    public List<MapPoiEntidad> poiEntidades(){
         return mapPoiEntidadService.findAll();
     }
 
+    @ModelAttribute("poiSectores")
+    public List<MapPoiSector> poiSectores(){
+        return mapPoiSectorService.findAll();
+    }
+
     @ModelAttribute("provincias")
-    public List<MapProvincia> poiSectores(){
+    public List<MapProvincia> provincias(){
         return mapProvinciaService.findAll();
     }
 

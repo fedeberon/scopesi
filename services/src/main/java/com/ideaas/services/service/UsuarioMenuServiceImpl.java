@@ -49,4 +49,13 @@ public class UsuarioMenuServiceImpl implements UsuarioMenuService {
                 .stream(iterator.spliterator(), false)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public  List<UsuarioMenu> findByUsuarioMenuId_IdUsuario(Long idUsuario){
+        Iterable<UsuarioMenu> iterator = dao.findByUsuarioMenuId_IdUsuario(idUsuario);
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+    }
 }

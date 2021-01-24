@@ -213,6 +213,83 @@ $(document).ready(function() {
 
     } );
 
+    var dataTableOrderDesc = $('#dataTableOrderDesc').DataTable( {
+        'scrollX': '400px',
+        dom: "Bfrtip",
+        order: [[ 0, "desc" ]],
+        searching: true,
+        paging: false,
+        bInfo: false,
+        language:{
+            "info": "Mostrando _START_ a _END_ de _TOTAL_",
+            "infoEmpty":    "Mostrando 0 de 0",
+            "lengthMenu":   "Mostrar _MENU_",
+            "infoFiltered": "(filtrado de _MAX_ entradas totales)",
+            "search":   "Buscar:",
+            "paginate": {
+                "first":      "First",
+                "last":       "Last",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+        },
+        buttons: [
+            {
+                extend: 'pdfHtml5',
+                text: 'PDF',
+                orientation: 'landscape',
+                exportOptions: {
+                    columns: ':visible'
+                },
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'excelHtml5',
+                text: 'Excel',
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'current'
+                    }
+                },
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'colvis',
+                text: 'Filtro de Columnas',
+                columnText: function (dt, idx, title) {
+                    return (idx + 1) + ': ' + title;
+                },
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'copyHtml5',
+                text: 'Copiar en Portapapeles',
+                copySuccess: {
+                    1: "Copied one row to clipboard",
+                    _: "Copied %d rows to clipboard"
+                },
+                exportOptions: {
+                    columns: ':visible'
+                },
+                copyTitle: 'Copiar en portapapeles',
+                copyKeys: 'Press <i>ctrl</i> or <i>\u2318</i> + <i>C</i> to copy the table data<br>to your system clipboard.<br><br>To cancel, click this message or press escape.',
+                className: 'btn btn-primary'
+            },
+            {
+                extend: 'print',
+                text: 'Imprimir',
+                exportOptions: {
+                    columns: ':visible',
+                    modifier: {
+                        page: 'current'
+                    }
+                },
+                className: 'btn btn-primary'
+            }
+        ],
+    } );
+
     dataTableToCompleteList.buttons().container()
         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
 

@@ -13,14 +13,14 @@
     }
 
 
-    .table-ubicaciones{
+    .tabla-ubicaciones{
         position: absolute;
         margin-top: -150px;
         background-color: white;
         opacity: 0.8;
         min-width: 98%;
         width: 98%;
-        height: 52%;
+        height: 62%;
         overflow: scroll;
         border-radius: 3px;
         margin-left: 1vh;
@@ -72,7 +72,7 @@
     </div>
 
 
-    <div class="table-ubicaciones" id="table-ubicaciones">
+    <div class="tabla-ubicaciones">
         <img id="arrowUp" src="/resources/assets/img/icons/arrowUp.png" style="width:3%; z-index: 500;">
         <img id="arrowDown" src="/resources/assets/img/icons/arrowDown.png" style="width:4%; display: none">
 
@@ -129,6 +129,12 @@
                                 <div class="dropdown-item cursorPointer" onclick="initPolygon(this,'${bo.id}')">
                                     <i class="fas fa-eye"></i><a>&nbsp;&nbsp;Ver poligono</a>
                                     <input type="hidden" id="pol-${bo.id}" value='${bo.polygonCoordinates}'>
+                                </div>
+
+                                <div class="dropdown-divider"></div>
+
+                                <div class="dropdown-item cursorPointer" onclick="deletePolygon('${bo.id}')">
+                                    <i class="fas fa-trash"></i><a>&nbsp;&nbsp;Borrar poligono</a>
                                 </div>
 
                                 <div class="dropdown-divider"></div>

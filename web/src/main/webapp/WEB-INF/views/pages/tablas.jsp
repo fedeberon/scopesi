@@ -82,7 +82,7 @@
                 <div class="card border  rounded">
                     <div class="card-header">
                         <h4 class="font-italic mt-0">
-                            <a href="/poi/listComplete" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">POI</a>
+                            <a href="/poi/list" class="card-link"><img src="/resources/assets/img/icons/iconfinder_document-financial-business-finance_3522170.png" class="iconTable">POI</a>
                         </h4>
                     </div>
                 </div>

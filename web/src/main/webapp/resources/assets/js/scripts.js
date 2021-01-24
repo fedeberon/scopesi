@@ -2,6 +2,8 @@
  * Created by federicoberon on 19/11/2019.
  */
 
+var emptyImages = false;
+
 function disabledOptionsNotFounds(){
     $('.modal-body').css('opacity', '0.3');
     $('.load').show();
@@ -85,10 +87,15 @@ function createCarrusel(id) {
     $('.content').css('opacity', '0.3');
 
     $.ajax( {
-        url: '/api/ubicacion/' + id,
+        url: 'http://localhost:80/api/fotos_map/setImagesUbicacion/' + id,
+        type: 'GET',
         dataType: 'json',
         success: function(data) {
             $('.data-ubicacion').empty();
+
+            if(data.images.length === 0){
+                emptyImages = true;
+            }else{ emptyImages = false}
 
             var tableUbicacionInfo = createTableUbicacionInformation(data);
 
@@ -111,7 +118,7 @@ function createCarrusel(id) {
                         class : 'fancybox hidden',
                         rel : 'group',
                         href: data.images[i].url,
-                        'data-caption': data.mapEmpresa.descripcion,
+                        'data-caption': data.id + " - " + data.mapEmpresa.descripcion,
                         'data-fancybox':'gallery',
                         'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
                     });
@@ -129,13 +136,29 @@ function createCarrusel(id) {
             $('.content').css('opacity', '1');
             $('#modal-info-marker').modal('show');
 
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            $('.load').hide();
+            $('.map-container').css('opacity', '1');
+            $('.content').css('opacity', '1');
+
+            alert("Status: " + textStatus);
         }
     });
 }
 
 function showImages() {
+    if(emptyImages === true){
 
-    $.fancybox.defaults.btnTpl.fb = '<button style="font-size: small" data-fancybox-fb class="fancybox-button fancybox-button--fb" title="Delete">' +
+        $.notify({
+            title: '<strong>Ups!</strong>',
+            message: 'No hay imagenes cargadas para esta ubicacion!'
+        }, {
+            timer: 8000,
+            z_index: 2031,
+        });
+    }
+    $.fancybox.defaults.btnTpl.fb = '<button style="font-size: small" data-fancybox-fb onclick="initDeleteFile()" class="fancybox-button fancybox-button--fb" title="Delete">' +
         '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 512">' +
         '<path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>' +
         '</svg>' +
@@ -152,9 +175,10 @@ function showImages() {
     });
 }
 
-// Make buttons clickable using event delegation
-$('body').on('click', '[data-fancybox-fb]', function() {
+
+function initDeleteFile() {
     var idUbicacion = document.querySelector("#idUbicacion").value;
+    var idEmpresa = document.querySelector("#idEmpresa").value;
     var src = $.fancybox.getInstance().current.src;
     var url = src.split('/');
     var fileName = url[url.length - 1];
@@ -169,7 +193,7 @@ $('body').on('click', '[data-fancybox-fb]', function() {
     modalConfirm2(function(confirm){
         if(confirm){
             //Acciones si el usuario confirma
-            deleteFile(fileName, functionSuccess);
+            deleteFile(idEmpresa,fileName, functionSuccess);
             $("#modal-confirmacion").modal('hide');
             $.fancybox.close();
 
@@ -178,7 +202,7 @@ $('body').on('click', '[data-fancybox-fb]', function() {
             $("#modal-confirmacion").modal('hide');
         }
     });
-});
+}
 
 
 function createTableUbicacionInformation(data){
@@ -208,13 +232,14 @@ function createTableUbicacionInformation(data){
 }
 
 
-function deleteFile(fileName, functionSuccess) {
+function deleteFile(idEmpresa, fileName, functionSuccess) {
     var dataToSend = {
+        "idEmpresa" : idEmpresa,
         "fileName" : fileName
     };
 
     $.ajax( {
-        url: '/deleteFile/',
+        url: 'http://localhost:8080/api/fotos_map/deleteFile',
         type: "POST",
         dataType: 'json',
         data: dataToSend,
@@ -311,9 +336,6 @@ function actualizarCoordenadas(address,localidad, provincia, id){
         }
     });
 }
-
-
-
 
 function guardarCoordenadas(id) {
     var lat = $("#" + id + "-lat").html();
@@ -528,4 +550,116 @@ function submitEdit(id) {
     $("#wrapperId").val(id);
 
     $("#sudmit-" + id).click();
+}
+
+function deletePolygon(idUbicacion) {
+
+    var dataToSend = {
+        "idUbicacion": idUbicacion
+    };
+
+    $.ajax({
+        url: '/map/deletePolygon',
+        type: "POST",
+        dataType: 'json',
+        data: dataToSend,
+
+        success: function () {
+            $.notify({
+                title: '<strong>Poligono borrado exitosamente!</strong>',
+                message: 'Se ha borrado correctamente el poligono!'
+            }, {
+                type: 'success',
+                timer: 8000
+            });
+
+        },
+        error: function (data, textStatus, jqXHR) {
+            $.notify({
+                title: '<strong>Hubo un problema!</strong>',
+                message: 'Se produjo un error al intentar borrar el poligono.'
+            }, {
+                type: 'danger'
+            });
+        }
+    });
+}
+
+function openModal(id){
+    $('#' + id ).modal('show')
+}
+
+function closeModal(id){
+    $('#' + id ).modal('hide')
+}
+
+function actualizarEntidades(){
+
+    $('.modal-body').css('opacity', '0.3');
+    $('.load').show();
+
+    var poiSectorSelected = $('#select-poiSectores').val().toString();
+
+    if(poiSectorSelected === ""){
+        $('.load').hide();
+        $('.modal-body').css('opacity', '1');
+
+        $.notify({
+            title: '<strong>Error al filtrar Entidades!</strong>',
+            message: 'Por favor seleccione al menos un [POIs Sector].'
+        }, {
+            type: 'warning',
+            z_index: 2031,
+        });
+
+        return;
+    }
+
+    var dataToSend = {
+        "poiSectorDescripciones" : poiSectorSelected
+    };
+
+    $.ajax({
+        url: '/poi/findEntidad',
+        type: "POST",
+        dataType: 'json',
+        data: dataToSend,
+
+        success: function( data ) {
+            $('.load').hide();
+            $('.modal-body').css('opacity', '1');
+
+            var selectPoiEntidad = document.getElementById("select-poiEntidades");
+            var selectPoiEntidadOptions = selectPoiEntidad.options;
+            var newOptions = [];
+            var lengthOptions = selectPoiEntidadOptions.length;
+
+            for(var i = 0; i < lengthOptions; i++ ) {
+                selectPoiEntidadOptions.remove(selectPoiEntidadOptions[0]);
+            }
+
+            data.map(function (option) {
+                var oneOption  = {text: option.descripcion, value: option.descripcion};
+                newOptions.push(oneOption);
+            });
+
+            newOptions.forEach(function(option){
+                selectPoiEntidadOptions.add(new Option(option.text, option.value, option.selected))
+            });
+
+            $(selectPoiEntidad).selectpicker('refresh').trigger('change');
+        },
+        error: function () {
+            $('.load').hide();
+            $('.modal-body').css('opacity', '1');
+
+            $.notify({
+                title: '<strong>Hubo un problema!</strong>',
+                message: 'Se produjo un error al intentar cargar el campo de Entidad.'
+            }, {
+                type: 'danger'
+            });
+        }
+
+    });
 }

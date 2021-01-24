@@ -48,10 +48,11 @@
                                 <th>Telefono</th>
                                 <th>Estado</th>
                                 <th>Tipo de usuario</th>
-                                <th>Cargo</th>
+                                <th>Empresa</th>
                                 <th>C.Inversion</th>
                                 <th>C.Auditoria</th>
                                 <th>C.Mapping</th>
+                                <th>Fecha Vencimiento</th>
                             </thead>
 
                             <tbody>
@@ -81,6 +82,7 @@
                                     <td>${bo.contratoInv.descripcion}</td>
                                     <td>${bo.contratoAud.descripcion}</td>
                                     <td>${bo.contratoMap.descripcion}</td>
+                                    <td>${bo.fechaVencimiento}</td>
                                 </tr>
 
                             </c:forEach>

@@ -1,7 +1,9 @@
 package com.ideaas.web.controller;
 
+import com.ideaas.services.bean.Wrapper;
 import com.ideaas.services.domain.MapUbicacionActEspecial;
 import com.ideaas.services.domain.MapUbicacionActEspecialPK;
+import com.ideaas.services.request.MapUbiActEspecialRequest;
 import com.ideaas.services.service.interfaces.MapUbicacionActEspecialService;
 import com.ideaas.services.service.interfaces.MapUbicacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,6 +144,26 @@ public class UbicacionActEspecialController {
         return "redirect:/ubicacionActEspecial/show?id={idUbicacion}&fechaAlta={fechaAlta}";
     }
 
+    @RequestMapping(value = "search", params = "paginate")
+    public String listPaginated(@ModelAttribute("myWrapper") Wrapper wrapper, Model model){
+        wrapper.getMapUbiActEspecialRequest().setPage(wrapper.getPage());
+        model.addAttribute("ubicacionActEspeciales", mapUbicacionActEspecialService.findAll(wrapper.getMapUbiActEspecialRequest()));
+        model.addAttribute("mapUbiActEspecialRequest", wrapper.getMapUbiActEspecialRequest());
+
+        return "ubicacionActEspecial/list";
+    }
+
     @ModelAttribute("mapUbicacionActEspecial")
     public MapUbicacionActEspecial get(){return new MapUbicacionActEspecial();}
+
+    @ModelAttribute("mapUbiActEspecialRequest")
+    public MapUbiActEspecialRequest mapUbiActEspecialRequest(){
+        return new MapUbiActEspecialRequest();
+    }
+
+    @ModelAttribute("myWrapper")
+    public Wrapper wrapper(){
+        return new Wrapper();
+    }
+
 }

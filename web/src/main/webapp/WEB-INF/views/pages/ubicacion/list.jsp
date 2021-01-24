@@ -324,7 +324,7 @@
 <!-- Modal -->
 <div class="modal fade" id="modal-info-marker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content" style="margin-top: 0px;">
+        <div class="modal-content" style="margin-top: 10%;">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Datos de la ubicaci&oacute;n</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -423,14 +423,6 @@
 <script>
     var element = document.getElementById("geoplanning");
     element.classList.add("active");
-
-    function openModal(id){
-        $('#' + id ).modal('show')
-    }
-
-    function closeModal(id){
-        $('#' + id ).modal('hide')
-    }
 
     $(document).ready(function(){
 

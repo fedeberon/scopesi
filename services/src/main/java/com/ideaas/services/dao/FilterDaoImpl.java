@@ -1,8 +1,14 @@
 package com.ideaas.services.dao;
 
 import com.ideaas.services.bean.DateTimeUtil;
+import com.ideaas.services.domain.MapPoi;
 import com.ideaas.services.domain.MapUbicacion;
+import com.ideaas.services.domain.MapUbicacionActEspecial;
+import com.ideaas.services.domain.MapUbicacionActualizacion;
+import com.ideaas.services.request.MapPoiRequest;
+import com.ideaas.services.request.MapUbiActEspecialRequest;
 import com.ideaas.services.request.MapUbicacionRequest;
+import com.ideaas.services.request.UbicacionActualizacionRequest;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
+@SuppressWarnings("Duplicates")
 @Repository
 public class FilterDaoImpl implements FilterDao {
 
@@ -25,6 +32,19 @@ public class FilterDaoImpl implements FilterDao {
 
     private static final String LEFT_PARENTHESIS = "(";
     private static final String RIGTH_PARENTHESIS = ")";
+
+    private String where(){
+        return WHERE;
+    }
+
+
+    private String and(){
+        return AND;
+    }
+
+    private String in(){
+        return IN;
+    }
 
     @PersistenceContext
     EntityManager entityManager;
@@ -172,12 +192,6 @@ public class FilterDaoImpl implements FilterDao {
         return query.getResultList();
     }
 
-
-    public Boolean getAllResults(MapUbicacionRequest request){
-        return !request.getMaxResults().equals("-1");
-    }
-
-
     @Override
     public List<MapUbicacion> filterSearchUbicacion(Map<String, String> clauses){
         StringBuilder builder = new StringBuilder();
@@ -202,19 +216,127 @@ public class FilterDaoImpl implements FilterDao {
         return query.getResultList();
     }
 
+    @Override
+    public List<MapUbicacionActualizacion> find(UbicacionActualizacionRequest request) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("select u from MapUbicacionActualizacion u ");
+        boolean isFirstClause = true;
+        boolean isLastClause = false;
 
-    private String where(){
-        return WHERE;
+        if(Objects.nonNull(request.getIdsSearch()) && !request.getIdsSearch().trim().isEmpty()){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" u.id.mapUbicacionId in (:idsSearch)");
+
+            isFirstClause = false;
+        }
+
+        isLastClause = true;
+
+        if(isLastClause){
+            builder.append("order by u.id.mapUbicacionId desc");
+        }
+
+        Query query = entityManager.createQuery(builder.toString());
+
+        if(Objects.nonNull(request.getIdsSearch()) && !request.getIdsSearch().isEmpty()){
+            List<String> idsString = Arrays.asList(request.getIdsSearch().split("\\s*,\\s*"));
+            List<Long> idsSearch = new ArrayList<>();
+
+            for(String s : idsString) idsSearch.add(Long.valueOf(s));
+
+            query.setParameter("idsSearch", idsSearch );
+        }
+        if(getAllResultsUbiActualizacion(request)){
+            Integer maxResults = Integer.valueOf(request.getMaxResults());
+
+            query.setMaxResults(maxResults);
+            query.setFirstResult(request.getPage() * maxResults);
+        }
+
+        return query.getResultList();
     }
 
+    @Override
+    public List<MapUbicacionActEspecial> find(MapUbiActEspecialRequest request) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("select u from MapUbicacionActEspecial u ");
+        boolean isFirstClause = true;
+        boolean isLastClause = false;
 
-    private String and(){
-        return AND;
+        if(Objects.nonNull(request.getIdsSearch()) && !request.getIdsSearch().trim().isEmpty()){
+            builder.append(isFirstClause ? where() : and());
+            builder.append(" u.id.mapUbicacionId in (:idsSearch)");
+
+            isFirstClause = false;
+        }
+
+        isLastClause = true;
+
+        if(isLastClause){
+            builder.append("order by u.id.mapUbicacionId desc");
+        }
+
+        Query query = entityManager.createQuery(builder.toString());
+
+        if(Objects.nonNull(request.getIdsSearch()) && !request.getIdsSearch().isEmpty()){
+            List<String> idsString = Arrays.asList(request.getIdsSearch().split("\\s*,\\s*"));
+            List<Long> idsSearch = new ArrayList<>();
+
+            for(String s : idsString) idsSearch.add(Long.valueOf(s));
+
+            query.setParameter("idsSearch", idsSearch );
+        }
+        if(getAllResultsUbiActEspecial(request)){
+            Integer maxResults = Integer.valueOf(request.getMaxResults());
+
+            query.setMaxResults(maxResults);
+            query.setFirstResult(request.getPage() * maxResults);
+        }
+
+        return query.getResultList();
     }
 
-    private String in(){
-        return IN;
+    @Override
+    public List<MapPoi> find(MapPoiRequest request) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("select u from MapPoi u ");
+        boolean isFirstClause = true;
+
+        if(Objects.nonNull(request.getMapPoiEntidad()) && !request.getMapPoiEntidad().trim().isEmpty()){
+            builder.append(isFirstClause ? where() : and());
+            builder.append("u.mapPoiEntidad.descripcion in (:mapPoiEntidad)");
+
+            isFirstClause = false;
+        }
+
+        Query query = entityManager.createQuery(builder.toString());
+
+        if(Objects.nonNull(request.getMapPoiEntidad()) && !request.getMapPoiEntidad().trim().isEmpty()){
+            query.setParameter("mapPoiEntidad", Arrays.asList(request.getMapPoiEntidad().split(",")));
+        }
+        if(getAllResultsMapPoi(request)){
+            Integer maxResults = Integer.valueOf(request.getMaxResults());
+
+            query.setMaxResults(maxResults);
+            query.setFirstResult(request.getPage() * maxResults);
+        }
+
+        return query.getResultList();
     }
 
+    public Boolean getAllResults(MapUbicacionRequest request){
+        return !request.getMaxResults().equals("-1");
+    }
 
+    public Boolean getAllResultsUbiActualizacion(UbicacionActualizacionRequest request){
+        return !request.getMaxResults().equals("-1");
+    }
+
+    public Boolean getAllResultsUbiActEspecial(MapUbiActEspecialRequest request){
+        return !request.getMaxResults().equals("-1");
+    }
+
+    public Boolean getAllResultsMapPoi(MapPoiRequest request){
+        return !request.getMaxResults().equals("-1");
+    }
 }

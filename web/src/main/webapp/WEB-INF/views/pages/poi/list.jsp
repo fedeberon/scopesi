@@ -1,20 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+
 
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="card strpied-tabled-with-hover">
+                <div class="card striped-tabled-with-hover">
                     <div class="card-header ">
                         <h4 class="card-title">POI</h4>
                         <p class="card-category">lista</p>
                     </div>
                     <div class="card-body table-full-width table-responsive">
                         <form:form action="search" modelAttribute="myWrapper" name="myWrapper" method="post">
-                            <table id="dataTableToCompleteList" class="display" style="width:100%">
+                            <input type="hidden" name="page" value="${mapPoiRequest.page}"/>
+
+                            <table id="dataTable" class="display" style="width:100%">
                             <thead>
                             <th>
                                 <div class="form-check">
@@ -92,28 +94,34 @@
                         </table>
                         <div class="row pt-4 px-2">
                             <div class="col-6">
+                                <tags:paginador page="${mapPoiRequest.page}" formName="myWrapper"/>
 
-                                    <form name="search" action="list" method="get">
-                                        <input type="hidden" name="page" value="${page}"/>
+                                <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
-<%--                                        <tags:paginador page="${page}" formName="search"/>--%>
-
-                                        <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
-
-                                    </form>
                                 <button type="submit" name="maps" class="btn btn-info btn-fill"><i class=""></i>&nbsp;Mapa</button>
-
-
                             </div>
-                            </form:form>
-
                         </div>
+
+                        <%--Modal filtrar campos--%>
+                        <jsp:include page="../modals/filterMapPoi.jsp"/>
+
+                        </form:form>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<li class="nav-item more-options" style="display: none">
+    <a href="#" class="nav-link" onclick="openModal('filterMapPoi')">
+        <i class="nc-icon nc-zoom-split"></i>
+        <span class="d-lg-block">&nbsp;Buscar</span>
+    </a>
+</li>
+
 <script>
     var element = document.getElementById("geoplanning");
     element.classList.add("active");

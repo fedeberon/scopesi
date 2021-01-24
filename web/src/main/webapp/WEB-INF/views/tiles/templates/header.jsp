@@ -71,6 +71,24 @@
                 dateFormat: 'dd-mm-yy'
             });
         });
+
+        // //event to display the map search box in full screen
+        // document.onfullscreenchange = function ( event ) {
+        //     var target = event.target;
+        //     var pacContainerElements = document.getElementsByClassName("pac-container");
+        //     if (pacContainerElements.length > 0) {
+        //         var pacContainer = document.getElementsByClassName("pac-container")[0];
+        //         if (pacContainer.parentElement === target) {
+        //             console.log("Exiting FULL SCREEN - moving pacContainer to body");
+        //             document.getElementsByTagName("body")[0].appendChild(pacContainer);
+        //         } else {
+        //             console.log("Entering FULL SCREEN - moving pacContainer to target element");
+        //             target.appendChild(pacContainer);
+        //         }
+        //     } else {
+        //         console.log("FULL SCREEN change - no pacContainer found");
+        //
+        //     }};
     </script>
 
     <style>
@@ -80,13 +98,14 @@
             width: 98%;
             margin: 0 auto;
         }
-
         div.ColVis {
             float: left;
         }
-
         .modal-content {
             margin-top: -20%;
+        }
+        .pac-container {
+            z-index: 1050 !important;
         }
 
     </style>

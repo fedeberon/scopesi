@@ -24,7 +24,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
 
     private FilterDao filterDao;
 
-    private FileService fileService;
+    private FileStorageService fileStorageService;
 
     private MapEmpresaService mapEmpresaService;
 
@@ -45,10 +45,10 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
     private GoogleMapsService googleMapsService;
 
     @Autowired
-    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileService fileService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, MapLocalidadService mapLocalidadService, MapUbicacionAlturaService mapUbicacionAlturaService, MapUbicacionVisibilidadService mapUbicacionVisibilidadService,GoogleMapsService googleMapsService) {
+    public MapUbicacionServiceImpl(MapUbicacionDao dao, FilterDao filterDao, FileStorageService fileStorageService, MapEmpresaService mapEmpresaService, MapElementoService mapElementoService, MapFormatoService mapFormatoService, MapMedioService mapMedioService, MapProvinciaService mapProvinciaService, MapLocalidadService mapLocalidadService, MapUbicacionAlturaService mapUbicacionAlturaService, MapUbicacionVisibilidadService mapUbicacionVisibilidadService,GoogleMapsService googleMapsService) {
         this.dao = dao;
         this.filterDao = filterDao;
-        this.fileService = fileService;
+        this.fileStorageService = fileStorageService;
         this.mapEmpresaService = mapEmpresaService;
         this.mapElementoService = mapElementoService;
         this.mapFormatoService = mapFormatoService;
@@ -63,7 +63,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
     @Override
     public MapUbicacion get(Long id) {
         MapUbicacion  ubicacion = dao.findById(id).get();
-        ubicacion.setImages(fileService.readFiles(ubicacion));
+        ubicacion.setImages(fileStorageService.readFiles(ubicacion.getMapEmpresa().getId() , ubicacion.getId()));
 
         return ubicacion;
     }
@@ -82,7 +82,7 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
     public List<MapUbicacion> findAll(Integer pageSize, Integer pageNo, String sortBy) {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Page<MapUbicacion> mapUbicaciones = dao.findAll(paging);
-        mapUbicaciones.forEach(mapUbicacion -> mapUbicacion.setImages(fileService.readFiles(mapUbicacion)));
+        mapUbicaciones.forEach(mapUbicacion -> mapUbicacion.setImages(fileStorageService.readFiles(mapUbicacion.getMapEmpresa().getId() , mapUbicacion.getId())));
 
         return mapUbicaciones.getContent();
     }
@@ -166,5 +166,15 @@ public class MapUbicacionServiceImpl implements MapUbicacionService{
         MapUbicacion ubicacion = this.get(request.getId());
         ubicacion.setPolygonLatLong(request.getPolygonLatLong());
         save(ubicacion);
+    }
+
+    @Override
+    public MapUbicacion deletePolygonLatLong(Long idUbicacion) {
+        MapUbicacion ubicacion = dao.findById(idUbicacion).orElse(null);
+        if(ubicacion != null){
+            ubicacion.setPolygonLatLong(null);
+            save(ubicacion);
+        }
+        return ubicacion;
     }
 }

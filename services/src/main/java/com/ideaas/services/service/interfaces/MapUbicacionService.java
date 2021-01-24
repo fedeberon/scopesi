@@ -25,4 +25,5 @@ public interface MapUbicacionService {
 
     void savePolygon(MapUbicacionRequest request);
 
+    MapUbicacion deletePolygonLatLong(Long idUbicacion);
 }

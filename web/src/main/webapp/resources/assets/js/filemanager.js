@@ -20,12 +20,12 @@ function uploadSingleFile(file) {
     formData.append("idUbicacion", document.querySelector("#idUbicacion").value);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../uploadFile");
+    xhr.open("POST", "http://localhost:8080/api/fotos_map/uploadFile");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
         var response = "";
-        if(xhr.status == 200) {
+        if(xhr.status === 200) {
             response = JSON.parse(xhr.responseText);
             singleFileUploadError.style.display = "none";
             singleFileUploadSuccess.innerHTML = "<p><i class='far fa-check-circle' style='color:green'></i> Archivo subido exitosamente.</p><p>Descargar : <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
@@ -35,7 +35,7 @@ function uploadSingleFile(file) {
             console.log(response);
             singleFileUploadError.innerHTML = "<p><i class='far fa-times-circle' style='color:darkred'></i> Hubo un error.</p>";
         }
-    }
+    };
 
     xhr.send(formData);
 }
@@ -50,12 +50,12 @@ function uploadMultipleFiles(files) {
     formData.append("idUbicacion", document.querySelector("#idUbicacion").value);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../uploadMultipleFiles");
+    xhr.open("POST", "http://localhost:8080/api/fotos_map/uploadMultipleFiles");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
         var response = JSON.parse(xhr.responseText);
-        if(xhr.status == 200) {
+        if(xhr.status === 200) {
             multipleFileUploadError.style.display = "none";
             var content = "<p><i class='far fa-check-circle' style='color:green'></i> Todos los archivos subidos exitosamente.</p>";
             for(var i = 0; i < response.length; i++) {

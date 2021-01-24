@@ -14,4 +14,5 @@ public interface MapPoiEntidadService {
 
     List<MapPoiEntidad> findAll();
 
+    List<MapPoiEntidad> findByMapPoiSector_DescripcionIn(List<String> poiSectorDescripciones);
 }

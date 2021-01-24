@@ -13,4 +13,6 @@ public interface UsuarioMenuService {
     List<UsuarioMenu> findAll(Integer pageSize, Integer pageNo, String sortBy);
 
     List<UsuarioMenu> findAll();
+
+    List<UsuarioMenu> findByUsuarioMenuId_IdUsuario(Long idUsuario);
 }

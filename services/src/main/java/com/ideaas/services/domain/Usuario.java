@@ -2,8 +2,10 @@ package com.ideaas.services.domain;
 
 import com.ideaas.services.request.UsuarioMenuRequest;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -65,6 +67,9 @@ public class Usuario {
 
     @Transient
     private UsuarioMenuRequest usuarioMenuRequest;
+
+    @Column(name = "fechaVencimiento")
+    private String fechaVencimiento;
 
     public Usuario() { }
 
@@ -186,5 +191,13 @@ public class Usuario {
 
     public void setUsuarioMenuRequest(UsuarioMenuRequest usuarioMenuRequest) {
         this.usuarioMenuRequest = usuarioMenuRequest;
+    }
+
+    public String getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(String fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
     }
 }

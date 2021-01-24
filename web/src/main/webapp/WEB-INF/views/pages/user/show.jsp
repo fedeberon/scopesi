@@ -42,7 +42,7 @@
                                 <td>${usuario.tipoUsuario.descripcion}</td>
                             </tr>
                             <tr>
-                                <th>Cargo:</th>
+                                <th>Empresa:</th>
                                 <td>${usuario.cargo}</td>
                             </tr>
                             <tr>
@@ -56,6 +56,10 @@
                             <tr>
                                 <th>Contrato Mapping:</th>
                                 <td>${usuario.contratoMap.descripcion}</td>
+                            </tr>
+                            <tr>
+                                <th>Fecha Vencimiento:</th>
+                                <td>${usuario.fechaVencimiento}</td>
                             </tr>
                             </tbody>
                         </table>

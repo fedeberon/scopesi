@@ -1,5 +1,7 @@
 package com.ideaas.services.request;
 
+import com.ideaas.services.bean.RequestUtil;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -300,88 +302,67 @@ public class MapUbicacionRequest {
         this.searchValue = searchValue;
     }
 
-    private static String EMPTY = "";
-    private static String LEFT = "[";
-    private static String RIGTH = "]";
+    private RequestUtil requestUtil = new RequestUtil();
 
     public String getEmpresasSelected(){
-        if(Objects.isNull(mapEmpresa)) return EMPTY;
+        if(Objects.isNull(mapEmpresa)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(mapEmpresa);
+        return requestUtil.buildFormatValuesSelected(mapEmpresa);
     }
 
     public String getElementosSelected(){
-        if(Objects.isNull(mapElemento)) return EMPTY;
+        if(Objects.isNull(mapElemento)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(mapElemento);
+        return requestUtil.buildFormatValuesSelected(mapElemento);
     }
 
     public String getFormatosSelected(){
-        if(Objects.isNull(mapFormato)) return EMPTY;
+        if(Objects.isNull(mapFormato)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(mapFormato);
+        return requestUtil.buildFormatValuesSelected(mapFormato);
     }
 
     public String getMediosSelected(){
-        if(Objects.isNull(mapMedio)) return EMPTY;
+        if(Objects.isNull(mapMedio)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(mapMedio);
+        return requestUtil.buildFormatValuesSelected(mapMedio);
     }
 
     public String getLocalidadesSelected(){
-        if(Objects.isNull(mapLocalidad)) return EMPTY;
+        if(Objects.isNull(mapLocalidad)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(mapLocalidad);
+        return requestUtil.buildFormatValuesSelected(mapLocalidad);
     }
 
     public String getProvinciasSelected(){
-        if(Objects.isNull(mapProvincia)) return EMPTY;
+        if(Objects.isNull(mapProvincia)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(mapProvincia);
+        return requestUtil.buildFormatValuesSelected(mapProvincia);
     }
 
     public String getEstadoSelected(){
-        if(Objects.isNull(bajaLogica)) return EMPTY;
+        if(Objects.isNull(bajaLogica)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(bajaLogica);
+        return requestUtil.buildFormatValuesSelected(bajaLogica);
     }
     public String getGeolocalizacionSelected(){
-        if(Objects.isNull(latLngEmpty)) return EMPTY;
+        if(Objects.isNull(latLngEmpty)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(latLngEmpty);
+        return requestUtil.buildFormatValuesSelected(latLngEmpty);
     }
     public String getIdsSearching(){
-        if(Objects.isNull(idsSearch)) return EMPTY;
+        if(Objects.isNull(idsSearch)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(idsSearch);
+        return requestUtil.buildFormatValuesSelected(idsSearch);
     }
     public String getValueSearching(){
-        if(Objects.isNull(searchValue)) return EMPTY;
+        if(Objects.isNull(searchValue)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(searchValue);
+        return requestUtil.buildFormatValuesSelected(searchValue);
     }
     public String getMaxResultsSelected(){
-        if(Objects.isNull(maxResults)) return EMPTY;
+        if(Objects.isNull(maxResults)) return requestUtil.EMPTY;
 
-        return buildFormatValuesSelected(maxResults);
+        return requestUtil.buildFormatValuesSelected(maxResults);
     }
-
-    private String buildFormatValuesSelected(String value){
-        String returnValue = EMPTY;
-
-        String[] words = value.split(",");
-        if(words.length < 1) return value;
-
-        returnValue = returnValue.concat(LEFT);
-
-        for(String s : words){
-            returnValue = returnValue.concat("'".concat(s).concat("',"));
-        }
-
-        returnValue = returnValue.substring(0, returnValue.length() - 1);
-        returnValue = returnValue.concat(RIGTH);
-
-        return returnValue;
-    }
-
 }

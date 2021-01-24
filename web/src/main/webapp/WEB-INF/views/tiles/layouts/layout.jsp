@@ -98,6 +98,18 @@
             liveSearch: false
         });
 
+        $('#select-poiEntidades').selectpicker({
+            container: 'body',
+            dropupAuto: false,
+            liveSearch: true
+        });
+
+        $('#select-poiSectores').selectpicker({
+            container: 'body',
+            dropupAuto: false,
+            liveSearch: true
+        });
+
         $('.dropdown-menu').on('click', function (e) {
             if ($(e.target).closest('.bootstrap-select.open').is(':visible') || $(e.target).closest('.btn.dropdown-toggle').is(':visible')) {
                 selectpickerIsClicked = true;
@@ -131,6 +143,7 @@
         moreToolsOptions.css('display', 'inline');
         moreToolsOptions.appendTo('#tools-button');
 
+        //map_ubicacion filters
         $('#select-empresas').selectpicker('val', ${ubicacionRequest.empresasSelected});
         $('#select-elementos').selectpicker('val', ${ubicacionRequest.elementosSelected});
         $('#select-formatos').selectpicker('val', ${ubicacionRequest.formatosSelected});
@@ -143,6 +156,17 @@
         $('#input-ids').val(${ubicacionRequest.idsSearching});
         $('#input-searching').val(${ubicacionRequest.valueSearching});
 
+        //map_ubicacion_actualizaciones filters
+        $('#idSearchUbiAct').val(${ubicacionActualizacionRequest.idsSearching});
+        $('#maxResultsUbiAct').selectpicker('val' , ${ubicacionActualizacionRequest.maxResultsSelected});
+
+        //map_ubicacion_actualizaciones_especiales filters
+        $('#idSearchUbiActEspecial').val(${mapUbiActEspecialRequest.idsSearching});
+        $('#maxResultsUbiActEspecial').selectpicker('val' , ${mapUbiActEspecialRequest.maxResultsSelected});
+
+        //map_pois filter
+        $('#select-poiEntidades').selectpicker('val' , ${mapPoiRequest.poisEntidadSelected});
+        $('#maxResultsPoi').selectpicker('val' , ${mapPoiRequest.maxResultsSelected});
     });
 
     function showOptions() {
@@ -165,7 +189,7 @@
 
 
         $( "#arrowUp" ).click(function() {
-        $( ".table-ubicaciones" ).animate({
+        $( ".tabla-ubicaciones" ).animate({
             marginTop: "-60vh",
             opacity: 1
         }, 500 );
@@ -176,7 +200,7 @@
 
 
     $( "#arrowDown" ).click(function() {
-        $( ".table-ubicaciones" ).animate({
+        $( ".tabla-ubicaciones" ).animate({
             marginTop: "-15vh",
             opacity: 0.9
         }, 500 );
