@@ -87,15 +87,14 @@ function createCarrusel(id) {
     $('.content').css('opacity', '0.3');
 
     $.ajax( {
-        url: 'http://localhost:80/api/fotos_map/setImagesUbicacion/' + id,
-        type: 'GET',
+        url: '/api/ubicacion/' + id,
         dataType: 'json',
         success: function(data) {
             $('.data-ubicacion').empty();
 
             if(data.images.length === 0){
-                emptyImages = true;
-            }else{ emptyImages = false}
+               return emptyImages = true;
+            }else{ return emptyImages = false}
 
             var tableUbicacionInfo = createTableUbicacionInformation(data);
 
@@ -155,7 +154,7 @@ function showImages() {
             message: 'No hay imagenes cargadas para esta ubicacion!'
         }, {
             timer: 8000,
-            z_index: 2031,
+            z_index: 2031
         });
     }
     $.fancybox.defaults.btnTpl.fb = '<button style="font-size: small" data-fancybox-fb onclick="initDeleteFile()" class="fancybox-button fancybox-button--fb" title="Delete">' +
@@ -239,7 +238,7 @@ function deleteFile(idEmpresa, fileName, functionSuccess) {
     };
 
     $.ajax( {
-        url: 'http://localhost:8080/api/fotos_map/deleteFile',
+        url: '/deleteFile/',
         type: "POST",
         dataType: 'json',
         data: dataToSend,
@@ -291,7 +290,7 @@ function modificarCoordenadas(id) {
 function actualizarCoordenadas(address,localidad, provincia, id){
     var newData = address + ',' + localidad + ',' + provincia ;
     var dataToSend = {
-        "address": newData,
+        "address": newData
     };
 
     $.ajax( {
@@ -316,7 +315,7 @@ function actualizarCoordenadas(address,localidad, provincia, id){
                 position: latLong,
                 map: map,
                 draggable: true,
-                animation: google.maps.Animation.DROP,
+                animation: google.maps.Animation.DROP
 
             });
 
@@ -609,7 +608,7 @@ function actualizarEntidades(){
             message: 'Por favor seleccione al menos un [POIs Sector].'
         }, {
             type: 'warning',
-            z_index: 2031,
+            z_index: 2031
         });
 
         return;

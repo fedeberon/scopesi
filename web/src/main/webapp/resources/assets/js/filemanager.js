@@ -20,7 +20,7 @@ function uploadSingleFile(file) {
     formData.append("idUbicacion", document.querySelector("#idUbicacion").value);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/api/fotos_map/uploadFile");
+    xhr.open("POST", "../uploadFile");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
@@ -50,7 +50,7 @@ function uploadMultipleFiles(files) {
     formData.append("idUbicacion", document.querySelector("#idUbicacion").value);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/api/fotos_map/uploadMultipleFiles");
+    xhr.open("POST", "../uploadMultipleFiles");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
