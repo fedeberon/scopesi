@@ -85,8 +85,8 @@
                     </div>
 
                     <div class="form-group col-6">
-                        <label for="idVisibilidades">Visibilidades</label>
-                        <select name="request.idVisibilidades" items="${visibilidades}" class="form-control" title="Seleccione una visibilidad">
+                        <label for="idVisibilidad">Visibilidades</label>
+                        <select name="request.idVisibilidad" items="${visibilidades}" class="form-control" title="Seleccione una visibilidad">
                             <option  value="-1">Seleccione una visibilidad</option>
                             <c:forEach items="${visibilidades}" var="bo">
                                 <option value="${bo.id}">${bo.descripcion}</option>

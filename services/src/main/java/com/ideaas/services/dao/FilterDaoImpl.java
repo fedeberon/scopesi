@@ -71,30 +71,31 @@ public class FilterDaoImpl implements FilterDao {
         }
         if(Objects.nonNull(request.getMapFormato()) && !request.getMapFormato().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append("u.mapFormato.descripcion = :mapFormato");
+            builder.append("u.mapFormato.descripcion in (:mapFormato)");
 
             isFirstClause = false;
         }
         if(Objects.nonNull(request.getMapMedio()) && !request.getMapMedio().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append("u.mapMedio.descripcion = :mapMedio");
+            builder.append("u.mapMedio.descripcion in (:mapMedio)");
 
             isFirstClause = false;
         }
         if(Objects.nonNull(request.getMapProvincia()) && !request.getMapProvincia().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append(" u.mapProvincia.descripcion = :mapProvincia");
+            builder.append(" u.mapProvincia.descripcion in (:mapProvincia)");
 
             isFirstClause = false;
         }
         if(Objects.nonNull(request.getMapLocalidad()) && !request.getMapLocalidad().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append(" u.mapLocalidad.descripcion = :mapLocalidad");
+            builder.append(" u.mapLocalidad.descripcion in (:mapLocalidad)");
 
+            isFirstClause = false;
         }
         if(Objects.nonNull(request.getBajaLogica()) && !request.getBajaLogica().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
-            builder.append(" u.bajaLogica = :bajaLogica");
+            builder.append(" u.bajaLogica in (:bajaLogica)");
 
             isFirstClause = false;
         }
@@ -108,6 +109,8 @@ public class FilterDaoImpl implements FilterDao {
             else{
                 builder.append(" (u.latitud is not null or u.longitud is not null)");
             }
+
+            isFirstClause = false;
         }
         if(Objects.nonNull(request.getFechaAlta())){
             builder.append(isFirstClause ? where() : and());
@@ -118,10 +121,14 @@ public class FilterDaoImpl implements FilterDao {
         if(Objects.nonNull(request.getIdsSelected())){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.id in (:ids)");
+
+            isFirstClause = false;
         }
         if(Objects.nonNull(request.getIdsSearch()) && !request.getIdsSearch().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());
             builder.append(" u.id in (:idsSearch)");
+
+            isFirstClause = false;
         }
         if(Objects.nonNull(request.getSearchValue()) && !request.getSearchValue().trim().isEmpty()){
             builder.append(isFirstClause ? where() : and());

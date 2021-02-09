@@ -35,6 +35,9 @@ function disabledOptionsNotFounds(){
             $('.modal-body').css('opacity', '1');
         },
         error: function(data) {
+            $('.load').hide();
+            $('.modal-body').css('opacity', '1');
+
             $.notify({
                 title: '<strong>Hubo un problema!</strong>',
                 message: 'Se produjo un error al intentar chequear resultados.'
