@@ -72,6 +72,7 @@
                                 <th>Fotos</th>
                                 <th>Editar</th>
                                 <th>ID</th>
+                                <th>Carpetas</th>
                                 <th>Empresa</th>
                                 <th>Elemento</th>
                                 <th>Formato</th>
@@ -121,6 +122,9 @@
                                             <input type="hidden" id="wrapperId" value="${bo.id}" name="id"/>
                                             <button type="submit" id="sudmit-${bo.id}" name="editar" style="display: none;"></button>
                                             <a href="#" onclick="submitEdit(${bo.id})"><img src="/resources/assets/img/icons/edit2.png" alt=""></a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" onclick="apiUrlImages(${bo.mapEmpresa.id})">Test</a>
                                         </td>
                                         <td>
                                             <a href="/ubicacion/${bo.id}">${bo.id}</a>

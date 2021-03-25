@@ -148,6 +148,17 @@ function createCarrusel(id) {
         }
     });
 }
+function apiUrlImages(idEmpresa){
+    var url = 'http://geoplanningmas.com/ar/v2/apifiles/file/' + idEmpresa
+    $.ajax({
+        dataType: 'json',
+        url: url,
+        success:function(data){
+            console.log(data);
+        }
+    });
+}
+
 
 function showImages() {
     if(emptyImages === true){
