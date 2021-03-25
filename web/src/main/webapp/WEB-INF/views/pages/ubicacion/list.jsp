@@ -71,8 +71,8 @@
                                 </th>
                                 <th>Fotos</th>
                                 <th>Editar</th>
+                                <th>Fotos Soportes</th>
                                 <th>ID</th>
-                                <th>Carpetas</th>
                                 <th>Empresa</th>
                                 <th>Elemento</th>
                                 <th>Formato</th>
@@ -124,7 +124,31 @@
                                             <a href="#" onclick="submitEdit(${bo.id})"><img src="/resources/assets/img/icons/edit2.png" alt=""></a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-success" onclick="apiUrlImages(${bo.mapEmpresa.id})">Test</a>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fotos-soportes-${bo.mapEmpresa.id}">
+                                                Imagenes
+                                            </button>
+
+                                            <div class="modal fade" id="fotos-soportes-${bo.mapEmpresa.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <a class="btn btn-success" onclick="apiUrlImages(${bo.mapEmpresa.id})">Lista de fotos</a>
+                                                            <ul id="resultado"></ul>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </td>
                                         <td>
                                             <a href="/ubicacion/${bo.id}">${bo.id}</a>
