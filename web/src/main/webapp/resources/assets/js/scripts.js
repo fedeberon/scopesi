@@ -149,22 +149,28 @@ function createCarrusel(id) {
     });
 }
 
-function apiUrlImages(idEmpresa){
+function apiUrlImages(idEmpresa, idUbicacion){
+    let imagenesFiltradasPorUbicacion = [];
 
-    let url = `http://geoplanningmas.com/ar/v2/apifiles/file/${idEmpresa}`;
-    const api = new XMLHttpRequest();
-    api.open('GET', url, true);
-    api.send();
-    api.onreadystatechange = function(){
-        if (this.status == 200 && this.readyState == 4){
-            let datos = JSON.parse(this.responseText);
-            let resultado = document.querySelector('#resultado');
-            resultado.innerHTML = '';
-            for (let item of datos){
-                resultado.innerHTML += `<li>${datos}</li>`
+    fetch(`http://geoplanningmas.com/ar/v2/apifiles/file/${idEmpresa}`)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response) {
+            response.forEach(cutFilePath);
+            //Funcion para cortar "fotos_map" de la url y se hace append de la imagen.
+            function cutFilePath(element){
+                var fileUrl = element.toString().slice(10);
+
+                var img = $('<img>',{
+                    src: `http://geoplanningmas.com/ar/v2/apifiles/file/${fileUrl}`,
+                    class: 'img-responsive'
+                });
+                img.appendTo('#fotos-soportes');
+                console.log(fileUrl);
+
             }
-        }
-    }
+        });
 }
 function showImages() {
     if(emptyImages === true){
