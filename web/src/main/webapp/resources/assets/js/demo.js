@@ -179,7 +179,7 @@ demo = {
 
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-
+        //if object used is MapUbicacion then:
         $('#table-markers tbody>tr').each(function () {
             var id = $(this).find("td").eq(3).html();
             var empresa = $(this).find("td").eq(4).html();
@@ -190,6 +190,7 @@ demo = {
             var lat = $(this).find("td").eq(9).html();
             var lon = $(this).find("td").eq(10).html();
             var latLong = new google.maps.LatLng(lat, lon);
+            var idEmpresa = document.getElementById(id + '-idEmpresa').value;
 
             var marker = new google.maps.Marker({
                 id: id,
@@ -198,7 +199,7 @@ demo = {
                 map: map,
                 draggable: true,
                 animation: google.maps.Animation.DROP,
-                title: id + ' - ' + empresa
+                title: id + ' - ' + "map"
             });
 
             var infowindow = new google.maps.InfoWindow({
@@ -207,7 +208,59 @@ demo = {
 
 
             marker.addListener('click',function(){
-                infowindow.setContent('<h5> '+ direccion +'</h5><hr><p>'+id+'<br>'+empresa+'<br>'+elemento+'<br>'+localidad+'<br>'+provincia+'</p>' + '<button id="' + id +'" onclick="createCarrusel(' + id + ')" class="mapaboton btn btn-secundary btn-sm btn-fill" ><i class="fas fa-camera"></i> Imagenes</button>');
+                infowindow.setContent('<h5> '+ direccion +'</h5><hr><p>'+id+'<br>'+empresa+'<br>'+elemento+'<br>'+localidad+'<br>'+provincia+'</p>' + '<button id="' + id +'" onclick="createCarousel(\'' + id + '\',\''+idEmpresa+'\',\''+ empresa +'\')" class="mapaboton btn btn-secundary btn-sm btn-fill" ><i class="fas fa-camera"></i> Imagenes</button>');
+
+
+                infowindow.open(map,this);
+            });
+
+            marker.addListener('dragend', function(event){
+
+                $("#mi-modal").modal('show');
+
+                modalConfirm(function(confirm){
+                    if(confirm){
+                        //Acciones si el usuario confirma
+                        handleEventToUpdate(event, marker);
+
+                    } else {
+                        //Acciones si el usuario no confirma
+                        $("#mi-modal").modal('hide');
+                    }
+                });
+            });
+            markers.push(marker);
+            bounds.extend(latLong);
+
+        });
+
+        //if object used is AppUbicacionRelevamiento then:
+        $('#table-markers-appMap tbody>tr').each(function () {
+            var id = $(this).find("td").eq(3).html();
+            var relevamiento = $(this).find("td").eq(4).html();
+            var direccion = $(this).find("td").eq(5).html();
+            var lat = $(this).find("td").eq(6).html();
+            var lon = $(this).find("td").eq(7).html();
+
+            var latLong = new google.maps.LatLng(lat, lon);
+
+            var marker = new google.maps.Marker({
+                id: id,
+                class: "marker",
+                position: latLong,
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                title: id + ' - ' + "app"
+            });
+
+            var infowindow = new google.maps.InfoWindow({
+                content: relevamiento + ' ' + id
+            });
+
+
+            marker.addListener('click',function(){
+                infowindow.setContent('<h5> '+ direccion +'</h5><hr><p>'+id+'<br>'+relevamiento+'<br>'+localidad+'<br>'+provincia+'</p>');
 
 
                 infowindow.open(map,this);
@@ -423,7 +476,7 @@ function centerFromMarker(id) {
             var latLong = new google.maps.LatLng(lat, lng);
             bounds.extend(latLong);
 
-            map.setZoom(13);
+            map.setZoom(18);
             map.setCenter(marker.getPosition());
 
         }
@@ -433,22 +486,39 @@ function centerFromMarker(id) {
 
 function showMap(lat, lon , mapId, searchInputId){
     var latLng;
+    var localidadSelected = "";
+    var provinciaSelected = "";
+    var addressToGeocoding;
 
-    if(lat === "" || lon === ""){
+    if(!lat || !lon ){
 
         var address = document.getElementById("newAddress").value;
-        var localidadSelected = document.getElementById("select-localidades").options[document.getElementById("select-localidades").selectedIndex].text;
-        var provinciaSelected = document.getElementById("select-provincias").options[document.getElementById("select-provincias").selectedIndex].text;
 
-        if(provinciaSelected === "-Dejar vacio-"){
-            provinciaSelected = "";
+        if(mapId !== "mapApp") { //this if statement is for check if request is called with object MapUbicacion or AppUbicacion
+            localidadSelected = document.getElementById("select-localidades").options[document.getElementById("select-localidades").selectedIndex].text;
+            provinciaSelected = document.getElementById("select-provincias").options[document.getElementById("select-provincias").selectedIndex].text;
+
+            if(provinciaSelected === "-Dejar vacio-"){
+                provinciaSelected = "";
+            }
         }
 
-        if(address !== "" || localidadSelected !== "" || provinciaSelected !== "") {
-            var newData = address + ',' + localidadSelected + ',' + provinciaSelected;
+        /*this if/else statement is building the 'addressToGeocoding' variable
+          depending on 'localidadSelected' or 'provinciaSelected' are emptys.*/
+        if(address !== "" ) {
+
+            if(localidadSelected !== "" && provinciaSelected !== ""){
+                addressToGeocoding = address + ',' + localidadSelected + ',' + provinciaSelected;
+            }else if(provinciaSelected !== ""){
+                addressToGeocoding = address + ',' + provinciaSelected;
+            }else if (localidadSelected !== ""){
+                addressToGeocoding = address + ',' + localidadSelected;
+            }else{
+                addressToGeocoding = address;
+            }
 
             var dataToSend = {
-                "address": newData
+                "address": addressToGeocoding
             };
 
             $.ajax({
@@ -519,6 +589,33 @@ function showMap(lat, lon , mapId, searchInputId){
     $('#mapModal').modal('show');
 }
 
+function showMapPoi(lat, lon){
+    var latLong = new google.maps.LatLng(lat, lon);
+    var mapaOptions = {
+        zoom: 7,
+        center: latLong,
+        scrollwheel: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        },
+        streetViewControl: false,
+    };
+    var mapa = new google.maps.Map(document.getElementById("mapa"), mapaOptions);
+
+    var marker = new google.maps.Marker({
+        id: 'miId',
+        position: latLong,
+        map: mapa,
+        draggable: true,
+        animation: google.maps.Animation.DROP
+    });
+
+    marker.addListener('dragend', handleEvent);
+
+    $('#mapModal').modal('show');
+}
+
+
 $('#mapModal').modal({
     show: 'false'
 
@@ -537,14 +634,22 @@ function handleEvent(event) {
 }
 
 function handleEventToUpdate(event, marker){
+    var isMapObject = /map/;
+    var ajaxUrl = '';
     var dataToSend = {
         "id" : marker.id,
         "latitud": event.latLng.lat(),
         "longitud" : event.latLng.lng(),
     };
 
+    if(isMapObject.test(marker.title)) {  //this if/else statement is for check if object is MapUbicacion or AppUbicacionRelevamiento and set the correct url.
+        ajaxUrl = '/api/updateCoordenadas';
+    }else{
+        ajaxUrl = '/api/updateCoordenadasApp';
+    }
+
     $.ajax({
-        url:"/api/updateCoordenadas",
+        url: ajaxUrl,
         type:"POST",
         data: JSON.stringify(dataToSend),
         contentType:"application/json; charset=utf-8",

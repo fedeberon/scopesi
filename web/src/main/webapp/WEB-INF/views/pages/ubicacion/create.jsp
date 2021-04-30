@@ -8,8 +8,8 @@
 </style>
 
 <script>
-    var lat = "";
-    var lng = "";
+    var lat;
+    var lng;
 
     function setLat(event) {
         console.log(event.target.value);

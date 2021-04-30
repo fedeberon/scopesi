@@ -36,11 +36,11 @@
                 <div class="row">
                     <div class="col-6">
                         <label class="control-label pt-2">Latitud</label>
-                        <form:input path="geoLatitud" cssClass="form-control" id="latitud" placeholder=""/>
+                        <form:input path="geoLatitud" cssClass="form-control" id="latitud" onchange="setLatPoi(event)" placeholder=""/>
                     </div>
                     <div class="col-6">
                         <label class="control-label pt-2">Longitud</label>
-                        <form:input path="geoLongitud" cssClass="form-control" id="longitud"  placeholder=""/>
+                        <form:input path="geoLongitud" cssClass="form-control" id="longitud"  onchange="setLngPoi(event)" placeholder=""/>
                     </div>
                 </div>
                 <div class="row">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <a href="#" class="btn btn-info btn-fill pull-right mr-2" onclick="showMap('${poi.geoLatitud}', '${poi.geoLongitud}')">Mapa</a>
+            <a href="#" class="btn btn-info btn-fill pull-right mr-2" onclick="showMapPoi(lat, lng)">Mapa</a>
         </div>
     </div>
 
@@ -110,3 +110,31 @@
 </div>
 </div>
 </div>
+<script>
+    <c:choose>
+    <c:when test="${updatePoi.geoLatitud == null}">
+        var lat = "";
+    </c:when>
+    <c:otherwise>
+        var lat = ${updatePoi.geoLatitud}
+    </c:otherwise>
+    </c:choose>
+    <c:choose>
+    <c:when test="${updatePoi.geoLongitud == null}">
+        var lng = "";
+    </c:when>
+    <c:otherwise>
+        var lng = ${updatePoi.geoLongitud};
+    </c:otherwise>
+    </c:choose>
+
+    function setLatPoi(event) {
+        console.log(event.target.value);
+        lat = event.target.value;
+    }
+
+    function setLngPoi(event) {
+        console.log(event.target.value);
+        lng = event.target.value;
+    }
+</script>

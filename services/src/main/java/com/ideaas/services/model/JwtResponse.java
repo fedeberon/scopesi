@@ -1,5 +1,7 @@
 package com.ideaas.services.model;
 
+import com.ideaas.services.domain.Usuario;
+
 import java.io.Serializable;
 
 public class JwtResponse implements Serializable {
@@ -8,11 +10,18 @@ public class JwtResponse implements Serializable {
 
     private final String jwttoken;
 
-    public JwtResponse(String jwttoken) {
+    private final Usuario usuario;
+
+    public JwtResponse(String jwttoken , Usuario usuario) {
         this.jwttoken = jwttoken;
+        this.usuario = usuario;
     }
 
     public String getToken() {
         return this.jwttoken;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 }

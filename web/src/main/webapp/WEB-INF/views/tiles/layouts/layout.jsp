@@ -110,6 +110,15 @@
             liveSearch: true
         });
 
+        $('#select-inspector').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
+        $('#select-encuesta').selectpicker({
+            container: 'body',
+            dropupAuto: false
+        });
+
         $('.dropdown-menu').on('click', function (e) {
             if ($(e.target).closest('.bootstrap-select.open').is(':visible') || $(e.target).closest('.btn.dropdown-toggle').is(':visible')) {
                 selectpickerIsClicked = true;

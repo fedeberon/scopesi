@@ -6,4 +6,4 @@ services:
     restart: always
     container_name: scopesiRestApi
     ports:
-      - 80:80
+      - 80:8080

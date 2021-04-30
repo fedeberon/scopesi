@@ -1,8 +1,10 @@
 package com.ideaas.api.restController;
 
 import com.ideaas.api.config.JwtTokenUtil;
+import com.ideaas.services.domain.Usuario;
 import com.ideaas.services.model.JwtRequest;
 import com.ideaas.services.model.JwtResponse;
+import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +28,9 @@ public class JwtAuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @RequestMapping(value = "/api/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
@@ -33,7 +38,9 @@ public class JwtAuthenticationController {
                 .loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        Usuario usuario = usuarioService.getByUsername(authenticationRequest.getUsername());
+
+        return ResponseEntity.ok(new JwtResponse(token , usuario));
     }
 
     private void authenticate(String username, String password) throws Exception {

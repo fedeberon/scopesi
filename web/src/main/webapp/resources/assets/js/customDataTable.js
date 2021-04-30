@@ -14,12 +14,13 @@ $(document).ready(function() {
             "lengthMenu":   "Mostrar _MENU_",
             "infoFiltered": "(filtrado de _MAX_ entradas totales)",
             "search":   "Buscar:",
+            "emptyTable": "No hay datos cargados para esta tabla",
             "paginate": {
                 "first":      "First",
                 "last":       "Last",
                 "next":       "Siguiente",
                 "previous":   "Anterior"
-            },
+            }
         },
         buttons: [
             {
@@ -148,6 +149,7 @@ $(document).ready(function() {
             "lengthMenu":   "Mostrar _MENU_",
             "infoFiltered": "(filtrado de _MAX_ entradas totales)",
             "search":   "Buscar:",
+            "emptyTable": "No hay datos cargados para esta tabla",
             "paginate": {
                 "first":      "First",
                 "last":       "Last",

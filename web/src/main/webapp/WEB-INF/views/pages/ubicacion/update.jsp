@@ -7,8 +7,22 @@
     }
 </style>
 <script>
-    var lat = ${updateUbicacion.latitud};
-    var lng = ${updateUbicacion.longitud};
+    <c:choose>
+        <c:when test="${updateUbicacion.latitud == null}">
+            var lat = "";
+        </c:when>
+        <c:otherwise>
+            var lat = ${updateUbicacion.latitud};
+        </c:otherwise>
+    </c:choose>
+    <c:choose>
+        <c:when test="${updateUbicacion.longitud == null}">
+            var lng = "";
+        </c:when>
+        <c:otherwise>
+            var lng = ${updateUbicacion.longitud};
+        </c:otherwise>
+    </c:choose>
 
     function setLat(event) {
         console.log(event.target.value);

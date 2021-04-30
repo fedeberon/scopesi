@@ -39,12 +39,12 @@
                 <p class="wordsMenu">Usuarios</p>
             </a>
         </li>
-        <li id="auditorias">
-            <a class="nav-link" href="#">
-                <i class="fab fa-buffer"></i>
-                <p class="wordsMenu">Auditorias</p>
-            </a>
-        </li>
+<%--        <li id="auditorias">--%>
+<%--            <a class="nav-link" href="#">--%>
+<%--                <i class="fab fa-buffer"></i>--%>
+<%--                <p class="wordsMenu">Auditorias</p>--%>
+<%--            </a>--%>
+<%--        </li>--%>
 
         <li id="geoplanning">
             <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,15 +52,35 @@
                 <p class="wordsMenu">Geoplanning</p>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                <a class="dropdown-item" href="/ubicacion/list">
-                    <i class="fas fa-map-marker-alt"></i> Ubicaciones
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/tablas">
                     <i class="fas fa-table"></i> Tablas
                 </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/ubicacion/list">
+                    <i class="fas fa-map-marker-alt"></i> Ubicaciones
+                </a>
             </div>
         </li>
+
+<%--        <li id="auditapp">--%>
+<%--            <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--%>
+<%--                <i class="fas fa-mobile-alt"></i>--%>
+<%--                <p class="wordsMenu">AuditAPP</p>--%>
+<%--            </a>--%>
+<%--            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">--%>
+<%--                <a class="dropdown-item" href="/encuesta/list">--%>
+<%--                    <i class="fas fa-paste"></i> Encuestas--%>
+<%--                </a>--%>
+<%--                <div class="dropdown-divider"></div>--%>
+<%--                <a class="dropdown-item" href="/relevamiento/list">--%>
+<%--                    <i class="fas fa-running"></i> Relevamientos--%>
+<%--                </a>--%>
+<%--                <div class="dropdown-divider"></div>--%>
+<%--                <a class="dropdown-item" href="/appUbicacion/list">--%>
+<%--                    <i class="fas fa-map-marker-alt"></i> Ubicaciones--%>
+<%--                </a>--%>
+<%--            </div>--%>
+<%--        </li>--%>
 
     </ul>
 </div>

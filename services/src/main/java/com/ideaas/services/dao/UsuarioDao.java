@@ -22,4 +22,6 @@ public interface UsuarioDao extends PagingAndSortingRepository<Usuario, Long> {
     Usuario getByUsername(@Param("username") String username);
 
     List<Usuario> findByEstadoNot(String estado);
+
+    List<Usuario> findAllByTipoUsuario_Id(Long idTipoUsuario);
 }

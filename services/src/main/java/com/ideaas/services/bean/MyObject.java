@@ -12,14 +12,15 @@ public class MyObject {
 
     private Long id;
     private Boolean checked = false;
-    private BigDecimal lat;
-    private BigDecimal lon;
+    private BigDecimal latitud;
+    private BigDecimal longitud;
     private String name;
     private String description;
     private String address;
     private String provincia;
     private String localidad;
     private String polygonCoordinates;
+    private Long idEmpresa;
 
 
     public String getDescription() {
@@ -38,12 +39,12 @@ public class MyObject {
         return checked;
     }
 
-    public BigDecimal getLat() {
-        return lat;
+    public BigDecimal getLatitud() {
+        return latitud;
     }
 
-    public BigDecimal getLon() {
-        return lon;
+    public BigDecimal getLongitud() {
+        return longitud;
     }
 
     public String getName() {
@@ -58,12 +59,12 @@ public class MyObject {
         this.checked = checked;
     }
 
-    public void setLat(BigDecimal lat) {
-        this.lat = lat;
+    public void setLatitud(BigDecimal latitud) {
+        this.latitud = latitud;
     }
 
-    public void setLon(BigDecimal lon) {
-        this.lon = lon;
+    public void setLongitud(BigDecimal longitud) {
+        this.longitud = longitud;
     }
 
     public void setName(String name) {
@@ -100,5 +101,13 @@ public class MyObject {
 
     public void setPolygonCoordinates(String polygonCoordinates) {
         this.polygonCoordinates = polygonCoordinates;
+    }
+
+    public Long getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(Long idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 }

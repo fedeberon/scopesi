@@ -62,7 +62,6 @@
             <scope>compile</scope>
         </dependency>
 
-
 		<dependency>
 			<groupId>com.google.maps</groupId>
 			<artifactId>google-maps-services</artifactId>
@@ -96,6 +95,7 @@
 			<artifactId>velocity</artifactId>
 			<version>1.7</version>
 		</dependency>
+
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

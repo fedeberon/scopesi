@@ -39,6 +39,7 @@
                         <table id="dataTableToCompleteList" class="display" style="width:100%">
                             <thead>
                                 <th>ID</th>
+                                <th>Fotos</th>
                                 <th class="text-center">Editar</th>
                                 <th class="text-center">Baja/Alta</th>
                                 <th>Usuario</th>
@@ -64,6 +65,12 @@
                                     <td class="text-center">
                                         <a href="<c:url value='/usuario/update?id=${bo.id}'/>"/>
                                         <img src="/resources/assets/img/icons/edit2.png" alt="">
+                                    </td>
+                                    <td>
+                                        <div ${bo.tipoUsuario.id == 5 ? 'class="text-center cursorPointer"' : 'class="d-none"'} onclick="createCarouselUser('${bo.id}' )">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                        <span ${bo.tipoUsuario.id == 5 ? 'class="d-none"' : ''}> - </span>
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.estado == "B" ? 'class="d-none"' : ''} href="<c:url value='/usuario/dropState?id=${bo.id}'/>"/>
@@ -91,11 +98,11 @@
                         </table>
                         <div class="row pt-4 px-2">
                             <div class="col-8">
-                                <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i></i>&nbsp;Nuevo</a>
+                                <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
                             </div>
                         </div>
-
+                        <div class="data-auditapp"></div>
                     </div>
                 </div>
             </div>

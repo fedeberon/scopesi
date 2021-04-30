@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
@@ -53,22 +53,32 @@ public class FileStorageServiceImpl implements FileStorageService {
     public List<Image> readFiles(Long idEmpresa, Long idUbicacion) {
 
         final List<Image> images = new ArrayList();
-        String path = folderImage.concat(idEmpresa.toString());
+        String path = urlFileServer.concat(idEmpresa.toString());
 
+        File urlFile = new File(path);
+        if (!urlFile.exists()) {
+            urlFile.mkdir();
+        }
 
         try {
             Files.walkFileTree(Paths.get(path), new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
                     try {
-                        String url = urlFileServer.concat(idEmpresa.toString()).concat(File.separator).concat(file.getFileName().toString());
+                        String url = folderImage.concat(idEmpresa.toString()).concat(File.separator).concat(file.getFileName().toString());
                         String nameImage = file.getFileName().toString().substring(0, file.getFileName().toString().indexOf("."));
+                        String extension = file.getFileName().toString().substring(file.getFileName().toString().lastIndexOf(".") + 1);
 
                         if (file.getFileName().toString().contains("(")) {
                             nameImage = file.getFileName().toString().substring(0, file.getFileName().toString().indexOf("("));
                         }
 
-                        images.add(new Image(url, nameImage,false));
+                        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                        .path("api/fotos_map/downloadFile/")
+                        .path(idEmpresa.toString().concat("//").concat(file.getFileName().toString()))
+                        .toUriString();
+
+                        images.add(new Image(url, nameImage, extension ,fileDownloadUri, false));
                     } finally {
                         return FileVisitResult.CONTINUE;
                     }
@@ -92,7 +102,11 @@ public class FileStorageServiceImpl implements FileStorageService {
     public String storeFile(MultipartFile file, String folder, String fileName) {
         // Normalize file name
         /*String fileName = StringUtils.cleanPath(file.getOriginalFilename());*/
-
+        String path = folderImage.concat(folder);
+        File urlFile = new File(path);
+        if (!urlFile.exists()) {
+            urlFile.mkdir();
+        }
         try {
             // Check if the file's name contains invalid characters
             if(fileName.contains("..")) {
@@ -149,11 +163,11 @@ public class FileStorageServiceImpl implements FileStorageService {
     int i = 1 ;
     String fileName;
     File newFile;
-    String extention = getFileExtension(file);
+    String extension = getFileExtension(file);
 
     do {
         String newFileName = fileNamme;
-        fileName = fileStorageLocation.toAbsolutePath().toString().concat(File.separator).concat(folder).concat(File.separator).concat(newFileName).concat("(" + i +")").concat(".").concat(extention);
+        fileName = fileStorageLocation.toAbsolutePath().toString().concat(File.separator).concat(folder).concat(File.separator).concat(newFileName).concat("(" + i +")").concat(".").concat(extension);
         newFile = new File(fileName);
         i++;
     }

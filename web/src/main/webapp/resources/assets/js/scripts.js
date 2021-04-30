@@ -84,68 +84,172 @@ function existValue(value, data){
     return false;
 }
 
-function createCarrusel(id) {
+function createCarousel(idUbicacion , idEmpresa , empresa){
+    $('.data-ubicacion').html("");
     $('.load').show();
     $('.map-container').css('opacity', '0.3');
     $('.content').css('opacity', '0.3');
 
-    $.ajax( {
-        url: '/api/ubicacion/' + id,
+    var url = 'http://geoplanningmas.com/ar/v2/apifiles/file';
+    var pathsArray = getAllFilesPathOfParam(url , idEmpresa);
+
+    pathsArray = filterFilesPath(pathsArray, idUbicacion);
+
+    var fileNameArray = getFileNames(pathsArray);
+
+    var urlsArray = pathsArray.map(function (path) {
+        path.includes("(") || path.includes(")") ? path = path.replace(/\(/g, '%28').replace(/\)/g, '%29') : path;
+        return url + path;
+    });
+
+    if(urlsArray.length === 0){
+        emptyImages = true;
+    }else{
+        emptyImages = false
+    }
+
+    var idEmpresaVar = $('<input>', {
+        type : 'hidden',
+        value : idEmpresa,
+        id : 'idEmpresa'
+    });
+    idEmpresaVar.appendTo('.data-ubicacion');
+
+    var idUbicacionVar = $('<input>', {
+        type : 'hidden',
+        value : idUbicacion,
+        id : 'idUbicacion'
+    });
+    idUbicacionVar.appendTo('.data-ubicacion');
+
+    var empresaVar = $('<input>', {
+        type : 'hidden',
+        value : empresa,
+        id : 'empresa'
+    });
+    empresaVar.appendTo('.data-ubicacion');
+
+
+
+    for (var i = 0; i < urlsArray.length; i++) {
+        var a = $('<a>',{
+            class : 'fancybox hidden',
+            rel : 'group',
+            href: urlsArray[i],
+            'data-caption': fileNameArray[i] + " - " + empresa,
+            'data-fancybox':'gallery',
+            'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
+        });
+        var img = $('<img>',{
+            src: urlsArray[i]
+        });
+        a.append(img);
+        a.appendTo('.data-ubicacion');
+    }
+
+    $('.load').hide();
+    $('.map-container').css('opacity', '1');
+    $('.content').css('opacity', '1');
+    $('#modal-info-marker').modal('show');
+
+}
+
+function createCarouselUser(idUsuario){
+    $('.data-auditapp').html("");
+    $('.load').show();
+    $('.map-container').css('opacity', '0.3');
+    $('.content').css('opacity', '0.3');
+
+    var urlBase ='http://geoplanningmas.com/ar/v2/apifiles/';
+    var urlGetAll = urlBase + 'fotos_app';
+    var pathsArray = getAllFilesPathOfParam(urlGetAll , idUsuario);
+
+    var fileNameArray = getFileNames(pathsArray);
+
+    var urlsArray = pathsArray.map(function (path) {
+        return urlBase + path;
+    });
+
+    if(urlsArray.length === 0){
+        emptyImages = true;
+    }else{
+        emptyImages = false
+    }
+
+    for (var i = 0; i < urlsArray.length; i++) {
+        var a = $('<a>',{
+            class : 'fancybox hidden',
+            rel : 'group',
+            href: urlsArray[i],
+            'data-caption': fileNameArray[i],
+            'data-fancybox':'gallery',
+            'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
+        });
+        var img = $('<img>',{
+            src: urlsArray[i]
+        });
+        a.append(img);
+        a.appendTo('.data-auditapp');
+    }
+}
+
+function getAllFilesPathOfParam(url , param) {
+
+    var pathsArray = [];
+
+    $.ajax({
+        url: url + '/' + param,
         dataType: 'json',
-        success: function(data) {
-            $('.data-ubicacion').empty();
-
-            if(data.images.length === 0){
-               return emptyImages = true;
-            }else{ return emptyImages = false}
-
-            var tableUbicacionInfo = createTableUbicacionInformation(data);
-
-            var idEmpresa = $('<input>', {
-                type : 'hidden',
-                value : data.mapEmpresa.id,
-                id : 'idEmpresa'
-            });
-            idEmpresa.appendTo('.data-ubicacion');
-            var idUbicacion = $('<input>', {
-                type : 'hidden',
-                value : data.id,
-                id : 'idUbicacion'
-            });
-            idUbicacion.appendTo('.data-ubicacion');
-
-
-            for (var i = 0; i < data.images.length; i++) {
-                var a = $('<a>',{
-                        class : 'fancybox hidden',
-                        rel : 'group',
-                        href: data.images[i].url,
-                        'data-caption': data.id + " - " + data.mapEmpresa.descripcion,
-                        'data-fancybox':'gallery',
-                        'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
-                    });
-                var img = $('<img>',{
-                   src: data.images[i].url
-                });
-                a.append(img);
-                a.appendTo('.data-ubicacion');
-            }
-
-            tableUbicacionInfo.appendTo('.data-ubicacion');
-
-            $('.load').hide();
-            $('.map-container').css('opacity', '1');
-            $('.content').css('opacity', '1');
-            $('#modal-info-marker').modal('show');
-
+        async: false,
+        success: function (data) {
+            pathsArray = getFilesPath(data);
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function () {
             $('.load').hide();
             $('.map-container').css('opacity', '1');
             $('.content').css('opacity', '1');
 
-            alert("Status: " + textStatus);
+            $.notify({
+                title: '<strong>Hubo un problema!</strong>',
+                message: 'Se produjo un error al buscar las imagenes de la ubicacion.'
+            }, {
+                type: 'danger'
+            });
         }
+    });
+
+    return pathsArray;
+}
+
+function getFilesPath(absolutePathsArray) {
+    /* The first group on this regex matches the path needed of an absolute paths string */
+    var regexPath = /fotos_map([/].*([.]jpg|[.]png|[.]mp4))/;
+
+    /* Returns paths that matched and deletes from array the ones that don't */
+    return absolutePathsArray.map(function (path) {
+        if (regexPath.test(path)) {
+            return path.match(regexPath)[1];
+        }
+    }).filter(function (i) {
+        return i;
+    });
+}
+
+function filterFilesPath(pathsArray , idUbicacion) {
+    /* The group on this regex matches the numbers found in the path of the file, this numbers is referring to idUbicacion */
+    var regexIdUbicacion = /[/].+[/]([0-9]*)[\s]{0,1}/;
+
+    return pathsArray.filter(function (path) {
+        return path.match(regexIdUbicacion)[1] === idUbicacion;
+    });
+}
+
+function getFileNames(pathsArray){
+    /* The group on this regex matches the full file name on the path */
+    var regexNameUbicacion = /[/].+[/](.*)/;
+
+    return pathsArray.map(function (path) {
+        return path.match(regexNameUbicacion)[1];
     });
 }
 
@@ -181,6 +285,8 @@ function showImages() {
 function initDeleteFile() {
     var idUbicacion = document.querySelector("#idUbicacion").value;
     var idEmpresa = document.querySelector("#idEmpresa").value;
+    var empresa = document.querySelector("#empresa").value;
+
     var src = $.fancybox.getInstance().current.src;
     var url = src.split('/');
     var fileName = url[url.length - 1];
@@ -188,8 +294,8 @@ function initDeleteFile() {
     $("#modal-confirmacion").modal('show');
 
     var functionSuccess =   function (){
-        $('#myModal2').modal('close');
-        createCarrusel(idUbicacion);
+        $('#myModal2').modal('hide');
+        createCarousel(idUbicacion , idEmpresa , empresa);
     };
 
     modalConfirm2(function(confirm){
@@ -235,29 +341,41 @@ function createTableUbicacionInformation(data){
 
 
 function deleteFile(idEmpresa, fileName, functionSuccess) {
-    var dataToSend = {
-        "idEmpresa" : idEmpresa,
-        "fileName" : fileName
-    };
+
+    var url = 'http://geoplanningmas.com/ar/v2/apifiles/file/' + idEmpresa + '/' + fileName;
 
     $.ajax( {
-        url: '/deleteFile/',
-        type: "POST",
-        dataType: 'json',
-        data: dataToSend,
-        beforeSend: function () {
-            $("#resultado").html("Procesando, espere por favor...");
-        },
+        url: url,
+        type: "DELETE",
         success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
             $("#resultado").html(response);
             functionSuccess;
+
+            $.notify({
+                title: '<strong>Archivo borrado correctamente</strong>',
+                message: 'Por favor actualice la pagina para visualizar los cambios.'
+            }, {
+                z_index:2000
+            });
+        },
+        error:function (e){
+            $('#myModal2').modal('hide');
+
+            $.notify({
+                title: '<strong>Hubo un problema!</strong>',
+                message: 'Se produjo un error al intentar borrar la imagen.'
+            }, {
+                timer: 'none',
+                z_index:2000,
+                type: 'danger'
+            });
         }
     });
 }
+
 function modificarCoordenadas(id) {
 
-    deleteMarker(id);
-    var lat = map.getCenter().lat();
+    deleteMarker(id);   var lat = map.getCenter().lat();
     var lng = map.getCenter().lng();
     console.log(lat);
     console.log(lng);
@@ -290,10 +408,22 @@ function modificarCoordenadas(id) {
 }
 
 
-function actualizarCoordenadas(address,localidad, provincia, id){
-    var newData = address + ',' + localidad + ',' + provincia ;
+function actualizarCoordenadas(id, address, localidad, provincia ){
+    var addressToReverseGeocoding;
+    /*this if/else statement is building the 'addressToReverseGeocoding' variable
+      depending on 'localidad' or 'provincia' are emptys.*/
+    if(localidad !== undefined && provincia !== undefined){
+        addressToReverseGeocoding = address + ',' + localidad + ',' + provincia;
+    }else if(provincia !== undefined){
+        addressToReverseGeocoding = address + ',' + provincia;
+    }else if (localidad !== undefined){
+        addressToReverseGeocoding = address + ',' + localidad;
+    }else{
+        addressToReverseGeocoding = address;
+    }
+
     var dataToSend = {
-        "address": newData
+        "address": addressToReverseGeocoding
     };
 
     $.ajax( {
@@ -340,13 +470,26 @@ function actualizarCoordenadas(address,localidad, provincia, id){
 }
 
 function guardarCoordenadas(id) {
+    var isMapObject = /map/;
+    var ajaxUrl = '';
     var lat = $("#" + id + "-lat").html();
     var lng  = $("#" + id + "-lon").html();
     var dataToSend = { "id": id, "latitud": lat, "longitud": lng };
 
     var dataJson = JSON.stringify(dataToSend);
+
+    for (var i = 0; i < markers.length; i++) { //this for statement is for check if object is MapUbicacion or AppUbicacionRelevamiento and set the correct url.
+        if (markers[i].id == id) {
+            if(isMapObject.test(markers[i].title)){
+                ajaxUrl = '/api/updateCoordenadas';
+            }else{
+                ajaxUrl = '/api/updateCoordenadasApp'
+            }
+        }
+    }
+
     $.ajax( {
-        url: '/api/updateCoordenadas',
+        url: ajaxUrl,
         type: "POST",
         dataType: 'json',
         data: dataJson,
@@ -375,7 +518,12 @@ function guardarCoordenadas(id) {
         },
         error: function (jqXHR, exception) {
             console.log(jqXHR);
-            // Your error handling logic here..
+            $.notify({
+                title: '<strong>Hubo un problema!</strong>',
+                message: 'Se produjo un error al intentar guardar la nueva posicion.'
+            }, {
+                type: 'danger'
+            });
         }
     });
 
@@ -664,4 +812,14 @@ function actualizarEntidades(){
         }
 
     });
+}
+
+function preventSpaceBar(event) {
+    if(event.target.value === ""){
+        if(event.which === 32)
+        {
+            event.preventDefault();
+            return false;
+        }
+    }
 }

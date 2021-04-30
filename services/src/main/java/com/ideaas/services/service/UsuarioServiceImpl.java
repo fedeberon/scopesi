@@ -2,6 +2,8 @@ package com.ideaas.services.service;
 
 import com.ideaas.services.dao.UsuarioDao;
 import com.ideaas.services.domain.Usuario;
+import com.ideaas.services.service.interfaces.AllowedStatusService;
+import com.ideaas.services.service.interfaces.AllowedTipoUsuarioService;
 import com.ideaas.services.service.interfaces.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,9 +23,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private UsuarioDao dao;
 
+    private AllowedStatusService allowedStatusService;
+
+    private AllowedTipoUsuarioService allowedTipoUsuarioService;
+
     @Autowired
-    public UsuarioServiceImpl(UsuarioDao dao) {
+    public UsuarioServiceImpl(UsuarioDao dao, AllowedStatusService allowedStatusService , AllowedTipoUsuarioService allowedTipoUsuarioService) {
         this.dao = dao;
+        this.allowedStatusService = allowedStatusService;
+        this.allowedTipoUsuarioService = allowedTipoUsuarioService;
     }
 
     @Override
@@ -72,19 +80,27 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Usuario> findAllByTipoUsuario(Long idTipoUsuario) {
+        Iterable<Usuario> iterator = dao.findAllByTipoUsuario_Id(idTipoUsuario);
+
+        return  StreamSupport
+                .stream(iterator.spliterator(), false)
+                .collect(Collectors.toList());
+    }
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Usuario user = dao.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
 
-        boolean enabled = false;
-
-        String estado = user.getEstado();
-        if (estado.equals("A") || estado.equals("M")){
-            enabled = true;
-        }
+        boolean enabled = isEnabled(user);
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), enabled, true, true, true, new ArrayList<>());
+    }
+
+    private boolean isEnabled(Usuario user){
+        return allowedStatusService.existsByDescripcion(user.getEstado()) && allowedTipoUsuarioService.existsByTipoUsuario_Id(user.getTipoUsuario().getId());
     }
 }

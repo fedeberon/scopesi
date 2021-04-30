@@ -13,31 +13,70 @@ var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput')
 var multipleFileUploadError = document.querySelector('#multipleFileUploadError') || document.querySelector('#multipleFileUploadErrorMap');
 var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess') || document.querySelector('#multipleFileUploadSuccessMap');
 
-function uploadSingleFile(file) {
+function uploadSingleFile(file){
+
+    var url = 'http://geoplanningmas.com/ar/v2/apifiles/file';
+    var idEmpresa = document.querySelector("#idEmpresa").value;
+    var idUbicacion = document.querySelector("#idUbicacion").value;
+    var extension = file.name.split('.').pop();
+    var fileName;
+    var pathsArray = getAllFilesPathOfEmpresa(url , idEmpresa);
+
+    if(pathsArray.length !== 0){
+        pathsArray = filterFilesPath(pathsArray, idUbicacion);
+
+        if(pathsArray.length !== 0){
+            var fileNameArray = getFileNames(pathsArray);
+            var numbersDuplicateArray = resolveFileName(fileNameArray);
+
+            var number = numbersDuplicateArray.reduce(function (accumulator, current) {
+                return accumulator > parseInt(current) ? accumulator : parseInt(current);
+            }, 0);
+
+            if(number === 0){
+                fileName = idUbicacion + "(1)." + extension;
+            }else{
+                fileName = idUbicacion + '(' + (number + 1) + ').' + extension;
+            }
+        }else{
+            fileName = idUbicacion + '.' + extension;
+        }
+
+    }else{
+        fileName = idUbicacion + '.' + extension;
+    }
+
     var formData = new FormData();
-    formData.append("file", file);
-    formData.append("idEmpresa", document.querySelector("#idEmpresa").value);
-    formData.append("idUbicacion", document.querySelector("#idUbicacion").value);
+    formData.append("archivo", file , fileName);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../uploadFile");
+
+    xhr.open("POST", url + '/' + idEmpresa + '/' + fileName);
 
     xhr.onload = function() {
         console.log(xhr.responseText);
-        var response = "";
-        if(xhr.status === 200) {
-            response = JSON.parse(xhr.responseText);
+
+        if(xhr.status === 200 || xhr.status === 201 ) {
             singleFileUploadError.style.display = "none";
-            singleFileUploadSuccess.innerHTML = "<p><i class='far fa-check-circle' style='color:green'></i> Archivo subido exitosamente.</p><p>Descargar : <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
+            singleFileUploadSuccess.innerHTML = "<p><i class='far fa-check-circle' style='color:green'></i> Archivo subido exitosamente.</p>";
             singleFileUploadSuccess.style.display = "block";
         } else {
             singleFileUploadSuccess.style.display = "none";
-            console.log(response);
             singleFileUploadError.innerHTML = "<p><i class='far fa-times-circle' style='color:darkred'></i> Hubo un error.</p>";
         }
     };
 
     xhr.send(formData);
+}
+
+function resolveFileName(fileNameArray){
+    /* The group on this regex matches the number found between two parentheses in case the file name already exists*/
+    var regexGetDuplicateNumber = /[1-9]+[\s]{0,2}[(]{0,1}(\w*)[)]{0,1}/;
+
+    /* Return number found if exists else return zero*/
+    return fileNameArray.map(function (name) {
+        return name.match(regexGetDuplicateNumber)[1] ? name.match(regexGetDuplicateNumber)[1] : 0;
+    });
 }
 
 function uploadMultipleFiles(files) {
@@ -72,6 +111,10 @@ function uploadMultipleFiles(files) {
     xhr.send(formData);
 }
 
+function clearResponseLabel(){
+    singleFileUploadSuccess.style.display = "none";
+    singleFileUploadError.style.display = "none";
+}
 
 singleUploadForm.addEventListener('submit', function(event){
     var files = singleFileUploadInput.files;

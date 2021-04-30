@@ -78,12 +78,12 @@
                                     </td>
                                     <td>
                                         ${bo.geoLatitud}
-                                        <input type="hidden" value="${bo.geoLatitud}" name="list[${status.index}].lat"/>
+                                        <input type="hidden" value="${bo.geoLatitud}" name="list[${status.index}].latitud"/>
 
                                     </td>
                                     <td>
                                         ${bo.geoLongitud}
-                                        <input type="hidden" value="${bo.geoLongitud}" name="list[${status.index}].lon"/>
+                                        <input type="hidden" value="${bo.geoLongitud}" name="list[${status.index}].longitud"/>
                                     </td>
                                     <td>${bo.icono}</td>
                                 </tr>

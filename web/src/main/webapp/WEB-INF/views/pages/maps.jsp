@@ -94,7 +94,7 @@
             <tbody>
 
                 <c:forEach items="${registros}" var="bo">
-
+                    <input type="hidden" id="${bo.id}-idEmpresa" value="${bo.idEmpresa}"/>
                     <tr>
                         <td>
                             <a class="nav-link dropdown-toggle cursorPointer" id="dropdownMenuOffset" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -146,12 +146,12 @@
 
                         </td>
                         <td>
-                            <div class="dropdown-item cursorPointer" style="text-align: center;" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
+                            <div class="cursorPointer" style="text-align: center;" id="marker-touch-${bo.id}" onclick="toggleBounce('${bo.id}')">
                                 <i class="nc-icon nc-tap-01 pr-0" style="font-size: 24px"></i>
                             </div>
                         </td>
                         <td>
-                            <i class="fas fa-sync dropdown-item cursorPointer" style="text-align: center; font-weight: 900;" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.address}','${bo.localidad}','${bo.provincia}', '${bo.id}')"></i>
+                            <i class="fas fa-sync dropdown-item cursorPointer" style="text-align: center; font-weight: 900;" id="${bo.id}-update" onclick="actualizarCoordenadas('${bo.id}','${bo.address}','${bo.localidad}','${bo.provincia}')"></i>
                             <button id="${bo.id}-save" onclick="guardarCoordenadas('${bo.id}');" class="btn btn-danger hidden btn-fill">Guardar</button>
                         </td>
                         <td>${bo.id}</td>
@@ -160,8 +160,8 @@
                         <td>${bo.localidad}</td>
                         <td>${bo.provincia}</td>
                         <td>${bo.description}</td>
-                        <td id="${bo.id}-lat">${bo.lat}</td>
-                        <td id="${bo.id}-lon">${bo.lon}</td>
+                        <td id="${bo.id}-lat">${bo.latitud}</td>
+                        <td id="${bo.id}-lon">${bo.longitud}</td>
 
                     </tr>
 
@@ -197,22 +197,20 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal-info-marker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="margin-top: 45%;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Datos de la ubicaci&oacute;n</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Gestor de imagenes</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-                <div class="modal-body data-ubicacion"></div>
-                <div class="modal-footer">
-                    <button onclick="showImages()" class="btn btn-primary">Ver Imagenes</button>
-
-                    <a data-toggle="modal" href="#myModal2" class="btn btn-primary">Subir Imagenes</a>
-
-                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                <div class="modal-body">
+                    <div class="data-ubicacion"></div>
+                    <button onclick="showImages()" class="btn btn-sm btn-fill btn-secondary"><i class="far fa-images"></i> Ver Imagenes</button>
+                    <a data-toggle="modal" href="#myModal2" class="btn btn-sm btn-fill btn-secondary"><i class="fas fa-file-upload"></i> Subir imagenes</a>
                 </div>
+                <div class="modal-footer"></div>
         </div>
     </div>
 </div>
@@ -238,31 +236,30 @@
 </table>
 
 
-
 <div class="modal" id="myModal2">
     <div class="modal-dialog  modal-md">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Subir Imagenes</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="modal-content" style="margin-top: 20%;">
+            <div style="text-align: center;">
+                <button type="button" class="close" data-dismiss="modal" onclick="clearResponseLabel()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-            </div><div class="container"></div>
+                <h3>Selecci&oacute;n de imagenes</h3>
+            </div>
 
-            <div class="upload-container">
+            <div class="upload-container" style="margin: 15px;">
                 <div class="upload-content">
                     <div class="single-upload">
-                        <h3>Upload Single File</h3>
+                        <h5>Subir una imagen</h5>
                         <form id="singleUploadFormMap" name="singleUploadFormMap">
                             <input id="singleFileUploadInputMap" type="file" name="file" class="file-input" required />
-                            <button type="submit" class="primary submit-btn">Submit</button>
+                            <button type="submit" class="btn btn-sm btn-primary btn-fill confirmUpload-button">Confirmar</button>
                         </form>
                         <div class="upload-response">
                             <div id="singleFileUploadErrorMap"></div>
                             <div id="singleFileUploadSuccessMap"></div>
                         </div>
                     </div>
-                    <div class="multiple-upload">
+                    <div class="multiple-upload hidden">
                         <h3>Upload Multiple Files</h3>
                         <form id="multipleUploadFormMap" name="multipleUploadFormMap">
                             <input id="multipleFileUploadInputMap" type="file" name="files" class="file-input" multiple required />

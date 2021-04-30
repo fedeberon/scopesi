@@ -112,7 +112,7 @@
                                         </td>
 
                                         <td>
-                                            <div class="text-center cursorPointer" onclick="createCarrusel('${bo.id}')">
+                                            <div class="text-center cursorPointer" onclick="createCarousel('${bo.id}' , '${bo.mapEmpresa.id}' , '${bo.mapEmpresa.descripcion}')">
                                                 <i class="fas fa-camera"></i>
                                             </div>
                                         </td>
@@ -127,42 +127,43 @@
                                                  <input type="hidden" value="${bo.id}" name="list[${status.index}].id"/>
                                         </td>
                                         <td>
-                                                ${bo.mapEmpresa.descripcion}
-                                                    <input type="hidden" value="${bo.mapEmpresa.descripcion}" name="list[${status.index}].name"/>
+                                            ${bo.mapEmpresa.descripcion}
+                                            <input type="hidden" value="${bo.mapEmpresa.descripcion}" name="list[${status.index}].name"/>
+                                            <input type="hidden" value="${bo.mapEmpresa.id}" name="list[${status.index}].idEmpresa"/>
                                         </td>
 
                                         <td>
-                                                ${bo.mapElemento.descripcion}
-                                                    <input type="hidden" value="${bo.mapElemento.descripcion}" name="list[${status.index}].description"/>
+                                            ${bo.mapElemento.descripcion}
+                                            <input type="hidden" value="${bo.mapElemento.descripcion}" name="list[${status.index}].description"/>
                                         </td>
 
                                         <td>${bo.mapFormato.descripcion}</td>
                                         <td>${bo.mapMedio.descripcion}</td>
                                         <td>
-                                                ${bo.direccion}
-                                                    <input type="hidden" value="${bo.direccion}" name="list[${status.index}].address"/>
+                                            ${bo.direccion}
+                                            <input type="hidden" value="${bo.direccion}" name="list[${status.index}].address"/>
                                         </td>
                                         <td>${bo.nroAgip}</td>
                                         <td>${bo.referencia}</td>
                                         <td>
-                                                ${bo.mapLocalidad.descripcion}
-                                                    <input type="hidden" value="${bo.mapLocalidad.descripcion}" name="list[${status.index}].localidad"/>
+                                            ${bo.mapLocalidad.descripcion}
+                                            <input type="hidden" value="${bo.mapLocalidad.descripcion}" name="list[${status.index}].localidad"/>
                                         </td>
                                         <td>
-                                                ${bo.mapProvincia.descripcion}
-                                                    <input type="hidden" value="${bo.mapProvincia.descripcion}" name="list[${status.index}].provincia"/>
+                                            ${bo.mapProvincia.descripcion}
+                                            <input type="hidden" value="${bo.mapProvincia.descripcion}" name="list[${status.index}].provincia"/>
                                         </td>
                                         <td>${bo.cantidad}</td>
                                         <td>${bo.transito}</td>
                                         <td>${bo.iluminacion}</td>
                                         <td>${bo.medidas}</td>
                                         <td>
-                                                ${bo.latitud}
-                                                    <input type="hidden" value="${bo.latitud}" name="list[${status.index}].lat"/>
+                                            ${bo.latitud}
+                                            <input type="hidden" value="${bo.latitud}" name="list[${status.index}].latitud"/>
                                         </td>
                                         <td>
-                                                ${bo.longitud}
-                                                    <input type="hidden" value="${bo.longitud}" name="list[${status.index}].lon"/>
+                                            ${bo.longitud}
+                                            <input type="hidden" value="${bo.longitud}" name="list[${status.index}].longitud"/>
                                         </td>
                                         <td>${bo.metrosContacto}</td>
                                         <td>${bo.coeficiente}</td>
@@ -302,7 +303,7 @@
 
                             <button type="submit" name="maps" class="btn btn-info btn-fill"><i class="fas fa-map-marker-alt"></i>&nbsp;Mapa</button>
 
-                            <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i></i>&nbsp;Nuevo</a>
+                            <a href="create" class="btn btn-primary btn-fill"><i class="fas fa-plus"></i>&nbsp;Nuevo</a>
 
                         </div>
 
@@ -323,31 +324,29 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal-info-marker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content" style="margin-top: 10%;">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="margin-top: 45%;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Datos de la ubicaci&oacute;n</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Gestor de imagenes</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body data-ubicacion"></div>
-            <div class="modal-footer">
-                <button onclick="showImages()" class="btn btn-primary">Ver Imagenes</button>
-
-                <a data-toggle="modal" href="#myModal2" class="btn btn-primary">Subir Imagenes</a>
-
-                <button type="submit" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+            <div class="modal-body">
+                <div class="data-ubicacion"></div>
+                <button onclick="showImages()" class="btn btn-sm btn-fill btn-secondary"><i class="far fa-images"></i> Ver Imagenes</button>
+                <a data-toggle="modal" href="#myModal2" class="btn btn-sm btn-fill btn-secondary"><i class="fas fa-file-upload"></i> Subir imagenes</a>
             </div>
+            <div class="modal-footer"></div>
         </div>
     </div>
 </div>
 
 <div class="modal" id="myModal2">
     <div class="modal-dialog  modal-md">
-        <div class="modal-content mt-0">
+        <div class="modal-content" style="margin-top: 20%;">
             <div style="text-align: center;">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" onclick="clearResponseLabel()" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <h3>Selecci&oacute;n de imagenes</h3>
@@ -366,7 +365,7 @@
                             <div id="singleFileUploadSuccess"></div>
                         </div>
                     </div>
-                    <div class="multiple-upload">
+                    <div class="multiple-upload hidden">
                         <h5>Subir varias imagenes</h5>
                         <form id="multipleUploadForm" name="multipleUploadForm">
                             <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
