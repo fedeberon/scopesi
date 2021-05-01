@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created by federicoberon on 30/11/2019.
  */
+//NO LONGER USED
 public interface FileStorageService {
 
     List<Image> readFiles(Long idEmpresa , Long idUbicacion);

@@ -91,7 +91,7 @@ function createCarousel(idUbicacion , idEmpresa , empresa){
     $('.content').css('opacity', '0.3');
 
     var url = 'http://geoplanningmas.com/ar/v2/apifiles/file';
-    var pathsArray = getAllFilesPathOfParam(url , idEmpresa);
+    var pathsArray = getAllFilesPathOfParam(url , idEmpresa , 'fotos_map');
 
     pathsArray = filterFilesPath(pathsArray, idUbicacion);
 
@@ -160,9 +160,8 @@ function createCarouselUser(idUsuario){
     $('.map-container').css('opacity', '0.3');
     $('.content').css('opacity', '0.3');
 
-    var urlBase ='http://geoplanningmas.com/ar/v2/apifiles/';
-    var urlGetAll = urlBase + 'fotos_app';
-    var pathsArray = getAllFilesPathOfParam(urlGetAll , idUsuario);
+    var urlBase ='http://geoplanningmas.com/ar/v2/apifiles/fotos_app';
+    var pathsArray = getAllFilesPathOfParam(urlBase , idUsuario , 'fotos_app');
 
     var fileNameArray = getFileNames(pathsArray);
 
@@ -177,23 +176,44 @@ function createCarouselUser(idUsuario){
     }
 
     for (var i = 0; i < urlsArray.length; i++) {
-        var a = $('<a>',{
-            class : 'fancybox hidden',
-            rel : 'group',
-            href: urlsArray[i],
-            'data-caption': fileNameArray[i],
-            'data-fancybox':'gallery',
-            'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
-        });
-        var img = $('<img>',{
-            src: urlsArray[i]
-        });
-        a.append(img);
-        a.appendTo('.data-auditapp');
+
+        var url = urlsArray[i].split('.');
+        var extension = url[url.length - 1];
+        if(extension === 'mp4'){
+            var a = $('<a>',{
+                class : 'fancybox hidden',
+                rel : 'group',
+                href: urlsArray[i],
+                'data-caption': fileNameArray[i],
+                'data-fancybox':'gallery',
+                'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]',
+                'data-width':"640",
+                'data-height':"360"
+            });
+            a.appendTo('.data-auditapp');
+        }else{
+            var a = $('<a>',{
+                class : 'fancybox hidden',
+                rel : 'group',
+                href: urlsArray[i],
+                'data-caption': fileNameArray[i],
+                'data-fancybox':'gallery',
+                'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
+            });
+            var img = $('<img>',{
+                src: urlsArray[i]
+            });
+            a.append(img);
+            a.appendTo('.data-auditapp');
+        }
     }
+
+    $('.load').hide();
+    $('.content').css('opacity', '1');
+    showImages('fotos_app');
 }
 
-function getAllFilesPathOfParam(url , param) {
+function getAllFilesPathOfParam(url , param , folderOrigin) {
 
     var pathsArray = [];
 
@@ -202,7 +222,7 @@ function getAllFilesPathOfParam(url , param) {
         dataType: 'json',
         async: false,
         success: function (data) {
-            pathsArray = getFilesPath(data);
+            pathsArray = getFilesPath(data , folderOrigin);
         },
         error: function () {
             $('.load').hide();
@@ -221,9 +241,10 @@ function getAllFilesPathOfParam(url , param) {
     return pathsArray;
 }
 
-function getFilesPath(absolutePathsArray) {
+function getFilesPath(absolutePathsArray , folderOrigin) {
+
     /* The first group on this regex matches the path needed of an absolute paths string */
-    var regexPath = /fotos_map([/].*([.]jpg|[.]png|[.]mp4))/;
+    var regexPath = new RegExp(folderOrigin + '([/].*([.]jpg|[.]png|[.]mp4))');
 
     /* Returns paths that matched and deletes from array the ones that don't */
     return absolutePathsArray.map(function (path) {
@@ -253,22 +274,32 @@ function getFileNames(pathsArray){
     });
 }
 
-function showImages() {
+function showImages(typeFile) {
     if(emptyImages === true){
 
         $.notify({
             title: '<strong>Ups!</strong>',
-            message: 'No hay imagenes cargadas para esta ubicacion!'
+            message: 'No hay archivos cargados para el registro seleccionado!'
         }, {
             timer: 8000,
             z_index: 2031
         });
     }
-    $.fancybox.defaults.btnTpl.fb = '<button style="font-size: small" data-fancybox-fb onclick="initDeleteFile()" class="fancybox-button fancybox-button--fb" title="Delete">' +
-        '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 512">' +
-        '<path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>' +
-        '</svg>' +
-        '</button>';
+
+    if(typeFile === 'fotos_map'){
+        $.fancybox.defaults.btnTpl.fb = '<button style="font-size: small" data-fancybox-fb onclick="initDeleteFile()" class="fancybox-button fancybox-button--fb" title="Delete">' +
+            '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 512">' +
+            '<path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>' +
+            '</svg>' +
+            '</button>';
+
+    }else{
+        $.fancybox.defaults.btnTpl.fb = '<button style="font-size: small" data-fancybox-fb onclick="initDeleteFileApp()" class="fancybox-button fancybox-button--fb" title="Delete">' +
+            '<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash" class="svg-inline--fa fa-trash fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 512">' +
+            '<path fill="currentColor" d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"></path>' +
+            '</svg>' +
+            '</button>';
+    }
 
     $( '[data-fancybox="gallery"]' ).fancybox({
         buttons : [
@@ -283,25 +314,18 @@ function showImages() {
 
 
 function initDeleteFile() {
-    var idUbicacion = document.querySelector("#idUbicacion").value;
-    var idEmpresa = document.querySelector("#idEmpresa").value;
-    var empresa = document.querySelector("#empresa").value;
-
     var src = $.fancybox.getInstance().current.src;
-    var url = src.split('/');
-    var fileName = url[url.length - 1];
+    // var url = src.split('/');
+    // var fileName = url[url.length - 1];
 
     $("#modal-confirmacion").modal('show');
 
-    var functionSuccess =   function (){
-        $('#myModal2').modal('hide');
-        createCarousel(idUbicacion , idEmpresa , empresa);
-    };
+    $('#myModal2').modal('hide');
 
     modalConfirm2(function(confirm){
         if(confirm){
             //Acciones si el usuario confirma
-            deleteFile(idEmpresa,fileName, functionSuccess);
+            deleteFile(src);
             $("#modal-confirmacion").modal('hide');
             $.fancybox.close();
 
@@ -312,6 +336,24 @@ function initDeleteFile() {
     });
 }
 
+function initDeleteFileApp() {
+    var src = $.fancybox.getInstance().current.src;
+
+    $("#modal-confirmacion").modal('show');
+
+    modalConfirm2(function(confirm){
+        if(confirm){
+            //Acciones si el usuario confirma
+            deleteFile(src);
+            $("#modal-confirmacion").modal('hide');
+            $.fancybox.close();
+
+        } else {
+            //Acciones si el usuario no confirma
+            $("#modal-confirmacion").modal('hide');
+        }
+    });
+}
 
 function createTableUbicacionInformation(data){
     var table = $('.table-data-ubicaciones').clone();
@@ -340,20 +382,17 @@ function createTableUbicacionInformation(data){
 }
 
 
-function deleteFile(idEmpresa, fileName, functionSuccess) {
-
-    var url = 'http://geoplanningmas.com/ar/v2/apifiles/file/' + idEmpresa + '/' + fileName;
+function deleteFile(url) {
 
     $.ajax( {
         url: url,
         type: "DELETE",
         success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
             $("#resultado").html(response);
-            functionSuccess;
 
             $.notify({
                 title: '<strong>Archivo borrado correctamente</strong>',
-                message: 'Por favor actualice la pagina para visualizar los cambios.'
+                message: 'Por favor vuelva a cargar el gestor para visualizar los cambios.'
             }, {
                 z_index:2000
             });
@@ -363,7 +402,7 @@ function deleteFile(idEmpresa, fileName, functionSuccess) {
 
             $.notify({
                 title: '<strong>Hubo un problema!</strong>',
-                message: 'Se produjo un error al intentar borrar la imagen.'
+                message: 'Se produjo un error al intentar borrar el archivo.'
             }, {
                 timer: 'none',
                 z_index:2000,

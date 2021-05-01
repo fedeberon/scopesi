@@ -24,11 +24,6 @@
         stroke-width: 0;
     }
 
-    .confirm-modal{
-        margin-top: 124px;
-        z-index: 100000;
-    }
-
 </style>
 
 <div class="content">
@@ -334,7 +329,7 @@
             </div>
             <div class="modal-body">
                 <div class="data-ubicacion"></div>
-                <button onclick="showImages()" class="btn btn-sm btn-fill btn-secondary"><i class="far fa-images"></i> Ver Imagenes</button>
+                <button onclick="showImages('fotos_map')" class="btn btn-sm btn-fill btn-secondary"><i class="far fa-images"></i> Ver Imagenes</button>
                 <a data-toggle="modal" href="#myModal2" class="btn btn-sm btn-fill btn-secondary"><i class="fas fa-file-upload"></i> Subir imagenes</a>
             </div>
             <div class="modal-footer"></div>

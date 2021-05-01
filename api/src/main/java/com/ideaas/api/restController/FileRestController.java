@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//NO LONGER USED
 @RestController
 @RequestMapping("api/fotos_map/")
 @CrossOrigin(origins = "http://localhost:8082")

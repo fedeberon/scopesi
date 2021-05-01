@@ -962,3 +962,7 @@ input:checked + .slider:before {
     border-width: 1px;
     color:black;
 }
+.confirm-modal{
+    margin-top: 124px;
+    z-index: 100000;
+}

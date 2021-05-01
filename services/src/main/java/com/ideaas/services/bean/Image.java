@@ -1,6 +1,6 @@
 package com.ideaas.services.bean;
 
-
+//NO LONGER USED
 public class Image {
 
     private String name;

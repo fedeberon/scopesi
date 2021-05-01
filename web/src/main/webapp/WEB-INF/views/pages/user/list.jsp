@@ -67,10 +67,12 @@
                                         <img src="/resources/assets/img/icons/edit2.png" alt="">
                                     </td>
                                     <td>
-                                        <div ${bo.tipoUsuario.id == 5 ? 'class="text-center cursorPointer"' : 'class="d-none"'} onclick="createCarouselUser('${bo.id}' )">
+                                        <div ${bo.tipoUsuario.id == 1 ? 'class="text-center cursorPointer"' : 'class="d-none"'} onclick="createCarouselUser('${bo.id}' )">
                                             <i class="fas fa-camera"></i>
                                         </div>
-                                        <span ${bo.tipoUsuario.id == 5 ? 'class="d-none"' : ''}> - </span>
+                                        <div ${bo.tipoUsuario.id == 1 ? 'class="d-none"' : 'class="text-center"'}>
+                                            <span> - </span>
+                                        </div>
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.estado == "B" ? 'class="d-none"' : ''} href="<c:url value='/usuario/dropState?id=${bo.id}'/>"/>
@@ -102,11 +104,25 @@
 
                             </div>
                         </div>
-                        <div class="data-auditapp"></div>
+                        <div class="data-auditapp d-none"></div>
                     </div>
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade confirm-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" id="modal-confirmacion">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" style="margin-top: 0;" id="myModalLabel">&iquest;Desea eliminar esta imagen?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="modal-btn2-si">Si</button>
+                <button type="button" class="btn btn-primary" id="modal-btn2-no">No</button>
+            </div>
         </div>
     </div>
 </div>

@@ -14,13 +14,12 @@ var multipleFileUploadError = document.querySelector('#multipleFileUploadError')
 var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess') || document.querySelector('#multipleFileUploadSuccessMap');
 
 function uploadSingleFile(file){
-
     var url = 'http://geoplanningmas.com/ar/v2/apifiles/file';
     var idEmpresa = document.querySelector("#idEmpresa").value;
     var idUbicacion = document.querySelector("#idUbicacion").value;
     var extension = file.name.split('.').pop();
     var fileName;
-    var pathsArray = getAllFilesPathOfEmpresa(url , idEmpresa);
+    var pathsArray = getAllFilesPathOfParam(url , idEmpresa , 'fotos_map');
 
     if(pathsArray.length !== 0){
         pathsArray = filterFilesPath(pathsArray, idUbicacion);
