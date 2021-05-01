@@ -62,17 +62,17 @@
 
                                 <tr>
                                     <td><a href="/usuario/${bo.id}">${bo.id}</a></td>
+                                    <td>
+                                        <div ${bo.tipoUsuario.id == 1 || bo.tipoUsuario.id == 5 ? 'class="text-center cursorPointer"' : 'class="d-none"'} onclick="createCarouselUser('${bo.id}' )">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                        <div ${bo.tipoUsuario.id == 1 || bo.tipoUsuario.id == 5 ? 'class="d-none"' : 'class="text-center"'}>
+                                            <span> - </span>
+                                        </div>
+                                    </td>
                                     <td class="text-center">
                                         <a href="<c:url value='/usuario/update?id=${bo.id}'/>"/>
                                         <img src="/resources/assets/img/icons/edit2.png" alt="">
-                                    </td>
-                                    <td>
-                                        <div ${bo.tipoUsuario.id == 1 ? 'class="text-center cursorPointer"' : 'class="d-none"'} onclick="createCarouselUser('${bo.id}' )">
-                                            <i class="fas fa-camera"></i>
-                                        </div>
-                                        <div ${bo.tipoUsuario.id == 1 ? 'class="d-none"' : 'class="text-center"'}>
-                                            <span> - </span>
-                                        </div>
                                     </td>
                                     <td class="text-center">
                                         <a ${bo.estado == "B" ? 'class="d-none"' : ''} href="<c:url value='/usuario/dropState?id=${bo.id}'/>"/>
