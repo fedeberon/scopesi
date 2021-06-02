@@ -154,16 +154,30 @@ function createCarousel(idUbicacion , idEmpresa , empresa){
 
 }
 
-function createCarouselUser(idUsuario){
+function createFolderList(user , foldersArray , urlsArray){
+
+    var folderList = document.getElementById("folders");
+    folderList.innerHTML = ""; //clear element
+
+    foldersArray.map(function (folder) {
+        var row = folderList.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        cell1.innerHTML = "<a href='#' id='folder-"+ folder +"' onclick='showAuditappFiles(\""+folder+"\" , \""+urlsArray+"\")' title='Ver archivos'><i class='fas fa-folder-open'></i> "+ folder +"</a>";
+
+        var cell2 = row.insertCell(1);
+        cell2.innerHTML = "<a href='#' onclick='downloadZip("+user+", \""+folder+"\")' title='Descargar archivos'><i class=\"fas fa-file-download\"></i></a>";
+        cell2.style.textAlign = "center";
+    });
+
+}
+
+function initCarouselAuditapp(idUsuario){
     $('.data-auditapp').html("");
     $('.load').show();
-    $('.map-container').css('opacity', '0.3');
     $('.content').css('opacity', '0.3');
 
     var urlBase ='http://geoplanningmas.com/ar/v2/apifiles/fotos_app';
     var pathsArray = getAllFilesPathOfParam(urlBase , idUsuario , 'fotos_app');
-
-    var fileNameArray = getFileNames(pathsArray);
 
     var urlsArray = pathsArray.map(function (path) {
         return urlBase + path;
@@ -175,42 +189,24 @@ function createCarouselUser(idUsuario){
         emptyImages = false
     }
 
-    for (var i = 0; i < urlsArray.length; i++) {
+    var regexFilterDate = /\d{1,2}-\d{1,2}-\d{4}/;
+    var allFolderOfUser = [];
 
-        var url = urlsArray[i].split('.');
-        var extension = url[url.length - 1];
-        if(extension === 'mp4'){
-            var a = $('<a>',{
-                class : 'fancybox hidden',
-                rel : 'group',
-                href: urlsArray[i],
-                'data-caption': fileNameArray[i],
-                'data-fancybox':'gallery',
-                'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]',
-                'data-width':"640",
-                'data-height':"360"
-            });
-            a.appendTo('.data-auditapp');
-        }else{
-            var a = $('<a>',{
-                class : 'fancybox hidden',
-                rel : 'group',
-                href: urlsArray[i],
-                'data-caption': fileNameArray[i],
-                'data-fancybox':'gallery',
-                'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
-            });
-            var img = $('<img>',{
-                src: urlsArray[i]
-            });
-            a.append(img);
-            a.appendTo('.data-auditapp');
-        }
-    }
+    urlsArray.map(function (url) {
+        allFolderOfUser.push(url.match(regexFilterDate)[0]);
+    });
+
+    var foldersArray = [];
+
+    $.each(allFolderOfUser, function(i, folder){
+        if($.inArray(folder, foldersArray) === -1) foldersArray.push(folder);
+    });
+
+    createFolderList(idUsuario,foldersArray , urlsArray);
 
     $('.load').hide();
     $('.content').css('opacity', '1');
-    showImages('fotos_app');
+    $('#modal-folders').modal('show');
 }
 
 function getAllFilesPathOfParam(url , param , folderOrigin) {
@@ -312,6 +308,58 @@ function showImages(typeFile) {
     });
 }
 
+function showAuditappFiles(folderDate , urlsArray){
+
+    $('.data-auditapp').html(""); //clear component
+
+    urlsArray =  urlsArray.split(",");
+
+    var regexFilterDate = /\d{1,2}-\d{1,2}-\d{4}/;
+    var urlsArrayFilteredForDate = urlsArray.filter(function (url) {
+        return url.match(regexFilterDate)[0] === folderDate;
+    });
+
+    var regexFolderAndFileName = /[/].+[/](.+[/].*)/;
+    var pathsArray = urlsArrayFilteredForDate.map(function (url) {
+        return url.match(regexFolderAndFileName)[1];
+    });
+
+
+    for (var i = 0; i < urlsArrayFilteredForDate.length; i++) {
+
+        var url = urlsArrayFilteredForDate[i].split('.');
+        var extension = url[url.length - 1];
+        if(extension === 'mp4'){
+            var a = $('<a>',{
+                class : 'fancybox hidden',
+                rel : 'group',
+                href: urlsArrayFilteredForDate[i],
+                'data-caption': pathsArray[i],
+                'data-fancybox':'gallery',
+                'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]',
+                'data-width':"640",
+                'data-height':"360"
+            });
+            a.appendTo('.data-auditapp');
+        }else{
+            var a = $('<a>',{
+                class : 'fancybox hidden',
+                rel : 'group',
+                href: urlsArrayFilteredForDate[i],
+                'data-caption': pathsArray[i],
+                'data-fancybox':'gallery',
+                'data-buttons' : '["slideShow","fullScreen","thumbs","fb","close"]'
+            });
+            var img = $('<img>',{
+                src: urlsArrayFilteredForDate[i]
+            });
+            a.append(img);
+            a.appendTo('.data-auditapp');
+        }
+    }
+
+    showImages('fotos_app');
+}
 
 function initDeleteFile() {
     var src = $.fancybox.getInstance().current.src;
@@ -861,4 +909,71 @@ function preventSpaceBar(event) {
             return false;
         }
     }
+}
+
+function downloadZip(user , date) {
+    $('.load').show();
+    $('.modal-content').css('opacity', '0.7');
+    $('.content').css('opacity', '0.3');
+
+    var urlBase ='http://geoplanningmas.com/ar/v2/apifiles/fotos_app';
+    var zip = new JSZip();
+    var promiseArray = [];
+
+    var pathsArray = getAllFilesPathOfParam(urlBase , user , 'fotos_app');
+
+    var urlsArray = pathsArray.map(function (path) {
+        return urlBase + path;
+    });
+
+    var regexFilterDate = /\d{1,2}-\d{1,2}-\d{4}/;
+    var urlsArrayFilteredForDate = urlsArray.filter(function (url) {
+        return url.match(regexFilterDate)[0] === date;
+    });
+
+    urlsArrayFilteredForDate.forEach(function (url) {
+        promiseArray.push(new Promise(function (resolve, reject) {
+            var request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.responseType = 'blob';
+            request.onload = function () {
+                if(request.status === 200 || request.status === 201 ){
+                    var regexFileName = /[/].+[/](.+[/].*)/;
+                    var fileName = request.responseURL.match(regexFileName)[1];
+
+                    zip.file(fileName, request.response, {base64: true});
+                    resolve();
+                }else{
+                    reject();
+                }
+            };
+
+            request.send();
+        }));
+    });
+
+    Promise.all(promiseArray).then(function () {
+        zip.generateAsync({type: "blob"})
+            .then(function (content) {
+                $('.load').hide();
+                $('.modal-content').css('opacity', '1');
+                $('.content').css('opacity', '1');
+
+                saveAs(content, "audiencias.zip");
+            });
+    })
+    .catch(function (e) {
+        $('.load').hide();
+        $('.modal-content').css('opacity', '1');
+        $('.content').css('opacity', '1');
+        console.log(e);
+        $.notify({
+            title: '<strong>Hubo un problema!</strong>',
+            message: 'Se produjo un error al crear el archivo de descarga.'
+        }, {
+            type: 'danger'
+        });
+
+    });
+
 }

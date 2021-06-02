@@ -322,7 +322,7 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content" style="margin-top: 45%;">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Gestor de imagenes</h5>
+                <strong class="modal-title" id="exampleModalLabel">Gestor de imagenes</strong>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -387,14 +387,14 @@
 
 <li class="nav-item more-options" style="display: none">
     <a href="#" class="nav-link">
-        <i id="icon-options" class="nc-icon nc-simple-add"></i>
+        <i class="nc-icon nc-simple-add"></i>
         <span id="span-more-options" class="d-lg-block" onclick="showOptions()">&nbsp;Mas Opciones</span>
     </a>
 </li>
 
 <li class="nav-item more-options" style="display: none">
     <a href="#" class="nav-link" onclick="openModal('optionModal')">
-        <i id="icon-options" class="nc-icon nc-simple-add"></i>
+        <i class="nc-icon nc-simple-add"></i>
         <span class="d-lg-block">&nbsp;Editar Resultados</span>
     </a>
 </li>

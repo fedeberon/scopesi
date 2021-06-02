@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 
+<script src="<c:url value='/resources/assets/js/plugins/FileSaver/FileSaver.js'/>"></script>
 <script>
     var element = document.getElementById("users");
     element.classList.add("active");
@@ -63,7 +64,7 @@
                                 <tr>
                                     <td><a href="/usuario/${bo.id}">${bo.id}</a></td>
                                     <td>
-                                        <div ${bo.tipoUsuario.id == 1 || bo.tipoUsuario.id == 5 ? 'class="text-center cursorPointer"' : 'class="d-none"'} onclick="createCarouselUser('${bo.id}' )">
+                                        <div ${bo.tipoUsuario.id == 1 || bo.tipoUsuario.id == 5 ? 'class="text-center cursorPointer"' : 'class="d-none"'} onclick="initCarouselAuditapp('${bo.id}' )">
                                             <i class="fas fa-camera"></i>
                                         </div>
                                         <div ${bo.tipoUsuario.id == 1 || bo.tipoUsuario.id == 5 ? 'class="d-none"' : 'class="text-center"'}>
@@ -104,7 +105,6 @@
 
                             </div>
                         </div>
-                        <div class="data-auditapp d-none"></div>
                     </div>
                 </div>
             </div>
@@ -123,6 +123,47 @@
                 <button type="button" class="btn btn-default" id="modal-btn2-si">Si</button>
                 <button type="button" class="btn btn-primary" id="modal-btn2-no">No</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-folders" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content" style="height: 50%; overflow-y: scroll; margin-top: 0px;">
+            <div class="modal-header">
+                <strong class="modal-title" id="exampleModalLabel">Gestor de imagenes</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col load mt-5" style="display: none; position:absolute; z-index: 1000; top: 123px;">
+                    <div class="col-md-12">
+                        <div class="loader">
+                            <div class="loader-inner box1"></div>
+                            <div class="loader-inner box2"></div>
+                            <div class="loader-inner box3"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"><h5 id="info-loader" style="text-align: center"></h5></div>
+                </div>
+                <div class="data-auditapp d-none"></div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Carpetas</th>
+                                <th>Descargar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="folders">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
         </div>
     </div>
 </div>
